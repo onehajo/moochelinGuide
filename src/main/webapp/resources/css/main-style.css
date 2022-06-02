@@ -1,0 +1,552 @@
+*{
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    color : black;
+}
+body{
+    margin: 0;
+}
+
+a:visited, a:link {
+    color : black;
+}
+
+.main-css{
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background-color: #fff;
+    height: 83px;
+    box-shadow: 0px 3px 10px 1px rgb(0 0 0 / 10%);
+    position: sticky;
+    top: 0;  
+    z-index:2;
+}
+
+/* 상단 가로폭 잡아주는 div */
+.hd-center{
+    max-width: 1200px;
+    min-width: 800px;
+    margin: auto;
+}
+
+/* 상단 메뉴 들어있는 목록 */
+.main-css ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    height: 83px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* 상단메뉴 : 박스오피스,전체영화,검색,로그인,회원가입 */
+.main-css ul li {
+    font-size: 18px;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+/* svg로 적용한 상태. 
+svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
+.logo{
+    width: 100px;
+    height: 50px;
+    padding-right: 20px;
+}
+
+.sch{
+    display: flex;
+    margin: 0 20px 0 auto;
+}
+
+/* 검색 스타일 */
+.search-area{width: 300px;}
+
+.search-area fieldset{
+    padding: 2px 2px 2px 10px;
+    margin: 0px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(to right, #00ffbe, #fff);
+}
+
+#query{
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 400;
+
+    border: none;
+    outline: 0;
+    width: 100%;
+    margin: -2px;
+}
+
+#query::placeholder{ 
+    color: #aaa;
+}
+
+#search-btn{
+    width: 12%;
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+
+    color: #fff;
+    
+}
+
+.signup{
+    margin-right: 0 !important;
+    /* border: 1px solid #00ffbe; */
+    padding: 5px 12px;
+    background-color: #00ffbe;
+    border-radius: 5px;
+}
+
+.signup a {
+    color: #392eff;
+    font-weight: 500;
+}
+
+.profile{
+    margin-right: 0 !important;
+}
+#profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #555765;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 
+로그인, 회원가입, SNS회원가입
+*/
+.popup{
+    background-color: #fff;
+    width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    /*box-shadow: 0px 3px 10px 1px rgb(0 0 0 / 20%);*/
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: center;    
+}
+
+.popup > img{
+    width: 180px;
+}
+.popupTitle{
+    margin: 0;
+    font-size: 26px;
+    line-height: 20px;
+    font-weight: 500;
+    display: inline-block;
+}
+.form-css{
+    margin-top: 20px;
+}
+.form-css > input {
+    width: 340px;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 10px;
+    outline: 0;
+}
+.form-css > div{
+   padding-left: 10px;
+   font-size: 13px;
+   color: red;
+}
+.btn{
+    width: 340px;
+    height: 40px;
+    background-color: #392eff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login-other {
+    color: #8c8c8c;
+    margin: 35px 0 10px 0;
+    font-size: 14px;
+
+}
+.login-other > div{
+    text-align: center;
+}
+.login-other a{
+    color: #392eff;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+hr {
+    width: 100%;
+    border:none;
+
+    position: relative;
+}
+.line::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 100%;
+    border-top: 1px solid rgb(216, 216, 216);
+}
+
+.line::after{
+    content: "OR";
+    position: relative;
+    top: -2px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(160, 160, 160);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    line-height: 19px;
+    vertical-align: middle;
+    padding: 0px 14px;
+    left: 145px;
+}
+
+.sns{
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.sns > img {
+    width: 40px;
+}
+
+/* 약관동의 */
+#agree{
+    width: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #292a32;
+
+    background-color: #fff;
+}
+#agree > .agree-title{
+    background-image: linear-gradient(to right, rgb(57, 46, 255), rgb(0, 255, 190) 100%);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    box-sizing: border-box;
+    padding: 17px 16px 18px;
+}
+#agree > .agree-all{
+    padding: 17px 16px 18px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: 500;
+}
+#agree ul{
+    padding: 17px 14px 10px;
+    margin: 0;
+}
+#agree ul li{
+    margin: 0;
+    padding: 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+#agree ul li div{
+    color: #777777;
+}
+#agree ul li button{
+    border: none;
+    background-color: #fff;
+    font-size: 14px;
+    color: #ccc;
+    text-decoration: underline;
+}
+#agree input{
+    margin-right: 10px;
+}
+.agree-submit{
+    padding: 10px 0 18px;
+    text-align: center;
+}
+.agree-submit button{
+    border: none;
+    background-color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ccc;
+    cursor: pointer;
+}
+
+
+
+
+/* 로그인, 회원가입 팝업관련 */
+.dark{
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index:-1; opacity: 0;
+}
+.dark1{
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index:-1; opacity: 0;
+}
+.dark.active{z-index: 3; opacity: 1; transition: opacity 0.5s;}
+.dark1.active1{z-index: 4; opacity: 1; transition: opacity 0.5s;}
+
+
+.popup{
+    position: fixed;
+     
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1; opacity: 0;
+    display: none;
+}
+.popup1{
+    position: fixed;
+     
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1; opacity: 0;
+    display: none;
+}
+.popup1.active2{z-index: 10; opacity: 1; transition: opacity 0.5s; display: block}
+.popup.active{z-index: 3; opacity: 1; transition: opacity 0.5s; display: flex;}
+.activeP{z-index: 3; opacity: 1; transition: opacity 0.5s; display: flex;}
+
+/* 바디에 스크롤 막는 방법 */
+.not_scroll{
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 중앙 콘텐츠 영역 */
+/*content-index*/
+main {
+    width: 100%;
+    padding: 0;
+}
+
+/* 중앙 가로 1200 내에서 작업할 때 */
+main > .content-main{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+
+
+.sectionTitle{
+    margin-top: 50px;
+    font-size: 26px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+main > .content-main > select{
+    width: 200px; 
+    margin-left: 20px;
+}
+.movie-list-all{
+width: 100%;
+margin-bottom: 50px;
+}
+
+.content-main > .movie-list-all > ul{
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.content-main > .movie-list-all > ul >li{
+    margin-bottom: 50px;
+	width : 20%;
+	padding : 0 10px;
+
+}
+
+.content-main .movie {
+    /* width: 220px; */
+}
+
+.movie-top{
+    position: relative;
+    width: 100%;
+}
+.movie-poster{
+    box-sizing: border-box;
+    width: 100%;
+    background: #f8f8f8;
+}
+.movie-poster > img{
+    width: 100%;
+    border-radius: 5px;
+}
+.ranking{
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 28px;
+    height: 28px;
+    line-height: 27px;
+    font-size: 16px;
+
+    background-color: rgba(0, 0, 0, 0.77);
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.movie-bottom{
+    margin: 5px 10px 0 0;
+}
+
+.movie-title{
+    color: #292a32;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+.movie-year-contry{
+    color: #292a32;
+    padding-bottom: 1px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.average{
+    color: #555765;
+    margin-top: 2px;
+    display: flex;
+    font-size: 14px;
+    line-height: 14px;
+    height: 15px;
+}
+.average > svg{
+    margin: 2px 5px 0px;
+}
+.showing-info{
+    color: #74747b;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    line-height: 18px;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer 스타일 */
+.footer-top {
+    height: 60px;
+    background-color: #392eff;
+    text-align: center;
+    padding: 18px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+.footer-top > span {color: #00ffbe;}
+
+.footer-bottom {
+    height: 200px;
+    background-color: #f9f9f9;
+    padding-top: 25px;
+    color: #777777;
+}
+.footer-bottom > div {
+    width: 1200px;
+    margin: 0 auto;
+}
+.footer-bottom p{
+    font-size: 12px;
+    line-height: 10px;
+}
