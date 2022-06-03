@@ -246,7 +246,17 @@ function signUpValidate(){
 function showing(){
     $.ajax({
         url: "movie/showing",
-        success: function(){},
+        dataType: "json", 
+        success: function(list){
+		
+			const ul = document.getElementsByClassName("movie-list")[0];
+		
+			for(let movie of list){
+			const li = document.createElement("li");
+			const a = 
+			
+			}
+		},
         error: function(){}
     })
 }
