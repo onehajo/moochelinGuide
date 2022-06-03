@@ -7,7 +7,7 @@
 	<entry key="login">
 		SELECT MEMBER_NO,MEMBER_EMAIL,MEMBER_NM,PROFILE_IMG,PROFILE_BACK_IMG,
     			TO_CHAR(ENROLL_DT, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DT 
-    	FROM TEST_MEMBER
+    	FROM MEMBER
 		WHERE MEMBER_EMAIL = ?
 		AND MEMBER_PW = ?
 		AND SECESSION_FL = 'N'
@@ -16,13 +16,13 @@
 	<!-- 이메일 중복확인 (TEST_MEMBER 테스트 테이블) -->
 	<entry key="emailDupCheck">
 		SELECT COUNT(*)
-		FROM TEST_MEMBER
+		FROM MEMBER
 		WHERE MEMBER_EMAIL=?
 	</entry>
 	
 	<!-- 회원가입 (TEST_MEMBER 테스트 테이블) -->
 	<entry key="signUp">
-		INSERT INTO TEST_MEMBER
+		INSERT INTO MEMBER
 		VALUES(SEQ_MEMBER_NO.NEXTVAL,?,?,?,NULL,NULL,DEFAULT,DEFAULT)
 	</entry>
 </properties>
