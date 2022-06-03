@@ -23,7 +23,7 @@
         <section class="content-main">
             <p class="sectionTitle">박스오피스 순위</p>
             <section class="movie-list-all">
-                <ul>
+                <ul class="movie-list">
                     <li>
                         <a href="resources/yjg/Detail_page.html">
                             <div class="movie">
