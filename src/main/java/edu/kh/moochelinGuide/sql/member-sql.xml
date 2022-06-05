@@ -25,4 +25,16 @@
 		INSERT INTO MEMBER
 		VALUES(SEQ_MEMBER_NO.NEXTVAL,?,?,?,NULL,NULL,DEFAULT,DEFAULT)
 	</entry>
+	
+	
+	
+	
+	<!-- 특정 키워드로 유저 검색 -->
+	<entry key="searchUser">
+		SELECT MEMBER_NO,MEMBER_NM,PROFILE_IMG
+    	FROM MEMBER
+		WHERE MEMBER_NM LIKE ?
+		AND SECESSION_FL = 'N'
+	</entry>
+	
 </properties>

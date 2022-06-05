@@ -243,7 +243,7 @@ function signUpValidate(){
     }
 }
 
-function showing(){
+/*function showing(){
     $.ajax({
         url: "movie/showing",
         dataType: "json", 
@@ -259,5 +259,28 @@ function showing(){
 		},
         error: function(){}
     })
-}
+}*/
 
+
+
+// 검색
+document.getElementById("search-btn").addEventListener("click",function(){
+
+    const query = document.getElementById("query");
+    const queryExp = /^[a-zA-Z0-9가-힣]{1,10}$/;
+    const searchForm = document.getElementsByName("search-form");
+
+    // 검색어 유효성 검사
+    if( !queryExp.test(query.value) ){
+        alert("영어/숫자/한글 1~10글자 사이로 작성해주세요.");
+        query.value = "";
+        query.focus();
+        return;
+    }
+
+    // 검색어가 작성된 경우
+    if(query.value.trim().length!=0){
+        searchForm[0].submit();
+    }
+
+})

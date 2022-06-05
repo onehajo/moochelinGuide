@@ -18,10 +18,17 @@
 				<!-- 검색 -->
 				<li class="sch">
 					<article class="search-area">
-						<form action="#" name="search-form">
+						<form action="search/title" name="search-form">
 							<fieldset class="hd-fieldset">
 								<i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
-								<input type="search" id="query" autocomplete="off" placeholder="제목, 인물, 유저를 검색해보세요">
+
+								<c:if test="${!empty query}"> <!-- 검색어가 입력된 경우 -->
+									<input type="search" id="query" name="query" autocomplete="off" placeholder="${query}">
+								</c:if>
+								<c:if test="${empty query}"> <!-- 검색어가 입력되지 않은 경우 -->
+									<input type="search" id="query" name="query" autocomplete="off" placeholder="제목, 인물, 유저를 검색해보세요">
+								</c:if>
+
 							</fieldset>
 						</form>
 					</article>

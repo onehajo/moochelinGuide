@@ -2,6 +2,7 @@ package edu.kh.moochelinGuide.member.model.service;
 
 import static edu.kh.moochelinGuide.common.JDBCTemplate.*;
 import java.sql.Connection;
+import java.util.List;
 
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
 import edu.kh.moochelinGuide.member.model.vo.Member;
@@ -53,6 +54,23 @@ public class MemberService {
 		close(conn);
 		
 		return member;
+	}
+
+	
+	/** 특정 키워드로 유저 검색 Service
+	 * @param query
+	 * @return userList
+	 * @throws Exception
+	 */
+	public List<Member> searchUser(String query) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		List<Member> userList = dao.searchUser(conn,query);
+		
+		close(conn);
+		
+		return userList;
 	}
 	
 	

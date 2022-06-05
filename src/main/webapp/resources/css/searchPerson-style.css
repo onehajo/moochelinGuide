@@ -1,0 +1,121 @@
+/* ___ 검색결과 */
+/* 중앙 가로 1200 내에서 작업할 때 */
+main > .content-explain > div, .sch-menu{
+    width: 1200px;
+    margin: 0px auto;
+}
+
+/* 현재 페이지 속성 알려주는영역 */
+.content-explain{
+    height: 43px;
+    display: flex;
+    align-items: center;
+    background: #00ffbe;
+}
+
+.content-explain > div > p{
+    font-size: 16px;
+    color: rgb(116, 116, 123);
+    margin-left: 20px;
+}
+
+/* 검색결과 구분 탭*/
+.sch-menu > ul{
+    height: 43px;
+    display: flex;
+    align-items: center;
+    margin: 16 5px;
+    padding: 0;
+    border-bottom: solid 1px black;
+}
+
+.sch-menu ul li {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.sch-menu ul li a {
+    color: rgb(116, 116, 123);
+}
+
+/*검색결과 출력*/
+
+.movie-list-row{
+    margin-bottom : 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sch-person {
+    width: 500px;
+    height: 100px;
+    margin: 0px 40px 16px 40px;
+    display: flex;
+    align-items: center;
+}
+
+/*이미지가 들어갈 영역*/
+.sch-person > div:first-child{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*이미지 사이즈 71*71*/
+/* .sch-img-person {
+    width: 71px;
+    height: 71px;
+} */
+
+/*이미지에 대한 설명이 들어가는 영역*/
+.sch-person-info{
+    width: 400px;
+    height: 100px;
+    border-bottom: 1px solid black;
+
+}
+
+/*이미지영역 ~ 설명영역 사이 마진*/
+.sch-person-info > div{
+    margin: 0 5px 5px 5px;
+}
+
+/*이름*/
+.sch-person-info > div:nth-of-type(1) {
+    font-size: 18px;
+}
+
+/*배우,감독.. 등 설명*/
+.sch-person-info > div:nth-of-type(2) {
+    font-size: 12px;
+}
+
+/*검색한 인물과 연관되는 영화명*/
+.sch-person-info > div:nth-of-type(3){
+    padding-bottom: 16px;
+}
+
+.sch-person-info > div:nth-of-type(3) > a {
+    font-size: 16px;
+    color: black;
+    padding: 2px 6px;
+    margin-right: 10px;
+    background-color: rgb(227, 227, 227);
+}
+
+/*더보기 버튼 영역*/
+.view-more{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-more > button {
+    width: 172px;
+    height: 34px;
+    border: 1px solid rgb(227, 227, 227);
+    background-color: white;
+}

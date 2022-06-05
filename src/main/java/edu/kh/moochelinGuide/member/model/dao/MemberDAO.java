@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.member.model.vo.Member;
@@ -103,6 +105,43 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		return member;
+	}
+
+	/** 특정 키워드로 유저 검색 DAO
+	 * @param conn
+	 * @param query
+	 * @return userList
+	 * @throws Exception
+	 */
+	public List<Member> searchUser(Connection conn, String query) throws Exception{
+		List<Member> userList = new ArrayList<Member>();
+		
+		try {
+			String sql = prop.getProperty("searchUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%"+query+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Member mem = new Member();
+				
+				mem.setMemberNo(rs.getInt(1));
+				mem.setMemberName(rs.getString(2));
+				mem.setProfileImage(rs.getString(3));
+				
+				userList.add(mem);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return userList;
 	}
 
 }
