@@ -61,3 +61,17 @@ main > .content-explain > div, .sch-menu{
     font-size: 12px;
 }
 
+/*검색 결과가 없는 경우*/
+#searchFail{
+    margin: auto;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchFail > i {
+    font-size: 40px;
+    color: #00ffbe;
+}

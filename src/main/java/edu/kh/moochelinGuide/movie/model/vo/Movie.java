@@ -13,7 +13,7 @@ public class Movie {
 
 	private int movieNo;
 	private String movieTitle;
-	private String PosterImage;
+	private String posterImage;
 	private int releaseYear;
 	private String country;
 	private String nowShowingFlag;

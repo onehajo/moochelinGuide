@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.member.model.vo.Member;
+import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 @WebServlet("/search/*")
 public class SearchController extends HttpServlet{
@@ -34,9 +35,11 @@ public class SearchController extends HttpServlet{
 			// 제목 검색 결과
 			if(command.equals("title")) {
 			
-			// 검색 결과를 조회하는 서비스를 호출하여 리스트 반환 (영화 vo 필요)
-			// List<Movie> movieList = service.searchTitle(query); 
-						
+			// 검색 결과를 조회하는 서비스를 호출하여 영화 리스트 반환
+			List<Movie> movieList = service.searchTitle(query); 
+			
+			req.setAttribute("movieList", movieList);
+								
 				
 			}
 			
@@ -52,6 +55,7 @@ public class SearchController extends HttpServlet{
 		    // 유저 검색 결과
 		    if(command.equals("user")) {
 		    	
+		    	// 검색 결과를 조회하는 서비스를 호출하여 유저 리스트 반환
 		    	List<Member> userList = service.searchUser(query);
 		    	
 		    	req.setAttribute("userList", userList);
@@ -70,5 +74,5 @@ public class SearchController extends HttpServlet{
 		
 		
 	}
-
+	
 }

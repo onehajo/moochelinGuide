@@ -41,7 +41,7 @@
                     <c:forEach var="user" items="${userList}">
                         <a href="#" class="sch-user">
                             <div>
-                                <img src="../images/KakaoTalk_20220516_173812258.jpg" class="sch-img-user">
+                                <img src="${contextPath}/resources/images/logo-blue.png" class="sch-img-user">
                             </div>
                             <div class="sch-user-info">
                                 <div>${user.memberName}</div>
@@ -73,6 +73,9 @@
     </main>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 </html>

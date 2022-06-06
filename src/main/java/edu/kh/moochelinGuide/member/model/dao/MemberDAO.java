@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.member.model.vo.Member;
+import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 public class MemberDAO {
 	
@@ -142,6 +143,47 @@ public class MemberDAO {
 		}
 		
 		return userList;
+	}
+
+	/** 특정 키워드로 영화 검색 DAO
+	 * @param conn
+	 * @param query
+	 * @return movieList
+	 * @throws Exception
+	 */
+	public List<Movie> searchTitle(Connection conn, String query) throws Exception{
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		try {
+			
+			String sql = prop.getProperty("searchTitle");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%"+query+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Movie m = new Movie();
+				
+				m.setMovieNo(rs.getInt(1));
+				m.setMovieTitle(rs.getString(2));
+				m.setPosterImage(rs.getString(3));
+				m.setReleaseYear(rs.getInt(4));
+				m.setCountry(rs.getString(5));
+				
+				movieList.add(m);
+				
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return movieList;
 	}
 
 }

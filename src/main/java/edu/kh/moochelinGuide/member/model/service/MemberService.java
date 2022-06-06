@@ -6,6 +6,7 @@ import java.util.List;
 
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
 import edu.kh.moochelinGuide.member.model.vo.Member;
+import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 public class MemberService {
 
@@ -71,6 +72,22 @@ public class MemberService {
 		close(conn);
 		
 		return userList;
+	}
+
+	/** 특정 키워드로 영화 검색 Service
+	 * @param query
+	 * @return movieList
+	 * @throws Exception
+	 */
+	public List<Movie> searchTitle(String query) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		List<Movie> movieList = dao.searchTitle(conn, query);
+		
+		close(conn);
+		
+		return movieList;
 	}
 	
 	

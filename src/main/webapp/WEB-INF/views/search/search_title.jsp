@@ -37,72 +37,35 @@
         </section>
         <section class="content-main">
             <section class="movie-list-row">
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
-                <a href="#" class="sch-title">
-                    <div class="movie"><img src="../images/broker.jpeg" class="sch-img-title"></div>
-                    <div>영화 타이틀</div>
-                    <div>개봉년도 국가</div>
-                    <div>영화</div>
-                </a>
+
+                <c:if test="${!empty movieList}">
+                    <c:forEach var="movie" items="${movieList}">
+                        <a href="#" class="sch-title">
+                            <div class="movie"><img src="${movie.posterImage}" class="sch-img-title"></div>
+                            <div>${movie.movieTitle}</div>
+                            <div>${movie.releaseYear} ${movie.country}</div>
+                            <div>영화</div>
+                        </a>                
+                    </c:forEach>
+                </c:if>
+
+                <c:if test="${empty movieList}">
+
+                    <div id="searchFail">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <p>검색 결과가 없습니다. 다른 검색어를 입력해보세요.</p>
+                    </div>
+
+                </c:if>
             </section>
 
         </section>
     </main>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 </html>
