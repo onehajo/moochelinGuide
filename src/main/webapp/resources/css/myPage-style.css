@@ -1,0 +1,193 @@
+
+
+/* 현재 페이지 속성 알려주는영역 */
+
+.content-explain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00ffbe;
+   
+}
+
+.page-area {
+    width: 1200px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page, .page > a {
+    font-weight: 500;
+    color: rgb(116, 116, 123) !important;
+    
+}
+
+.logout {
+    margin-right: 0;
+    border: 1px solid rgb(116, 116, 123);
+    padding: 5px 8px;
+    border-radius: 8px;
+}
+
+/* 마이페이지 네비게이션 */
+.nav-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-ul {
+    width: 1200px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0px;
+    border-bottom: solid 1px black;
+    position: relative;
+}
+
+.nav-ul > li {
+    margin: 0px 20px 0px 0px;
+}
+
+/* 탈퇴하기 오른쪽 정렬 안먹혀서..(강사님해결) */
+/* flex 다 해봄 엉엉  */
+.member-drop{
+    color: rgb(184, 184, 184) !important;
+    position: absolute;
+    right: -16px;
+}
+
+/* 탈퇴하기 글시 색 */
+.member-drop > a{
+    color: rgb(184, 184, 184) !important;
+}
+/* 탈퇴하기 글씨 호버 */
+.member-drop > a:hover{
+    color: #00ffbe !important;
+    transition-duration: 1s;
+}
+
+/* 탈퇴하기 오른쪽 정렬 안먹혀서..(강사님해결) */
+/* 창 줄어들때 앱솔루트하면 겹치는데 */
+/* 반응형으로 해서 아래로 내려가게끔 함. */
+@media(max-width : 700px){
+    .member-drop{
+        position: static;
+    }
+}
+
+
+
+/* 마이페이지 콘텐트 */
+
+div > h2 {
+    margin-bottom: 40px;
+}
+
+main > .mypage-content{
+    width: 1200px;
+    margin: 30px auto;
+    border-radius: 5px;
+}
+
+
+.myPage-row{
+    box-sizing: border-box;
+    width: 500px;
+    margin: 20px 0px 20px;
+
+    display: flex;
+    align-items: center;
+}
+
+.myPage-row > label {
+    width: 20%;
+}
+
+.myPage-row > input[name="memberEmail"]{
+    background-color: rgb(184, 184, 184);
+    border-radius: 5px;
+    color: #777777;
+}
+
+.myPage-row > input {
+    border: 1px solid #777777;
+    width: 67%;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.myPage {
+    font-size: 15px;
+    display: block;
+    height: 30px;
+    margin: 0 0px 50px 100px;
+}
+
+/* input 활성 시 outline 테두리 속성 수정 */
+.myPage-row > input:focus {
+    border: none;
+    outline: 1.5px solid #00ffbe;} 
+
+
+/* 프로필/배경 버튼 */
+/* label 스타일 조정 */
+.button > label {
+    width: 100px;
+    border: 1px solid rgb(116, 116, 123);
+    padding: 5px 8px;
+    margin: 5px 5px 5px 23px;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13.5px;
+}
+
+/* 못생긴 기존 input 숨기기 */
+#chooseFile {
+    display: none; /* 이거해야 사라짐. */
+}
+
+/* 삭제 버튼 */
+#delete-btn {
+    width: 100px;
+    border: 1px solid rgb(116, 116, 123);
+    padding: 5px 8px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+
+
+/* 정보 수정 버튼 */
+#complete {
+    width: 50%;
+    padding: 10px;
+    margin: 50px 0;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #392eff;
+    color:  rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#complete:hover {
+    background-color: #00ffbe;
+    transition-duration: 1s;
+}
+
+
+

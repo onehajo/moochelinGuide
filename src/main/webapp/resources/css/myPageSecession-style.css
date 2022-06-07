@@ -1,0 +1,94 @@
+/*상단 프로필사진*/
+#profile{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+#secession-content{
+    width: 1200px;
+    height: 700px;
+    margin: 24px auto 40px;
+    box-sizing: border-box;
+}
+
+.secession-container{
+    width: 600px;
+    height: 600px;
+    margin: 150px auto;
+    box-sizing: border-box;
+
+}
+
+.secession-container div{
+    margin: 10px;
+}
+
+/* 중앙 로고 사이즈 조정 */
+.secession-logo{
+    width: 40%;
+}
+
+/*로고 영역*/
+.secession-container > div:nth-of-type(1){
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*질문 영역*/
+.secession-container > div:nth-of-type(2){
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+/*질문*/
+.secession-container > div:nth-of-type(2) > span{
+    font-size: 30px;
+}
+
+/* 비밀번호 입력 영역*/
+.secession-container > form > div{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* input 태그 */
+.secession-container input{
+    width: 350px;
+    height: 50px;
+    border: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* input태그 아래 span태그*/
+.secession-container span{
+    width: 350px;
+    height: 30px;
+    font-size: 14px;
+    margin: auto;
+}
+
+/*탈퇴 버튼 영역*/
+.secession-container > div:nth-of-type(4){
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+/*탈퇴버튼*/
+.secession-container button{
+    width: 350px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #392eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}

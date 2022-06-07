@@ -1,0 +1,77 @@
+/* ___ 검색결과 */
+/* 중앙 가로 1200 내에서 작업할 때 */
+main > .content-explain > div, .sch-menu{
+    width: 1200px;
+    margin: 0px auto;
+}
+
+/* 현재 페이지 속성 알려주는영역 */
+.content-explain{
+    height: 43px;
+    display: flex;
+    align-items: center;
+    background: #00ffbe;
+}
+
+.content-explain > div > p{
+    font-size: 16px;
+    color: rgb(116, 116, 123);
+    margin-left: 20px;
+}
+
+/* 검색결과 구분 탭*/
+.sch-menu > ul{
+    height: 43px;
+    display: flex;
+    align-items: center;
+    margin: 16 5px;
+    padding: 0;
+    border-bottom: solid 1px black;
+}
+
+.sch-menu ul li {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.sch-menu ul li a {
+    color: rgb(116, 116, 123);
+}
+
+/*검색결과 출력*/
+.movie-list-row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sch-title {
+    margin: 20px;
+    color: black;
+}
+
+.content-main .movie, .sch-img-title{
+    width:200px
+}
+
+.sch-title > div:nth-child(3){
+    font-size: 12px;
+}
+
+.sch-title > div:nth-child(4){
+    font-size: 12px;
+}
+
+/*검색 결과가 없는 경우*/
+#searchFail{
+    margin: auto;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchFail > i {
+    font-size: 40px;
+    color: #00ffbe;
+}
