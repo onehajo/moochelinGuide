@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지-탈퇴하기</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/myPageSecession-style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/myPageSecessionConfirm-style.css">
+
     <!-- 헤더푸터 CSS 연결-->
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
@@ -44,28 +45,29 @@
                 <li class="member-drop"><a  href="${contextPath}/member/myPage/secession/do">탈퇴하기</a></li>
             </ul>
         </nav>
-        
-        <section class="mypage-content" id="secession-content">
-            <section class="secession-container">
-                <div>
-                    <img src="${contextPath}/resources/images/moo_logo_full_bm.png" class="secession-logo">
-                </div>
-                <div>
-                    <span>정말 탈퇴하시겠습니까 ?</span>
-                </div>
-                <form action="confirm" method="POST">
-                    <div>
-                        <input type="password" name="inputPw" id="inputPw" placeholder="현재 비밀번호를 입력해주세요.">
-                        <span id="msg"></span>
-                    </div>
-                    <div>
-                        <button id="secessionBtn">탈퇴하기</button>
-                    </div>
-                </form>
 
+        <section class="main">
+            <section class="content-main">
+
+                <div id="secession-box">
+                    <div>
+                        <img src="${contextPath}/resources/images/moo_logo_full_bm.png">
+                    </div>
+                    <div>
+                        <p class="secessionTitle">정말 탈퇴하시겠습니까 ?</p>
+                    </div>
+                    <div>
+                        <form action="do" method="POST">
+                            <input type="hidden" name="answer" value="yes">
+                            <button name="secession-check" id="answer">예</button>
+                            <button type ="button" name="secession-check" id="cancel" onclick="location.href='${header.referer}'">아니요</button>
+                        </form>
+                    </div>
+                </div>
+                
             </section>
         </section>
-        
+       
 
     </main>
 

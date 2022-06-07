@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
@@ -26,6 +27,13 @@ public class SearchController extends HttpServlet{
 	    
 		// 파라미터에서 검색어 얻어와 request범위에 세팅
 		String query = req.getParameter("query");
+		
+		// XSS 방지처리
+		query = Util.XSSHandling(query);
+		
+		// 개행문자 처리
+		query = Util.newLineHandling(query);
+		
 		req.setAttribute("query", query);
 		
 		try {

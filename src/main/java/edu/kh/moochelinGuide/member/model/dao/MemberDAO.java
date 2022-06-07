@@ -186,4 +186,62 @@ public class MemberDAO {
 		return movieList;
 	}
 
+	/** 회원 탈퇴 - 비밀번호 일치여부 확인 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param inputPw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int secessionCheckPw(Connection conn, int memberNo, String inputPw) throws Exception{
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("secessionCheckPw");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, inputPw);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 회원 탈퇴 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int secession(Connection conn, int memberNo) throws Exception{
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("secession");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+					
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
