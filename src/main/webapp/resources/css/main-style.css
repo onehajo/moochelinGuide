@@ -331,7 +331,7 @@ hr {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.01);
     z-index:-1; opacity: 0;
 }
 .dark.active{z-index: 3; opacity: 1; transition: opacity 0.5s;}

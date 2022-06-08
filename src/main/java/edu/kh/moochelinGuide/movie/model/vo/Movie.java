@@ -17,8 +17,8 @@ public class Movie {
 	private int releaseYear;
 	private String country;
 	private String nowShowingFlag;
-	private int ticketing;
-	private int audience;
+	private String ticketing;
+	private String audience;
 	private String sysnopsis;
 	private String detailImage;
 	private String runningTime;
