@@ -251,11 +251,11 @@ function signUpValidate(){
 		
 			const ul = document.getElementsByClassName("movie-list")[0];
 		
-			for(let movie of list){
-			const li = document.createElement("li");
-			const a = 
+			//for(let movie of list){
+			//const li = document.createElement("li");
+			//const a = 
 			
-			}
+			//}
 		},
         error: function(){}
     })
