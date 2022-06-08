@@ -278,9 +278,6 @@ public class MemberDAO {
 				movieList.add(m);
 			}	
 			
-			System.out.println("DAO 영화목록");
-			System.out.println(movieList);
-			
 		}finally {
 			close(rs);
 			close(pstmt);	

@@ -34,60 +34,68 @@
                 </div>
                 <div class="eva-main">
                     <ul class="eva-row">
-                        <li class="eva-area">
-                            <div>
-                                <img src="#" class="eva-movie-img">
-                            </div>
-                            <div>
-                                <div class="eva-movie-info">
-                                    <div><span>영화제목</span></div>
-                                    <div><span>2008 ・ 한국</span></div>
+                        <c:if test="${!empty movie1}">
+                                <li class="eva-area">
+                                    <div>
+                                        <img src="${movie1.posterImage}" class="eva-movie-img">
+                                    </div>
+                                    <div>
+                                        <div class="eva-movie-info">
+                                            <div><span>${movie1.movieTitle}</span></div>
+                                            <div><span>${movie1.releaseYear} ・ ${movie1.country}</span></div>
+                                        </div>
+                                        <div>
+                                            <span class="star" id="star1">
+                                                ★★★★★
+                                                <span>★★★★★</span>
+                                                <input type="range" name="score" oninput="drawStar1(this)" value="1" step="1" min="0" max="10">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                        </c:if>
+
+                        <c:if test="${!empty movie2}">
+                            <li class="eva-area">
+                                <div>
+                                    <img src="${movie2.posterImage}" class="eva-movie-img">
                                 </div>
                                 <div>
-                                    <span class="star" id="star1">
-                                        ★★★★★
-                                        <span>★★★★★</span>
-                                        <input type="range" name="score" oninput="drawStar1(this)" value="1" step="1" min="0" max="10">
-                                    </span>
+                                    <div class="eva-movie-info">
+                                        <div><span>${movie2.movieTitle}</span></div>
+                                        <div><span>${movie2.releaseYear} ・ ${movie2.country}</span></div>
+                                    </div>
+                                    <div>
+                                        <span class="star" id="star1">
+                                            ★★★★★
+                                            <span>★★★★★</span>
+                                            <input type="range" name="score" oninput="drawStar2(this)" value="1" step="1" min="0" max="10">
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="eva-area">
-                            <div>
-                                <img src="#" class="eva-movie-img">
-                            </div>
-                            <div>
-                                <div class="eva-movie-info">
-                                    <div><span>영화제목</span></div>
-                                    <div><span>2008 ・ 한국</span></div>
+                            </li>
+                        </c:if>
+
+                        <c:if test="${!empty movie3}">
+                            <li class="eva-area">
+                                <div>
+                                    <img src="${movie3.posterImage}" class="eva-movie-img">
                                 </div>
                                 <div>
-                                    <span class="star" id="star1">
-                                        ★★★★★
-                                        <span>★★★★★</span>
-                                        <input type="range" name="score" oninput="drawStar2(this)" value="1" step="1" min="0" max="10">
-                                    </span>
+                                    <div class="eva-movie-info">
+                                        <div><span>${movie3.movieTitle}</span></div>
+                                        <div><span>${movie3.releaseYear} ・ ${movie3.country}</span></div>
+                                    </div>
+                                    <div>
+                                        <span class="star" id="star1">
+                                            ★★★★★
+                                            <span>★★★★★</span>
+                                            <input type="range" name="score" oninput="drawStar3(this)" value="1" step="1" min="0" max="10">
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="eva-area">
-                            <div>
-                                <img src="#" class="eva-movie-img">
-                            </div>
-                            <div>
-                                <div class="eva-movie-info">
-                                    <div><span>영화제목</span></div>
-                                    <div><span>2008 ・ 한국</span></div>
-                                </div>
-                                <div>
-                                    <span class="star" id="star1">
-                                        ★★★★★
-                                        <span>★★★★★</span>
-                                        <input type="range" name="score" oninput="drawStar3(this)" value="1" step="1" min="0" max="10">
-                                    </span>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        </c:if>
                     </ul>
                 </div>
             </section>

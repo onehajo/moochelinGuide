@@ -137,9 +137,6 @@ public class MemberService {
 		
 		List<Movie> movieList = dao.selectRandomMovie(conn,memberNo);
 		
-		System.out.println("서비스 영화목록");
-		System.out.println(movieList);
-		
 		close(conn);
 		
 		return movieList;

@@ -22,27 +22,33 @@ public class EvaluationServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
+		
+			// 1. 회원번호 얻어오기 => 이 회원이 평가한 적 없는 영화 중에서 랜덤!!!
+			HttpSession session = req.getSession();
+			Member loginMember = (Member)session.getAttribute("loginMember");
+			int memberNo = loginMember.getMemberNo();
+			
+			System.out.println("멤버번호: "+memberNo);
+			
+			// 2. 영화 db에서 랜덤으로 리스트 조회 (3개) --> 어떻게 해야할까 !!!!!!!
+			List<Movie> movieList = new MemberService().selectRandomMovie(memberNo);
+			
+			System.out.println("movieList"+movieList);
+			
+			Movie movie1 = movieList.get(0);
+			Movie movie2 = movieList.get(1);
+			Movie movie3 = movieList.get(2);
+								
+			// 3. 세팅해서 req에 저장
+			req.setAttribute("movieList", movieList);
+			req.setAttribute("movie1", movie1);
+			req.setAttribute("movie2", movie2);
+			req.setAttribute("movie3", movie3);
+			
 			
 			// 1. jsp에 요청 위임	
 			String path = "/WEB-INF/views/member/evaluation.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);
-		
-//			// 1. 회원번호 얻어오기 => 이 회원이 평가한 적 없는 영화 중에서 랜덤!!!
-//			HttpSession session = req.getSession();
-//			Member loginMember = (Member)session.getAttribute("loginMember");
-//			int memberNo = loginMember.getMemberNo();
-//			
-//			System.out.println("멤버번호: "+memberNo);
-//			
-//			// 2. 영화 db에서 랜덤으로 리스트 조회 (3개) --> 어떻게 해야할까 !!!!!!!
-//			List<Movie> movieList = new MemberService().selectRandomMovie(memberNo);
-//			
-//			for(Movie m : movieList) {
-//				System.out.println("영화 : " + m);
-//			}
-//								
-//			// 3. 세팅해서 req에 저장
-//			req.setAttribute("movieList", movieList);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
