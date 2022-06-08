@@ -85,7 +85,7 @@ public class MemberDAO {
 	 * @throws Exception
 	 */
 	public Member login(Connection conn, Member mem) throws Exception {
-		Member member = new Member();
+		Member member = null;
 		try {
 			String sql = prop.getProperty("login");
 			pstmt = conn.prepareStatement(sql);
@@ -93,10 +93,11 @@ public class MemberDAO {
 			pstmt.setString(2, mem.getMemberPw());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				member.setMemberNo(rs.getInt(1));
-				member.setMemberEmail(rs.getString(2));
-				member.setMemberName(rs.getString(3));
-				member.setProfileImage(rs.getString(4));
+				member = new Member();
+				member.setMemberNo(rs.getInt("MEMBER_NO"));
+				member.setMemberEmail(rs.getString("MEMBER_EMAIL"));
+				member.setMemberName(rs.getString("MEMBER_NM"));
+				member.setProfileImage(rs.getString(""));
 				member.setProfileBackImage(rs.getString(5));
 				member.setEnrollDate(rs.getString(6));
 			}
