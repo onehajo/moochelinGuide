@@ -45,6 +45,7 @@ public class MemberDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberEmail);
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				result=rs.getInt(1);
 			}
@@ -70,6 +71,7 @@ public class MemberDAO {
 			pstmt.setString(1, mem.getMemberEmail());
 			pstmt.setString(2, mem.getMemberPw());
 			pstmt.setString(3, mem.getMemberName());
+			
 			result = pstmt.executeUpdate();
 			
 		}finally {
@@ -92,12 +94,14 @@ public class MemberDAO {
 			pstmt.setString(1, mem.getMemberEmail());
 			pstmt.setString(2, mem.getMemberPw());
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				member = new Member();
+				
 				member.setMemberNo(rs.getInt("MEMBER_NO"));
 				member.setMemberEmail(rs.getString("MEMBER_EMAIL"));
 				member.setMemberName(rs.getString("MEMBER_NM"));
-				member.setProfileImage(rs.getString(""));
+				member.setProfileImage(rs.getString(4));
 				member.setProfileBackImage(rs.getString(5));
 				member.setEnrollDate(rs.getString(6));
 			}
