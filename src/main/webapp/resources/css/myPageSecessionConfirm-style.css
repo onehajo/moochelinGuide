@@ -1,0 +1,67 @@
+/*상단 프로필사진*/
+#profile{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.content-main{
+ padding: 60px;
+}
+
+#secession-box{
+    margin: 0 auto;
+    background-color: #fff;
+    width: 400px;
+    height: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px 1px rgb(0 0 0 / 20%);
+}
+
+#secession-box > div:first-child{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#secession-box img{
+    width: 180px;
+    height: 135px;
+}
+
+#secession-box > div:nth-child(2){
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.secessionTitle{
+    margin: 0;
+    font-size: 26px;
+    line-height: 20px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+#secession-box > div:last-child{
+    height: 25%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+[name="secession-check"]{
+    width: 150px;
+    height: 40px;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+#answer{background-color: #392eff;}
+
+#cancel{background-color: rgb(0, 255, 190);}

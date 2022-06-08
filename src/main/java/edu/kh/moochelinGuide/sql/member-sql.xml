@@ -44,4 +44,19 @@
 		WHERE MOVIE_TITLE LIKE ?
 	</entry>
 	
+	<!-- 회원 탈퇴 - 비밀번호 일치여부 확인 -->
+	<entry key="secessionCheckPw">
+	SELECT COUNT(*)
+	FROM MEMBER
+	WHERE MEMBER_NO = ?
+	AND MEMBER_PW = ?
+	AND SECESSION_FL = 'N'
+	</entry>
+	
+	<!-- 회원 탈퇴 -->
+	<entry key="secession">
+	UPDATE MEMBER SET SECESSION_FL = 'Y'
+	WHERE MEMBER_NO = ?
+	</entry>
+	
 </properties>

@@ -4,6 +4,7 @@ import static edu.kh.moochelinGuide.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
@@ -88,6 +89,41 @@ public class MemberService {
 		close(conn);
 		
 		return movieList;
+	}
+
+	/** 회원 탈퇴 - 비밀번호 일치여부 확인 Service
+	 * @param memberNo
+	 * @param inputPw
+	 * @return result
+	 * @throws Exception
+	 */
+	public int secessionCheckPw(int memberNo, String inputPw) throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.secessionCheckPw(conn, memberNo, inputPw);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	/** 회원 탈퇴 Service
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int myPageSecession(int memberNo) throws Exception{
+	
+		Connection conn = getConnection();
+		
+		int result = dao.secession(conn, memberNo);
+		
+		if(result>0) commit(conn);
+		else         rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	
