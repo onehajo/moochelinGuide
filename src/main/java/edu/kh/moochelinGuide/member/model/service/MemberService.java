@@ -125,6 +125,26 @@ public class MemberService {
 		
 		return result;
 	}
+
+	/** 평가하기 - 랜덤 영화 조회 Service
+	 * @param memberNo
+	 * @return movieList
+	 * @throws Exception
+	 */
+	public List<Movie> selectRandomMovie(int memberNo) throws Exception{
+
+		Connection conn = getConnection();
+		
+		List<Movie> movieList = dao.selectRandomMovie(conn,memberNo);
+		
+		System.out.println("서비스 영화목록");
+		System.out.println(movieList);
+		
+		close(conn);
+		
+		return movieList;
+		
+	}
 	
 	
 	

@@ -1,0 +1,143 @@
+/*프로필사진*/
+#profile{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+/*평가 영역 크기*/
+.eva-container{
+    width: 1200px;
+    height: 1020px;
+    background-color: #f0f0f0;;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*평가하기 헤더*/
+.eva-header{
+    width: 800px;
+    height: 150px;
+    background-color: white;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+}
+
+/*5*/
+.eva-header > div:nth-of-type(1){
+    height: 60px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/*평가 ~ 어쩌고 ~ 메시지*/
+.eva-header > div:nth-of-type(2){
+    height: 40px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.eva-header > div:nth-of-type(3){
+    height: 50px;
+    background-color: rgb(0, 255, 190);
+}
+
+/*평가하기 메인*/
+.eva-main{
+    width: 800px;
+    height: 810px;
+    background-color: white;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    box-sizing: border;
+}
+
+/*평가할 영화 목록 ul*/
+.eva-row{
+    padding: 0;
+    margin: 0;
+}
+
+/*평가 영역*/
+.eva-area{
+    width: 800px;
+    height: 270px;
+    border-bottom :1px solid lightgray;
+    box-sizing: border-box;
+    display: flex;
+}
+
+/* 평가할 영화의 이미지 영역 */
+.eva-area > div:first-child{
+    width: 200px;
+    height: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eva-movie-img{
+    width: 170px;
+    /* height: 248px; */
+}
+
+/* 영화 정보, 별점 영역*/
+.eva-area > div:last-child{
+    width: 600px;
+    height: 270px;
+}
+
+/*영화정보*/
+.eva-movie-info{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+/*영화제목*/
+.eva-movie-info >div:first-child{
+    height: 55px;
+    font-size: 26px;
+    margin-left: 14px;
+    display: flex;
+    align-items: flex-end;
+}
+
+/*세부정보*/
+.eva-movie-info >div:last-child{
+    height: 45px;
+    font-size: 16px;
+    margin-left: 16px;
+    display: flex;
+    align-items: flex-start;
+}
+
+/*별점*/
+.star {
+    position: relative;
+    font-size: 4rem;
+    color: #ddd;
+  }
+  
+  .star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: rgb(0, 255, 190);
+    overflow: hidden;
+    pointer-events: none;
+  }

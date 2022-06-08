@@ -249,4 +249,44 @@ public class MemberDAO {
 		return result;
 	}
 
+	/** 평가하기 - 랜덤 영화 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return movieList
+	 * @throws Exception
+	 */
+	public List<Movie> selectRandomMovie(Connection conn, int memberNo) throws Exception {
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		try {
+			String sql = prop.getProperty("selectRandomMovie");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Movie m = new Movie();
+				
+				m.setMovieNo(rs.getInt(1));
+				m.setMovieTitle(rs.getString(2));
+				m.setPosterImage(rs.getString(3));
+				m.setReleaseYear(rs.getInt(4));
+				m.setCountry(rs.getString(5));
+						
+				movieList.add(m);
+			}	
+			
+			System.out.println("DAO 영화목록");
+			System.out.println(movieList);
+			
+		}finally {
+			close(rs);
+			close(pstmt);	
+		}
+		
+		return movieList;
+	}
+
 }

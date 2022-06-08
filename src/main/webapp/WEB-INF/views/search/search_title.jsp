@@ -31,8 +31,8 @@
         <section class="sch-menu">
             <ul>
                 <li><b>제목</b></li>
-                <li><a href="person?query=${query}">인물</a></li>
-                <li><a href="user?query=${query}">유저</a></li>
+                <li><a href="${contextPath}/search/person?query=${query}">인물</a></li>
+                <li><a href="${contextPath}/search/user?query=${query}">유저</a></li>
             </ul>
         </section>
         <section class="content-main">

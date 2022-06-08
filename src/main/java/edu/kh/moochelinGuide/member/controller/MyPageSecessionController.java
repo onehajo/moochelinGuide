@@ -61,7 +61,6 @@ public class MyPageSecessionController extends HttpServlet{
 	    		
 	    		resp.getWriter().print(result); 
 	    		
-	    		
 	    	}
 	    	
 	    	// 2) confirm - 탈퇴 여부 재확인페이지로 요청
@@ -81,8 +80,6 @@ public class MyPageSecessionController extends HttpServlet{
 	    		int memberNo = loginMember.getMemberNo();
 	    		
 	    		req.setAttribute("memberNo", memberNo);
-	    		
-
 	    		
 	    		// 회원 탈퇴 서비스 호출하여 결과 반환
 	    		int result = service.myPageSecession(memberNo);
