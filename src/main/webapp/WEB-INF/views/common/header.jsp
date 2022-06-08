@@ -51,7 +51,8 @@
 					<%-- 로그인이 되어있는 경우 --%>
 					<c:otherwise>
 						<li class="grade"><a href="#">평가하기</a></li>
-						<li class="profile"><a href="#"><div id="profileImage"></div></a></li>
+						<!-- pofile_my로 넘어가야함. 임시로 내정보수정으로 연결 -->
+						<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>
 					</c:otherwise>            	
 				</c:choose>
             		
