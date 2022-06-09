@@ -104,11 +104,45 @@ main > .mypage-content{
     align-items: center;
 }
 
+.profile-image-area{
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    margin-right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    /* 영역밖으로 나가는 이미지 가려줌 */
+    overflow: hidden;
+}
+
+#profile-image{
+    width: 100%;
+}
+
+
+#back-ground{
+    height: 100%;
+    border-radius: 5px;
+}
+
+
 .myPage-row > label {
     width: 20%;
 }
 
 .myPage-row > input[name="memberEmail"]{
+    background-color: rgb(184, 184, 184);
+    border-radius: 5px;
+    color: #777777;
+}
+
+.myPage-row > input[name="enrollDate"]{
     background-color: rgb(184, 184, 184);
     border-radius: 5px;
     color: #777777;
@@ -136,22 +170,37 @@ main > .mypage-content{
 
 /* 프로필/배경 버튼 */
 /* label 스타일 조정 */
-.button > label {
+.img {
+    width: 90px;
+    border: 1px solid rgb(116, 116, 123);
+    padding: 5px 8px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    font-size: 13.5px;
+}
+
+.img * {
+    cursor: pointer;
+}
+/* 못생긴 기존 input 숨기기 */
+.input-none > input {
+    display: none; /* 이거해야 사라짐. */
+}
+
+/* 변경 저장버튼 */
+.input-none > button {
     width: 100px;
     border: 1px solid rgb(116, 116, 123);
     padding: 5px 8px;
-    margin: 5px 5px 5px 23px;
+    margin: 5px;
     border-radius: 5px;
     background-color: #fff;
     display: flex;
     justify-content: center;
     cursor: pointer;
-    font-size: 13.5px;
-}
-
-/* 못생긴 기존 input 숨기기 */
-#chooseFile {
-    display: none; /* 이거해야 사라짐. */
 }
 
 /* 삭제 버튼 */

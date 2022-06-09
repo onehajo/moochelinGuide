@@ -1,0 +1,13 @@
+
+
+-- 회원정보 수정
+UPDATE MEMBER SET 
+MEMBER_NM = ?,
+PROFILE_IMG = ?,
+PROFILE_BACK_IMG = ? 
+WHERE MEMBER_NO = ? ;
+
+-- 회원정보 수정(테스트)
+UPDATE MEMBER SET 
+MEMBER_NM = '김담2'
+WHERE MEMBER_NO = 23 ;
