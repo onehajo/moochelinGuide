@@ -21,22 +21,24 @@ public class SearchController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String uri = req.getRequestURI();
-	    String contextPath = req.getContextPath();
-	    String command = uri.substring(  (contextPath + "/search/").length()  );
-	    
-		// 파라미터에서 검색어 얻어와 request범위에 세팅
-		String query = req.getParameter("query");
-		
-		// XSS 방지처리
-		query = Util.XSSHandling(query);
-		
-		// 개행문자 처리
-		query = Util.newLineHandling(query);
-		
-		req.setAttribute("query", query);
-		
 		try {
+			
+			String uri = req.getRequestURI();
+		    String contextPath = req.getContextPath();
+		    String command = uri.substring(  (contextPath + "/search/").length()  );
+		    
+			// 파라미터에서 검색어 얻어와 request범위에 세팅
+			String query = req.getParameter("query");
+			
+			// XSS 방지처리
+			query = Util.XSSHandling(query);
+			
+			// 개행문자 처리
+			query = Util.newLineHandling(query);
+			
+			req.setAttribute("query", query);
+		
+		
 			
 			MemberService service = new MemberService();
 			
