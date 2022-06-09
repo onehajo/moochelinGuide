@@ -37,60 +37,75 @@
         <section class="mypage-content">
             <div><h2>회원정보 수정</h2></div>
             
-            <form action="#" method="post" name="myPage-form">
+           					 	 <!-- 멀티파트/폼데이타 -->
+            <form action="mod" enctype="multipart/form-data" method="post" name="myPage-form" onsubmit="return modValidate()" >
                 
                 <div class="myPage-row">
                     <label>이메일</label>
-                    <input type="text" name="memberEmail" placeholder="로그인@이메일.com" maxlength="10" disabled>
+                    <input type="text" name="memberEmail" placeholder="로그인@이메일.com" value="${loginMember.memberEmail}" maxlength="10" disabled>
                 </div>
                 <span class="myPage emailMessage">*이메일(아이디)는 수정 불가합니다.</span>
                 
+                <div class="myPage-row">
+                    <label>가입일</label>
+                    <input type="text" name="enrollDate" placeholder="YYYY-MM-DD" value="${loginMember.enrollDate}" maxlength="11" disabled>
+                </div>
+                <span class="myPage emailMessage">*가입일은 수정 불가합니다.</span>
                 
                 <div class="myPage-row">
                     <label>이름</label>
-                    <input type="text" name="memberName" placeholder="회원이름" maxlength="11">
+                    <input type="text" id="memberName" name="memberName" placeholder="회원이름" value="${loginMember.memberName}" maxlength="11">
                 </div>
-                <span class="myPage Name">*필수 입력사항입니다.</span>
-
-                <div class="myPage-row">
-                    <label>생년월일</label>
-                    <input type="text" name="memberBirth" placeholder="YYYY-MM-DD" maxlength="11">
-                </div>
-                <span class="myPage Name">* 년, 월, 일 순서로 기입해주세요.</span>
+                <span class="myPage Name" id="nameMsg">*필수 입력사항입니다.</span>
+                
 
 
                 <span>프로필 이미지</span>
                 <div class="myPage-row  input-none">
                     <div class="profile-image-area">
-                        <img  src="../images/logo-blue.png" id="profile-image">
+                            <!-- 기본 이미지 -->
+                            <c:if test="${ empty loginMember.profileImage}"> 
+                                  <img src="${contextPath}/resources/images/logo-blue.png" id="profile-image">
+                            </c:if>
+                            <!-- 변경 이미지 -->
+                            <c:if test="${ !empty loginMember.profileImage}"> 
+                                <img src="${contextPath}${loginMember.profileImage}"  id="profile-image">
+                            </c:if>
                     </div> 
                     
                     <div class="button img">
-                        <label for="chooseFile"> 이미지 변경 </label>
+                        <label for="input-image"> 이미지 변경 </label>
                     </div>
                     <input type="file" id="input-image" name="imgFile" accept="image/*"   >
-                    <button id="save-img">변경 저장</button>
                     <div class="button img">
                         <span id="delete-image"> 이미지 삭제 </span>
                     </div>
                 </div>
 
-
                 <span>배경 이미지</span>
                 <div class="myPage-row input-none">
-
                     <div class="profile-image-area">
-                        <img src="../images/logo-blue.png" id="back-ground">
+                        <!-- 기본 이미지 -->
+                        <c:if test="${empty loginMember.profileBackImage}"> 
+                            <img src="${contextPath}/resources/images/logo-blue.png" id="back-ground">
+                        </c:if>
+                        <!-- 변경 이미지 -->
+                        <c:if test="${!empty loginMember.profileBackImage}"> 
+                            <img src="${contextPath}${loginMember.profileImage}" id="back-ground">
+                        </c:if>
                     </div>
 
                     <div class="button img">
-                        <label for="backgroundFile"> 이미지 변경 </label>
+                        <label for="input-background"> 이미지 변경 </label>
                     </div>
+
                     <input type="file" id="input-background" name="backgroundFile" accept="image/*"  >
-                    <button id="save-background">변경 저장</button>
+
+
                     <div class="button img">
-                        <span id="delete-baground"> 이미지 삭제 </span>
+                        <span id="delete-background"> 이미지 삭제 </span>
                     </div>
+
                 </div>
                 
                 <button id="complete">수정하기</button>
@@ -105,6 +120,15 @@
 
     
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+    <script>
+        // 최상위주소
+        const contextPath = "${contextPath}";
+        // 로그인한 회원번호
+        const loginMemberNo = "${loginMember.memberNo}";
+    </script>
+
+    <script src="${contextPath}/resources/js/myPage-mod.js"></script>
     
 </body>
 </html>

@@ -248,6 +248,40 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	
+	
+
+	/** 회원정보 수정 DAO 
+	 * @param conn
+	 * @param memberMod
+	 * @param memberNo 
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateMember(Connection conn, Member memberMod, int memberNo) throws Exception {
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateMember");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberMod.getMemberName());
+			pstmt.setString(2, memberMod.getProfileImage());
+			pstmt.setString(3, memberMod.getProfileBackImage());
+			pstmt.setInt(4, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
 
 	/** 평가하기 - 랜덤 영화 조회 DAO
 	 * @param conn

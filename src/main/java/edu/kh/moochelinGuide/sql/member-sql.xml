@@ -59,6 +59,15 @@
 	WHERE MEMBER_NO = ?
 	</entry>
 	
+	<!-- 회원 정보 수정 -->
+	<entry key="updateMember">
+	UPDATE MEMBER SET 
+	MEMBER_NM = ?,
+	PROFILE_IMG = ?,
+	PROFILE_BACK_IMG = ? 
+	WHERE MEMBER_NO = ?
+	</entry>
+
 	<!-- 평가하기 - 랜덤 영화 조회 -->
 	<entry key="selectRandomMovie">
 	SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
