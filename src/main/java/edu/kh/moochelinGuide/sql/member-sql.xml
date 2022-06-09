@@ -67,5 +67,18 @@
 	PROFILE_BACK_IMG = ? 
 	WHERE MEMBER_NO = ?
 	</entry>
+
+	<!-- 평가하기 - 랜덤 영화 조회 -->
+	<entry key="selectRandomMovie">
+	SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+	FROM (SELECT *
+		  FROM MOVIE M
+		  WHERE NOT EXISTS(SELECT *
+					 	   FROM EVALUATION E
+					 	   WHERE M.MOVIE_NO = E.MOVIE_NO
+					 	   AND E.MEMBER_NO = ?)
+						   ORDER BY DBMS_RANDOM.VALUE)
+	<![CDATA[WHERE ROWNUM <= 3]]>
+	</entry>
 	
 </properties>

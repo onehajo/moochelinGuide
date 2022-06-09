@@ -20,7 +20,7 @@
 					<article class="search-area">
 
 						<c:if test="${empty query}"> <!-- 검색어 최초 입력시 -->
-							<form action="search/title" name="search-form">
+							<form action="${contextPath}/search/title" name="search-form">
 								<fieldset class="hd-fieldset">
 									<i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
 										<input type="search" id="query" name="query" autocomplete="off" placeholder="제목, 인물, 유저를 검색해보세요">
@@ -29,7 +29,7 @@
 						</c:if>
 
 						<c:if test="${!empty query}"> <!-- 기존에 입력된 검색어가 입력된 경우 -->
-							<form action="title" name="search-form">
+							<form action="${contextPath}/search/title" name="search-form">
 								<fieldset class="hd-fieldset">
 									<i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
 										<input type="search" id="query" name="query" autocomplete="off" placeholder="${query}">
@@ -50,7 +50,7 @@
 					                    
 					<%-- 로그인이 되어있는 경우 --%>
 					<c:otherwise>
-						<li class="grade"><a href="#">평가하기</a></li>
+						<li class="grade"><a href="${contextPath}/member/evaluation">평가하기</a></li>
 						<!-- pofile_my로 넘어가야함. 임시로 내정보수정으로 연결 -->
 						<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>
 					</c:otherwise>            	
