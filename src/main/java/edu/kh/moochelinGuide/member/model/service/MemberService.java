@@ -182,6 +182,22 @@ public class MemberService {
 		
 		return result;
 	}
+
+	/** 평가한 영화 개수 조회 Service
+	 * @param memberNo
+	 * @return count
+	 * @throws Exception
+	 */
+	public int evaluationCount(int memberNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int count = dao.evaluationCount(conn, memberNo);
+		
+		close(conn);
+		
+		return count;
+	}
 	
 	
 	

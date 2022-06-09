@@ -157,3 +157,17 @@
     font-size: 50px;
     color: #00ffbe;
 }
+
+.searchFail{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchFail > i {
+    margin: 16px 0px;
+    font-size: 50px;
+    color: #00ffbe;
+}

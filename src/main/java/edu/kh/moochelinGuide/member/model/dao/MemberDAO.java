@@ -295,16 +295,24 @@ public class MemberDAO {
 	 * @throws Exception
 	 */
 	public int updateEvaluation(Connection conn, int memberNo, int movieNo, double score) throws Exception{
+		
 		int result = 0;
 		
 		try {
 			
 			String sql = prop.getProperty("updateEvaluation");
 			
-		}finally {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(1, score);
+			pstmt.setInt(2, memberNo);
+			pstmt.setInt(3, movieNo);
 			
+			result = pstmt.executeUpdate();
+			
+			
+		}finally {
+			close(pstmt);
 		}
-		
 		return result;
 	}
 	
@@ -358,7 +366,6 @@ public class MemberDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNo);
 			pstmt.setInt(2, movieNo);
-			pstmt.setDouble(3, score);
 			
 			result = pstmt.executeUpdate();
 			
@@ -368,6 +375,38 @@ public class MemberDAO {
 		}
 		
 		return result;
+	}
+
+	
+	/** 평가한 영화 개수 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return count
+	 * @throws Exception
+	 */
+	public int evaluationCount(Connection conn, int memberNo) throws Exception {
+		int count = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("evaluationCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
 	}
 
 }

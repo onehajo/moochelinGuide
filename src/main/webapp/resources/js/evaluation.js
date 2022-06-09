@@ -50,15 +50,12 @@ function drawStar2(target){
 
 }
 
-
-// 평가 취소
-
-
 // 한 개 단독 평가일 때
 // function drawStar(target){
 //   document.getElementById("두번째spqn태그선택자").style.width = target.value*10+"%";
 // };
 
+const evaCount = document.getElementById("eva-count");
 
 for(let i=0; i<score.length; i++){
 
@@ -75,9 +72,11 @@ for(let i=0; i<score.length; i++){
         type : "POST",
         success : function(result){
           if(result>0){
-            alert("평가 전송 완료");
+            count++;
+            evaCount.innerText = count;
+            console.log("평가 전송 성공");
           }else{
-            alert("평가 전송 실패");
+            console.log("평가 전송 실패");
           }
         },
         error : function(req, status, error){
@@ -97,9 +96,11 @@ for(let i=0; i<score.length; i++){
         type : "POST",
         success : function(result){
           if(result>0){
-            alert("평가 취소 완료");
+            console.log("평가 취소 완료");
+            count--;
+            evaCount.innerText = count;
           }else{
-            alert("평가 취소 실패");
+            console.log("평가 취소 실패");
           }
         },
         error : function(req, status, error){

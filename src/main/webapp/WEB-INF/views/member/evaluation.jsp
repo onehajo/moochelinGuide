@@ -26,7 +26,7 @@
             <section class="eva-container">
                 <div class="eva-header">
                     <div>
-                        <span>5</span>
+                        <span id="eva-count">${evaluationCount}</span>
                     </div>
                     <div>
                         <span>평가만 하는것도 나름 재미있지 않으세요?</span>
@@ -50,7 +50,7 @@
                                         <span class="star" id="star1">
                                             ★★★★★
                                             <span>★★★★★</span>
-                                            <input type="range" name="score" oninput="drawStar0(this)" value="1" step="1" min="0" max="10">
+                                            <input type="range" name="score" onmouseup="drawStar0(this)" value="1" step="1" min="0" max="10">
                                         </span>
                                     </div>
                                 </div>
@@ -71,10 +71,17 @@
                                         <span class="star" id="star1">
                                             ★★★★★
                                             <span>★★★★★</span>
-                                            <input type="range" name="score" oninput="drawStar1(this)" value="1" step="1" min="0" max="10">
+                                            <input type="range" name="score" onmouseup="drawStar1(this)" value="1" step="1" min="0" max="10">
                                         </span>
                                     </div>
                                 </div>
+                            </li>
+                        </c:if>
+
+                        <c:if test="${empty movie1 && !empty movieList}">
+                            <li class="eva-area searchFail">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p> 더 많은 영화의 업데이트를 기대해주세요! </p>
                             </li>
                         </c:if>
 
@@ -92,10 +99,17 @@
                                         <span class="star" id="star1">
                                             ★★★★★
                                             <span>★★★★★</span>
-                                            <input type="range" name="score" oninput="drawStar2(this)" value="1" step="1" min="0" max="10">
+                                            <input type="range" name="score" onmouseup="drawStar2(this)" value="1" step="1" min="0" max="10">
                                         </span>
                                     </div>
                                 </div>
+                            </li>
+                        </c:if>
+
+                        <c:if test="${empty movie2 && !empty movieList}">
+                            <li class="eva-area searchFail">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <p> 더 많은 영화의 업데이트를 기대해주세요! </p>
                             </li>
                         </c:if>
                     </ul>
@@ -103,7 +117,7 @@
                     <c:if test="${empty movieList}">
                         <div id="searchFail">
                             <i class="fa-solid fa-circle-exclamation"></i>
-                            <p> 모든 영화 평가 완료 ! 다음에 이용해주세요.</p>
+                            <p> 모든 영화 평가 완료 ! 더 많은 영화의 업데이트를 기대해주세요!</p>
                         </div>
                     </c:if>
 
@@ -117,6 +131,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
+        let count = Number("${evaluationCount}");
         const movie0 = "${movie0.movieNo}";
         const movie1 = "${movie1.movieNo}";
         const movie2 = "${movie2.movieNo}";

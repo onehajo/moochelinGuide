@@ -30,20 +30,46 @@ public class EvaluationServlet extends HttpServlet{
 			
 			System.out.println("멤버번호: "+memberNo);
 			
-			// 2. 영화 db에서 랜덤으로 리스트 조회 (3개)
+			// 2. 회원이 평가한 영화 개수 조회
+			int count = new MemberService().evaluationCount(memberNo);
+			req.setAttribute("evaluationCount", count);
+			
+			// 3. 영화 db에서 랜덤으로 리스트 조회 (3개)
 			List<Movie> movieList = new MemberService().selectRandomMovie(memberNo);
 			
-			
-			Movie movie0 = movieList.get(0);
-			Movie movie1 = movieList.get(1);
-			Movie movie2= movieList.get(2);
-								
-			// 3. 세팅해서 req에 저장
-			req.setAttribute("movieList", movieList);
-			req.setAttribute("movie0", movie0);
-			req.setAttribute("movie1", movie1);
-			req.setAttribute("movie2", movie2);
-			
+			Movie movie0 = null;
+			Movie movie1 = null;
+			Movie movie2 = null;
+			for(int i = 0; i<movieList.size(); i++) {
+				if(movieList.size()==3) {
+					
+					movie0 = movieList.get(0);
+					movie1 = movieList.get(1);
+					movie2= movieList.get(2);
+										
+					req.setAttribute("movieList", movieList);
+					req.setAttribute("movie0", movie0);
+					req.setAttribute("movie1", movie1);
+					req.setAttribute("movie2", movie2);
+					
+				}else if(movieList.size()==2) {
+					
+					movie0 = movieList.get(0);
+					movie1 = movieList.get(1);
+										
+					req.setAttribute("movieList", movieList);
+					req.setAttribute("movie0", movie0);
+					req.setAttribute("movie1", movie1);
+					
+				}else {
+					
+					movie0 = movieList.get(0);
+										
+					req.setAttribute("movieList", movieList);
+					req.setAttribute("movie0", movie0);
+					
+				}
+			}	
 			
 			// 1. jsp에 요청 위임	
 			String path = "/WEB-INF/views/member/evaluation.jsp";
