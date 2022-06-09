@@ -75,9 +75,7 @@
 	<script src="${contextPath}/resources/js/main.js"></script>
 
     <script>
-        // 최상위주소
         const contextPath = "${contextPath}";
-        // 로그인한 회원번호
         const loginMemberNo = "${loginMember.memberNo}";
     </script>
     <script src="${contextPath}/resources/js/myPage-secession.js"></script>
