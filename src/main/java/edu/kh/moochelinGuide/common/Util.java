@@ -4,7 +4,12 @@ public class Util {
 
 	// 개행문자 -> <br> 변경 처리 메서드
 	public static String newLineHandling(String content) {
-		return content.replaceAll("(\n|\r|\r\n|\n\r)", "<br>");
+		
+		if(content !=null) {
+			return content.replaceAll("(\n|\r|\r\n|\n\r)", "<br>");
+		}
+		return "";
+		
 	}
 	
 	
