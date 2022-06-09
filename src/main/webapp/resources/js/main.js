@@ -23,24 +23,23 @@ function openPopSignUp(){
 
 // 약관보기(회원가입버튼) 클릭 할때
 function openAgree(){
-    $dark1.setAttribute("class", "dark1 active1");
+    $dark.setAttribute("class", "dark active1");
     $popupAgree.setAttribute("class", "popup1 active2");
 }
 
 // 검은배경 클릭할때 (로그인, 회원가입 닫기)
 function closePop(){
-    $dark.setAttribute("class", "dark");
-    $popupLogin.setAttribute("class", "popup"); // 로그인 닫기
-    $popupSignup.setAttribute("class", "popup"); // 회원가입 닫기
-    $popupAgree.setAttribute("class", "popup1"); // 약관 닫기
-    $body_tag.setAttribute("class", "");
+	if( $dark.classList.contains('active1')){
+		$dark.setAttribute("class", "dark active"); // z-index 4->3
+		$popupAgree.setAttribute("class", "popup1"); // 약관 닫기
+	}else{
+	    $dark.setAttribute("class", "dark");
+	    $popupLogin.setAttribute("class", "popup"); // 로그인 닫기
+	    $popupSignup.setAttribute("class", "popup"); // 회원가입 닫기
+	    $body_tag.setAttribute("class", "");	
+	}
 }
 
-// 검은배경 클릭할때 (약관동의 닫기)
-function closeAgree(){
-    $dark1.setAttribute("class", "dark1");
-    $popupAgree.setAttribute("class", "popup1"); // 약관 닫기
-}
 
 
 
@@ -146,39 +145,43 @@ signUpName.addEventListener("input", function(){
 // 이메일 유효성 검사
 signUpEmail.addEventListener("input", function(){
 
-    if(signUpEmail.value.length==0){
-        emailMessage.innerText="메일을 받을 수 있는 이메일을 입력해주세요.";
-        emailMessage.classList.remove("confirm","error");
+    if(signUpEmail.value.trim().length==0){
+        emailMessage.innerText="이메일을 입력해주세요.";
 
         checkObj.signUpEmail=false; // 유효하지 않은 상태
         return;
-    }
-
-    if(emailExp.test(signUpEmail.value)){
-
-        // ****** 이메일 중복 검사(ajax) 진행 ******
-        $.ajax({
-			url: "emailDupCheck", 
-			data : {"memberEmail" : signUpEmail.value},
-			type : "GET", 
-			success : function(result){
-                if(result==1) { // 중복임
-                    emailMessage.innerText = "이미 가입된 이메일입니다."
-                    checkObj.signUpEmail=false; // 유효하지 않은 상태
-                } else{
-                    emailMessage.innerText = ""
-                    checkObj.signUpEmail=true; // 유효한 상태 
-                }
-			},
-			error : function(){
-
-			}
-		});
-
     }else{
-        emailMessage.innerText = "이메일 형식이 올바르지 않습니다."
+	
+	
 
-        checkObj.signUpEmail=false; // 유효하지 않은 상태
+	    if(emailExp.test(signUpEmail.value)){
+	
+	        // ****** 이메일 중복 검사(ajax) 진행 ******
+	        $.ajax({
+				url: "emailDupCheck", 
+				data : {"memberEmail" : signUpEmail.value},
+				type : "GET", 
+				success : function(result){
+	                if(result!=0) { // 중복임
+	                    emailMessage.innerText = "이미 가입된 이메일입니다."
+	                    checkObj.signUpEmail=false; // 유효하지 않은 상태
+	                } else{
+	                    emailMessage.innerText = ""
+	                    checkObj.signUpEmail=true; // 유효한 상태 
+	                }
+				},
+				error : function(){
+	
+				}
+			});
+			
+	
+	    }else{
+	        emailMessage.innerText = "이메일 형식이 올바르지 않습니다."
+	
+	        checkObj.signUpEmail=false; // 유효하지 않은 상태
+	    }
+    
     }
 })
 
@@ -240,6 +243,66 @@ function signUpValidate(){
         return false;
     }
 }
+
+// 약관 전체동의
+function selectAll(selectAll){
+	const checkboxes = document.getElementsByName("agreeCheck");
+	
+	checkboxes.forEach((checkbox)=>{
+		checkbox.checked = selectAll.checked;
+	})
+}
+
+
+
+
+
+
+// google 로그인 관련 예시 
+//처음 실행하는 함수
+function init() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+		options = new gapi.auth2.SigninOptionsBuilder();
+		options.setPrompt('select_account');
+        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+	})
+}
+
+function onSignIn(googleUser) {
+	var access_token = googleUser.getAuthResponse().access_token
+	$.ajax({
+    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+		url: 'https://people.googleapis.com/v1/people/me'
+        // key에 자신의 API 키를 넣습니다.
+		, data: {personFields:'birthdays', key:'AIzaSyBOdmeC4SOSzXmPGLEM2vZueqiBSWKg3wk', 'access_token': access_token}
+		, method:'GET'
+	})
+	.done(function(e){
+        //프로필을 가져온다.
+		var profile = googleUser.getBasicProfile();
+		console.log(profile)
+	})
+	.fail(function(e){
+		console.log(e);
+	})
+}
+function onSignInFailure(t){		
+	console.log(t);
+}
+
+
+
+
+
+
+
+
+
 
 
 

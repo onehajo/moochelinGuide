@@ -1,0 +1,92 @@
+.contain-box{
+    box-shadow: 0px 3px 10px 1px rgb(0 0 0 / 20%);
+    padding: 20px 40px;
+    min-height: 500px;
+}
+.message-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    border-bottom: 1px solid #ddd;
+}
+.last {
+    border: none;
+}
+.message-left{
+    display: flex;
+    align-items: center;
+}
+.image-area{
+    width: 70px;
+    height: 70px;
+    background-color: aquamarine;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.text-area span {
+    display: block;
+    margin: 5px;
+}
+
+.text-area .name {
+    font-size: 20px;
+    font-weight: 500;
+}
+.text-area .message{
+    color: #555;
+    cursor: pointer;
+}
+.message-right-btns button{
+    padding: 8px 24px;
+    margin-left: 10px;
+    background-color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+
+
+/* 쪽지 확인 팝업 */
+.smallText{
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.messageForm-css{
+    margin-top: 20px;
+    width: 320px;
+}
+.textarea-css{
+    width: 320px;
+    min-height: 200px;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    font-size: 14px;
+    color: #999;
+}
+.messageBtnBox{
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.messageBtnBox button {
+    width: 48%;
+    padding: 7px 0;
+}
+.close{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.sendBtn{
+    margin: 0 auto;
+}
