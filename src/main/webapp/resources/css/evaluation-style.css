@@ -141,3 +141,19 @@
     overflow: hidden;
     pointer-events: none;
   }
+
+/*평가할 영화가 없는 경우*/
+#searchFail{
+    margin: auto;
+    min-height: 810px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchFail > i {
+    margin: 16px 0px;
+    font-size: 50px;
+    color: #00ffbe;
+}

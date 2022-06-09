@@ -67,9 +67,32 @@
 		  WHERE NOT EXISTS(SELECT *
 					 	   FROM EVALUATION E
 					 	   WHERE M.MOVIE_NO = E.MOVIE_NO
-					 	   AND E.MEMBER_NO = ?)
+					 	   AND E.MEMBER_NO = ?
+					 	   AND EVALUATION_FL = 'N')
 						   ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 3]]>
+	</entry>
+	
+	<!-- 평가수정 -->
+	<entry key="updateEvaluation">
+	UPDATE EVALUATION SET
+	STAR_RATING = ?,
+	EVALUATION_FL = 'N'
+	WHERE MEMBER_NO = ?
+	AND MOVIE_NO = ?
+	</entry>
+	
+	<!-- 평가하기 -->
+	<entry key="insertEvaluation">
+	INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT)
+	</entry>
+	
+	<!-- 평가 삭제 -->
+	<entry key="deleteEvaluation">
+	UPDATE EVALUATION SET
+	EVALUATION_FL = 'Y'
+	WHERE MEMBER_NO = ?
+	AND MOVIE_NO = ?
 	</entry>
 	
 </properties>
