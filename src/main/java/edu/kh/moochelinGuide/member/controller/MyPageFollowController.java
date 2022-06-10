@@ -42,5 +42,26 @@ public class MyPageFollowController extends HttpServlet{
 		}
 	    
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		try {
+			
+			int mode = Integer.parseInt(req.getParameter("mode"));
+			int memberNo = Integer.parseInt(req.getParameter("memberNo"));
+			int targetNo = Integer.parseInt(req.getParameter("targetNo"));
+			
+			MemberService service = new MemberService();
+			
+			int result = service.followService(mode, memberNo, targetNo);
+			
+			resp.getWriter().print(result);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
 
 }

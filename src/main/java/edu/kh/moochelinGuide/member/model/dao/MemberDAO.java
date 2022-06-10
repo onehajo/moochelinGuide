@@ -672,8 +672,63 @@ public class MemberDAO {
 		return fList;
 	}
 
-      
-      
+	
+
+	/** 팔로워/팔로잉 삭제 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param targetNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteFollower(Connection conn, int memberNo, int targetNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteFollow");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, targetNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	/** 팔로워/팔로잉 삭제 취소 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param targetNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteCancelFollower(Connection conn, int memberNo, int targetNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteCancelFollow");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, targetNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
       
 
 }
