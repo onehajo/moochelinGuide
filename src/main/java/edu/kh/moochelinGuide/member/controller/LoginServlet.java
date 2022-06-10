@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 
-@WebServlet("/login")
+@WebServlet(urlPatterns = {"/login","/search/login"})
 public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +36,9 @@ public class LoginServlet extends HttpServlet{
 				session.setAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			}
 				
-			resp.sendRedirect(req.getContextPath()); // 왔던 페이지로 돌아가는법 뭐지
+			String path = null;
+			path=req.getHeader("referer");
+			resp.sendRedirect(path);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -30,21 +30,46 @@ public class EvaluationServlet extends HttpServlet{
 			
 			System.out.println("멤버번호: "+memberNo);
 			
-			// 2. 영화 db에서 랜덤으로 리스트 조회 (3개) --> 어떻게 해야할까 !!!!!!!
+			// 2. 회원이 평가한 영화 개수 조회
+			int count = new MemberService().evaluationCount(memberNo);
+			req.setAttribute("evaluationCount", count);
+			
+			// 3. 영화 db에서 랜덤으로 리스트 조회 (3개)
 			List<Movie> movieList = new MemberService().selectRandomMovie(memberNo);
 			
-			System.out.println("movieList"+movieList);
-			
-			Movie movie1 = movieList.get(0);
-			Movie movie2 = movieList.get(1);
-			Movie movie3 = movieList.get(2);
-								
-			// 3. 세팅해서 req에 저장
-			req.setAttribute("movieList", movieList);
-			req.setAttribute("movie1", movie1);
-			req.setAttribute("movie2", movie2);
-			req.setAttribute("movie3", movie3);
-			
+			Movie movie0 = null;
+			Movie movie1 = null;
+			Movie movie2 = null;
+			for(int i = 0; i<movieList.size(); i++) {
+				if(movieList.size()==3) {
+					
+					movie0 = movieList.get(0);
+					movie1 = movieList.get(1);
+					movie2= movieList.get(2);
+										
+					req.setAttribute("movieList", movieList);
+					req.setAttribute("movie0", movie0);
+					req.setAttribute("movie1", movie1);
+					req.setAttribute("movie2", movie2);
+					
+				}else if(movieList.size()==2) {
+					
+					movie0 = movieList.get(0);
+					movie1 = movieList.get(1);
+										
+					req.setAttribute("movieList", movieList);
+					req.setAttribute("movie0", movie0);
+					req.setAttribute("movie1", movie1);
+					
+				}else {
+					
+					movie0 = movieList.get(0);
+										
+					req.setAttribute("movieList", movieList);
+					req.setAttribute("movie0", movie0);
+					
+				}
+			}	
 			
 			// 1. jsp에 요청 위임	
 			String path = "/WEB-INF/views/member/evaluation.jsp";
@@ -59,19 +84,26 @@ public class EvaluationServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		double score = Integer.parseInt(req.getParameter("score"))*0.5;
-		int memberNo = Integer.parseInt(req.getParameter("memberNo"));
-		int movieNo = Integer.parseInt(req.getParameter("movieNo"));
 		
-		System.out.println("score : "+score);
-		System.out.println("memberNo : " + memberNo);
-		System.out.println("movieNo : "+ movieNo);
-		
-		//int result = new MemberService().evaluation(memberNo, movieNo, score);
-		
-		int result = 1;
-		
-		resp.getWriter().print(result); 
+		try {
+			
+			int mode = Integer.parseInt(req.getParameter("mode"));
+			int memberNo = Integer.parseInt(req.getParameter("memberNo"));
+			int movieNo = Integer.parseInt(req.getParameter("movieNo"));
+			double score = Integer.parseInt(req.getParameter("score"))*0.5;
+			
+			System.out.println("모드 : " + mode);
+			System.out.println("score : "+score);
+			System.out.println("memberNo : " + memberNo);
+			System.out.println("movieNo : "+ movieNo);
+			
+			int result = new MemberService().evaluation(mode, memberNo, movieNo, score);
+			
+			resp.getWriter().print(result); 
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
