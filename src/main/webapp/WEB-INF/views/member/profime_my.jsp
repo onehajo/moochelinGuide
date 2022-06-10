@@ -52,7 +52,7 @@
                             <div class="follow"><span>팔로워 : 3</span><span>   |   </span><span>팔로잉 : 3</span></div>
                         </div>
                         <!-- 제가 마이페이지에 a태그 넣어서 깨져버렸어용-->
-                        <div class="mypage-button"> <a href="myPage_mod.html">마이페이지</a> </div>
+                        <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod}">마이페이지</a> </div>
                         <div class="pick-heart">❤</div>
                         <div class="bucket-list">찜한 영화 30</div>
                         <div class="count-star">⭐</div>
