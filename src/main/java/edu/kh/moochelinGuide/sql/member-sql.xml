@@ -88,12 +88,13 @@
 		  WHERE NOT EXISTS(SELECT *
 					 	   FROM EVALUATION E
 					 	   WHERE M.MOVIE_NO = E.MOVIE_NO
-					 	   AND E.MEMBER_NO = ?)
+					 	   AND E.MEMBER_NO = ?
+					 	   AND EVALUATION_FL = 'N')
 						   ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 3]]>
 	</entry>
 	
-	
+
 	<!-- 회원 비밀번호 변경 -->
 	<entry key="changePw">
 	UPDATE MEMBER SET
@@ -102,5 +103,64 @@
 	AND MEMBER_PW = ? 
 	</entry>
 	
+
+	<!-- 평가수정 -->
+	<entry key="updateEvaluation">
+	UPDATE EVALUATION SET
+	STAR_RATING = ?,
+	EVALUATION_FL = 'N'
+	WHERE MEMBER_NO = ?
+	AND MOVIE_NO = ?
+	</entry>
 	
+	<!-- 평가하기 -->
+	<entry key="insertEvaluation">
+	INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT)
+	</entry>
+	
+	<!-- 평가 삭제 -->
+	<entry key="deleteEvaluation">
+	UPDATE EVALUATION SET
+	EVALUATION_FL = 'Y'
+	WHERE MEMBER_NO = ?
+	AND MOVIE_NO = ?
+	</entry>
+	
+	<!-- 평가한 영화 개수 조회 -->
+	<entry key="evaluationCount">
+	SELECT COUNT(*) FROM EVALUATION
+	WHERE MEMBER_NO = ?
+	AND EVALUATION_FL = 'N'
+	</entry>
+<<<<<<< HEAD
+	
+	<!-- 로그인 회원의 팔로워 목록 조회 -->
+	<entry key="selectFollower">
+	SELECT MEMBER_NO, MEMBER_NM, COUNT(*), PROFILE_IMG
+	FROM EVALUATION
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE MEMBER_NO IN (SELECT MEMBER_NO
+						FROM FOLLOW
+						WHERE TARGET_NO = ?
+						AND FOLLOW_FL = 'N')
+	AND EVALUATION_FL = 'N'
+	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	</entry>
+	
+	<!-- 로그인 회원의 팔로잉 목록 조회 -->
+	<entry key="selectFollowing">
+	SELECT MEMBER_NO, MEMBER_NM, COUNT(*), PROFILE_IMG
+	FROM EVALUATION
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE MEMBER_NO IN (SELECT TARGET_NO
+						FROM FOLLOW
+						WHERE MEMBER_NO = ?
+						AND FOLLOW_FL = 'N')
+	AND EVALUATION_FL = 'N'
+	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	</entry>
+	
+=======
+
+>>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
 </properties>

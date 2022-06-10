@@ -12,7 +12,7 @@ import edu.kh.moochelinGuide.member.model.service.MemberService;
 
 
 
-@WebServlet("/emailDupCheck")
+@WebServlet(urlPatterns = {"/emailDupCheck", "/search/emailDupCheck"})
 public class EmailDupCheckServlet extends HttpServlet {
 
 	// 이메일 중복검사(비동기 통신)

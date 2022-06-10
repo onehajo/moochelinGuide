@@ -78,8 +78,8 @@
 		<button id="login-btn" class="btn">로그인</button>
 	</form>
 	<div class="login-other">
-		<div><a href="">비밀번호를 잊어버리셨나요?</a></div>
-		<div>계정이 없으신가요?<a href="#" onclick="openPopSignUp()">회원가입</a></div>
+		<div><a>비밀번호를 잊어버리셨나요?</a></div>
+		<div>계정이 없으신가요?<a onclick="openPopSignUp()">회원가입</a></div>
 	</div>
 	<hr class="line"></hr>
 	<button class="sns">
@@ -103,11 +103,11 @@
 			<button type="button" id="signup-btn" class="btn">회원가입</button>
 		</div>
 		<div class="login-other">
-		<div>이미 가입하셨나요?<a href="#" onclick="openPopLogin()"> 로그인</a></div>
+		<div>이미 가입하셨나요?<a onclick="openPopLogin()"> 로그인</a></div>
 	</div>
 	<hr class="line"></hr>
 	<button class="sns">
-		<a href="#">
+		<a>
 			<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAuNjQgMTIuMjA0MkMyMC42NCAxMS41NjYgMjAuNTgyNyAxMC45NTI0IDIwLjQ3NjQgMTAuMzYzM0gxMlYxMy44NDQ2SDE2Ljg0MzZDMTYuNjM1IDE0Ljk2OTYgMTYuMDAwOSAxNS45MjI4IDE1LjA0NzcgMTYuNTYxVjE4LjgxOTJIMTcuOTU2NEMxOS42NTgyIDE3LjI1MjQgMjAuNjQgMTQuOTQ1MSAyMC42NCAxMi4yMDQyVjEyLjIwNDJaIiBmaWxsPSIjNDI4NUY0Ii8+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTExLjk5OTggMjFDMTQuNDI5OCAyMSAxNi40NjcgMjAuMTk0MSAxNy45NTYxIDE4LjgxOTVMMTUuMDQ3NSAxNi41NjEzQzE0LjI0MTYgMTcuMTAxMyAxMy4yMTA3IDE3LjQyMDQgMTEuOTk5OCAxNy40MjA0QzkuNjU1NjcgMTcuNDIwNCA3LjY3MTU4IDE1LjgzNzIgNi45NjM4NSAxMy43MUgzLjk1NzAzVjE2LjA0MThDNS40Mzc5NCAxOC45ODMxIDguNDgxNTggMjEgMTEuOTk5OCAyMVYyMVoiIGZpbGw9IiMzNEE4NTMiLz4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNi45NjQwOSAxMy43MDk4QzYuNzg0MDkgMTMuMTY5OCA2LjY4MTgyIDEyLjU5MyA2LjY4MTgyIDExLjk5OThDNi42ODE4MiAxMS40MDY2IDYuNzg0MDkgMTAuODI5OCA2Ljk2NDA5IDEwLjI4OThWNy45NTgwMUgzLjk1NzI3QzMuMzQ3NzMgOS4xNzMwMSAzIDEwLjU0NzYgMyAxMS45OTk4QzMgMTMuNDUyMSAzLjM0NzczIDE0LjgyNjYgMy45NTcyNyAxNi4wNDE2TDYuOTY0MDkgMTMuNzA5OFYxMy43MDk4WiIgZmlsbD0iI0ZCQkMwNSIvPgogICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4wNDI3IDYuNTc5NTVDMTMuMzY0MSA2LjU3OTU1IDE0LjU1MDUgNy4wMzM2NCAxNS40ODMyIDcuOTI1NDVMMTguMDY0NSA1LjM0NDA5QzE2LjUwNTkgMy44OTE4MiAxNC40Njg2IDMgMTIuMDQyNyAzQzguNTI0NTUgMyA1LjQ4MDkxIDUuMDE2ODIgNCA3Ljk1ODE4TDcuMDA2ODIgMTAuMjlDNy43MTQ1NSA4LjE2MjczIDkuNjk4NjQgNi41Nzk1NSAxMi4wNDI3IDYuNTc5NTVWNi41Nzk1NVoiIGZpbGw9IiNFQTQzMzUiLz4KPC9zdmc+Cg==" class="css-1hfgk44">
 		</a>
 	</button>
@@ -116,18 +116,20 @@
 <!-- 팝업될 약관동의 화면 -->
 <section id="agree" class="popup1">
 	<div class="agree-title">약관에 동의하시면<br>가입이 완료됩니다.</div>
-	<div class="agree-all"><input type="checkbox" id="agreeAll">전체 약관 동의</div>
+	<div class="agree-all">
+		<input type="checkbox" id="agreeAll" name="agreeCheck" onclick="selectAll(this)">전체 약관 동의
+	</div>
 	<ul>
 		<li>
-			<div><input type="checkbox" id="agree1">서비스 이용약관</div>
+			<div><input type="checkbox" id="agree1" name="agreeCheck">서비스 이용약관</div>
 			<button>보기</button>
 		</li>
 		<li>
-			<div><input type="checkbox" id="agree2">개인정보 처리방침</div>
+			<div><input type="checkbox" id="agree2" name="agreeCheck">개인정보 처리방침</div>
 			<button>보기</button>
 		</li>
 		<li>
-			<div><input type="checkbox" id="agree3" name="eventInfo">신작 알림, 이벤트 정보 수신(선택)</div>
+			<div><input type="checkbox" id="agree3" name="agreeCheck">신작 알림, 이벤트 정보 수신(선택)</div>
 			<button>보기</button>
 		</li>
 	</ul>

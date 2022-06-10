@@ -15,9 +15,15 @@
 <nav  class="nav-area">
     <ul class="nav-ul">
         <li><a href="${contextPath}/member/myPage/mod">회원정보수정</a></li>
+<<<<<<< HEAD
+        <li><a href="#">비밀번호 변경</a></li>
+        <li><a href="${contextPath}/member/myPage/follow?mode=1&memberNo=${loginMember.memberNo}">팔로워 목록</a></li>
+        <li><a href="${contextPath}/member/myPage/follow?mode=2&memberNo=${loginMember.memberNo}">팔로잉 목록</a></li>
+=======
         <li><a href="${contextPath}/member/myPage/changePw">비밀번호 변경</a></li>
         <li><a href="../sjh/myPage_follower.html">팔로워 목록</a></li>
         <li><a href="../sjh/myPage_following.html">팔로잉 목록</a></li>
+>>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
         <li><a href="../ksj/myPage_message.html">쪽지</a></li>
         <li><a href="../swy/inquiryList.html">문의하기</a></li>
         <li><a href="#">공지사항</a></li>

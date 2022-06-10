@@ -6,6 +6,7 @@ import java.util.List;
 
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
+import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
@@ -142,6 +143,62 @@ public class MemberService {
 		return movieList;
 		
 	}
+
+	/** 평가하기 Service
+	 * @param memberNo
+	 * @param movieNo
+	 * @param score
+	 * @return result
+	 * @throws Exception
+	 */
+	public int evaluation(int mode, int memberNo, int movieNo, double score) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		if(mode == 1) {
+			// mode 1인경우 수정 혹은 삽입
+			
+			// 이미 평가된 영화인 경우 UPDATE
+			result = dao.updateEvaluation(conn,memberNo, movieNo, score);
+			
+			if(result==0) { 
+				
+				// 평가한 적 없는 영화인 경우 INSERT
+				result = dao.insertEvaluation(conn, memberNo, movieNo, score);
+			}
+			
+		}else {
+			
+			// mode 2인경우 평가 취소 
+			result = dao.deleteEvaluation(conn, memberNo, movieNo, score);
+			
+		}
+		
+		if(result>0) commit(conn);
+		else 	     rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	/** 평가한 영화 개수 조회 Service
+	 * @param memberNo
+	 * @return count
+	 * @throws Exception
+	 */
+	public int evaluationCount(int memberNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int count = dao.evaluationCount(conn, memberNo);
+		
+		close(conn);
+		
+		return count;
+	}
 	
 	
 	
@@ -192,6 +249,35 @@ public class MemberService {
 		return result;
 	}
 
+<<<<<<< HEAD
+	/** 로그인 회원의 팔로워 / 팔로잉 목록 조회 Service
+	 * @param mode
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Follow> follow(int mode, int memberNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Follow> fList = null;
+		
+		if(mode==1) {
+			
+			// mode1 == 로그인 회원의 팔로워 목록 조회
+			fList = dao.selectFollower(conn, memberNo);
+			
+		}else {
+			
+			// mode2 == 로그인 회원의 팔로잉 목록 조회
+			fList = dao.selectFollowing(conn, memberNo);
+			
+		}
+		
+		close(conn);
+		
+		return fList;
+=======
 	
 	
 	/** 회원 비밀번호 변경 Service
@@ -212,6 +298,7 @@ public class MemberService {
 		
 		
 		return result;
+>>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
 	}
 	
 	
