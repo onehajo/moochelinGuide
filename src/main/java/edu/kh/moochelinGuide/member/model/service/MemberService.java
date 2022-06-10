@@ -6,6 +6,7 @@ import java.util.List;
 
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
+import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
@@ -222,6 +223,35 @@ public class MemberService {
 		
 		
 		return result;
+	}
+
+	/** 로그인 회원의 팔로워 / 팔로잉 목록 조회 Service
+	 * @param mode
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Follow> follow(int mode, int memberNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Follow> fList = null;
+		
+		if(mode==1) {
+			
+			// mode1 == 로그인 회원의 팔로워 목록 조회
+			fList = dao.selectFollower(conn, memberNo);
+			
+		}else {
+			
+			// mode2 == 로그인 회원의 팔로잉 목록 조회
+			fList = dao.selectFollowing(conn, memberNo);
+			
+		}
+		
+		close(conn);
+		
+		return fList;
 	}
 	
 	

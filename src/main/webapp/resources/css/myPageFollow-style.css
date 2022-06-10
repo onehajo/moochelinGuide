@@ -1,0 +1,137 @@
+/*상단 프로필사진*/
+#profile{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+/*메인영역*/
+#follower-content{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/*팔로워 목록이 들어갈 영역*/
+.follower-container{
+    width: 1200px;
+    height: 950px;
+    margin: 24px 0 40px 0;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 타이틀 영역*/
+.follower-title{
+    width: 1200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.follower-title span{
+    margin-left: 80px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* 팔로워 목록이 출력될 영역*/
+.follower{
+    width: 1200px;
+    height: 920px;
+    display: flex;
+    justify-content: center;
+
+}
+
+/*팔로워 목록 ul태그 영역*/
+.follower-row{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/*팔로워 목록 li*/
+.follower-row > li{
+    width: 1100px;
+    height: 150px;
+    display: flex;
+}
+
+/*프로필 사진이 들어가는 영역*/
+.follower-img{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*프로필 사진*/
+.profile-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+/*팔로워 정보 들어가는 영역*/
+.follower-info{
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+/*팔로워 이름*/
+.follower-info > span:first-child{
+    font-size: 25px;
+    margin: 0 0 10px 15px;
+}
+
+/*평가한 영화수*/
+.follower-info > span:last-child{
+    font-size: 15px;
+    margin-left: 15px;
+}
+
+/*쪽지 버튼 영역*/
+.userMessage{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*쪽지버튼*/
+#userMessage {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    background-color: white;
+    border: 1px solid rgb(116, 116, 123);
+    border-radius: 8px;
+}
+
+/*삭제 버튼 영역*/
+.userDelete{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*삭제버튼*/
+#userDelete{
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    background-color: white;
+    border: 1px solid rgb(116, 116, 123);
+    border-radius: 8px;
+}
