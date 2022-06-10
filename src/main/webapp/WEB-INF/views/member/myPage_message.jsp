@@ -31,8 +31,9 @@
             <div class="contain-box">
                 <div class="message-container">
                 
-                쪽지 받는사람 : ${loginMember.memberName}
                 리스트객체 : ${messageList}
+                
+                <img src="${loginMember.profileImage}">
 
 					<c:choose>
 					
@@ -47,7 +48,8 @@
 							
 								<div class="message-form">
                         			<div class="message-left">
-                            			<div class="image-area" style="background-color:#ff0000; "></div>
+                            			<div class="image-area" style=" background-size: 70px; background-image : url(${contextPath}${message.profileImage})"></div>
+
                             			<div class="text-area">
                                 			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
                                 			<span class="message">${message.messageContent}</span>
