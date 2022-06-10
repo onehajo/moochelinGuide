@@ -9,8 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="resources/css/coment_detail.css">
-    <link rel="stylesheet" href="resources/css/main-style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/coment_detail.css" type="text/css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css" type="text/css">
 
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
     <main>
         <div id="wrapper">
-            <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <header id="header-2">
                 <div class="header-wrap">
                     <div><-</div>
@@ -73,7 +74,7 @@
                             <li><a href="#">&lt;&lt;</a></li>
                             <li><a href="#">&lt;</a></li>
                             <li><a class ="current" href="">1</a></li>
-                            <li><a href="">2</a></li>
+                            <li><a href="${contextPath}/coment/list/movieNo=1&cp=2">2</a></li>
                             <li><a href="">3</a></li>
                             <li><a href="">4</a></li>
                             <li><a href="">5</a></li>
