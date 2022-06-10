@@ -30,48 +30,41 @@
             <div><h2>쪽지함</h2></div>
             <div class="contain-box">
                 <div class="message-container">
+                
+                쪽지 받는사람 : ${loginMember.memberName}
+                리스트객체 : ${messageList}
 
-                    <div class="message-form">
-                        <div class="message-left">
-                            <div class="image-area"></div>
-                            <div class="text-area">
-                                <span class="name">김쪽지</span>
-                                <span class="message">쪽지 보낸 내용입니다. 클릭하면 내용 볼수 있음 어쩌고 저쩌고</span>
-                            </div>
-                        </div>
-                        <div class="message-right-btns">
-                            <button onclick="popupSend()">답장</button>
-                            <button onclick="deleteMessage()">쪽지삭제</button>
-                        </div>
-                    </div>
-
-                    <div class="message-form">
-                        <div class="message-left">
-                            <div class="image-area"></div>
-                            <div class="text-area">
-                                <span class="name">김쪽지</span>
-                                <span class="message">쪽지 보낸 내용입니다. 클릭하면 내용 볼수 있음 어쩌고 저쩌고</span>
-                            </div>
-                        </div>
-                        <div class="message-right-btns">
-                            <button onclick="popupSend()">답장</button>
-                            <button onclick="deleteMessage()">쪽지삭제</button>
-                        </div>
-                    </div>
-
-                    <div class="message-form last">
-                        <div class="message-left">
-                            <div class="image-area"></div>
-                            <div class="text-area">
-                                <span class="name">김쪽지</span>
-                                <span class="message">쪽지 보낸 내용입니다. 클릭하면 내용 볼수 있음 어쩌고 저쩌고</span>
-                            </div>
-                        </div>
-                        <div class="message-right-btns">
-                            <button onclick="popupSend()">답장</button>
-                            <button onclick="deleteMessage()">쪽지삭제</button>
-                        </div>
-                    </div>
+					<c:choose>
+					
+						<%-- 쪽지내역 없는 경우 --%>
+						<c:when test="${empty messageList}">
+							<div>받은 쪽지가 존재하지 않습니다.</div>
+						</c:when>
+						
+						<%-- 쪽지내역 존재하는 경우 --%>
+						<c:otherwise>
+							<c:forEach var="message" items="${messageList}">
+							
+								<div class="message-form">
+                        			<div class="message-left">
+                            			<div class="image-area" style="background-color:#ff0000; "></div>
+                            			<div class="text-area">
+                                			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
+                                			<span class="message">${message.messageContent}</span>
+                            			</div>
+                        			</div>
+                        			<div class="message-right-btns">
+                            			<button onclick="popupSend()">답장</button>
+                            			<button onclick="deleteMessage()">쪽지삭제</button>
+                        			</div>
+                    			</div>
+                    			
+							</c:forEach>
+						</c:otherwise>
+						
+					</c:choose>
+					
+                    
 
 
                 </div>

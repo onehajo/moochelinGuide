@@ -1,7 +1,5 @@
 package edu.kh.moochelinGuide.member.model.vo;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,15 +9,16 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Member {
+public class Message {
 
-	private int memberNo;
-	private String memberName;
-	private String memberEmail;
-	private String memberPw;
-	private String profileImage;
-	private String profileBackImage;
+	private int messageNo;
+	private String messageContent;
 	private String enrollDate;
-	private String secessionFlag;
+	private String readFlag;
+	private int TargetNo;
+	private int MemberNo;
+	
+	private String memberName;
+	private String profileImage;
 	
 }
