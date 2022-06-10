@@ -19,7 +19,7 @@ import edu.kh.moochelinGuide.common.wrapper.EncryptWrapper;
 // 암호화 대항에 패턴이 보이는 경우 /member/login, /member/signUp .... 할 수도 있지만 모든 member에 적용이 필요한것은 아님.
 // 필터가 적용될 url이 여러개인 경우 : String 배열 초기화 형태 {}로 작성
 
-@WebFilter(filterName = "/EncryptFilter", urlPatterns = {"/member/login", "/member/signUp", "/member/myPage/changePw","/member/myPage/secession"})
+@WebFilter(filterName = "/EncryptFilter", urlPatterns = {"/member/login", "/member/signUp", /*"/member/myPage/changePw",*/"/member/myPage/secession"})
 public class EncryptFilter extends HttpFilter implements Filter {
 	
 

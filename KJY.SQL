@@ -11,3 +11,19 @@ WHERE MEMBER_NO = ? ;
 UPDATE MEMBER SET 
 MEMBER_NM = '김담2'
 WHERE MEMBER_NO = 23 ;
+
+
+-- 회원 비밀번호 변경
+UPDATE MEMBER SET
+MEMBER_PW = 바꿀비번
+WHERE MEMBER_NO = ?
+AND MEMBER_PW = 현재비번 ;
+
+
+
+-- 회원 비밀번호 변경(테스트)
+UPDATE MEMBER SET
+MEMBER_PW = 'qwer1234'
+WHERE MEMBER_NO = '23'
+AND MEMBER_PW = 'asdf1234' ;
+
