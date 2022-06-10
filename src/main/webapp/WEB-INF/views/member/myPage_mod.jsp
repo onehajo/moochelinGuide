@@ -58,8 +58,9 @@
                 </div>
                 <span class="myPage Name" id="nameMsg">*필수 입력사항입니다.</span>
                 
-
-
+<!-- 
+                이슈 : 프로필이미지 삽입 X / 배경이미지 삽입 O -> 오류
+                        프로필이미지 삽입O 수정 후, 다시 배경 삽입 -> 오류 -->
                 <span>프로필 이미지</span>
                 <div class="myPage-row  input-none">
                     <div class="profile-image-area">
@@ -77,38 +78,50 @@
                         <label for="input-image"> 이미지 변경 </label>
                     </div>
                     <input type="file" id="input-image" name="imgFile" accept="image/*"   >
+                    <!-- 0안눌러짐 1눌러짐 -->
                     <div class="button img">
                         <span id="delete-image"> 이미지 삭제 </span>
+                        <input type="hidden" name="imgDelete" id="imgDelete" value="0">
                     </div>
                 </div>
-
+                
+                
+                
                 <span>배경 이미지</span>
                 <div class="myPage-row input-none">
                     <div class="profile-image-area">
+                        
+                        
                         <!-- 기본 이미지 -->
                         <c:if test="${empty loginMember.profileBackImage}"> 
                             <img src="${contextPath}/resources/images/logo-blue.png" id="back-ground">
                         </c:if>
                         <!-- 변경 이미지 -->
                         <c:if test="${!empty loginMember.profileBackImage}"> 
-                            <img src="${contextPath}${loginMember.profileImage}" id="back-ground">
+                            
+                            <!-- src="/moochelinGuide/resources/images/memProfileImg/null" -->
+                            <img src="${contextPath}${loginMember.profileBackImage}" id="back-ground">
                         </c:if>
                     </div>
-
+                    
                     <div class="button img">
                         <label for="input-background"> 이미지 변경 </label>
                     </div>
-
+                    
                     <input type="file" id="input-background" name="backgroundFile" accept="image/*"  >
-
-
+                    
                     <div class="button img">
                         <span id="delete-background"> 이미지 삭제 </span>
+                        <!-- 0안눌러짐 1눌러짐 -->
+                        <input type="hidden" name="bgDelete" id="bgDelete" value="0">
                     </div>
 
                 </div>
                 
                 <button id="complete">수정하기</button>
+
+                ${sessionScope.loginMember}
+
 
             </form>
             

@@ -1,6 +1,7 @@
 package edu.kh.moochelinGuide.member.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,15 +65,25 @@ public class MayPageModServlet extends HttpServlet{
 			
 			// DB에 삽입될 프로필 이미지 경로
 			// 단, X버튼이 클릭된 상태면 null을 가지게 한다
-			String profileImage = folderPath + mpReq.getFilesystemName("imgFile"); // profileImage : 인풋 name
-			String bgImage = folderPath + mpReq.getFilesystemName("backgroundFile"); // backgroundFile : 인풋 name
+			String profileImage = null; // profileImage : 인풋 name
+			String bgImage = null; // backgroundFile : 인풋 name
 			
-			if ( mpReq.getFilesystemName("imgFile") == null ) {
-				profileImage = null;
-				bgImage = null;
-				
+			
+//	이슈1 :	이미지를 프로필이미지가아니라 배경만 변경했을때, 오류발생 
+
+			
+			int imgDelete = Integer.parseInt(mpReq.getParameter("imgDelete"));
+			int bgDelete = Integer.parseInt(mpReq.getParameter("bgDelete"));
+			
+			if ( mpReq.getFilesystemName("imgFile") != null ) {
+				profileImage = folderPath + mpReq.getFilesystemName("imgFile");
+			} 
+			
+			if ( mpReq.getFilesystemName("backgroundFile") != null ) {
+				bgImage = folderPath + mpReq.getFilesystemName("backgroundFile");
 			}
 
+			
 			
 //          ----- 유저정보  -----		
 			String memberName = mpReq.getParameter("memberName");
@@ -90,7 +101,7 @@ public class MayPageModServlet extends HttpServlet{
 			MemberService service = new MemberService();
 			
 			// 회원정보 수정 서비스 수행 후 결과 반환 받기
-			int result = service.updateMember(memberMod, memberNo);
+			int result = service.updateMember(memberMod, memberNo, imgDelete, bgDelete);
 			
 			if( result > 0 ) {
 				
@@ -114,7 +125,6 @@ public class MayPageModServlet extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 	
 	}
