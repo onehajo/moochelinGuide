@@ -111,4 +111,22 @@
 	AND EVALUATION_FL = 'N'
 	</entry>
 	
+	
+	
+	
+	<!-- 쪽지(메세지) 목록 조회 -->
+	<entry key="selectMessage">
+		SELECT MESSAGE_NO,
+	        MESSAGE_CT,
+	        A.ENROLL_DT,
+	        READ_FL,
+	        MEMBER_NM,
+	        PROFILE_IMG
+		FROM MESSAGE A
+		JOIN MEMBER B ON (A.TARGET_NO = B.MEMBER_NO)
+		WHERE TARGET_NO=?
+		AND MESSAGE_ST='N'
+		ORDER BY MESSAGE_NO DESC
+	</entry>
+	
 </properties>

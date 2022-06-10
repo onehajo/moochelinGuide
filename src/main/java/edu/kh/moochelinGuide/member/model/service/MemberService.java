@@ -3,10 +3,12 @@ package edu.kh.moochelinGuide.member.model.service;
 import static edu.kh.moochelinGuide.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
 import edu.kh.moochelinGuide.member.model.vo.Member;
+import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 public class MemberService {
@@ -222,6 +224,22 @@ public class MemberService {
 		
 		
 		return result;
+	}
+	
+	
+	
+
+	/** 메세지 목록 조회 service
+	 * @param memberNo
+	 * @return messageList
+	 * @throws Exception
+	 */
+	public List<Message> selectMessage(int memberNo) throws Exception {
+		Connection conn = getConnection();
+		
+		List<Message> messageList = dao.selectMessage(conn, memberNo);
+		
+		return messageList;
 	}
 	
 	
