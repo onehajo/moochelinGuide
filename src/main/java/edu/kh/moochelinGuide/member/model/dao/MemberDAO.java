@@ -509,7 +509,6 @@ public class MemberDAO {
 
 
 
-<<<<<<< HEAD
 	/** 로그인 회원의 팔로워 목록 조회 DAO
 	 * @param conn
 	 * @param memberNo
@@ -594,7 +593,6 @@ public class MemberDAO {
 		return fList;
 	}
 
-=======
 	/** 회원정보 배경 이미지 수정 DAO 
 	 * @param conn
 	 * @param memberMod
@@ -624,13 +622,4 @@ public class MemberDAO {
 		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
 }
