@@ -149,66 +149,20 @@ public class MemberService {
 	/** 회원정보 수정 Service 
 	 * @param memberMod
 	 * @param memberNo 
-	 * @param bgDelete 
-	 * @param imgDelete 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int updateMember(Member memberMod, int memberNo, int imgDelete, int bgDelete) throws Exception {
+	public int updateMember(Member memberMod, int memberNo) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		// 이름 수정 DAO
+		
 		int result  = dao.updateMember(conn, memberMod, memberNo);
-		
-		if(result > 0 ) {
-			
-			// 프로필 이미지 수정
-			if(memberMod.getProfileImage() != null || imgDelete == 1) {
-				result = dao.updatProfileImage(conn, memberMod, memberNo);
-			}
-			
-			// 배경 이미지 수정
-			if(memberMod.getProfileBackImage() != null || bgDelete == 1) {
-				result = dao.updateBackgroundImage(conn, memberMod, memberNo);
-			}
-			
-		}
-		
-		// 이름 수정안하고 이미지 바꿀때,
-		if( result < 0) {
-			
-			
-		}
-		
-		
 		
 		if(result>0) commit(conn);
 		else         rollback(conn);
 		
 		close(conn);
-		
-		
-		return result;
-	}
-
-	
-	
-	/** 회원 비밀번호 변경 Service
-	 * @param currentPw
-	 * @param newPw
-	 * @param memberNo
-	 * @return result
-	 * @throws Exception
-	 */
-	public int changePw(String currentPw, String newPw, int memberNo) throws Exception {
-		
-		Connection conn = getConnection();
-		
-		int result = dao.changePw(conn, currentPw, newPw, memberNo);
-		
-		if(result > 0 ) commit(conn);
-		else rollback(conn);
 		
 		
 		return result;

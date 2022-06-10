@@ -252,7 +252,7 @@ public class MemberDAO {
 	
 	
 
-	/** 회원정보 이름 수정 DAO 
+	/** 회원정보 수정 DAO 
 	 * @param conn
 	 * @param memberMod
 	 * @param memberNo 
@@ -268,9 +268,10 @@ public class MemberDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberMod.getMemberName());
-			pstmt.setInt(2, memberNo);
+			pstmt.setString(2, memberMod.getProfileImage());
+			pstmt.setString(3, memberMod.getProfileBackImage());
+			pstmt.setInt(4, memberNo);
 			
-	
 			result = pstmt.executeUpdate();
 			
 		} finally {
@@ -318,121 +319,5 @@ public class MemberDAO {
 		
 		return movieList;
 	}
-	
-	
-	
-	
-	
 
-	/** 회원 비밀번호 변경 DAO
-	 * @param conn
-	 * @param currentPw
-	 * @param newPw
-	 * @param memberNo
-	 * @return result
-	 * @throws Exception
-	 */
-	public int changePw(Connection conn, String currentPw, String newPw, int memberNo) throws Exception {
-		
-		int result = 0;
-		
-		try {
-			
-			String sql = prop.getProperty("changePw");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, newPw);
-			pstmt.setInt(2, memberNo);
-			pstmt.setString(3, currentPw);
-			
-			result = pstmt.executeUpdate();
-			
-			
-			
-		} finally {
-			
-			close(pstmt);
-			
-		}
-		
-		
-		return result;
-	}
-
-	
-	
-	
-	/** 회원정보 프로필 이미지 수정 DAO
-	 * @param conn
-	 * @param memberMod
-	 * @param memberNo
-	 * @return
-	 * @throws Exception
-	 */
-	public int updatProfileImage(Connection conn, Member memberMod, int memberNo) throws Exception {
-		
-		int result = 0;
-		
-		try {
-			
-			String sql = prop.getProperty("updatProfileImage");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberMod.getProfileImage());
-			pstmt.setInt(2, memberNo);
-			
-			result = pstmt.executeUpdate();
-			
-			
-		} finally {
-			
-			close(conn);
-			
-		}
-		
-		
-		return result;
-	}
-	
-	
-	
-	
-
-	/** 회원정보 배경 이미지 수정 DAO 
-	 * @param conn
-	 * @param memberMod
-	 * @param memberNo
-	 * @return result 
-	 * @throws Exception
-	 */
-	public int updateBackgroundImage(Connection conn, Member memberMod, int memberNo) throws Exception {
-		
-		int result = 0;
-		
-		try {
-			
-			String sql = prop.getProperty("updateBackgroundImage");
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberMod.getProfileBackImage());
-			pstmt.setInt(2, memberNo);
-			
-			result = pstmt.executeUpdate();
-			
-		} finally {
-			
-			close(conn);
-			
-		}
-		
-		return result;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

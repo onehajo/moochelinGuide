@@ -24,9 +24,6 @@ if( inputImage != null ){ // inputImage 가 화면에 존재 할 때
 
                 profileImage.setAttribute("src",e.target.result);
 
-                document.getElementById("imgDelete").value = 0;
-                
-
             }
         }
     });
@@ -35,36 +32,28 @@ if( inputImage != null ){ // inputImage 가 화면에 존재 할 때
 
 
 // 프로필이미지 삭제버튼
-if(document.getElementById("delete-image") != null){
+document.getElementById("delete-image").addEventListener("click",function(){
 
-    document.getElementById("delete-image").addEventListener("click",function(){
+    // 1) 프로필 이미지를 기본 이미지로 변경하는 것
+    document.getElementById("profile-image").setAttribute("src",contextPath + "/resources/images/logo-blue.png");
 
-        // 0 : 삭제버튼 안누름
-        // 1 : 삭제버튼 누름
-        const imgDelete = document.getElementById("imgDelete");
-
-        if ( imgDelete.value == 0 ){
-            
-            // 1) 프로필 이미지를 기본 이미지로 변경하는 것
-            document.getElementById("profile-image").setAttribute("src",contextPath + "/resources/images/logo-blue.png");
-
-            // 2) input type="file"에 저장된 값(value)에 ""대입. -> 변경하기 버튼 동작 막기
-            document.getElementById("input-image").value = "";
-
-            imgDelete.value = 1; // 눌러짐 인식
-
-        }
-    
-    });
-
-}
+    // 2) input type="file"에 저장된 값(value)에 ""대입. -> 변경하기 버튼 동작 막기
+    document.getElementById("input-image").value = "";
 
 
+});
 
 
 // 배경 이미지
 const inputBackground = document.getElementById("input-background");
+
+
+
+
 // 배경 이미지 변경 ( 미리보기 )
+
+
+// 프로필 이미지 변경 ( 미리보기 )
 if( inputBackground != null ){ // inputImage 가 화면에 존재 할 때
 
     // inputImage 이미지 선택 될 때, change이벤트 발생
@@ -83,38 +72,24 @@ if( inputBackground != null ){ // inputImage 가 화면에 존재 할 때
 
                 backGround.setAttribute("src",e.target.result);
 
-                document.getElementById("bgDelete").value = 0;
-
             }
         }
     });
+
 }
 
 
-// 배경 삭제버튼
-if(document.getElementById("delete-background") != null){
+// 프로필이미지 삭제버튼
+document.getElementById("delete-background").addEventListener("click",function(){
+
+    // 1) 프로필 이미지를 기본 이미지로 변경하는 것
+    document.getElementById("back-ground").setAttribute("src",contextPath + "/resources/images/logo-blue.png");
+
+    // 2) input type="file"에 저장된 값(value)에 ""대입. -> 변경하기 버튼 동작 막기
+    document.getElementById("input-background").value = "";
 
 
-document.getElementById("delete-background").addEventListener("click", function(){
-
-    // 0 : 안눌러짐
-    // 1 : 눌러짐
-
-    const bgDelete = document.getElementById("bgDelete");
-
-    if(bgDelete.value == 0){ // 눌러지지 않은 경우
-
-        // 1) 배경 이미지를 기본 이미지로 변경
-        document.getElementById("back-ground").setAttribute("src",contextPath + "/resources/images/logo-blue.png");                 
-
-        // 2) input type="file"에 저장된 값(value)에 "" 대입 
-        document.getElementById("input-background").value = "";
-
-        bgDelete.value = 1; // 눌러진걸로 인식
-    }
 });
-
-}
 
 
 
@@ -145,7 +120,6 @@ memberName.addEventListener("input",function(){
 
 
 
-// 이미지 유효성 
 // 이름 유효성 검사(제출 시)
 function modValidate(){
 
@@ -161,25 +135,6 @@ function modValidate(){
         return false; 
     }
 
-
-    // const inputProfile =  document.getElementById("input-image");
-    // const inputBackground =  document.getElementById("input-background");
-    // // 이미지 선택확인 
-    // if (inputProfile.value == '' && inputBackground.value != '') { 
-    //     alert("프로필 이미지를 선택 한 후 변경 버튼을 클릭해 주세요.");
-    //     // alert 말고 기본이미지를 삽입할 수 없는가?
-    //     return false;
-    // }
-    // if (inputProfile.value != '' && inputBackground.value == '') { 
-    //     alert("배경 이미지를 선택 한 후 변경 버튼을 클릭해 주세요.");
-    //     return false;
-    // }
-
     return true;
 }
-
-
-
-
-
 

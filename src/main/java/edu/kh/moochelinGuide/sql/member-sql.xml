@@ -59,23 +59,11 @@
 	WHERE MEMBER_NO = ?
 	</entry>
 	
-	<!-- 회원 이름 수정 -->
+	<!-- 회원 정보 수정 -->
 	<entry key="updateMember">
 	UPDATE MEMBER SET 
-	MEMBER_NM = ?
-	WHERE MEMBER_NO = ?
-	</entry>
-	
-	<!-- 회원 프로필  수정 -->
-	<entry key="updatProfileImage">
-	UPDATE MEMBER SET 
-	PROFILE_IMG = ?
-	WHERE MEMBER_NO = ?
-	</entry>
-	
-	<!-- 회원 배경이미지 수정 -->
-	<entry key="updateBackgroundImage">
-	UPDATE MEMBER SET 
+	MEMBER_NM = ?,
+	PROFILE_IMG = ?,
 	PROFILE_BACK_IMG = ? 
 	WHERE MEMBER_NO = ?
 	</entry>
@@ -92,15 +80,5 @@
 						   ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 3]]>
 	</entry>
-	
-	
-	<!-- 회원 비밀번호 변경 -->
-	<entry key="changePw">
-	UPDATE MEMBER SET
-	MEMBER_PW = ?
-	WHERE MEMBER_NO = ?
-	AND MEMBER_PW = ? 
-	</entry>
-	
 	
 </properties>
