@@ -16,8 +16,16 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 	
-		<!-- google 로그인 관련 / content에 자신의 OAuth2.0 클라이언트ID를 넣습니다. -->
-		<meta name ="google-signin-client_id" content="263322996104-emmdt9su444hibdhqji4a7r6v6qeilkj.apps.googleusercontent.com">
+		
+		<!-- google 로그인 관련 -->
+		<meta name="google-signin-scope" content="profile email">
+    	<meta name="google-signin-client_id" content="263322996104-ijiaiibe7ha6d2g8c7vm0ktdhqlkiq7t.apps.googleusercontent.com">
+    	<!-- 이거 이제 인증에 사용안한다함(?) 아래껄로 대체 가능하다고함. -->
+    	<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    	
+    	<!-- 클라이언트 라이브러리 -->
+    	<script src="https://accounts.google.com/gsi/client" async defer></script>
+    
 	</head>
 	<body>
 	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -72,10 +80,11 @@
     
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
+	<!-- test -->    
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="${contextPath}/resources/js/main.js"></script>
-	
-	<!-- 구글 api 사용을 위한 스크립트 -->
-	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
 </body>
 </html>

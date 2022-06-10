@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
+import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 public class MemberDAO {
@@ -537,8 +538,55 @@ public class MemberDAO {
 		
 
 
-
-	/** 로그인 회원의 팔로워 목록 조회 DAO
+  
+  
+  
+  	/** 쪽지(메세지) 목록 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return messageList
+	 * @throws Exception
+	 */
+	public List<Message> selectMessage(Connection conn, int memberNo) throws Exception {
+		
+		List<Message> messageList = new ArrayList<Message>();
+		
+		try {
+			String sql = prop.getProperty("selectMessage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				
+				Message message = new Message();
+								
+				message.setMessageNo(rs.getInt(1));
+				message.setMessageContent(rs.getString(2));
+				message.setEnrollDate(rs.getString(3));
+				message.setReadFlag(rs.getNString(4));
+				message.setMemberName(rs.getString(5));
+				message.setProfileImage(rs.getString(6));
+				
+				messageList.add(message);	
+			}
+      
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+      
+    		return messageList;
+	}  
+      
+      
+      
+      
+      
+      
+      
+      
+      	/** 로그인 회원의 팔로워 목록 조회 DAO
 	 * @param conn
 	 * @param memberNo
 	 * @return fList
@@ -569,14 +617,16 @@ public class MemberDAO {
 				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
 				
 				fList.add(f);				
-			}			
-			
-		}finally {
+			}	
+      		}finally {
 			close(rs);
 			close(pstmt);
 		}
-		
-		return fList;
+    
+    
+    
+    
+    		return fList;
 	}
 
 	/** 로그인 회원의 팔로잉 목록 조회 DAO
@@ -622,5 +672,8 @@ public class MemberDAO {
 		return fList;
 	}
 
-	
+      
+      
+      
+
 }

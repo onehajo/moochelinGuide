@@ -20,11 +20,10 @@
 .image-area{
     width: 70px;
     height: 70px;
-    background-color: aquamarine;
     margin-right: 10px;
     border-radius: 50%;
 }
-.text-area span {
+.text-area > span {
     display: block;
     margin: 5px;
 }
@@ -32,6 +31,12 @@
 .text-area .name {
     font-size: 20px;
     font-weight: 500;
+}
+.date{
+	font-size: 12px;
+	font-weight: 200;
+	color:#aaa;
+	margin-left : 10px;
 }
 .text-area .message{
     color: #555;
