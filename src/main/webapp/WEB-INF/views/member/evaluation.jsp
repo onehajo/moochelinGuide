@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>왓챠피디아</title>
+    <title>moochelinGuide</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/evaluation-style.css">
 
@@ -29,7 +29,12 @@
                         <span id="eva-count">${evaluationCount}</span>
                     </div>
                     <div>
-                        <span>평가만 하는것도 나름 재미있지 않으세요?</span>
+                        <c:if test="${!empty movieList}">
+                            <span>평가만 하는것도 나름 재미있지 않으세요?</span>
+                        </c:if>
+                        <c:if test="${empty movieList}">
+                            <span>moochelinGuide의 모든 영화 평가 완료!</span>
+                        </c:if>
                     </div>
                     <div></div>
                 </div>
@@ -117,11 +122,16 @@
                     <c:if test="${empty movieList}">
                         <div id="searchFail">
                             <i class="fa-solid fa-circle-exclamation"></i>
-                            <p> 모든 영화 평가 완료 ! 더 많은 영화의 업데이트를 기대해주세요!</p>
+                            <p>더 많은 영화의 업데이트를 기대해주세요!</p>
                         </div>
                     </c:if>
 
                 </div>
+                <c:if test="${!empty movieList}">
+                    <div class="btn-area">
+                        <button type="button" id="refreshBtn" onclick="location.reload()" >영화목록 새로고침</button>
+                    </div>
+                </c:if>
             </section>
         </section>
     </main>
