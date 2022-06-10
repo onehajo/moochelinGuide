@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마이페이지-팔로워목록</title>
+    <title>moochelinGuide</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/myPageFollow-style.css">
     <!-- 헤더푸터 CSS 연결-->
@@ -30,10 +30,11 @@
         <section class="mypage-content" id="follower-content">
             <section class="follower-container">
                 <div class="follower-title">
-                    <span>팔로워 목록 : 나를 팔로우한사람 </span>
+                    <span>팔로워 목록</span>
                 </div>
                 <div class="follower">
                     <ul class="follower-row">
+
                         <c:if test="${!empty fList}">
                             <c:forEach var="f" items="${fList}">
                                 <li>
@@ -45,7 +46,7 @@
                                             </c:if>
                                             <!-- 변경 이미지 -->
                                             <c:if test="${ !empty f.profileImage}"> 
-                                                <img src="${contextPath}${f.profileImage}"  id="profile-image">
+                                                <img src="${contextPath}${f.profileImage}"  class="profile-image">
                                             </c:if>
                                         </a>
                                     </div>
@@ -54,14 +55,22 @@
                                         <span>평가한 영화 수 : ${f.evaluationCount}</span>
                                     </div>
                                     <div class="userMessage">
-                                        <button id="userMessage">쪽지</button>
+                                        <button class="userMessageBtn" >쪽지</button>
                                     </div>
                                     <div class="userDelete">
-                                        <button id="userDelete">삭제</button>
+                                        <button class="userDeleteBtn" onclick="deleteFollower()">삭제</button>
                                     </div>
                                 </li>
                             </c:forEach>
                         </c:if>
+
+                        <c:if test="${empty fList}">
+                            <div id="searchFail">
+                                <p> 팔로워 </p>
+                                <p> 회원님을 팔로우하는 모든 사람들이 여기에 표시됩니다. </p>
+                            </div>
+                        </c:if>
+
                     </ul>
 
                 </div>
@@ -76,6 +85,8 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="${contextPath}/resources/js/main.js"></script>
+
+    <script src="${contextPath}/resources/js/myPage-follower.js"></script>
     
 </body>
 </html>

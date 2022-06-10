@@ -30,10 +30,8 @@ public class MyPageFollowController extends HttpServlet{
 		    
 		    String path = null;
 		    if(mode==1) {
-		    	System.out.println("팔로워목록"+fList);
 		    	path = "/WEB-INF/views/member/myPage_follower.jsp";
 		    }else {
-		    	System.out.println("팔로잉목록"+fList);
 		    	path = "/WEB-INF/views/member/myPage_following.jsp";
 		    }
 

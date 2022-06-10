@@ -16,7 +16,7 @@
 /*팔로워 목록이 들어갈 영역*/
 .follower-container{
     width: 1200px;
-    height: 950px;
+    min-height: 876px;
     margin: 24px 0 40px 0;
     box-sizing: border-box;
     border: 1px solid lightgray;
@@ -41,7 +41,8 @@
 /* 팔로워 목록이 출력될 영역*/
 .follower{
     width: 1200px;
-    height: 920px;
+    min-height: 776px;
+    padding-bottom: 26px;
     display: flex;
     justify-content: center;
 
@@ -53,7 +54,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 }
 
 /*팔로워 목록 li*/
@@ -109,7 +110,7 @@
 }
 
 /*쪽지버튼*/
-#userMessage {
+.userMessageBtn {
     width: 120px;
     height: 40px;
     font-size: 16px;
@@ -127,11 +128,33 @@
 }
 
 /*삭제버튼*/
-#userDelete{
+.userDeleteBtn{
     width: 120px;
     height: 40px;
     font-size: 16px;
     background-color: white;
     border: 1px solid rgb(116, 116, 123);
     border-radius: 8px;
+}
+
+/*팔로워, 팔로잉이 없는 경우*/
+#searchFail{
+    margin: auto;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchFail > p:nth-of-type(1) {
+    font-size: 30px;
+    color: rgb(80, 80, 80);
+    margin: 5px;
+}
+
+#searchFail > p:nth-of-type(2) {
+    font-size: 20px;
+    color: rgb(116, 116, 123);
+    margin: 5px;
 }
