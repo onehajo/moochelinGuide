@@ -47,7 +47,7 @@
 							
 								<div class="message-form">
                         			<div class="message-left">
-                            			<div class="image-area" style={{ backgroundImage: `url("${contextPath}${message.profileImage}")` }}></div>
+                            			<div class="image-area" style="background-color:#ff0000; "></div>
                             			<div class="text-area">
                                 			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
                                 			<span class="message">${message.messageContent}</span>
