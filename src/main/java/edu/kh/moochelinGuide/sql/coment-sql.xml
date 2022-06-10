@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>coment-sql.xml</comment>
+
+<!-- 영화 이름 조회 -->
+<entry key="selectMovieTitle">
+	SELECT MOVIE_TITLE FROM MOVIE
+	WHERE MOVIE_NO = ?
+</entry>
+
+<entry key="comentCount">
+	SELECT COUNT(*) FROM MOVIE
+	WHERE MOVIE_ST = 'N'
+	AND MOVIE_NO = ?
+</entry>
+
+</properties>

@@ -8,7 +8,9 @@
 /*평가 영역 크기*/
 .eva-container{
     width: 1200px;
-    height: 1020px;
+    /* height: 1020px; */
+    min-height: 1080px;
+    padding: 30px 0;
     background-color: #f0f0f0;;
     display: flex;
     flex-direction: column;
@@ -50,7 +52,7 @@
 /*평가하기 메인*/
 .eva-main{
     width: 800px;
-    height: 810px;
+    /* height: 810px; */
     background-color: white;
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
@@ -144,18 +146,22 @@
 
 /*평가할 영화가 없는 경우*/
 #searchFail{
-    margin: auto;
     min-height: 810px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-bottom :1px solid lightgray;
 }
 
 #searchFail > i {
-    margin: 16px 0px;
+    margin: 8px 0px;
     font-size: 50px;
     color: #00ffbe;
+}
+
+#searchFail > p {
+    margin: 8px 0;
 }
 
 .searchFail{
@@ -170,4 +176,32 @@
     margin: 16px 0px;
     font-size: 50px;
     color: #00ffbe;
+
+}
+
+/*평가목록 새로고침 영역*/
+.btn-area{
+
+    width: 800px;
+    height: 70px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#refreshBtn{
+    font-size: 16px;
+    color: white;
+
+    padding: 0 12px;
+    border: none;
+    border-radius: 5px;
+    background-color:#392eff;
+    cursor: pointer;
+
+}
+
+#refreshBtn:hover{
+    background-color: #00ffbe;
+    transition-duration: 0.5s;
 }

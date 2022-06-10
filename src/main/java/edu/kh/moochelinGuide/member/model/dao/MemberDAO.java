@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
@@ -253,7 +254,7 @@ public class MemberDAO {
 	
 	
 
-	/** 회원정보 수정 DAO 
+	/** 회원정보 이름 수정 DAO 
 	 * @param conn
 	 * @param memberMod
 	 * @param memberNo 
@@ -269,10 +270,9 @@ public class MemberDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberMod.getMemberName());
-			pstmt.setString(2, memberMod.getProfileImage());
-			pstmt.setString(3, memberMod.getProfileBackImage());
-			pstmt.setInt(4, memberNo);
+			pstmt.setInt(2, memberNo);
 			
+	
 			result = pstmt.executeUpdate();
 			
 		} finally {
@@ -283,7 +283,102 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
 
+	/** 회원 비밀번호 변경 DAO
+	 * @param conn
+	 * @param currentPw
+	 * @param newPw
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int changePw(Connection conn, String currentPw, String newPw, int memberNo) throws Exception {
+ 		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("changePw");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPw);
+			pstmt.setInt(2, memberNo);
+			pstmt.setString(3, currentPw);
+  
+      result = pstmt.executeUpdate();
+      
+ 		} finally {
+			
+			close(pstmt);
+			
+		}
+		
+		
+		return result;
+	}
+
+	
+	
+	
+	/** 회원정보 프로필 이미지 수정 DAO
+	 * @param conn
+	 * @param memberMod
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int updatProfileImage(Connection conn, Member memberMod, int memberNo) throws Exception {
+ 		int result = 0;
+		
+		try {   
+			String sql = prop.getProperty("updatProfileImage");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberMod.getProfileImage());
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} finally {
+			
+			close(conn);
+			
+		}
+		
+		
+		return result;
+	}
+	
+	/** 회원정보 배경 이미지 수정 DAO 
+	 * @param conn
+	 * @param memberMod
+	 * @param memberNo
+	 * @return result 
+	 * @throws Exception
+	 */
+	public int updateBackgroundImage(Connection conn, Member memberMod, int memberNo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateBackgroundImage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberMod.getProfileBackImage());
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			
+			close(conn);
+			
+		}
+		
+		return result;
+	}
+	    
+ 
 	/** 평가하기 - 랜덤 영화 조회 DAO
 	 * @param conn
 	 * @param memberNo
@@ -321,6 +416,7 @@ public class MemberDAO {
 		return movieList;
 	}
 	
+  
 	/** 평가 update DAO
 	 * @param conn
 	 * @param memberNo
@@ -330,22 +426,19 @@ public class MemberDAO {
 	 * @throws Exception
 	 */
 	public int updateEvaluation(Connection conn, int memberNo, int movieNo, double score) throws Exception{
-		
-		int result = 0;
+  	int result = 0;
 		
 		try {
-			
-			String sql = prop.getProperty("updateEvaluation");
+      String sql = prop.getProperty("updateEvaluation");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, score);
 			pstmt.setInt(2, memberNo);
 			pstmt.setInt(3, movieNo);
-			
-			result = pstmt.executeUpdate();
-			
-			
-		}finally {
+      
+      result = pstmt.executeUpdate();
+      
+    }finally {
 			close(pstmt);
 		}
 		return result;
@@ -391,11 +484,10 @@ public class MemberDAO {
 	 * @throws Exception
 	 */
 	public int deleteEvaluation(Connection conn, int memberNo, int movieNo, double score) throws Exception{
-		
-		int result = 0;
+    int result = 0;
 		
 		try {
-			
+
 			String sql = prop.getProperty("deleteEvaluation");
 			
 			pstmt = conn.prepareStatement(sql);
@@ -443,11 +535,13 @@ public class MemberDAO {
 		
 		return count;
 	}
+		
 
-	
-	
-	
-	/** 쪽지(메세지) 목록 조회 DAO
+
+  
+  
+  
+  	/** 쪽지(메세지) 목록 조회 DAO
 	 * @param conn
 	 * @param memberNo
 	 * @return messageList
@@ -476,22 +570,110 @@ public class MemberDAO {
 				
 				messageList.add(message);	
 			}
-			
+      
 		}finally {
 			close(rs);
 			close(pstmt);
 		}
-		return messageList;
+      
+    		return messageList;
+	}  
+      
+      
+      
+      
+      
+      
+      
+      
+      	/** 로그인 회원의 팔로워 목록 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return fList
+	 * @throws Exception
+	 */
+	public List<Follow> selectFollower(Connection conn, int memberNo) throws Exception{
+		
+		List<Follow> fList = new ArrayList<Follow>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectFollower");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				Follow f = new Follow();
+				
+				f.setTargetNo(memberNo); // 현재 회원번호
+				
+				f.setMemberNo(rs.getInt(1)); // 팔로워번호
+				f.setMemberName(rs.getString(2)); // 팔로워 이름
+				f.setEvaluationCount(rs.getInt(3)); // 팔로워의 평가개수
+				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
+				
+				fList.add(f);				
+			}	
+      		}finally {
+			close(rs);
+			close(pstmt);
+		}
+    
+    
+    
+    
+    		return fList;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	/** 로그인 회원의 팔로잉 목록 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return fList
+	 * @throws Exception
+	 */
+	public List<Follow> selectFollowing(Connection conn, int memberNo) throws Exception{
+		
+		List<Follow> fList = new ArrayList<Follow>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectFollowing");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Follow f = new Follow();
+				
+				f.setMemberNo(memberNo); // 현재 회원번호
+				
+				f.setTargetNo(rs.getInt(1)); // 팔로잉 회원 번호
+				f.setMemberName(rs.getString(2)); // 팔로잉 회원 이름
+				f.setEvaluationCount(rs.getInt(3)); // 팔로워의 평가개수
+				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
+				
+				fList.add(f);	
+				
+			}
+			
+			
+		}finally {
+			
+		}
+		
+		return fList;
+	}
+
+      
+      
+      
 
 }
