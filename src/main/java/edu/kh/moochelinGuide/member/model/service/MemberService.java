@@ -249,7 +249,6 @@ public class MemberService {
 		return result;
 	}
 
-<<<<<<< HEAD
 	/** 로그인 회원의 팔로워 / 팔로잉 목록 조회 Service
 	 * @param mode
 	 * @param memberNo
@@ -277,7 +276,7 @@ public class MemberService {
 		close(conn);
 		
 		return fList;
-=======
+	}
 	
 	
 	/** 회원 비밀번호 변경 Service
@@ -298,7 +297,6 @@ public class MemberService {
 		
 		
 		return result;
->>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
 	}
 	
 	
