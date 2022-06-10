@@ -293,7 +293,8 @@ function onSignIn(googleUser) {
             //console.log(list);
 			const ul = document.getElementsByClassName("movie-list")[0];
             ul.innerHTML="";
-
+			
+			let num=0;
 			for(let movie of list){
                 const li = document.createElement("li");
                 const a = document.createElement("a");
@@ -315,7 +316,8 @@ function onSignIn(googleUser) {
 
                 const divRanking = document.createElement("div");
                 divRanking.setAttribute("class","ranking");
-                divRanking.innerText=movie.movieNo // 해당 데이터 없음, 순위 컬럼추가 후 다시 확인하기
+                num++
+                divRanking.innerText=num; // 해당 데이터 없음, 순위 컬럼추가 후 다시 확인하기
 
                 divMovieTop.append(divMoviePoster);
                 divMovieTop.append(divRanking);

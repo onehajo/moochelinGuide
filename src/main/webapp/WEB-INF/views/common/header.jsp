@@ -161,3 +161,19 @@
 	<div class="agree-submit"><button type="submit">가입하기</button></div>
 </section>
 </form>
+
+<!-- 비밀번호 변경 이메일 보내기 -->
+<div id="login-box" class="popup1">
+
+    <p class="popupTitle">임시 비밀번호</p>
+    <div>비밀번호를 잊으셨나요?</div>
+    <div>가입했던 이메일을 적어주세요.</div>
+    <div>입력하신 이메일 주소로 비밀번호 변경 메일을 보낼게요</div>
+    
+    <form action="" method="post" id="123" class="form-css">
+        <input type="text" placeholder="이메일" id="loginEmail" name="memberEmail">
+        <div id="emailComment"></div>
+        <button id="login-btn" class="btn">비밀번호 변경 이메일 보내기</button>
+    </form>
+    
+</div>
