@@ -27,14 +27,11 @@
         <jsp:include page="/WEB-INF/views/common/myPage_top.jsp" />
         
         <section class="mypage-content">
+        
             <div><h2>쪽지함</h2></div>
             <div class="contain-box">
                 <div class="message-container">
                 
-                리스트객체 : ${messageList}
-                
-                <img src="${loginMember.profileImage}">
-
 					<c:choose>
 					
 						<%-- 쪽지내역 없는 경우 --%>
