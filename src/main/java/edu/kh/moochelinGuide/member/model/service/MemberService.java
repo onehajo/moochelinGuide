@@ -316,6 +316,39 @@ public class MemberService {
 		
 		return messageList;
 	}
+
+	
+	/** 팔로워,팔로우 삭제/삭제취소 Service
+	 * @param mode
+	 * @param memberNo
+	 * @param targetNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int followService(int mode, int memberNo, int targetNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		// 팔로워 삭제
+		if(mode==1) {
+			result = dao.deleteFollower(conn, memberNo, targetNo);
+		}
+				
+		// 팔로워 삭제취소
+		if(mode==2) {
+			result = dao.deleteCancelFollower(conn, memberNo, targetNo);
+		}
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
 	
 	
 	

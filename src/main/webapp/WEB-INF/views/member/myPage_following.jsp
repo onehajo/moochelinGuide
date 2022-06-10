@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,10 +56,12 @@
                                         <span>평가한 영화 수 : ${f.evaluationCount}</span>
                                     </div>
                                     <div class="userMessage">
-                                        <button class="userMessageBtn">쪽지</button>
+                                        <button type="button" class="userMessageBtn">쪽지</button>
                                     </div>
                                     <div class="userDelete">
-                                        <button class="userDeleteBtn">팔로우 취소</button>
+                                        <input type="hidden" class="memberNo" value="${f.memberNo}">
+                                        <input type="hidden" class="targetNo" value="${f.targetNo}">
+                                        <button type="button" class="userDeleteBtn">팔로우 취소</button>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -85,6 +88,11 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="${contextPath}/resources/js/main.js"></script>
+
+    <script>
+        const fCount = "${fn:length(fList)}";
+        const contextPath = "${contextPath}";
+    </script>
 
     <script src="${contextPath}/resources/js/myPage-following.js"></script>
     
