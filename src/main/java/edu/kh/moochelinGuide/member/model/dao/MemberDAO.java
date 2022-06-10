@@ -282,43 +282,6 @@ public class MemberDAO {
 		
 		return result;
 	}
-
-	/** 평가하기 - 랜덤 영화 조회 DAO
-	 * @param conn
-	 * @param memberNo
-	 * @return movieList
-	 * @throws Exception
-	 */
-	public List<Movie> selectRandomMovie(Connection conn, int memberNo) throws Exception {
-		List<Movie> movieList = new ArrayList<Movie>();
-		
-		try {
-			String sql = prop.getProperty("selectRandomMovie");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, memberNo);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Movie m = new Movie();
-				
-				m.setMovieNo(rs.getInt(1));
-				m.setMovieTitle(rs.getString(2));
-				m.setPosterImage(rs.getString(3));
-				m.setReleaseYear(rs.getInt(4));
-				m.setCountry(rs.getString(5));
-						
-				movieList.add(m);
-			}	
-			
-		}finally {
-			close(rs);
-			close(pstmt);	
-		}
-		
-		return movieList;
-	}
 	
 
 	/** 회원 비밀번호 변경 DAO
@@ -384,8 +347,74 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	/** 회원정보 배경 이미지 수정 DAO 
+	 * @param conn
+	 * @param memberMod
+	 * @param memberNo
+	 * @return result 
+	 * @throws Exception
+	 */
+	public int updateBackgroundImage(Connection conn, Member memberMod, int memberNo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateBackgroundImage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberMod.getProfileBackImage());
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			
+			close(conn);
+			
+		}
+		
+		return result;
+	}
 	    
  
+	/** 평가하기 - 랜덤 영화 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return movieList
+	 * @throws Exception
+	 */
+	public List<Movie> selectRandomMovie(Connection conn, int memberNo) throws Exception {
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		try {
+			String sql = prop.getProperty("selectRandomMovie");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Movie m = new Movie();
+				
+				m.setMovieNo(rs.getInt(1));
+				m.setMovieTitle(rs.getString(2));
+				m.setPosterImage(rs.getString(3));
+				m.setReleaseYear(rs.getInt(4));
+				m.setCountry(rs.getString(5));
+						
+				movieList.add(m);
+			}	
+			
+		}finally {
+			close(rs);
+			close(pstmt);	
+		}
+		
+		return movieList;
+	}
+	
   
 	/** 평가 update DAO
 	 * @param conn
@@ -593,33 +622,5 @@ public class MemberDAO {
 		return fList;
 	}
 
-	/** 회원정보 배경 이미지 수정 DAO 
-	 * @param conn
-	 * @param memberMod
-	 * @param memberNo
-	 * @return result 
-	 * @throws Exception
-	 */
-	public int updateBackgroundImage(Connection conn, Member memberMod, int memberNo) throws Exception {
-		
-		int result = 0;
-		
-		try {
-			
-			String sql = prop.getProperty("updateBackgroundImage");
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberMod.getProfileBackImage());
-			pstmt.setInt(2, memberNo);
-			
-			result = pstmt.executeUpdate();
-			
-		} finally {
-			
-			close(conn);
-			
-		}
-		
-		return result;
-	}
 	
 }
