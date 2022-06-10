@@ -324,18 +324,11 @@ hr {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index:-1; opacity: 0;
-}
-.dark1{
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.01);
+    background: rgba(0,0,0,0.4);
     z-index:-1; opacity: 0;
 }
 .dark.active{z-index: 3; opacity: 1; transition: opacity 0.5s;}
-.dark1.active1{z-index: 4; opacity: 1; transition: opacity 0.5s;}
+.dark.active1{z-index: 4; opacity: 1; transition: opacity 0.5s;}
 
 
 .popup{

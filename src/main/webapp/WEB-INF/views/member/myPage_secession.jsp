@@ -24,26 +24,8 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp" /> 
 
     <main>
-        <section class="content-explain">
-                <div class="page-area">
-                    <div class="page mypage">마이페이지</div>
-                    <div class="page logout"><a href="#">로그아웃</a></div>
 
-                </div>
-        </section>
-
-        <nav  class="nav-area">
-            <ul class="nav-ul">
-                <li><a href="../kjy/myPage_mod.html">회원정보수정</a></li>
-                <li><a href="#">비밀번호 변경</a></li>
-                <li><a href="myPage_follower.html">팔로워 목록</a></li>
-                <li><a href="myPage_following.html">팔로잉 목록</a></li>
-                <li><a href="../ksj/myPage_message.html">쪽지</a></li>
-                <li><a href="../swy/inquiryList.html">문의하기</a></li>
-                <li><a href="#">공지사항</a></li>
-                <li class="member-drop"><a  href="${contextPath}/member/myPage/secession/do">탈퇴하기</a></li>
-            </ul>
-        </nav>
+        <jsp:include page="/WEB-INF/views/common/myPage_top.jsp"/>
         
         <section class="mypage-content" id="secession-content">
             <section class="secession-container">

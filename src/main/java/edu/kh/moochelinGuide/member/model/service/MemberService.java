@@ -142,6 +142,62 @@ public class MemberService {
 		return movieList;
 		
 	}
+
+	/** 평가하기 Service
+	 * @param memberNo
+	 * @param movieNo
+	 * @param score
+	 * @return result
+	 * @throws Exception
+	 */
+	public int evaluation(int mode, int memberNo, int movieNo, double score) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		if(mode == 1) {
+			// mode 1인경우 수정 혹은 삽입
+			
+			// 이미 평가된 영화인 경우 UPDATE
+			result = dao.updateEvaluation(conn,memberNo, movieNo, score);
+			
+			if(result==0) { 
+				
+				// 평가한 적 없는 영화인 경우 INSERT
+				result = dao.insertEvaluation(conn, memberNo, movieNo, score);
+			}
+			
+		}else {
+			
+			// mode 2인경우 평가 취소 
+			result = dao.deleteEvaluation(conn, memberNo, movieNo, score);
+			
+		}
+		
+		if(result>0) commit(conn);
+		else 	     rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	/** 평가한 영화 개수 조회 Service
+	 * @param memberNo
+	 * @return count
+	 * @throws Exception
+	 */
+	public int evaluationCount(int memberNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int count = dao.evaluationCount(conn, memberNo);
+		
+		close(conn);
+		
+		return count;
+	}
 	
 	
 	

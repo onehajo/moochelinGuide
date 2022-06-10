@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 
-@WebServlet("/signUp")
+@WebServlet(urlPatterns = {"/signUp", "/member/myPage/message/signUp", "/search/signUp"})
 public class SignUpServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,11 +35,18 @@ public class SignUpServlet extends HttpServlet{
 			
 			if(result>0) { // 성공
 				session.setAttribute("message", "회원가입 성공!!");
+				
+				// 회원가입 성공 시 바로 로그인
+				Member member = service.login(mem);
+				session.setAttribute("loginMember", member);
+				
 			} else {
 				session.setAttribute("message", "회원가입 실패...");
 			}
 			
-			resp.sendRedirect(req.getContextPath());
+			String path = null;
+			path=req.getHeader("referer");
+			resp.sendRedirect(path);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

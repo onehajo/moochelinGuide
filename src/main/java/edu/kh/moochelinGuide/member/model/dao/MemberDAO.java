@@ -319,10 +319,6 @@ public class MemberDAO {
 		return movieList;
 	}
 	
-	
-	
-	
-	
 
 	/** 회원 비밀번호 변경 DAO
 	 * @param conn
@@ -333,23 +329,19 @@ public class MemberDAO {
 	 * @throws Exception
 	 */
 	public int changePw(Connection conn, String currentPw, String newPw, int memberNo) throws Exception {
-		
-		int result = 0;
+ 		int result = 0;
 		
 		try {
-			
 			String sql = prop.getProperty("changePw");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, newPw);
 			pstmt.setInt(2, memberNo);
 			pstmt.setString(3, currentPw);
-			
-			result = pstmt.executeUpdate();
-			
-			
-			
-		} finally {
+  
+      result = pstmt.executeUpdate();
+      
+ 		} finally {
 			
 			close(pstmt);
 			
@@ -370,11 +362,9 @@ public class MemberDAO {
 	 * @throws Exception
 	 */
 	public int updatProfileImage(Connection conn, Member memberMod, int memberNo) throws Exception {
+ 		int result = 0;
 		
-		int result = 0;
-		
-		try {
-			
+		try {   
 			String sql = prop.getProperty("updatProfileImage");
 			
 			pstmt = conn.prepareStatement(sql);
@@ -393,10 +383,130 @@ public class MemberDAO {
 		
 		return result;
 	}
+	    
+ 
+  
+	/** 평가 update DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param movieNo
+	 * @param score
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateEvaluation(Connection conn, int memberNo, int movieNo, double score) throws Exception{
+  	int result = 0;
+		
+		try {
+      String sql = prop.getProperty("updateEvaluation");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(1, score);
+			pstmt.setInt(2, memberNo);
+			pstmt.setInt(3, movieNo);
+      
+      result = pstmt.executeUpdate();
+      
+    }finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
+
+	/** 평가 insert DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param movieNo
+	 * @param score
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertEvaluation(Connection conn, int memberNo, int movieNo, double score) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("insertEvaluation");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, movieNo);
+			pstmt.setDouble(3, score);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 평가 delete DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param movieNo
+	 * @param score
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteEvaluation(Connection conn, int memberNo, int movieNo, double score) throws Exception{
+    int result = 0;
+		
+		try {
+
+			String sql = prop.getProperty("deleteEvaluation");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, movieNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
-	
-	
+	/** 평가한 영화 개수 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return count
+	 * @throws Exception
+	 */
+	public int evaluationCount(Connection conn, int memberNo) throws Exception {
+		int count = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("evaluationCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+		
+
+
 
 	/** 회원정보 배경 이미지 수정 DAO 
 	 * @param conn
