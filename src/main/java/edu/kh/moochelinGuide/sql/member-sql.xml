@@ -163,6 +163,7 @@
 						AND FOLLOW_FL = 'N')
 	AND EVALUATION_FL = 'N'
 	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	ORDER BY MEMBER_NO
 	</entry>
 	
   
@@ -177,7 +178,21 @@
 						AND FOLLOW_FL = 'N')
 	AND EVALUATION_FL = 'N'
 	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	ORDER BY MEMBER_NO
 	</entry>
-
+	
+	<!-- 팔로워 삭제 / 팔로잉 취소(언팔로우) -->
+	<entry key="deleteFollow">
+	UPDATE FOLLOW SET FOLLOW_FL='Y'
+	WHERE MEMBER_NO = ?
+	AND TARGET_NO = ?
+	</entry>
+	
+	<!-- 팔로잉 삭제 취소 (팔로우) -->
+	<entry key="deleteCancelFollow">
+	UPDATE FOLLOW SET FOLLOW_FL='N'
+	WHERE MEMBER_NO = ?
+	AND TARGET_NO = ?
+	</entry>
 
 </properties>
