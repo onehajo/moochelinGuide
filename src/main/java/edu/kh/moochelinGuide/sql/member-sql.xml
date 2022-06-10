@@ -132,5 +132,35 @@
 	WHERE MEMBER_NO = ?
 	AND EVALUATION_FL = 'N'
 	</entry>
+<<<<<<< HEAD
+	
+	<!-- 로그인 회원의 팔로워 목록 조회 -->
+	<entry key="selectFollower">
+	SELECT MEMBER_NO, MEMBER_NM, COUNT(*), PROFILE_IMG
+	FROM EVALUATION
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE MEMBER_NO IN (SELECT MEMBER_NO
+						FROM FOLLOW
+						WHERE TARGET_NO = ?
+						AND FOLLOW_FL = 'N')
+	AND EVALUATION_FL = 'N'
+	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	</entry>
+	
+	<!-- 로그인 회원의 팔로잉 목록 조회 -->
+	<entry key="selectFollowing">
+	SELECT MEMBER_NO, MEMBER_NM, COUNT(*), PROFILE_IMG
+	FROM EVALUATION
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE MEMBER_NO IN (SELECT TARGET_NO
+						FROM FOLLOW
+						WHERE MEMBER_NO = ?
+						AND FOLLOW_FL = 'N')
+	AND EVALUATION_FL = 'N'
+	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	</entry>
+	
+=======
 
+>>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
 </properties>

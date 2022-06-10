@@ -16,7 +16,7 @@ import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 @WebServlet("/member/evaluation")
-public class EvaluationServlet extends HttpServlet{
+public class EvaluationController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,8 +27,6 @@ public class EvaluationServlet extends HttpServlet{
 			HttpSession session = req.getSession();
 			Member loginMember = (Member)session.getAttribute("loginMember");
 			int memberNo = loginMember.getMemberNo();
-			
-			System.out.println("멤버번호: "+memberNo);
 			
 			// 2. 회원이 평가한 영화 개수 조회
 			int count = new MemberService().evaluationCount(memberNo);
@@ -45,7 +43,7 @@ public class EvaluationServlet extends HttpServlet{
 					
 					movie0 = movieList.get(0);
 					movie1 = movieList.get(1);
-					movie2= movieList.get(2);
+					movie2 = movieList.get(2);
 										
 					req.setAttribute("movieList", movieList);
 					req.setAttribute("movie0", movie0);
@@ -78,12 +76,10 @@ public class EvaluationServlet extends HttpServlet{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		
 		try {
 			
@@ -91,12 +87,7 @@ public class EvaluationServlet extends HttpServlet{
 			int memberNo = Integer.parseInt(req.getParameter("memberNo"));
 			int movieNo = Integer.parseInt(req.getParameter("movieNo"));
 			double score = Integer.parseInt(req.getParameter("score"))*0.5;
-			
-			System.out.println("모드 : " + mode);
-			System.out.println("score : "+score);
-			System.out.println("memberNo : " + memberNo);
-			System.out.println("movieNo : "+ movieNo);
-			
+						
 			int result = new MemberService().evaluation(mode, memberNo, movieNo, score);
 			
 			resp.getWriter().print(result); 
