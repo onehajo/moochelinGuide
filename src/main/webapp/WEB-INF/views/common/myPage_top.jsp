@@ -19,7 +19,7 @@
         <li><a href="../sjh/myPage_follower.html">팔로워 목록</a></li>
         <li><a href="../sjh/myPage_following.html">팔로잉 목록</a></li>
         <li><a href="../ksj/myPage_message.html">쪽지</a></li>
-        <li><a href="../swy/inquiryList.html">문의하기</a></li>
+        <li><a href="${contextPath}/member/myPage/inquiryList">문의하기</a></li>
         <li><a href="#">공지사항</a></li>
         <li class="member-drop"><a  href="${contextPath}/member/myPage/secession/do">탈퇴하기</a></li>
     </ul>
