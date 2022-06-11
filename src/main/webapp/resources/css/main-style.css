@@ -150,6 +150,7 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     align-items: center;    
 }
 
+
 .popup > img{
     width: 180px;
 }
@@ -159,6 +160,15 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     line-height: 20px;
     font-weight: 500;
     display: inline-block;
+}
+.popupSub{
+    margin-top: 20px;
+    font-weight: 500;
+}
+.popupText{
+    color: #999;
+    font-size: 14px;
+    margin-top: 5px;
 }
 .form-css{
     margin-top: 20px;
@@ -258,7 +268,6 @@ hr {
     width: 300px;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid #292a32;
 
     background-color: #fff;
 }
@@ -338,16 +347,12 @@ hr {
     z-index: -1; opacity: 0;
     display: none;
 }
-.popup1{
-    position: fixed;
-     
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1; opacity: 0;
-    display: none;
-}
-.popup1.active2{z-index: 10; opacity: 1; transition: opacity 0.5s; display: block}
+
+
 .popup.active{z-index: 3; opacity: 1; transition: opacity 0.5s; display: flex;}
+.popup.active2{z-index: 10; opacity: 1; transition: opacity 0.5s; display: block}
+
+
 .activeP{z-index: 3; opacity: 1; transition: opacity 0.5s; display: flex;}
 
 /* 바디에 스크롤 막는 방법 */

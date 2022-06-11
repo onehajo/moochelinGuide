@@ -86,7 +86,7 @@
 		<button id="login-btn" class="btn">로그인</button>
 	</form>
 	<div class="login-other">
-		<div><a>비밀번호를 잊어버리셨나요?</a></div>
+		<div><a onclick="openPw()">비밀번호를 잊어버리셨나요?</a></div>
 		<div>계정이 없으신가요?<a onclick="openPopSignUp()">회원가입</a></div>
 	</div>
 	<hr class="line"></hr>
@@ -139,7 +139,7 @@
 </div>
 
 <!-- 팝업될 약관동의 화면 -->
-<section id="agree" class="popup1">
+<section id="agree" class="popup" style="padding: 0;">
 	<div class="agree-title">약관에 동의하시면<br>가입이 완료됩니다.</div>
 	<div class="agree-all">
 		<input type="checkbox" id="agreeAll" name="agreeCheck" onclick="selectAll(this)">전체 약관 동의
@@ -163,17 +163,17 @@
 </form>
 
 <!-- 비밀번호 변경 이메일 보내기 -->
-<div id="login-box" class="popup1">
+<div id="pw-box" class="popup">
 
-    <p class="popupTitle">임시 비밀번호</p>
-    <div>비밀번호를 잊으셨나요?</div>
-    <div>가입했던 이메일을 적어주세요.</div>
-    <div>입력하신 이메일 주소로 비밀번호 변경 메일을 보낼게요</div>
+    <p class="popupTitle">비밀번호 재설정</p>
+    <div class="popupSub">비밀번호를 잊으셨나요?</div>
+    <div class="popupText">가입했던 이메일을 적어주세요.</div>
+    <div class="popupText">입력하신 이메일 주소로 비밀번호 변경 메일을 보낼게요.</div>
     
-    <form action="" method="post" id="123" class="form-css">
-        <input type="text" placeholder="이메일" id="loginEmail" name="memberEmail">
-        <div id="emailComment"></div>
-        <button id="login-btn" class="btn">비밀번호 변경 이메일 보내기</button>
+    <form action="pwfind" method="post" class="form-css" onsubmit="return pwfindValidate()">
+        <input type="text" placeholder="이메일" id="pwFindEmail" name="memberEmail">
+        <div id="pwfindText"></div>
+        <button id="pwfindBtn" class="btn">비밀번호 변경 이메일 보내기</button>
     </form>
     
 </div>
