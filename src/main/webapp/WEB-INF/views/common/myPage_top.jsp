@@ -7,7 +7,7 @@
 <section class="content-explain">
     <div class="page-area">
         <div class="page mypage">마이페이지</div>
-        <div class="page logout"><a href="#" id>로그아웃</a></div>
+        <div class="page logout"><a href="${contextPath}/member/logout" >로그아웃</a></div>
 
     </div>
 </section>
