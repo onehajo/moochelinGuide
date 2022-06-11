@@ -47,11 +47,19 @@
                     <div class="info-center-flex">
                         <!-- 배경이미지 / 내프로필 / 팔로워/팔로잉 .... 평가한 영화 -->
                         <div class="profile-position profile-img-area">
-                            <div class="fa-solid fa-user"></div>
+                            <c:if test="${empty loginMember.profileImage}">
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>						
+						</c:if>
+						
+						<c:if test="${!empty loginMember.profileImage}">
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage" style=" background-size: 40px; background-image : url(${contextPath}${loginMember.profileImage})"></div></a></li>						
+						</c:if>
+				
+                            <!-- <div class="fa-solid fa-user"></div> -->
                         </div>
                         <div>
                             <div class="profile-name">김유저</div>
-                            <div class="follow"><span>팔로워 : 3</span><span>   |   </span><span>팔로잉 : 3</span></div>
+                            <div class="follow"><span><a href="#">팔로워</a> : 3</span><span>   |   </span><span><a href="#">팔로잉</a>  : 3</span></div>
                         </div>
                         <!-- 제가 마이페이지에 a태그 넣어서 깨져버렸어용-->
                         <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod">마이페이지</a> </div>

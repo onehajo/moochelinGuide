@@ -166,8 +166,9 @@ public class MemberDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, "%"+query+"%");
-			pstmt.setInt(2, memberNo);
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, "%"+query+"%");
+			pstmt.setInt(3, memberNo);
 			
 			rs = pstmt.executeQuery();
 			
@@ -178,6 +179,8 @@ public class MemberDAO {
 				mem.setMemberNo(rs.getInt(1));
 				mem.setMemberName(rs.getString(2));
 				mem.setProfileImage(rs.getString(3));
+				// 팔로우 여부
+				mem.setSecessionFlag(rs.getString("FOLLOW_FL"));
 				
 				userList.add(mem);
 			}
@@ -719,7 +722,7 @@ public class MemberDAO {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int deleteFollower(Connection conn, int memberNo, int targetNo) throws Exception{
+	public int deleteFollow(Connection conn, int memberNo, int targetNo) throws Exception{
 		
 		int result = 0;
 		
@@ -740,20 +743,47 @@ public class MemberDAO {
 		return result;
 	}
 	
-	/** 팔로워/팔로잉 삭제 취소 DAO
+	/** 팔로워/팔로잉 수정(삭제취소) DAO
 	 * @param conn
 	 * @param memberNo
 	 * @param targetNo
-	 * @return
+	 * @return result
 	 * @throws Exception
 	 */
-	public int deleteCancelFollower(Connection conn, int memberNo, int targetNo) throws Exception{
+	public int updateFollow(Connection conn, int memberNo, int targetNo) throws Exception{
 		
 		int result = 0;
 		
 		try {
 			
-			String sql = prop.getProperty("deleteCancelFollow");
+			String sql = prop.getProperty("updateFollow");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, targetNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 팔로우 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param targetNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertFollow(Connection conn, int memberNo, int targetNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("insertFollow");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNo);

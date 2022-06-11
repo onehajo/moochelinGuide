@@ -51,6 +51,19 @@
     margin-right: 3px;
 }
 
+.profile-img{
+    background-color: #00ffbe;
+
+
+
+}
+
+.aaa{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+}
+
 .fa-user{
     font-size: 50px;
     color: rgb(255, 255, 255);

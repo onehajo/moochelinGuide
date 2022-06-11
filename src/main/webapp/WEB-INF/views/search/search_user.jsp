@@ -40,10 +40,15 @@
 
                 <c:if test="${!empty userList}">
                     <c:forEach var="user" items="${userList}">
-                        
                             <a href="#" class="sch-user">
                                 <div>
-                                    <img src="${contextPath}/resources/images/logo-blue.png" class="sch-img-user">
+                                    <c:if test="${!empty user.profileImage}">
+                                        <img src="${contextPath}${user.profileImage}" class="sch-img-user">
+                                    </c:if>
+                                    <c:if test="${empty user.profileImage}">
+                                        <img src="${contextPath}/resources/images/user.png" class="sch-img-user">
+                                    </c:if>
+
                                 </div>
                                 <div class="sch-user-info">
                                     <div>${user.memberName}</div>
@@ -52,7 +57,18 @@
                                 <div class="sch-user-follow">
                                     <input type="hidden" class="memberNo" value="${loginMember.memberNo}">
                                     <input type="hidden" class="targetNo" value="${user.memberNo}">
-                                    <button class="followBtn">팔로우</button>
+
+                                    <c:if test="${empty loginMember}">
+                                        <button class="followBtn">팔로우</button>
+                                    </c:if>
+
+                                    <c:if test="${!empty loginMember && user.secessionFlag=='N'}">
+                                        <button class="followBtn">팔로우</button>
+                                    </c:if>
+                                    
+                                    <c:if test="${!empty loginMember && user.secessionFlag=='Y'}">
+                                        <button class="followingBtn followBtn" >팔로잉</button>
+                                    </c:if>
                                 </div>
                             </a>
 

@@ -18,7 +18,7 @@ for(let i = 0; i<fCount; i++){
                 url : contextPath+"/member/myPage/follow",
                 data : {"targetNo" : targetNo[i].value,
                         "memberNo" : memberNo[i].value,
-                        "mode" : 1},
+                        "mode" : 2},
                 type : "POST",
                 success : function(result){
                     if(result>0){

@@ -7,7 +7,7 @@ const checkClick = [];
 
 // 삭제할 타겟의 회원번호 (console.log(targetNo[i].value))
 
-// 팔로워 삭제
+// 팔로잉 취소
 for(let i = 0; i<fCount; i++){
 
     checkClick[i] = false;
@@ -25,12 +25,13 @@ for(let i = 0; i<fCount; i++){
                 url : contextPath+"/member/myPage/follow",
                 data : {"targetNo" : targetNo[i].value,
                         "memberNo" : memberNo[i].value,
-                        "mode" : 1},
+                        "mode" : 2},
                 type : "POST",
                 success : function(result){
                     if(result>0){
                         console.log("언팔로우 성공");
                         deleteBtn[i].innerText = "팔로우";
+                        deleteBtn[i].classList.add("followBtn");
 
                     }else{
                         console.log("언팔로우 실패");
@@ -52,12 +53,13 @@ for(let i = 0; i<fCount; i++){
                 url : contextPath+"/member/myPage/follow",
                 data : {"targetNo" : targetNo[i].value,
                         "memberNo" : memberNo[i].value,
-                        "mode" : 2},
+                        "mode" : 1},
                 type : "POST",
                 success : function(result){
                     if(result>0){
                         console.log("팔로우 성공");
-                        deleteBtn[i].innerText = "팔로우 취소"
+                        deleteBtn[i].innerText = "팔로잉";
+                        deleteBtn[i].classList.remove("followBtn");
                     }else{
                         console.log("팔로우 실패");
                     }

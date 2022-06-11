@@ -40,8 +40,10 @@ main > .content-explain > div, .sch-menu{
 
 /*검색결과 출력*/
 .movie-list-row{
+    min-height: 800px;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .sch-title {

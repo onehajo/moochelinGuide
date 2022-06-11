@@ -53,7 +53,6 @@
 						<li class="grade"><a href="${contextPath}/member/evaluation">평가하기</a></li>
 						
 						<!-- pofile_my로 넘어가야함. 임시로 내정보수정으로 연결 -->
-						<li class="profile"><a href="${contextPath}/member/profile/my}"><div id="profileImage"></div></a></li>
 						<li class="profile"><a href="${contextPath}/member/profile/my"><div id="profileImage"></div></a></li>
 						
 						<c:if test="${empty loginMember.profileImage}">
