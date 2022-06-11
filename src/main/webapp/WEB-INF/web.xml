@@ -9,4 +9,77 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  	<!-- 오류페이지 처리 -->
+  	
+  	<!-- Bad request, 클라이언트의 잘못된 요청으로 처리할 수 없음 -->
+	<error-page>
+		<error-code>400</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+
+	<!-- 401 : Unauthorized, 클라이언트의 인증 실패  -->
+	<error-page>
+		<error-code>401</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+
+	<!-- 403 : Forbidden, 접근이 거부된 문서를 요청함 -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+
+	<!-- 404 : Not found, 문서를 찾을 수 없음  -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
+	<!-- 500 : Internal server error, 내부서버 오류(잘못된 스크립트 실행시) -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
+	<!-- 501 : Not implemented, 클라이언트에서 서버가 수행할 수 없는 행동을 요구 -->
+	<error-page>
+		<error-code>501</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
+	<!-- 502 : Bad gateway, 서버의 과부하 상태 -->
+	<error-page>
+		<error-code>502</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
+	<!-- 503 : Service unavailable, 외부 서비스가 죽었거나 현재 멈춤 상태 -->
+	<error-page>
+		<error-code>503</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
+	<!-- 504 : Gateway timeout -->
+	<error-page>
+		<error-code>503</error-code>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+
+	<!-- 예외처리 페이지 -->
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/views/error/error.jsp</location>
+	</error-page>
+	
 </web-app>
