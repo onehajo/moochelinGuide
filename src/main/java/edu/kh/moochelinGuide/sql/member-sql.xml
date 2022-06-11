@@ -39,8 +39,16 @@
 	
 	<!-- 특정 키워드로 유저 검색 (로그인 O) -->
 	<entry key="searchUser2">
-		SELECT MEMBER_NO,MEMBER_NM,PROFILE_IMG
-    	FROM MEMBER
+		SELECT MEMBER_NO,MEMBER_NM,PROFILE_IMG,
+			   CASE
+			   WHEN MEMBER_NO IN (SELECT TARGET_NO
+								  FROM FOLLOW
+								  WHERE MEMBER_NO = ?
+								  AND FOLLOW_FL='N')
+				THEN 'Y'
+				ELSE 'N'
+				END AS FOLLOW_FL
+		FROM MEMBER
 		WHERE MEMBER_NM LIKE ?
 		AND SECESSION_FL = 'N'
 		AND MEMBER_NO != ?
@@ -190,18 +198,23 @@
 	ORDER BY MEMBER_NO
 	</entry>
 	
-	<!-- 팔로워 삭제 / 팔로잉 취소(언팔로우) -->
+	<!-- 팔로워 삭제 / 팔로잉 취소 -->
 	<entry key="deleteFollow">
 	UPDATE FOLLOW SET FOLLOW_FL='Y'
 	WHERE MEMBER_NO = ?
 	AND TARGET_NO = ?
 	</entry>
 	
-	<!-- 팔로잉 삭제 취소 (팔로우) -->
-	<entry key="deleteCancelFollow">
+	<!-- 팔로잉 수정 (삭제 취소) -->
+	<entry key="updateFollow">
 	UPDATE FOLLOW SET FOLLOW_FL='N'
 	WHERE MEMBER_NO = ?
 	AND TARGET_NO = ?
+	</entry>
+	
+	<!-- 팔로우 -->
+	<entry key="insertFollow">
+	INSERT INTO FOLLOW VALUES(?,?,DEFAULT)
 	</entry>
 
 </properties>

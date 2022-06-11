@@ -334,7 +334,7 @@ public class MemberService {
 	}
 
 	
-	/** 팔로워,팔로우 등록(삭제)/등록(삭제)취소 Service
+	/** 팔로워,팔로잉 삭제/삭제 취소/ 등록 Service
 	 * @param mode
 	 * @param memberNo
 	 * @param targetNo
@@ -347,16 +347,21 @@ public class MemberService {
 		
 		int result = 0;
 		
-		// 팔로워,팔로우 등록/삭제
+		// 팔로잉 수정(삭제 취소)
 		if(mode==1) {
-			result = dao.deleteFollower(conn, memberNo, targetNo);
-		}
-				
-		// 팔로워, 팔로우 등록/삭제 취소
-		if(mode==2) {
-			result = dao.deleteCancelFollower(conn, memberNo, targetNo);
+			result = dao.updateFollow(conn, memberNo, targetNo);
+			
+			// 팔로우 (수정할 내역이 없으면 insert)
+			if(result == 0) {
+				result = dao.insertFollow(conn, memberNo, targetNo);
+			}
 		}
 		
+		// 팔로워,팔로잉 삭제
+		if(mode==2) {
+			result = dao.deleteFollow(conn, memberNo, targetNo);
+		}
+				
 		if(result>0) commit(conn);
 		else		 rollback(conn);
 		

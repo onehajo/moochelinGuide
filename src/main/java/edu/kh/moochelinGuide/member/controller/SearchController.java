@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
+import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
@@ -77,9 +78,11 @@ public class SearchController extends HttpServlet{
 		    		
 		    	}else {
 		    		
+		    		// 검색결과 + 팔로우여부 가져오기 (팔로우여부는 편의상 secessionFlag에 담음)
 		    		int memberNo = loginMember.getMemberNo();
+		    		int mode = Integer.parseInt(req.getParameter("mode"));
 		    		userList = service.searchUser2(query, memberNo);
-		    		
+
 		    	}
 		    	
 		    	req.setAttribute("userList", userList);
