@@ -12,50 +12,56 @@ for(let i = 0; i<tCount; i++){
 
     followBtn[i].addEventListener("click",function(){
 
-        if(!checkClick[i]){
-            checkClick[i] = true;
-            
-            $.ajax({
-                url : contextPath+"/member/myPage/follow",
-                data : {"memberNo" : memberNo[i].value,
-                        "targetNo" : targetNo[i].value,
-                        "mode" : 1},
-                type : "POST",
-                success : function(result){
-                    if(result>0){
-                        followBtn[i].innerText = "팔로잉";
-                        followBtn[i].classList.add("followingBtn");
-                    }else{
-                        console.log("팔로우 실패");
-                    }
-                },
-                error : function(req, status, error){
-                    console.log("팔로우 중 오류 발생");
-                    console.log(req.responseText);
-                }
-            })
+        if(loginMember==""){
+            alert("로그인 후 이용해주세요.");
         }else{
-            checkClick[i] = false;
 
-            $.ajax({
-                url : contextPath+"/member/myPage/follow",
-                data : {"memberNo" : memberNo[i].value,
-                        "targetNo" : targetNo[i].value,
-                        "mode" : 2},
-                type : "POST",
-                success : function(result){
-                    if(result>0){
-                        followBtn[i].innerText = "팔로우"
-                        followBtn[i].classList.remove("followingBtn");
-                    }else{
-                        console.log("언팔 실패");
+            if(!checkClick[i]){
+                checkClick[i] = true;
+                
+                $.ajax({
+                    url : contextPath+"/member/myPage/follow",
+                    data : {"memberNo" : memberNo[i].value,
+                            "targetNo" : targetNo[i].value,
+                            "mode" : 1},
+                    type : "POST",
+                    success : function(result){
+                        if(result>0){
+                            followBtn[i].innerText = "팔로잉";
+                            followBtn[i].classList.add("followingBtn");
+                        }else{
+                            console.log("팔로우 실패");
+                        }
+                    },
+                    error : function(req, status, error){
+                        console.log("팔로우 중 오류 발생");
+                        console.log(req.responseText);
                     }
-                },
-                error : function(req, status, error){
-                    console.log("언팔 중 오류 발생");
-                    console.log(req.responseText);
-                }
-            })
+                })
+            }else{
+                checkClick[i] = false;
+    
+                $.ajax({
+                    url : contextPath+"/member/myPage/follow",
+                    data : {"memberNo" : memberNo[i].value,
+                            "targetNo" : targetNo[i].value,
+                            "mode" : 2},
+                    type : "POST",
+                    success : function(result){
+                        if(result>0){
+                            followBtn[i].innerText = "팔로우"
+                            followBtn[i].classList.remove("followingBtn");
+                        }else{
+                            console.log("언팔 실패");
+                        }
+                    },
+                    error : function(req, status, error){
+                        console.log("언팔 중 오류 발생");
+                        console.log(req.responseText);
+                    }
+                })
+    
+            }
 
         }
         

@@ -95,6 +95,7 @@
 	<script src="${contextPath}/resources/js/main.js"></script>
 
     <script>
+        const loginMember = "${loginMember}";
         const tCount = "${fn:length(userList)}";
         const contextPath = "${contextPath}";
     </script>
