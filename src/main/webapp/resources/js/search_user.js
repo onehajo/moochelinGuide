@@ -13,7 +13,14 @@ for(let i = 0; i<tCount; i++){
     followBtn[i].addEventListener("click",function(){
 
         if(loginMember==""){
-            alert("로그인 후 이용해주세요.");
+            Swal.fire({
+                title: '로그인 후 이용해주세요.',
+                width: 600,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: '#392eff',
+                confirmButtonText: '확인'
+              });
         }else{
 
             if(!checkClick[i]){

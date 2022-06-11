@@ -1,0 +1,91 @@
+#headerUl{
+    display: flex;
+    justify-content: space-between;
+}
+
+#errorBox{
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(200, 200, 200,10%),white,white) ;
+}
+
+#errorArea{
+    margin: 20px auto;
+    width: 1200px;
+    height: 800px;
+    padding: 20px;
+}
+
+#errorMsg{
+    height:900px;
+    width: 560px;
+    margin: 0px auto;
+    padding: 100px 20px 0 20px;
+}
+
+#icon{
+    font-size: 40px;
+    margin: 20px 0px;
+}
+#errorMsg p{
+    margin: 4px;
+}
+
+#errorMsg p:nth-of-type(1){
+    font-size: 30px;
+    font-weight: bold;
+    padding: px 0px;
+}
+
+#errorMsg p:nth-of-type(2){
+    font-size: 25px;
+    font-weight: bold;
+    padding: px 0px;
+}
+
+#errorMsg p:nth-of-type(2)>span{
+    color: red;
+}
+
+#msgArea{
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/*하단 푸터*/
+#infoArea{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#infoArea p{
+    font-size: 12px;
+    margin: 4px auto;
+}
+
+/*버튼 영역*/
+#btnArea{
+    width: 250px;
+    margin: 0px auto;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.errorBtn{
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #392eff;
+    color: white;
+    margin: 0px 10px;
+    cursor: pointer;
+}
