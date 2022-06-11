@@ -61,7 +61,7 @@
                                     <div class="userDelete">
                                         <input type="hidden" class="memberNo" value="${f.memberNo}">
                                         <input type="hidden" class="targetNo" value="${f.targetNo}">
-                                        <button type="button" class="userDeleteBtn">팔로우 취소</button>
+                                        <button type="button" class="userDeleteBtn">팔로잉</button>
                                     </div>
                                 </li>
                             </c:forEach>

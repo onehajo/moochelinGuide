@@ -31,7 +31,7 @@
             <ul>
                 <li><a href="${contextPath}/search/title?query=${query}">제목</a></li>
                 <li><b>인물</b></li>
-                <li><a href="${contextPath}/search/user?query=${query}">유저</a></li>
+                <li><a href="${contextPath}/search/user?query=${query}&mode=2">유저</a></li>
             </ul>
         </section>
         <section class="content-main">

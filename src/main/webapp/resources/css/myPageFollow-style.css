@@ -128,13 +128,21 @@
 }
 
 /*삭제버튼*/
+
 .userDeleteBtn{
     width: 120px;
     height: 40px;
+    color: #000000;
     font-size: 16px;
     background-color: white;
     border: 1px solid rgb(116, 116, 123);
     border-radius: 8px;
+}
+
+.followBtn{
+    background-color: #392eff;
+    color: white;
+    border: none;
 }
 
 /*팔로워, 팔로잉이 없는 경우*/

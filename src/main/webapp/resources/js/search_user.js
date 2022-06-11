@@ -13,11 +13,7 @@ for(let i = 0; i<tCount; i++){
     followBtn[i].addEventListener("click",function(){
 
         if(!checkClick[i]){
-            console.log(i+"번째 팔로우 버튼 클릭됨");
             checkClick[i] = true;
-
-            console.log("회원번호"+memberNo[i].value);
-            console.log("타겟번호"+targetNo[i].value);
             
             $.ajax({
                 url : contextPath+"/member/myPage/follow",
@@ -27,9 +23,8 @@ for(let i = 0; i<tCount; i++){
                 type : "POST",
                 success : function(result){
                     if(result>0){
-                        console.log("팔로우 성공");
-                        followBtn[i].innerText = "언팔로우";
-
+                        followBtn[i].innerText = "팔로잉";
+                        followBtn[i].classList.add("followingBtn");
                     }else{
                         console.log("팔로우 실패");
                     }
@@ -41,10 +36,6 @@ for(let i = 0; i<tCount; i++){
             })
         }else{
             checkClick[i] = false;
-            console.log(i+"번째 팔로우 신청");
-
-            console.log("회원번호"+memberNo[i].value);
-            console.log("타겟번호"+targetNo[i].value);
 
             $.ajax({
                 url : contextPath+"/member/myPage/follow",
@@ -54,8 +45,8 @@ for(let i = 0; i<tCount; i++){
                 type : "POST",
                 success : function(result){
                     if(result>0){
-                        console.log("언팔 성공");
                         followBtn[i].innerText = "팔로우"
+                        followBtn[i].classList.remove("followingBtn");
                     }else{
                         console.log("언팔 실패");
                     }
