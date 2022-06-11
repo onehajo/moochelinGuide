@@ -54,9 +54,9 @@ public class MyPageFollowController extends HttpServlet{
 			
 			MemberService service = new MemberService();
 			
-			int result = service.followService(mode, memberNo, targetNo);
 			
-			resp.getWriter().print(result);
+			
+			int result = 1; //service.followService(mode, memberNo, targetNo);.getWriter().print(result);
 			
 		}catch(Exception e){
 			e.printStackTrace();

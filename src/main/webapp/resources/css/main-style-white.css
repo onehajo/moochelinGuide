@@ -541,3 +541,40 @@ margin-bottom: 50px;
     font-size: 12px;
     line-height: 10px;
 }
+
+
+
+
+
+
+
+/* 투명 헤더 용 css */
+/* 위치는 기본 헤더보다 아래에있어야합니다. */
+/* header 화이트로 바꾸기 */
+.scroll{
+    background-color: rgba(255, 255, 255, 0) !important ;
+    border-bottom: none;
+    box-shadow: none;
+}
+.scroll a {
+    color : white;
+}
+.scroll .b{
+    fill: #ffffff !important;
+    filter: drop-shadow(1px 1px 3px  rgba(0, 0, 0,0.3));
+}
+.scroll #query{
+    background-color: rgb(0 0 0 / 20%);
+}
+.scroll .search-area fieldset{
+    background :none;
+}
+
+.scroll .signup{
+    margin-right: 0 !important;
+    /* border: 1px solid #00ffbe; */
+    padding: 5px 12px;
+    background-color: rgba(255,255,255,0);
+    border-radius: 5px;
+}
+

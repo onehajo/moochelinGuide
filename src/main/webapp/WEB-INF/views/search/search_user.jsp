@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -39,33 +40,33 @@
 
                 <c:if test="${!empty userList}">
                     <c:forEach var="user" items="${userList}">
-                        <a href="#" class="sch-user">
-                            <div>
-                                <img src="${contextPath}/resources/images/logo-blue.png" class="sch-img-user">
-                            </div>
-                            <div class="sch-user-info">
-                                <div>${user.memberName}</div>
-                                <div>평가(7)</div>
-                            </div>
-                            <div class="sch-user-follow">
-                                <button>팔로우</button>
-                            </div>
-                        </a>                 
-                    </c:forEach>
+                        
+                            <a href="#" class="sch-user">
+                                <div>
+                                    <img src="${contextPath}/resources/images/logo-blue.png" class="sch-img-user">
+                                </div>
+                                <div class="sch-user-info">
+                                    <div>${user.memberName}</div>
+                                    <div>평가(7)</div>
+                                </div>
+                                <div class="sch-user-follow">
+                                    <input type="hidden" class="memberNo" value="${loginMember.memberNo}">
+                                    <input type="hidden" class="targetNo" value="${user.memberNo}">
+                                    <button class="followBtn">팔로우</button>
+                                </div>
+                            </a>
 
+                    </c:forEach>
                     <!-- <div class="view-more">
                         <button>더보기 ▽ </button>
                     </div> -->
-
                 </c:if>
 
                 <c:if test="${empty userList}">
-
                     <div id="searchFail">
                         <i class="fa-solid fa-circle-exclamation"></i>
                         <p>검색 결과가 없습니다. 다른 검색어를 입력해보세요.</p>
                     </div>
-
                 </c:if>
 
             </section>
@@ -76,6 +77,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="${contextPath}/resources/js/main.js"></script>
+
+    <script>
+        const tCount = "${fn:length(userList)}";
+        const contextPath = "${contextPath}";
+    </script>
+
+    <script src="${contextPath}/resources/js/search_user.js"></script>
 
 </body>
 </html>

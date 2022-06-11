@@ -51,8 +51,19 @@
 					<%-- 로그인이 되어있는 경우 --%>
 					<c:otherwise>
 						<li class="grade"><a href="${contextPath}/member/evaluation">평가하기</a></li>
+						
 						<!-- pofile_my로 넘어가야함. 임시로 내정보수정으로 연결 -->
 						<li class="profile"><a href="${contextPath}/member/profile/my}"><div id="profileImage"></div></a></li>
+						<li class="profile"><a href="${contextPath}/member/profile/my"><div id="profileImage"></div></a></li>
+						
+						<c:if test="${empty loginMember.profileImage}">
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>						
+						</c:if>
+						
+						<c:if test="${!empty loginMember.profileImage}">
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage" style=" background-size: 40px; background-image : url(${contextPath}${loginMember.profileImage})"></div></a></li>						
+						</c:if>
+						
 					</c:otherwise>            	
 				</c:choose>
             		
@@ -154,3 +165,18 @@
 </section>
 </form>
 
+<!-- 비밀번호 변경 이메일 보내기 -->
+<div id="login-box" class="popup1">
+
+    <p class="popupTitle">임시 비밀번호</p>
+    <div>비밀번호를 잊으셨나요?</div>
+    <div>가입했던 이메일을 적어주세요.</div>
+    <div>입력하신 이메일 주소로 비밀번호 변경 메일을 보낼게요</div>
+    
+    <form action="" method="post" id="123" class="form-css">
+        <input type="text" placeholder="이메일" id="loginEmail" name="memberEmail">
+        <div id="emailComment"></div>
+        <button id="login-btn" class="btn">비밀번호 변경 이메일 보내기</button>
+    </form>
+    
+</div>

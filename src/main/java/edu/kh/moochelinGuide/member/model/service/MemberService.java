@@ -62,16 +62,32 @@ public class MemberService {
 	}
 
 	
-	/** 특정 키워드로 유저 검색 Service
+	/** 특정 키워드로 유저 검색 Service (로그인 X)
 	 * @param query
 	 * @return userList
 	 * @throws Exception
 	 */
-	public List<Member> searchUser(String query) throws Exception{
+	public List<Member> searchUser1(String query) throws Exception{
+		
+		Connection conn = getConnection();
+			
+		List<Member> userList = dao.searchUser1(conn,query);
+		
+		close(conn);
+		
+		return userList;
+	}
+	
+	/** 특정 키워드로 유저 검색 Service (로그인 O)
+	 * @param query
+	 * @return userList
+	 * @throws Exception
+	 */
+	public List<Member> searchUser2(String query, int memberNo) throws Exception{
 		
 		Connection conn = getConnection();
 		
-		List<Member> userList = dao.searchUser(conn,query);
+		List<Member> userList = dao.searchUser2(conn,query, memberNo);
 		
 		close(conn);
 		
@@ -318,7 +334,7 @@ public class MemberService {
 	}
 
 	
-	/** 팔로워,팔로우 삭제/삭제취소 Service
+	/** 팔로워,팔로우 등록(삭제)/등록(삭제)취소 Service
 	 * @param mode
 	 * @param memberNo
 	 * @param targetNo
@@ -331,12 +347,12 @@ public class MemberService {
 		
 		int result = 0;
 		
-		// 팔로워 삭제
+		// 팔로워,팔로우 등록/삭제
 		if(mode==1) {
 			result = dao.deleteFollower(conn, memberNo, targetNo);
 		}
 				
-		// 팔로워 삭제취소
+		// 팔로워, 팔로우 등록/삭제 취소
 		if(mode==2) {
 			result = dao.deleteCancelFollower(conn, memberNo, targetNo);
 		}
