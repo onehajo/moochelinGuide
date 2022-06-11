@@ -4,44 +4,7 @@ var $dark1 = document.querySelector(".dark1");
 var $popupLogin = document.querySelector("#login-box");
 var $popupSignup = document.querySelector("#signup-box");
 var $popupAgree = document.querySelector("#agree");
-
-// 로그인 클릭할때
-function openPopLogin(){
-	$popupSignup.setAttribute("class", "popup");
-    $dark.setAttribute("class", "dark active");
-    $popupLogin.setAttribute("class", "popup active");
-    $body_tag.setAttribute("class", "not_scroll");
-}
-
-// 회원가입 클릭할때
-function openPopSignUp(){
-	$popupLogin.setAttribute("class", "popup");
-    $dark.setAttribute("class", "dark active");
-    $popupSignup.setAttribute("class", "popup active");
-    $body_tag.setAttribute("class", "not_scroll");
-}
-
-// 약관보기(회원가입버튼) 클릭 할때
-function openAgree(){
-    $dark.setAttribute("class", "dark active1");
-    $popupAgree.setAttribute("class", "popup1 active2");
-}
-
-// 검은배경 클릭할때 (로그인, 회원가입 닫기)
-function closePop(){
-	if( $dark.classList.contains('active1')){
-		$dark.setAttribute("class", "dark active"); // z-index 4->3
-		$popupAgree.setAttribute("class", "popup1"); // 약관 닫기
-	}else{
-	    $dark.setAttribute("class", "dark");
-	    $popupLogin.setAttribute("class", "popup"); // 로그인 닫기
-	    $popupSignup.setAttribute("class", "popup"); // 회원가입 닫기
-	    $body_tag.setAttribute("class", "");	
-	}
-}
-
-
-
+var $popupPw = document.querySelector("#pw-box");
 
 
 // 로그인
@@ -64,6 +27,68 @@ const nameMessage = document.getElementById("nameMessage");
 const emailMessage = document.getElementById("emailMessage");
 const pwMessage = document.getElementById("pwMessage");
 
+// 비밀번호 변경 이메일 보내기
+const pwFindEmail = document.getElementById("pwFindEmail");
+const pwfindText = document.getElementById("pwfindText");
+const pwfindBtn = document.getElementById("pwfindBtn");
+
+
+
+
+
+// 로그인 클릭할때
+function openPopLogin(){
+    loginEmail.value="";
+    loginPw.value="";
+    pwComment.innerText="";
+	$popupSignup.setAttribute("class", "popup");
+    $dark.setAttribute("class", "dark active");
+    $popupLogin.setAttribute("class", "popup active");
+    $body_tag.setAttribute("class", "not_scroll");
+}
+
+// 회원가입 클릭할때
+function openPopSignUp(){
+    signUpName.value="";
+    signUpEmail.value="";
+    signUpPw.value="";
+    nameMessage.innerText="";
+    emailMessage.innerText="";
+    pwMessage.innerText="";
+	$popupLogin.setAttribute("class", "popup");
+    $dark.setAttribute("class", "dark active");
+    $popupSignup.setAttribute("class", "popup active");
+    $body_tag.setAttribute("class", "not_scroll");
+}
+
+// 약관보기(회원가입버튼) 클릭 할때
+function openAgree(){
+    $dark.setAttribute("class", "dark active1");
+    $popupAgree.setAttribute("class", "popup active2");
+}
+
+// 검은배경 클릭할때 (로그인, 회원가입 닫기)
+function closePop(){
+	if( $dark.classList.contains('active1')){
+		$dark.setAttribute("class", "dark active"); // z-index 4->3
+		$popupAgree.setAttribute("class", "popup"); // 약관 닫기
+		$popupPw.setAttribute("class", "popup"); // 약관 닫기
+
+    }else{
+	    $dark.setAttribute("class", "dark");
+	    $popupLogin.setAttribute("class", "popup"); // 로그인 닫기
+	    $popupSignup.setAttribute("class", "popup"); // 회원가입 닫기
+	    $body_tag.setAttribute("class", "");	
+	}
+}
+
+// 비밀번호 변경 클릭 할때
+function openPw(){
+    pwFindEmail.value="";
+    pwfindText.innerText="";
+	$popupPw.setAttribute("class", "popup active2");
+    $dark.setAttribute("class", "dark active1");
+}
 
 
 
@@ -120,6 +145,59 @@ loginPw.addEventListener("input",function(){
 
 
 
+let checkObjPw = false;
+
+// 비밀번호 변경 이메일보내기 - 이메일 유효성 검사
+pwFindEmail.addEventListener("input", function(){
+
+    if(pwFindEmail.value.trim().length==0){
+        pwfindText.innerText="이메일을 입력해주세요.";
+
+        checkObjPw=false; // 유효하지 않은 상태
+        return;
+    }else{
+
+	    if(emailExp.test(pwFindEmail.value)){
+	
+	        // ****** 이메일 중복 검사(ajax) 진행 ******
+	        $.ajax({
+				url: "emailDupCheck", 
+				data : {"memberEmail" : pwFindEmail.value},
+				type : "GET", 
+				success : function(result){
+	                if(result!=0) { // 중복임
+	                    pwfindText.innerText = ""
+	                    checkObjPw=true; // 유효하지 않은 상태
+	                } else{
+	                    pwfindText.innerText = "가입되지 않은 이메일입니다."
+	                    checkObjPw=false; // 유효한 상태 
+	                }
+				},
+				error : function(){
+				}
+			});
+
+	    }else{
+	        pwfindText.innerText = "이메일 형식이 올바르지 않습니다."
+	
+	        checkObjPw=false; // 유효하지 않은 상태
+	    }
+    
+    }
+})
+// 비밀번호 찾는 이메일 보내기 버튼 클릭시 유효성 검사
+function pwfindValidate(){
+    if(!checkObjPw){
+        alert("가입한 메일을 작성해주세요.");
+        pwFindEmail.focus();
+        return false;
+    }
+    return true;
+}
+
+
+
+
 // 회원가입 유효성 검사 여부를 기록할 객체 생성
 const checkObj = {
     signUpName : false,
@@ -127,7 +205,7 @@ const checkObj = {
     signUpPw : false,
 };
 
-// 이름 유효성 검사
+// 회원가입 이름 유효성 검사
 signUpName.addEventListener("input", function(){
 
     if(signUpName.value.length==0 || !nameExp.test(signUpName.value)){
@@ -142,7 +220,7 @@ signUpName.addEventListener("input", function(){
 })
 
 
-// 이메일 유효성 검사
+// 회원가입 이메일 유효성 검사
 signUpEmail.addEventListener("input", function(){
 
     if(signUpEmail.value.trim().length==0){
@@ -252,6 +330,8 @@ function selectAll(selectAll){
 		checkbox.checked = selectAll.checked;
 	})
 }
+
+
 
 
 
