@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,21 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 프로필</title>
     
+    <!-- 그래프css  -->
     <link rel="stylesheet" href="${contextPath}/resources/css/analysis.css">
 
-    <!-- 투명헤더-->
-    <link  id="cssTest2" rel="stylesheet" href="${contextPath}/resources/css/header-white.css">
-
-
-
     <!-- 헤더푸터 CSS 연결-->
-    <!-- <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css"> -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/main-style-white.css">
     <!-- 마이페이지 CSS -->
-    <!-- <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css"> -->
+    <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css">
+
+
     <!-- 기본헤더 투명헤더에 기본헤더의 값이 있기때문에 활성화X-->
     <!-- <link  id="cssTest1" rel="stylesheet" href="../ksj/css/main-style.css"> -->
 
-    <link rel="stylesheet" href="css/profile_my.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/profile_my.css">
 
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +34,8 @@
 <body>
 
 
-    <jsp:include page="/WEB-INF/views/common/header.jsp" /> 
+    <jsp:include page="/WEB-INF/views/common/header_white.jsp" /> 
+
     
     <main> 
         <div class="container">
@@ -45,14 +47,22 @@
                     <div class="info-center-flex">
                         <!-- 배경이미지 / 내프로필 / 팔로워/팔로잉 .... 평가한 영화 -->
                         <div class="profile-position profile-img-area">
-                            <div class="fa-solid fa-user"></div>
+                            <c:if test="${empty loginMember.profileImage}">
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>						
+						</c:if>
+						
+						<c:if test="${!empty loginMember.profileImage}">
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage" style=" background-size: 40px; background-image : url(${contextPath}${loginMember.profileImage})"></div></a></li>						
+						</c:if>
+				
+                            <!-- <div class="fa-solid fa-user"></div> -->
                         </div>
                         <div>
                             <div class="profile-name">김유저</div>
-                            <div class="follow"><span>팔로워 : 3</span><span>   |   </span><span>팔로잉 : 3</span></div>
+                            <div class="follow"><span><a href="#">팔로워</a> : 3</span><span>   |   </span><span><a href="#">팔로잉</a>  : 3</span></div>
                         </div>
                         <!-- 제가 마이페이지에 a태그 넣어서 깨져버렸어용-->
-                        <div class="mypage-button"> <a href="myPage_mod.html">마이페이지</a> </div>
+                        <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod">마이페이지</a> </div>
                         <div class="pick-heart">❤</div>
                         <div class="bucket-list">찜한 영화 30</div>
                         <div class="count-star">⭐</div>
@@ -75,7 +85,7 @@
                                         <div class="movie">
                                             <div class="movie-top">
                                                 <div class="movie-poster">
-                                                    <img src="../images/broker.jpeg" alt="">
+                                                    <img src="resources/images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
                                                 </div>
                                             </div>
                                             <div class="movie-bottom">
@@ -285,7 +295,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                 <button class="anal-button">취향분석 보기</button>
+                                <button type="button" onclick="location.href='analysis.jsp'" class="anal-button" >취향분석 보기</button>
 
                         </div>
 
@@ -298,8 +308,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+    <script src="${contextPath}/resources/js/header_white.js"></script>
     
-<script src="/kjy/js/header_white.js"></script>
 
 </body>
 </html>
