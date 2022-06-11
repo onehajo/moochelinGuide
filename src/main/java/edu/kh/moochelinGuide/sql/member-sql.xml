@@ -29,12 +29,21 @@
 	
 	
 	
-	<!-- 특정 키워드로 유저 검색 -->
-	<entry key="searchUser">
+	<!-- 특정 키워드로 유저 검색 (로그인 X)-->
+	<entry key="searchUser1">
 		SELECT MEMBER_NO,MEMBER_NM,PROFILE_IMG
     	FROM MEMBER
 		WHERE MEMBER_NM LIKE ?
 		AND SECESSION_FL = 'N'
+	</entry>
+	
+	<!-- 특정 키워드로 유저 검색 (로그인 O) -->
+	<entry key="searchUser2">
+		SELECT MEMBER_NO,MEMBER_NM,PROFILE_IMG
+    	FROM MEMBER
+		WHERE MEMBER_NM LIKE ?
+		AND SECESSION_FL = 'N'
+		AND MEMBER_NO != ?
 	</entry>
 	
 		<!-- 특정 키워드로 영화 검색 -->

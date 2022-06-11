@@ -115,21 +115,59 @@ public class MemberDAO {
 		return member;
 	}
 
-	/** 특정 키워드로 유저 검색 DAO
+	/** 특정 키워드로 유저 검색 DAO (로그인 X)
 	 * @param conn
 	 * @param query
 	 * @return userList
 	 * @throws Exception
 	 */
-	public List<Member> searchUser(Connection conn, String query) throws Exception{
+	public List<Member> searchUser1(Connection conn, String query) throws Exception{
 		List<Member> userList = new ArrayList<Member>();
 		
 		try {
-			String sql = prop.getProperty("searchUser");
+			String sql = prop.getProperty("searchUser1");
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, "%"+query+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Member mem = new Member();
+				
+				mem.setMemberNo(rs.getInt(1));
+				mem.setMemberName(rs.getString(2));
+				mem.setProfileImage(rs.getString(3));
+				
+				userList.add(mem);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return userList;
+	}
+	
+	/** 특정 키워드로 유저 검색 DAO (로그인 O)
+	 * @param conn
+	 * @param query
+	 * @return userList
+	 * @throws Exception
+	 */
+	public List<Member> searchUser2(Connection conn, String query, int memberNo) throws Exception{
+		List<Member> userList = new ArrayList<Member>();
+		
+		try {
+			String sql = prop.getProperty("searchUser2");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%"+query+"%");
+			pstmt.setInt(2, memberNo);
 			
 			rs = pstmt.executeQuery();
 			
