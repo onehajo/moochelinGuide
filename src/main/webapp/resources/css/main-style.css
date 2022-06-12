@@ -124,6 +124,12 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     border-radius: 50%;
 }
 
+#profileImage2 {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+}
+
 
 
 

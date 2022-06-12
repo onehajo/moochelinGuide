@@ -216,5 +216,28 @@
 	<entry key="insertFollow">
 	INSERT INTO FOLLOW VALUES(?,?,DEFAULT)
 	</entry>
+	
+	
+	
+	<!-- 마이프로필 평가한 영화 조회( 4개만 )  -->
+	<entry key="selectEvalMovie">
+	SELECT * FROM ( 
+    SELECT ROWNUM RNUM, A.* FROM(
+
+        SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+        FROM EVALUATION
+        JOIN MOVIE USING(MOVIE_NO)
+        WHERE MEMBER_NO= ?
+
+	    ) A
+	)
+	WHERE RNUM BETWEEN 1 AND 4 
+	</entry>
+	
+	
+	
+	
+	
+	
 
 </properties>

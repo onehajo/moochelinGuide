@@ -25,5 +25,7 @@ public class Movie {
 	
 	private float starRating;
 	
+	private int rNum;
+	
 	
 }

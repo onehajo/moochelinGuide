@@ -55,7 +55,7 @@
 						<!-- pofile_my로 넘어가야함. 임시로 내정보수정으로 연결 -->
 						<li class="profile"><a href="${contextPath}/member/profile/my"><div id="profileImage"></div></a></li>
 						<c:if test="${empty loginMember.profileImage}">
-							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>						
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage" style=" background-size: 40px; background-image : url('${contextPath}/resources/images/user.png')"></div></a></li>						
 						</c:if>
 						
 						<c:if test="${!empty loginMember.profileImage}">
