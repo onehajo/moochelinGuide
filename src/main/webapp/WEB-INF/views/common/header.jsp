@@ -172,10 +172,10 @@
     <div class="popupText">가입했던 이메일을 적어주세요.</div>
     <div class="popupText">입력하신 이메일 주소로 비밀번호 변경 메일을 보낼게요.</div>
     
-    <form action="pwfind" method="post" class="form-css" onsubmit="return pwfindValidate()">
-        <input type="text" placeholder="이메일" id="pwFindEmail" name="memberEmail">
+    <section class="form-css">
+        <input type="text" placeholder="이메일" id="pwFindEmail" name="pwFindEmail">
         <div id="pwfindText"></div>
         <button id="pwfindBtn" class="btn">비밀번호 변경 이메일 보내기</button>
-    </form>
+    </section>
     
 </div>
