@@ -654,8 +654,8 @@ public class MemberDAO {
 				
 				f.setMemberNo(rs.getInt(1)); // 팔로워번호
 				f.setMemberName(rs.getString(2)); // 팔로워 이름
-				f.setEvaluationCount(rs.getInt(3)); // 팔로워의 평가개수
-				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
+				f.setProfileImage(rs.getString(3)); // 팔로워의 프로필경로
+				f.setEvaluationCount(rs.getInt(4)); // 팔로워의 평가개수
 				
 				fList.add(f);				
 			}	
@@ -698,8 +698,8 @@ public class MemberDAO {
 				
 				f.setTargetNo(rs.getInt(1)); // 팔로잉 회원 번호
 				f.setMemberName(rs.getString(2)); // 팔로잉 회원 이름
-				f.setEvaluationCount(rs.getInt(3)); // 팔로워의 평가개수
-				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
+				f.setProfileImage(rs.getString(3)); // 팔로워의 프로필경로
+				f.setEvaluationCount(rs.getInt(4)); // 팔로워의 평가개수
 				
 				fList.add(f);	
 				
