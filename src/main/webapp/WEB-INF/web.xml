@@ -65,21 +65,5 @@
 		<error-code>503</error-code>
 		<location>/WEB-INF/views/error/error.jsp</location>
 	</error-page>
-
-	<!-- 예외처리 페이지 -->
-	<error-page>
-		<exception-type>java.lang.NullPointerException</exception-type>
-		<location>/WEB-INF/views/error/error.jsp</location>
-	</error-page>
-	
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/WEB-INF/views/error/error.jsp</location>
-	</error-page>
-	
-	<error-page>
-		<exception-type>java.lang.Exception</exception-type>
-		<location>/WEB-INF/views/error/error.jsp</location>
-	</error-page>
 	
 </web-app>

@@ -47,8 +47,6 @@
                         <p>Error Code : <span>${requestScope['javax.servlet.error.status_code']}</span></p>
                         <br>
                         <p>이용에 불편을 드려 죄송합니다.</p>
-                        <p>주소를 다시 한 번 확인해주세요.</p>
-                        <br>
                         <p>감사합니다.</p>
                     </div>
                     <div id="btnArea">
