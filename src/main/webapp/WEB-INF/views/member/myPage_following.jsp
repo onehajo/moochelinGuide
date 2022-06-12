@@ -47,7 +47,7 @@
                                             </c:if>
                                             <!-- 변경 이미지 -->
                                             <c:if test="${ !empty f.profileImage}"> 
-                                                <img src="${contextPath}${f.profileImage}"  class="profile-image">
+                                                <img src="${contextPath}${f.profileImage}"  class="profile-img">
                                             </c:if>
                                         </a>
                                     </div>
