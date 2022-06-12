@@ -145,7 +145,6 @@ loginPw.addEventListener("input",function(){
 
 
 
-let checkObjPw = false;
 
 // 비밀번호 변경 이메일보내기 - 이메일 유효성 검사
 pwFindEmail.addEventListener("input", function(){
@@ -153,7 +152,6 @@ pwFindEmail.addEventListener("input", function(){
     if(pwFindEmail.value.trim().length==0){
         pwfindText.innerText="이메일을 입력해주세요.";
 
-        checkObjPw=false; // 유효하지 않은 상태
         return;
     }else{
 
@@ -167,10 +165,8 @@ pwFindEmail.addEventListener("input", function(){
 				success : function(result){
 	                if(result!=0) { // 중복임
 	                    pwfindText.innerText = ""
-	                    checkObjPw=true; // 유효하지 않은 상태
 	                } else{
 	                    pwfindText.innerText = "가입되지 않은 이메일입니다."
-	                    checkObjPw=false; // 유효한 상태 
 	                }
 				},
 				error : function(){
@@ -180,20 +176,10 @@ pwFindEmail.addEventListener("input", function(){
 	    }else{
 	        pwfindText.innerText = "이메일 형식이 올바르지 않습니다."
 	
-	        checkObjPw=false; // 유효하지 않은 상태
 	    }
     
     }
 })
-// 비밀번호 찾는 이메일 보내기 버튼 클릭시 유효성 검사
-function pwfindValidate(){
-    if(!checkObjPw){
-        alert("가입한 메일을 작성해주세요.");
-        pwFindEmail.focus();
-        return false;
-    }
-    return true;
-}
 
 
 
