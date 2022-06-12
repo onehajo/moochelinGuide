@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>board-sql.xml</comment>
-	
+	<comment>board-sql.xml</comment>
+
 	<!-- 문의 등록 -->
 	<entry key="inquiryRegist">
-		INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL,?,?,DEFAULT,SYSDATE,DEFAULT,DEFAULT,?,99)
+		INSERT INTO BOARD
+		VALUES(BOARD_SEQ.NEXTVAL,?,?,DEFAULT,SYSDATE,DEFAULT,DEFAULT,?,99)
 	</entry>
-	
+
 	<!-- 문의 사항 조회 -->
 	<entry key="boardList">
-		SELECT BOARD_TITLE, BOARD_CT, 
-		(SYSDATE - CREATE_DT)*24*60*60 AS "CREATE_DT", 
-		UPDATE_DT, BOARD_ST,BOARD_CD,MEMBER_NM
+		SELECT BOARD_TITLE, BOARD_CT,
+		(SYSDATE -
+		CREATE_DT)*24*60*60 AS "CREATE_DT",
+		UPDATE_DT,
+		BOARD_ST,BOARD_CD,MEMBER_NM
 		FROM BOARD
 		JOIN MEMBER USING(MEMBER_NO)
 		WHERE MEMBER_NO = ?
 	</entry>
-	
+
 </properties>

@@ -1,104 +1,99 @@
-.inquiry{
-    width: 1200px;
-    margin: auto;
-display: flex;
-flex-direction: column;
-
+.inquiry {
+	width: 1200px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
 }
 
-.inquiry>p{
-    color: rgb(51, 51, 51);
-    font-size: 14px;
-    margin: 0;
+.inquiry>p {
+	color: rgb(51, 51, 51);
+	font-size: 14px;
+	margin: 0;
 }
 
-
-.inquiry>p:last-of-type{
-    margin-bottom: 46px;
+.inquiry>p:last-of-type {
+	margin-bottom: 46px;
 }
 
-.inquiry-list .list-name{
-    background-color: transparent;
-    border: none;
-    color: rgb(57, 46, 255);
+.inquiry-list .list-name {
+	background-color: transparent;
+	border: none;
+	color: rgb(57, 46, 255);
 }
 
-.inquiry-list .list-name:hover{
-    cursor:pointer;
-    text-decoration: underline;
+.inquiry-list .list-name:hover {
+	cursor: pointer;
+	text-decoration: underline;
 }
 
-.inquiry-list>thead button{
-    border:1px solid rgba(0,0,0,0); 
-    background-color: rgba(0,0,0,0);
-    padding: 0;
-    font-size: 12px;
-    color: rgba(132, 132, 132, 125); 
-    cursor: pointer;
+.inquiry-list>thead button {
+	border: 1px solid rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+	padding: 0;
+	font-size: 12px;
+	color: rgba(132, 132, 132, 125);
+	cursor: pointer;
 }
 
-.inquiry-list>thead #triangle-down{
-    color: grey; 
-    font-size: 1px;
-    cursor: pointer;
+.inquiry-list>thead #triangle-down {
+	color: grey;
+	font-size: 1px;
+	cursor: pointer;
 }
 
-
-
-.inquiry-list>thead td:nth-of-type(3) #activity:hover{
-text-decoration: underline;
-cursor: pointer;
+.inquiry-list>thead td:nth-of-type(3) #activity:hover {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
-.inquiry-list tbody td{
-   padding-top: 15px;
+.inquiry-list tbody td {
+	padding-top: 15px;
 }
 
-.inquiry-list td{
-    font-size: 12px;
-    color: rgba(132, 132, 132, 125);
-    border-bottom: 1px solid rgba(190, 190, 190, 179);
-    padding-bottom: 10px;
+.inquiry-list td {
+	font-size: 12px;
+	color: rgba(132, 132, 132, 125);
+	border-bottom: 1px solid rgba(190, 190, 190, 179);
+	padding-bottom: 10px;
 }
 
 #registration {
-    width: 190px;
-    height: 38px;
-    margin: 50px 0 50px 1010px;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    background-color: #392eff;
-    color:  rgb(255, 255, 255);
-    cursor: pointer;
-    border-radius: 5px;
-    
+	width: 190px;
+	height: 38px;
+	margin: 50px 0 50px 1010px;
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #392eff;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	border-radius: 5px;
 }
 
 #registration:hover {
-    background-color: #00ffbe;
-    transition-duration: 1s;
+	background-color: #00ffbe;
+	transition-duration: 1s;
 }
 
-.accepting{
-    padding: 1px 20px; 
-    border-radius: 5px; 
-    font-weight: bold; 
-    color: white; 
-    background-color: red; 
-    border: 1px solid white;
+.accepting {
+	padding: 1px 20px;
+	border-radius: 5px;
+	font-weight: bold;
+	color: white;
+	background-color: red;
+	border: 1px solid white;
 }
 
-.inqComplete{
-    padding: 2px 15px; 
-    border-radius: 5px; 
-    font-weight: bold; 
-    color: white; 
-    background-color: grey; 
-    border: 1px solid white;
+.inqComplete {
+	padding: 2px 15px;
+	border-radius: 5px;
+	font-weight: bold;
+	color: white;
+	background-color: grey;
+	border: 1px solid white;
 }
 
-.activity{
-    border:1px solid none; 
-    padding-right: 30px;
+.activity {
+	border: 1px solid none;
+	padding-right: 30px;
 }

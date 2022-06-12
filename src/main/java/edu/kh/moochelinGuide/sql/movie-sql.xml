@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>movie-sql.xml</comment>
+	<comment>movie-sql.xml</comment>
 
 	<!-- 상영중인 영화 리스트 -->
 	<entry key="nowShowing">
-		SELECT 
-			MOVIE_NO,
-			MOVIE_TITLE,
-			POSTER_IMG,
-			RELEASE_YEAR,
-			COUNTRY,
-			TICKETING, 
-			AUDIENCE
+		SELECT
+		MOVIE_NO,
+		MOVIE_TITLE,
+		POSTER_IMG,
+		RELEASE_YEAR,
+		COUNTRY,
+		TICKETING,
+		AUDIENCE
 		FROM MOVIE
 		WHERE NOW_SHOWING_FL='Y'
-		ORDER BY TO_NUMBER(REGEXP_REPLACE(TICKETING, '\%')) DESC
+		ORDER BY
+		TO_NUMBER(REGEXP_REPLACE(TICKETING, '\%')) DESC
 	</entry>
-	
+
 </properties>
