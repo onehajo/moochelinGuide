@@ -1,244 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<comment>member-sql.xml</comment>
+<comment>member-sql.xml</comment>
 
 	<!-- 로그인 테스트 (TEST_MEMBER 테스트 테이블) -->
 	<entry key="login">
-		SELECT
-		MEMBER_NO,MEMBER_EMAIL,MEMBER_NM,PROFILE_IMG,PROFILE_BACK_IMG,
-		TO_CHAR(ENROLL_DT, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DT
-		FROM MEMBER
+		SELECT MEMBER_NO,MEMBER_EMAIL,MEMBER_NM,PROFILE_IMG,PROFILE_BACK_IMG,
+    			TO_CHAR(ENROLL_DT, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DT 
+    	FROM MEMBER
 		WHERE MEMBER_EMAIL = ?
 		AND MEMBER_PW = ?
 		AND SECESSION_FL = 'N'
 	</entry>
-
+	
 	<!-- 이메일 중복확인 (TEST_MEMBER 테스트 테이블) -->
 	<entry key="emailDupCheck">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE MEMBER_EMAIL=?
 	</entry>
-
+	
 	<!-- 회원가입 (TEST_MEMBER 테스트 테이블) -->
 	<entry key="signUp">
 		INSERT INTO MEMBER
 		VALUES(SEQ_MEMBER_NO.NEXTVAL,?,?,?,NULL,NULL,DEFAULT,DEFAULT)
 	</entry>
-
-
-
-
-	<!-- 특정 키워드로 유저 검색 (로그인 X) -->
+	
+	
+	
+	
+	<!-- 특정 키워드로 유저 검색 (로그인 X)-->
 	<entry key="searchUser1">
 		SELECT MEMBER_NO,MEMBER_NM,PROFILE_IMG
-		FROM MEMBER
+    	FROM MEMBER
 		WHERE MEMBER_NM LIKE ?
 		AND SECESSION_FL = 'N'
 	</entry>
-
+	
 	<!-- 특정 키워드로 유저 검색 (로그인 O) -->
 	<entry key="searchUser2">
 		SELECT MEMBER_NO,MEMBER_NM,PROFILE_IMG,
-		CASE
-		WHEN
-		MEMBER_NO IN (SELECT TARGET_NO
-		FROM FOLLOW
-		WHERE MEMBER_NO = ?
-		AND
-		FOLLOW_FL='N')
-		THEN 'Y'
-		ELSE 'N'
-		END AS FOLLOW_FL
+			   CASE
+			   WHEN MEMBER_NO IN (SELECT TARGET_NO
+								  FROM FOLLOW
+								  WHERE MEMBER_NO = ?
+								  AND FOLLOW_FL='N')
+				THEN 'Y'
+				ELSE 'N'
+				END AS FOLLOW_FL
 		FROM MEMBER
-		WHERE
-		MEMBER_NM LIKE ?
+		WHERE MEMBER_NM LIKE ?
 		AND SECESSION_FL = 'N'
 		AND MEMBER_NO != ?
 	</entry>
-
-	<!-- 특정 키워드로 영화 검색 -->
+	
+		<!-- 특정 키워드로 영화 검색 -->
 	<entry key="searchTitle">
-		SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG,
-		RELEASE_YEAR, COUNTRY
+		SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
 		FROM MOVIE
 		WHERE MOVIE_TITLE LIKE ?
 	</entry>
-
+	
 	<!-- 회원 탈퇴 - 비밀번호 일치여부 확인 -->
 	<entry key="secessionCheckPw">
-		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE MEMBER_NO = ?
-		AND
-		MEMBER_PW = ?
-		AND SECESSION_FL = 'N'
+	SELECT COUNT(*)
+	FROM MEMBER
+	WHERE MEMBER_NO = ?
+	AND MEMBER_PW = ?
+	AND SECESSION_FL = 'N'
 	</entry>
-
+	
 	<!-- 회원 탈퇴 -->
 	<entry key="secession">
-		UPDATE MEMBER SET SECESSION_FL = 'Y'
-		WHERE MEMBER_NO =
-		?
+	UPDATE MEMBER SET SECESSION_FL = 'Y'
+	WHERE MEMBER_NO = ?
 	</entry>
-
+	
 	<!-- 회원 이름 수정 -->
 	<entry key="updateMember">
-		UPDATE MEMBER SET
-		MEMBER_NM = ?
-		WHERE MEMBER_NO = ?
+	UPDATE MEMBER SET 
+	MEMBER_NM = ?
+	WHERE MEMBER_NO = ?
 	</entry>
-
-	<!-- 회원 프로필 수정 -->
+	
+	<!-- 회원 프로필  수정 -->
 	<entry key="updatProfileImage">
-		UPDATE MEMBER SET
-		PROFILE_IMG = ?
-		WHERE MEMBER_NO = ?
+	UPDATE MEMBER SET 
+	PROFILE_IMG = ?
+	WHERE MEMBER_NO = ?
 	</entry>
-
+	
 	<!-- 회원 배경이미지 수정 -->
 	<entry key="updateBackgroundImage">
-		UPDATE MEMBER SET
-		PROFILE_BACK_IMG = ?
-		WHERE MEMBER_NO =
-		?
+	UPDATE MEMBER SET 
+	PROFILE_BACK_IMG = ? 
+	WHERE MEMBER_NO = ?
 	</entry>
 
 	<!-- 평가하기 - 랜덤 영화 조회 -->
 	<entry key="selectRandomMovie">
-		SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
-		FROM
-		(SELECT *
-		FROM MOVIE M
-		WHERE NOT EXISTS(SELECT *
-		FROM EVALUATION E
-		WHERE
-		M.MOVIE_NO = E.MOVIE_NO
-		AND E.MEMBER_NO = ?
-		AND EVALUATION_FL = 'N')
-		ORDER BY DBMS_RANDOM.VALUE)
+	SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+	FROM (SELECT *
+		  FROM MOVIE M
+		  WHERE NOT EXISTS(SELECT *
+					 	   FROM EVALUATION E
+					 	   WHERE M.MOVIE_NO = E.MOVIE_NO
+					 	   AND E.MEMBER_NO = ?
+					 	   AND EVALUATION_FL = 'N')
+						   ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 3]]>
 	</entry>
-
+	
 
 	<!-- 회원 비밀번호 변경 -->
 	<entry key="changePw">
-		UPDATE MEMBER SET
-		MEMBER_PW = ?
-		WHERE MEMBER_NO = ?
-		AND
-		MEMBER_PW = ?
+	UPDATE MEMBER SET
+	MEMBER_PW = ?
+	WHERE MEMBER_NO = ?
+	AND MEMBER_PW = ? 
 	</entry>
-
+	
 
 	<!-- 평가수정 -->
 	<entry key="updateEvaluation">
-		UPDATE EVALUATION SET
-		STAR_RATING = ?,
-		EVALUATION_FL =
-		'N'
-		WHERE MEMBER_NO = ?
-		AND MOVIE_NO = ?
+	UPDATE EVALUATION SET
+	STAR_RATING = ?,
+	EVALUATION_FL = 'N'
+	WHERE MEMBER_NO = ?
+	AND MOVIE_NO = ?
 	</entry>
-
+	
 	<!-- 평가하기 -->
 	<entry key="insertEvaluation">
-		INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT)
+	INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT)
 	</entry>
-
+	
 	<!-- 평가 삭제 -->
 	<entry key="deleteEvaluation">
-		UPDATE EVALUATION SET
-		EVALUATION_FL = 'Y'
-		WHERE
-		MEMBER_NO = ?
-		AND MOVIE_NO = ?
+	UPDATE EVALUATION SET
+	EVALUATION_FL = 'Y'
+	WHERE MEMBER_NO = ?
+	AND MOVIE_NO = ?
 	</entry>
-
+	
 	<!-- 평가한 영화 개수 조회 -->
 	<entry key="evaluationCount">
-		SELECT COUNT(*) FROM EVALUATION
-		WHERE MEMBER_NO = ?
-		AND
-		EVALUATION_FL = 'N'
+	SELECT COUNT(*) FROM EVALUATION
+	WHERE MEMBER_NO = ?
+	AND EVALUATION_FL = 'N'
 	</entry>
 
-
-
-
+	
+	
+	
 	<!-- 쪽지(메세지) 목록 조회 -->
 	<entry key="selectMessage">
 		SELECT MESSAGE_NO,
-		MESSAGE_CT,
-		A.ENROLL_DT,
-		READ_FL,
-		MEMBER_NM,
-		PROFILE_IMG
+	        MESSAGE_CT,
+	        A.ENROLL_DT,
+	        READ_FL,
+	        MEMBER_NM,
+	        PROFILE_IMG
 		FROM MESSAGE A
-		JOIN MEMBER B ON (A.MEMBER_NO =
-		B.MEMBER_NO)
-		WHERE
-		TARGET_NO=?
+		JOIN MEMBER B ON (A.MEMBER_NO = B.MEMBER_NO)
+		WHERE TARGET_NO=?
 		AND MESSAGE_ST='N'
 		ORDER BY MESSAGE_NO DESC
 	</entry>
-
+	
 
 	<!-- 로그인 회원의 팔로워 목록 조회 -->
 	<entry key="selectFollower">
-		SELECT MEMBER_NO, MEMBER_NM, COUNT(*), PROFILE_IMG
-		FROM EVALUATION
-		JOIN MEMBER USING(MEMBER_NO)
-		WHERE MEMBER_NO IN (SELECT
-		MEMBER_NO
-		FROM FOLLOW
-		WHERE TARGET_NO = ?
-		AND FOLLOW_FL = 'N')
-		AND
-		EVALUATION_FL = 'N'
-		GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
-		ORDER BY
-		MEMBER_NO
+	SELECT MEMBER_NO, MEMBER_NM, PROFILE_IMG, COUNT(MOVIE_NO)
+	FROM MEMBER
+	LEFT JOIN (SELECT * FROM EVALUATION WHERE EVALUATION_FL = 'N') USING(MEMBER_NO)
+	WHERE MEMBER_NO IN (SELECT MEMBER_NO
+						FROM FOLLOW
+						WHERE TARGET_NO = ?
+						AND FOLLOW_FL='N')
+	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	ORDER BY MEMBER_NO
 	</entry>
-
-
+	
+	
 	<!-- 로그인 회원의 팔로잉 목록 조회 -->
 	<entry key="selectFollowing">
-		SELECT MEMBER_NO, MEMBER_NM, COUNT(*), PROFILE_IMG
-		FROM EVALUATION
-		JOIN MEMBER USING(MEMBER_NO)
-		WHERE MEMBER_NO IN (SELECT
-		TARGET_NO
-		FROM FOLLOW
-		WHERE MEMBER_NO = ?
-		AND FOLLOW_FL = 'N')
-		AND
-		EVALUATION_FL = 'N'
-		GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
-		ORDER BY
-		MEMBER_NO
+	SELECT MEMBER_NO, MEMBER_NM, PROFILE_IMG, COUNT(MOVIE_NO)
+	FROM MEMBER
+	LEFT JOIN (SELECT * FROM EVALUATION WHERE EVALUATION_FL = 'N') USING(MEMBER_NO)
+	WHERE MEMBER_NO IN (SELECT TARGET_NO
+						FROM FOLLOW
+						WHERE MEMBER_NO = ?
+						AND FOLLOW_FL='N')
+	GROUP BY MEMBER_NO, MEMBER_NM, PROFILE_IMG
+	ORDER BY MEMBER_NO
 	</entry>
-
+	
+	
 	<!-- 팔로워 삭제 / 팔로잉 취소 -->
 	<entry key="deleteFollow">
-		UPDATE FOLLOW SET FOLLOW_FL='Y'
-		WHERE MEMBER_NO = ?
-		AND
-		TARGET_NO = ?
+	UPDATE FOLLOW SET FOLLOW_FL='Y'
+	WHERE MEMBER_NO = ?
+	AND TARGET_NO = ?
 	</entry>
-
+	
 	<!-- 팔로잉 수정 (삭제 취소) -->
 	<entry key="updateFollow">
-		UPDATE FOLLOW SET FOLLOW_FL='N'
-		WHERE MEMBER_NO = ?
-		AND
-		TARGET_NO = ?
+	UPDATE FOLLOW SET FOLLOW_FL='N'
+	WHERE MEMBER_NO = ?
+	AND TARGET_NO = ?
 	</entry>
-
+	
 	<!-- 팔로우 -->
 	<entry key="insertFollow">
-		INSERT INTO FOLLOW VALUES(?,?,DEFAULT)
+	INSERT INTO FOLLOW VALUES(?,?,DEFAULT)
 	</entry>
+	
+	
+	
+	<!-- 마이프로필 평가한 영화 조회( 4개만 )  -->
+	<entry key="selectEvalMovie">
+	SELECT * FROM ( 
+    SELECT ROWNUM RNUM, A.* FROM(
+
+        SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+        FROM EVALUATION
+        JOIN MOVIE USING(MOVIE_NO)
+        WHERE MEMBER_NO= ?
+
+	    ) A
+	)
+	WHERE RNUM BETWEEN 1 AND 4 
+	</entry>
+	
+	
+	
+	
+	
+	
 
 </properties>

@@ -382,7 +382,7 @@ public class MemberDAO {
 			
 		} finally {
 			
-			close(conn);
+			close(pstmt);
 			
 		}
 		
@@ -412,7 +412,7 @@ public class MemberDAO {
 			
 		} finally {
 			
-			close(conn);
+			close(pstmt);
 			
 		}
 		
@@ -654,8 +654,8 @@ public class MemberDAO {
 				
 				f.setMemberNo(rs.getInt(1)); // 팔로워번호
 				f.setMemberName(rs.getString(2)); // 팔로워 이름
-				f.setEvaluationCount(rs.getInt(3)); // 팔로워의 평가개수
-				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
+				f.setProfileImage(rs.getString(3)); // 팔로워의 프로필경로
+				f.setEvaluationCount(rs.getInt(4)); // 팔로워의 평가개수
 				
 				fList.add(f);				
 			}	
@@ -698,8 +698,8 @@ public class MemberDAO {
 				
 				f.setTargetNo(rs.getInt(1)); // 팔로잉 회원 번호
 				f.setMemberName(rs.getString(2)); // 팔로잉 회원 이름
-				f.setEvaluationCount(rs.getInt(3)); // 팔로워의 평가개수
-				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
+				f.setProfileImage(rs.getString(3)); // 팔로워의 프로필경로
+				f.setEvaluationCount(rs.getInt(4)); // 팔로워의 평가개수
 				
 				fList.add(f);	
 				
@@ -796,6 +796,61 @@ public class MemberDAO {
 		}
 		
 		return result;
+	}
+
+	
+	
+	
+	/** 평가한 영화목록 조회 DAO 
+	 * @param conn 
+	 * @param memberNo
+	 * @return evalMovie
+	 * @throws Exception
+	 */
+	public List<Movie> selectEvalMovie(Connection conn, int memberNo) throws Exception {
+		
+		List<Movie> evalMovie = new ArrayList<Movie>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectEvalMovie");
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			// DB에 해당 멤버가 데이터가 없을 때, 오류로 확인시키기
+//			if(!rs.next()) {
+//				throw new Exception("조회된 결과가 없습니다.");
+//			}
+			
+			while(rs.next()) {
+				
+				Movie movie = new Movie();
+//				 SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+				movie.setRNum(rs.getInt("RNUM"));
+				movie.setMovieNo(rs.getInt("MOVIE_NO"));
+				movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+				movie.setPosterImage(rs.getString("POSTER_IMG"));
+				movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+				movie.setCountry(rs.getString("COUNTRY"));
+				
+				evalMovie.add(movie);
+				
+			} 
+			
+			// sql잘 되나 확인용
+//			System.out.println(evalMovie);
+			
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		return evalMovie;
 	}
       
 

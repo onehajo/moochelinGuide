@@ -22,6 +22,16 @@ public class MovieService {
 		close(conn);
 		return list;
 	}
+
+	
+	
+	
+	public List<Movie> allShow() throws Exception {
+		Connection conn = getConnection();
+		List<Movie> list = dao.allShow(conn);
+		close(conn);
+		return list;
+	}
 	
 	
 }
