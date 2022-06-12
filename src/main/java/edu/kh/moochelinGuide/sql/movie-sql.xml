@@ -18,4 +18,19 @@
 		ORDER BY TO_NUMBER(REGEXP_REPLACE(TICKETING, '\%')) DESC
 	</entry>
 	
+	<!-- 전체 영화 리스트 -->
+	<entry key="allShow">
+		SELECT 
+			MOVIE_NO,
+			MOVIE_TITLE,
+			POSTER_IMG,
+			RELEASE_YEAR,
+			COUNTRY,
+			TICKETING, 
+			AUDIENCE
+		FROM MOVIE
+		WHERE NOW_SHOWING_FL='Y'
+		ORDER BY TO_NUMBER(REGEXP_REPLACE(TICKETING, '\%')) DESC
+	</entry>
+	
 </properties>

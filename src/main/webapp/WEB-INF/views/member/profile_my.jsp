@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- map 저장된 값 변수에 세팅 -->
+
+
+<c:set var="evalMovie" value="${map.evalMovie}" />
+
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,7 +48,7 @@
     <main> 
         <div class="container">
             <section class="page-start">
-                <div class="my-background">
+                <div class="my-background " style=" background-size: cover; background-image : url(${contextPath}${loginMember.profileBackImage})">
 
                 </div>
                 <div class="info-1200px">
@@ -48,17 +56,18 @@
                         <!-- 배경이미지 / 내프로필 / 팔로워/팔로잉 .... 평가한 영화 -->
                         <div class="profile-position profile-img-area">
                             <c:if test="${empty loginMember.profileImage}">
-							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>						
-						</c:if>
+                                <img src="${contextPath}/resources/images/user.png" style="width: 110px; height: 110px;">
+							    					
+						    </c:if>
 						
-						<c:if test="${!empty loginMember.profileImage}">
-							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage" style=" background-size: 40px; background-image : url(${contextPath}${loginMember.profileImage})"></div></a></li>						
-						</c:if>
+                            <c:if test="${!empty loginMember.profileImage}">
+                                <img src="${contextPath}${loginMember.profileImage}" style="width: 110px; height: 110px;">
+                            </c:if>
 				
                             <!-- <div class="fa-solid fa-user"></div> -->
                         </div>
                         <div>
-                            <div class="profile-name">김유저</div>
+                            <div class="profile-name">${loginMember.memberName}</div>
                             <div class="follow"><span><a href="#">팔로워</a> : 3</span><span>   |   </span><span><a href="#">팔로잉</a>  : 3</span></div>
                         </div>
                         <!-- 제가 마이페이지에 a태그 넣어서 깨져버렸어용-->
@@ -70,6 +79,7 @@
                     </div>
                 </div>
             </section>
+      
             
             <!-- 내가 평가한 영화 / 내가 찜한 영화 / 취향분석 -->
             <section class="sec-content">
@@ -78,232 +88,184 @@
                             <div class="title content-analysis"> 내가 평가한 영화 </div>
                             <div class="more-view"><a href="#"> +더보기 </a></div>
                         </div>
+
+                        
                         <div class="movie-list-all">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="resources/images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">브로커</div>
-                                                <div class="movie-year-contry">2022 ・ 한국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="../images/broker.jpeg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                <div class="movie-year-contry">2022 ・ 미국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.3</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="../images/broker.jpeg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                <div class="movie-year-contry">2022 ・ 미국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.3</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="../images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                <div class="movie-year-contry">2022 ・ 미국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.3</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                            </ul>
-                        </div>
-            
-                        <div class="title-area">
-                            <div class="title content-analysis"> 내가 찜한 영화 </div>
-                            <div class="more-view"><a href="#"> +더보기 </a></div>
-                        </div>
-                        <div class="movie-list-all">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="../images/broker.jpeg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">브로커</div>
-                                                <div class="movie-year-contry">2022 ・ 한국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="../images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                <div class="movie-year-contry">2022 ・ 미국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.3</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="../images/broker.jpeg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                <div class="movie-year-contry">2022 ・ 미국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.3</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                                <li>
-                                    <a href="#">
-                                        <div class="movie">
-                                            <div class="movie-top">
-                                                <div class="movie-poster">
-                                                    <img src="../images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="movie-bottom">
-                                                <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                <div class="movie-year-contry">2022 ・ 미국</div>
-                                                <div class="average">
-                                                    <span>평균</span>
-                                                    <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                    <span>3.3</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-            
-                            </ul>
-                        </div>
-            
-                        <div>
-                                <div class="title content-analysisn"> 취향분석 </div>
-                                <div class="more-view anal"> "평점 3.79점의 까탈 영화 사랑꾼" </div>
 
-                                 <!-- 평점 그래프 -->
-                                <div class="sec-in-block">
-                                    <div class="set-area">
-                                        <ul class="graph-around">
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                            <li><div></div></li>
-                                        </ul>
+                            <c:choose>
+
+                                <c:when test="${ empty evalMovie}">
+
+                                    <div><span>평가한 영화가 없습니다.</span></div>
+
+                                </c:when>
+
+                                <c:otherwise>
+                                    
+                                    <ul>
+                                    <!-- 향상된 for문 -->
+                                    <c:forEach var="evalList" items="${evalMovie}">
+                                            <li>
+                                                <a href="#">
+                                                    <div class="movie">
+                                                        <div class="movie-top">
+                                                            <div class="movie-poster">
+                                                                <img src="${evalList.posterImage}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="movie-bottom">
+                                                            <div class="movie-title">${evalList.movieTitle}</div>
+                                                            <div class="movie-year-contry">${evalList.releaseYear} ・ ${evalList.country}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </c:forEach>    
+                                    </ul>
+                                </c:otherwise>  
+                                  
+                            </c:choose>    
+
+
+
+                            <div class="title-area">
+                                <div class="title content-analysis"> 내가 찜한 영화 </div>
+                                <div class="more-view"><a href="#"> +더보기 </a></div>
+                            </div>
+                            <div class="movie-list-all">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="movie">
+                                                <div class="movie-top">
+                                                    <div class="movie-poster">
+                                                        <img src="../images/broker.jpeg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="movie-bottom">
+                                                    <div class="movie-title">브로커</div>
+                                                    <div class="movie-year-contry">2022 ・ 한국</div>
+                                                    <div class="average">
+                                                        <span>평균</span>
+                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
+                                                        <span>3.8</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                
+                                    <li>
+                                        <a href="#">
+                                            <div class="movie">
+                                                <div class="movie-top">
+                                                    <div class="movie-poster">
+                                                        <img src="../images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="movie-bottom">
+                                                    <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
+                                                    <div class="movie-year-contry">2022 ・ 미국</div>
+                                                    <div class="average">
+                                                        <span>평균</span>
+                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
+                                                        <span>3.3</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                
+                                    <li>
+                                        <a href="#">
+                                            <div class="movie">
+                                                <div class="movie-top">
+                                                    <div class="movie-poster">
+                                                        <img src="../images/broker.jpeg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="movie-bottom">
+                                                    <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
+                                                    <div class="movie-year-contry">2022 ・ 미국</div>
+                                                    <div class="average">
+                                                        <span>평균</span>
+                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
+                                                        <span>3.3</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                
+                                    <li>
+                                        <a href="#">
+                                            <div class="movie">
+                                                <div class="movie-top">
+                                                    <div class="movie-poster">
+                                                        <img src="../images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="movie-bottom">
+                                                    <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
+                                                    <div class="movie-year-contry">2022 ・ 미국</div>
+                                                    <div class="average">
+                                                        <span>평균</span>
+                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
+                                                        <span>3.3</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                
+                                </ul>
+                            </div>
+                
+                            <div>
+                                    <div class="title content-analysisn"> 취향분석 </div>
+                                    <div class="more-view anal"> "평점 3.79점의 까탈 영화 사랑꾼" </div>
+    
+                                     <!-- 평점 그래프 -->
+                                    <div class="sec-in-block">
+                                        <div class="set-area">
+                                            <ul class="graph-around">
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                                <li><div></div></li>
+                                            </ul>
+                                        </div>
+                                        <div class="set-area-1">
+                                            <ul class="around">
+                                                <li></li>
+                                                <li>1</li>
+                                                <li></li>
+                                                <li>2</li>
+                                                <li></li>
+                                                <li>3</li>
+                                                <li></li>
+                                                <li>4</li>
+                                                <li></li>
+                                                <li>5</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="set-area-1">
-                                        <ul class="around">
-                                            <li></li>
-                                            <li>1</li>
-                                            <li></li>
-                                            <li>2</li>
-                                            <li></li>
-                                            <li>3</li>
-                                            <li></li>
-                                            <li>4</li>
-                                            <li></li>
-                                            <li>5</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <button type="button" onclick="location.href='analysis.jsp'" class="anal-button" >취향분석 보기</button>
+                                    <button type="button" onclick="location.href='analysis.jsp'" class="anal-button" >취향분석 보기</button>
+    
+                            </div>
+    
+                    </div>
+    
+    
+                </section>
+            </div>
 
-                        </div>
-
-                </div>
-
-
-            </section>
-        </div>
     </main>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />

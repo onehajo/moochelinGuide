@@ -67,6 +67,37 @@ public class MovieDAO {
 		}
 		return list;
 	}
+
+	
+	
+	public List<Movie> allShow(Connection conn) throws Exception {
+		List<Movie> list = new ArrayList<Movie>();
+		try {
+			String sql = prop.getProperty("allShow");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Movie movie = new Movie();
+				
+				movie.setMovieNo(rs.getInt("MOVIE_NO"));
+				movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+				movie.setPosterImage(rs.getString("POSTER_IMG"));
+				movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+				movie.setCountry(rs.getString("COUNTRY"));
+				movie.setTicketing(rs.getString("TICKETING"));
+				movie.setAudience(rs.getString("AUDIENCE"));
+				
+				list.add(movie);
+			}
+			
+		}finally {
+		
+			close(rs);
+			close(stmt);
+		}
+		return list;
+	}
 	
 	
 	

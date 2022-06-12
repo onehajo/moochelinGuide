@@ -2,6 +2,7 @@ package edu.kh.moochelinGuide.member.model.service;
 
 import static edu.kh.moochelinGuide.common.JDBCTemplate.*;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -250,13 +251,6 @@ public class MemberService {
 			
 		}
 		
-		// 이름 수정안하고 이미지 바꿀때,
-		if( result < 0) {
-			
-			
-		}
-		
-		
 		
 		if(result>0) commit(conn);
 		else         rollback(conn);
@@ -369,6 +363,39 @@ public class MemberService {
 		
 		return result;
 		
+	}
+
+	
+	/** 마이프로필 Service
+	 * @param memberNo
+	 * @return map 
+	 * @throws Exception
+	 */
+	public Map<String, Object> profileMy(int memberNo) throws Exception{
+		
+		
+		Connection conn = getConnection();
+		
+		// 1)평가한 영화 정보 조회 .. 를 가지고 영화(이름, 이미지, 년도, 국가 ) ( 평균별점 걍 빼자  )
+		List<Movie> evalMovie = dao.selectEvalMovie(conn, memberNo);
+		
+		System.out.println(evalMovie);
+		
+
+		// 2) 찜한 영화 정보(정보가 없슈)
+
+
+		// 3) 취향분석 (없슈)
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 1) 평가한 영화 정보 조회 (4개) 담겨져 있어야함.
+		map.put("evalMovie", evalMovie);
+		// 2) 찜한 영화 정보(담을 예정)
+		// 3) 취향분석 (담을 예정)
+		
+		close(conn);
+		
+		return map;
 	}
 	
 	

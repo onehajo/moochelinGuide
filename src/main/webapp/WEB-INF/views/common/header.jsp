@@ -13,7 +13,7 @@
 				</li>
 				
 				<li class="showing"><a href="${contextPath}">박스오피스</a></li>
-				<li class="all"><a href="#">전체영화</a></li>
+				<li class="all"><a href="${contextPath}/movie/allMovie">전체영화</a></li>
 				
 				<!-- 검색 -->
 				<li class="sch">
@@ -53,10 +53,10 @@
 						<li class="grade"><a href="${contextPath}/member/evaluation">평가하기</a></li>
 						
 						<!-- pofile_my로 넘어가야함. 임시로 내정보수정으로 연결 -->
-						<li class="profile"><a href="${contextPath}/member/profile/my"><div id="profileImage"></div></a></li>
+						<li class="profile"><a href="${contextPath}/member/profile/my?id=1"><div id="profileImage"></div></a></li>
 						
 						<c:if test="${empty loginMember.profileImage}">
-							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"></div></a></li>						
+							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"  style=" background-size: 40px; background-image : url('${contextPath}/resources/images/user.png')"></div></a></li>						
 						</c:if>
 						
 						<c:if test="${!empty loginMember.profileImage}">
