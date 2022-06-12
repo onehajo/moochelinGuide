@@ -1,5 +1,7 @@
 package edu.kh.moochelinGuide.member.model.vo;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,4 +21,5 @@ public class Member {
 	private String profileBackImage;
 	private String enrollDate;
 	private String secessionFlag;
+	
 }

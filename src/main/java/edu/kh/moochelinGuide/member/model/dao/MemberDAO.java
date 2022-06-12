@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
+import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 public class MemberDAO {
@@ -114,17 +115,17 @@ public class MemberDAO {
 		return member;
 	}
 
-	/** 특정 키워드로 유저 검색 DAO
+	/** 특정 키워드로 유저 검색 DAO (로그인 X)
 	 * @param conn
 	 * @param query
 	 * @return userList
 	 * @throws Exception
 	 */
-	public List<Member> searchUser(Connection conn, String query) throws Exception{
+	public List<Member> searchUser1(Connection conn, String query) throws Exception{
 		List<Member> userList = new ArrayList<Member>();
 		
 		try {
-			String sql = prop.getProperty("searchUser");
+			String sql = prop.getProperty("searchUser1");
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -139,6 +140,47 @@ public class MemberDAO {
 				mem.setMemberNo(rs.getInt(1));
 				mem.setMemberName(rs.getString(2));
 				mem.setProfileImage(rs.getString(3));
+				
+				userList.add(mem);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return userList;
+	}
+	
+	/** 특정 키워드로 유저 검색 DAO (로그인 O)
+	 * @param conn
+	 * @param query
+	 * @return userList
+	 * @throws Exception
+	 */
+	public List<Member> searchUser2(Connection conn, String query, int memberNo) throws Exception{
+		List<Member> userList = new ArrayList<Member>();
+		
+		try {
+			String sql = prop.getProperty("searchUser2");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, "%"+query+"%");
+			pstmt.setInt(3, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Member mem = new Member();
+				
+				mem.setMemberNo(rs.getInt(1));
+				mem.setMemberName(rs.getString(2));
+				mem.setProfileImage(rs.getString(3));
+				// 팔로우 여부
+				mem.setSecessionFlag(rs.getString("FOLLOW_FL"));
 				
 				userList.add(mem);
 			}
@@ -282,43 +324,6 @@ public class MemberDAO {
 		
 		return result;
 	}
-
-	/** 평가하기 - 랜덤 영화 조회 DAO
-	 * @param conn
-	 * @param memberNo
-	 * @return movieList
-	 * @throws Exception
-	 */
-	public List<Movie> selectRandomMovie(Connection conn, int memberNo) throws Exception {
-		List<Movie> movieList = new ArrayList<Movie>();
-		
-		try {
-			String sql = prop.getProperty("selectRandomMovie");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, memberNo);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Movie m = new Movie();
-				
-				m.setMovieNo(rs.getInt(1));
-				m.setMovieTitle(rs.getString(2));
-				m.setPosterImage(rs.getString(3));
-				m.setReleaseYear(rs.getInt(4));
-				m.setCountry(rs.getString(5));
-						
-				movieList.add(m);
-			}	
-			
-		}finally {
-			close(rs);
-			close(pstmt);	
-		}
-		
-		return movieList;
-	}
 	
 
 	/** 회원 비밀번호 변경 DAO
@@ -384,8 +389,74 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	/** 회원정보 배경 이미지 수정 DAO 
+	 * @param conn
+	 * @param memberMod
+	 * @param memberNo
+	 * @return result 
+	 * @throws Exception
+	 */
+	public int updateBackgroundImage(Connection conn, Member memberMod, int memberNo) throws Exception {
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateBackgroundImage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberMod.getProfileBackImage());
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			
+			close(conn);
+			
+		}
+		
+		return result;
+	}
 	    
  
+	/** 평가하기 - 랜덤 영화 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return movieList
+	 * @throws Exception
+	 */
+	public List<Movie> selectRandomMovie(Connection conn, int memberNo) throws Exception {
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		try {
+			String sql = prop.getProperty("selectRandomMovie");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Movie m = new Movie();
+				
+				m.setMovieNo(rs.getInt(1));
+				m.setMovieTitle(rs.getString(2));
+				m.setPosterImage(rs.getString(3));
+				m.setReleaseYear(rs.getInt(4));
+				m.setCountry(rs.getString(5));
+						
+				movieList.add(m);
+			}	
+			
+		}finally {
+			close(rs);
+			close(pstmt);	
+		}
+		
+		return movieList;
+	}
+	
   
 	/** 평가 update DAO
 	 * @param conn
@@ -508,9 +579,55 @@ public class MemberDAO {
 		
 
 
-
-<<<<<<< HEAD
-	/** 로그인 회원의 팔로워 목록 조회 DAO
+  
+  
+  
+  	/** 쪽지(메세지) 목록 조회 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return messageList
+	 * @throws Exception
+	 */
+	public List<Message> selectMessage(Connection conn, int memberNo) throws Exception {
+		
+		List<Message> messageList = new ArrayList<Message>();
+		
+		try {
+			String sql = prop.getProperty("selectMessage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				
+				Message message = new Message();
+								
+				message.setMessageNo(rs.getInt(1));
+				message.setMessageContent(rs.getString(2));
+				message.setEnrollDate(rs.getString(3));
+				message.setReadFlag(rs.getNString(4));
+				message.setMemberName(rs.getString(5));
+				message.setProfileImage(rs.getString(6));
+				
+				messageList.add(message);	
+			}
+      
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+      
+    		return messageList;
+	}  
+      
+      
+      
+      
+      
+      
+      
+      
+      	/** 로그인 회원의 팔로워 목록 조회 DAO
 	 * @param conn
 	 * @param memberNo
 	 * @return fList
@@ -541,14 +658,16 @@ public class MemberDAO {
 				f.setProfileImage(rs.getString(4)); // 팔로워의 프로필경로
 				
 				fList.add(f);				
-			}			
-			
-		}finally {
+			}	
+      		}finally {
 			close(rs);
 			close(pstmt);
 		}
-		
-		return fList;
+    
+    
+    
+    
+    		return fList;
 	}
 
 	/** 로그인 회원의 팔로잉 목록 조회 DAO
@@ -594,43 +713,90 @@ public class MemberDAO {
 		return fList;
 	}
 
-=======
-	/** 회원정보 배경 이미지 수정 DAO 
+	
+
+	/** 팔로워/팔로잉 삭제 DAO
 	 * @param conn
-	 * @param memberMod
 	 * @param memberNo
-	 * @return result 
+	 * @param targetNo
+	 * @return result
 	 * @throws Exception
 	 */
-	public int updateBackgroundImage(Connection conn, Member memberMod, int memberNo) throws Exception {
+	public int deleteFollow(Connection conn, int memberNo, int targetNo) throws Exception{
 		
 		int result = 0;
 		
 		try {
 			
-			String sql = prop.getProperty("updateBackgroundImage");
+			String sql = prop.getProperty("deleteFollow");
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberMod.getProfileBackImage());
-			pstmt.setInt(2, memberNo);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, targetNo);
 			
 			result = pstmt.executeUpdate();
 			
-		} finally {
-			
-			close(conn);
-			
+		}finally {
+			close(pstmt);
 		}
 		
 		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
+	/** 팔로워/팔로잉 수정(삭제취소) DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param targetNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateFollow(Connection conn, int memberNo, int targetNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("updateFollow");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, targetNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 팔로우 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param targetNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertFollow(Connection conn, int memberNo, int targetNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("insertFollow");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, targetNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+      
+
 }

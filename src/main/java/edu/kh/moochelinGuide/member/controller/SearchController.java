@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
+import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
@@ -65,8 +67,23 @@ public class SearchController extends HttpServlet{
 		    // 유저 검색 결과
 		    if(command.equals("user")) {
 		    	
-		    	// 검색 결과를 조회하는 서비스를 호출하여 유저 리스트 반환
-		    	List<Member> userList = service.searchUser(query);
+		    	HttpSession session = req.getSession();
+		    	
+		    	Member loginMember = (Member)session.getAttribute("loginMember");
+		    	
+		    	List<Member> userList = null;
+		    	if(loginMember == null) {
+		    		
+		    		userList = service.searchUser1(query);
+		    		
+		    	}else {
+		    		
+		    		// 검색결과 + 팔로우여부 가져오기 (팔로우여부는 편의상 secessionFlag에 담음)
+		    		int memberNo = loginMember.getMemberNo();
+		    		int mode = Integer.parseInt(req.getParameter("mode"));
+		    		userList = service.searchUser2(query, memberNo);
+
+		    	}
 		    	
 		    	req.setAttribute("userList", userList);
 		    	

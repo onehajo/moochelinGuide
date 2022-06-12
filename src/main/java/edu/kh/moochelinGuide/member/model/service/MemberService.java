@@ -3,11 +3,13 @@ package edu.kh.moochelinGuide.member.model.service;
 import static edu.kh.moochelinGuide.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
 import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
+import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 public class MemberService {
@@ -60,16 +62,32 @@ public class MemberService {
 	}
 
 	
-	/** 특정 키워드로 유저 검색 Service
+	/** 특정 키워드로 유저 검색 Service (로그인 X)
 	 * @param query
 	 * @return userList
 	 * @throws Exception
 	 */
-	public List<Member> searchUser(String query) throws Exception{
+	public List<Member> searchUser1(String query) throws Exception{
+		
+		Connection conn = getConnection();
+			
+		List<Member> userList = dao.searchUser1(conn,query);
+		
+		close(conn);
+		
+		return userList;
+	}
+	
+	/** 특정 키워드로 유저 검색 Service (로그인 O)
+	 * @param query
+	 * @return userList
+	 * @throws Exception
+	 */
+	public List<Member> searchUser2(String query, int memberNo) throws Exception{
 		
 		Connection conn = getConnection();
 		
-		List<Member> userList = dao.searchUser(conn,query);
+		List<Member> userList = dao.searchUser2(conn,query, memberNo);
 		
 		close(conn);
 		
@@ -249,7 +267,6 @@ public class MemberService {
 		return result;
 	}
 
-<<<<<<< HEAD
 	/** 로그인 회원의 팔로워 / 팔로잉 목록 조회 Service
 	 * @param mode
 	 * @param memberNo
@@ -277,7 +294,7 @@ public class MemberService {
 		close(conn);
 		
 		return fList;
-=======
+	}
 	
 	
 	/** 회원 비밀번호 변경 Service
@@ -298,7 +315,60 @@ public class MemberService {
 		
 		
 		return result;
->>>>>>> c7a0c688a1e4a0aacecf450b1e78b44bcc8b01c8
+	}
+	
+	
+	
+
+	/** 메세지 목록 조회 service
+	 * @param memberNo
+	 * @return messageList
+	 * @throws Exception
+	 */
+	public List<Message> selectMessage(int memberNo) throws Exception {
+		Connection conn = getConnection();
+		
+		List<Message> messageList = dao.selectMessage(conn, memberNo);
+		
+		return messageList;
+	}
+
+	
+	/** 팔로워,팔로잉 삭제/삭제 취소/ 등록 Service
+	 * @param mode
+	 * @param memberNo
+	 * @param targetNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int followService(int mode, int memberNo, int targetNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		// 팔로잉 수정(삭제 취소)
+		if(mode==1) {
+			result = dao.updateFollow(conn, memberNo, targetNo);
+			
+			// 팔로우 (수정할 내역이 없으면 insert)
+			if(result == 0) {
+				result = dao.insertFollow(conn, memberNo, targetNo);
+			}
+		}
+		
+		// 팔로워,팔로잉 삭제
+		if(mode==2) {
+			result = dao.deleteFollow(conn, memberNo, targetNo);
+		}
+				
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+		
 	}
 	
 	

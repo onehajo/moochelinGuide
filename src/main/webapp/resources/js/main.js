@@ -4,44 +4,7 @@ var $dark1 = document.querySelector(".dark1");
 var $popupLogin = document.querySelector("#login-box");
 var $popupSignup = document.querySelector("#signup-box");
 var $popupAgree = document.querySelector("#agree");
-
-// 로그인 클릭할때
-function openPopLogin(){
-	$popupSignup.setAttribute("class", "popup");
-    $dark.setAttribute("class", "dark active");
-    $popupLogin.setAttribute("class", "popup active");
-    $body_tag.setAttribute("class", "not_scroll");
-}
-
-// 회원가입 클릭할때
-function openPopSignUp(){
-	$popupLogin.setAttribute("class", "popup");
-    $dark.setAttribute("class", "dark active");
-    $popupSignup.setAttribute("class", "popup active");
-    $body_tag.setAttribute("class", "not_scroll");
-}
-
-// 약관보기(회원가입버튼) 클릭 할때
-function openAgree(){
-    $dark.setAttribute("class", "dark active1");
-    $popupAgree.setAttribute("class", "popup1 active2");
-}
-
-// 검은배경 클릭할때 (로그인, 회원가입 닫기)
-function closePop(){
-	if( $dark.classList.contains('active1')){
-		$dark.setAttribute("class", "dark active"); // z-index 4->3
-		$popupAgree.setAttribute("class", "popup1"); // 약관 닫기
-	}else{
-	    $dark.setAttribute("class", "dark");
-	    $popupLogin.setAttribute("class", "popup"); // 로그인 닫기
-	    $popupSignup.setAttribute("class", "popup"); // 회원가입 닫기
-	    $body_tag.setAttribute("class", "");	
-	}
-}
-
-
-
+var $popupPw = document.querySelector("#pw-box");
 
 
 // 로그인
@@ -64,6 +27,68 @@ const nameMessage = document.getElementById("nameMessage");
 const emailMessage = document.getElementById("emailMessage");
 const pwMessage = document.getElementById("pwMessage");
 
+// 비밀번호 변경 이메일 보내기
+const pwFindEmail = document.getElementById("pwFindEmail");
+const pwfindText = document.getElementById("pwfindText");
+const pwfindBtn = document.getElementById("pwfindBtn");
+
+
+
+
+
+// 로그인 클릭할때
+function openPopLogin(){
+    loginEmail.value="";
+    loginPw.value="";
+    pwComment.innerText="";
+	$popupSignup.setAttribute("class", "popup");
+    $dark.setAttribute("class", "dark active");
+    $popupLogin.setAttribute("class", "popup active");
+    $body_tag.setAttribute("class", "not_scroll");
+}
+
+// 회원가입 클릭할때
+function openPopSignUp(){
+    signUpName.value="";
+    signUpEmail.value="";
+    signUpPw.value="";
+    nameMessage.innerText="";
+    emailMessage.innerText="";
+    pwMessage.innerText="";
+	$popupLogin.setAttribute("class", "popup");
+    $dark.setAttribute("class", "dark active");
+    $popupSignup.setAttribute("class", "popup active");
+    $body_tag.setAttribute("class", "not_scroll");
+}
+
+// 약관보기(회원가입버튼) 클릭 할때
+function openAgree(){
+    $dark.setAttribute("class", "dark active1");
+    $popupAgree.setAttribute("class", "popup active2");
+}
+
+// 검은배경 클릭할때 (로그인, 회원가입 닫기)
+function closePop(){
+	if( $dark.classList.contains('active1')){
+		$dark.setAttribute("class", "dark active"); // z-index 4->3
+		$popupAgree.setAttribute("class", "popup"); // 약관 닫기
+		$popupPw.setAttribute("class", "popup"); // 약관 닫기
+
+    }else{
+	    $dark.setAttribute("class", "dark");
+	    $popupLogin.setAttribute("class", "popup"); // 로그인 닫기
+	    $popupSignup.setAttribute("class", "popup"); // 회원가입 닫기
+	    $body_tag.setAttribute("class", "");	
+	}
+}
+
+// 비밀번호 변경 클릭 할때
+function openPw(){
+    pwFindEmail.value="";
+    pwfindText.innerText="";
+	$popupPw.setAttribute("class", "popup active2");
+    $dark.setAttribute("class", "dark active1");
+}
 
 
 
@@ -120,6 +145,59 @@ loginPw.addEventListener("input",function(){
 
 
 
+let checkObjPw = false;
+
+// 비밀번호 변경 이메일보내기 - 이메일 유효성 검사
+pwFindEmail.addEventListener("input", function(){
+
+    if(pwFindEmail.value.trim().length==0){
+        pwfindText.innerText="이메일을 입력해주세요.";
+
+        checkObjPw=false; // 유효하지 않은 상태
+        return;
+    }else{
+
+	    if(emailExp.test(pwFindEmail.value)){
+	
+	        // ****** 이메일 중복 검사(ajax) 진행 ******
+	        $.ajax({
+				url: "emailDupCheck", 
+				data : {"memberEmail" : pwFindEmail.value},
+				type : "GET", 
+				success : function(result){
+	                if(result!=0) { // 중복임
+	                    pwfindText.innerText = ""
+	                    checkObjPw=true; // 유효하지 않은 상태
+	                } else{
+	                    pwfindText.innerText = "가입되지 않은 이메일입니다."
+	                    checkObjPw=false; // 유효한 상태 
+	                }
+				},
+				error : function(){
+				}
+			});
+
+	    }else{
+	        pwfindText.innerText = "이메일 형식이 올바르지 않습니다."
+	
+	        checkObjPw=false; // 유효하지 않은 상태
+	    }
+    
+    }
+})
+// 비밀번호 찾는 이메일 보내기 버튼 클릭시 유효성 검사
+function pwfindValidate(){
+    if(!checkObjPw){
+        alert("가입한 메일을 작성해주세요.");
+        pwFindEmail.focus();
+        return false;
+    }
+    return true;
+}
+
+
+
+
 // 회원가입 유효성 검사 여부를 기록할 객체 생성
 const checkObj = {
     signUpName : false,
@@ -127,7 +205,7 @@ const checkObj = {
     signUpPw : false,
 };
 
-// 이름 유효성 검사
+// 회원가입 이름 유효성 검사
 signUpName.addEventListener("input", function(){
 
     if(signUpName.value.length==0 || !nameExp.test(signUpName.value)){
@@ -142,7 +220,7 @@ signUpName.addEventListener("input", function(){
 })
 
 
-// 이메일 유효성 검사
+// 회원가입 이메일 유효성 검사
 signUpEmail.addEventListener("input", function(){
 
     if(signUpEmail.value.trim().length==0){
@@ -258,45 +336,23 @@ function selectAll(selectAll){
 
 
 
-// google 로그인 관련 예시 
-//처음 실행하는 함수
-function init() {
-	gapi.load('auth2', function() {
-		gapi.auth2.init();
-		options = new gapi.auth2.SigninOptionsBuilder();
-		options.setPrompt('select_account');
-        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
-		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
-        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
-        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
-		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
-	})
-}
 
+
+// google 로그인 관련 // 왜 안받아와지냐고 !!!!!!!!!
 function onSignIn(googleUser) {
-	var access_token = googleUser.getAuthResponse().access_token
-	$.ajax({
-    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
-		url: 'https://people.googleapis.com/v1/people/me'
-        // key에 자신의 API 키를 넣습니다.
-		, data: {personFields:'birthdays', key:'AIzaSyBOdmeC4SOSzXmPGLEM2vZueqiBSWKg3wk', 'access_token': access_token}
-		, method:'GET'
-	})
-	.done(function(e){
-        //프로필을 가져온다.
-		var profile = googleUser.getBasicProfile();
-		console.log(profile)
-	})
-	.fail(function(e){
-		console.log(e);
-	})
+	// Useful data for your client-side scripts:
+	var profile = googleUser.getBasicProfile();
+	console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+	console.log('Full Name: ' + profile.getName());
+	console.log('Given Name: ' + profile.getGivenName());
+	console.log('Family Name: ' + profile.getFamilyName());
+	console.log("Image URL: " + profile.getImageUrl());
+	console.log("Email: " + profile.getEmail());
+	
+	// The ID token you need to pass to your backend:
+	var id_token = googleUser.getAuthResponse().id_token;
+	console.log("ID Token: " + id_token);
 }
-function onSignInFailure(t){		
-	console.log(t);
-}
-
-
-
 
 
 
@@ -314,10 +370,11 @@ function onSignInFailure(t){
         dataType: "json", 
         success: function(list){
 		
-            console.log(list);
+            //console.log(list);
 			const ul = document.getElementsByClassName("movie-list")[0];
             ul.innerHTML="";
-
+			
+			let num=0;
 			for(let movie of list){
                 const li = document.createElement("li");
                 const a = document.createElement("a");
@@ -339,7 +396,8 @@ function onSignInFailure(t){
 
                 const divRanking = document.createElement("div");
                 divRanking.setAttribute("class","ranking");
-                divRanking.innerText=movie.movieNo // 해당 데이터 없음, 순위 컬럼추가 후 다시 확인하기
+                num++
+                divRanking.innerText=num; // 해당 데이터 없음, 순위 컬럼추가 후 다시 확인하기
 
                 divMovieTop.append(divMoviePoster);
                 divMovieTop.append(divRanking);
