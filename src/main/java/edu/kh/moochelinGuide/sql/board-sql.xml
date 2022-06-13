@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<comment>board-sql.xml</comment>
-
+<comment>board-sql.xml</comment>
+	
 	<!-- 문의 등록 -->
 	<entry key="inquiryRegist">
-		INSERT INTO BOARD
-		VALUES(BOARD_SEQ.NEXTVAL,?,?,DEFAULT,SYSDATE,DEFAULT,DEFAULT,?,99)
+		INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL,?,?,DEFAULT,SYSDATE,DEFAULT,DEFAULT,?,99)
 	</entry>
-
-	<!-- 문의 사항 조회 -->
+	
+	<!-- 문의 리스트 조회 -->
 	<entry key="boardList">
-		SELECT BOARD_TITLE, BOARD_CT,
-		(SYSDATE -
-		CREATE_DT)*24*60*60 AS "CREATE_DT",
-		UPDATE_DT,
-		BOARD_ST,BOARD_CD,MEMBER_NM
+		SELECT BOARD_NO,BOARD_TITLE, BOARD_CT, 
+		(SYSDATE - CREATE_DT)*24*60*60 AS "CREATE_DT", 
+		(SYSDATE - UPDATE_DT)*24*60*60 AS "UPDATE_DT", BOARD_ST,BOARD_CD,MEMBER_NM
 		FROM BOARD
 		JOIN MEMBER USING(MEMBER_NO)
 		WHERE MEMBER_NO = ?
 	</entry>
-
+	
+	<!-- 문의 사항 조회 -->
+	<entry key="boardContent">
+		SELECT BOARD_CT, MEMBER_NM FROM BOARD JOIN MEMBER USING(MEMBER_NO)
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 게시판 상태 수정 -->
+	<entry key="boardUpdate">
+		UPDATE BOARD SET BOARD_CD = 98 WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 게시판 마지막 활동 시간 업데이트 -->
+	<entry key="boardUdate">
+		UPDATE BOARD SET UPDATE_DT = SYSDATE WHERE BOARD_NO = ?
+	</entry>
 </properties>

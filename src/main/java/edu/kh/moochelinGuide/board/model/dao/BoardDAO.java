@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.board.model.vo.Board;
+import edu.kh.moochelinGuide.board.model.vo.Reply;
 
 public class BoardDAO {
 	
@@ -60,10 +61,10 @@ public class BoardDAO {
 		return result;
 	}
 
-	public List<Board> boardList(Connection conn, int boardNo) throws Exception {
+	public List<Board> boardList(Connection conn, int boardNo, String condition) throws Exception {
 		List<Board> boardList = new ArrayList<Board>();
 		try {
-			String sql = prop.getProperty("boardList");
+			String sql = prop.getProperty("boardList")+condition;
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -72,16 +73,20 @@ public class BoardDAO {
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Board board = new Board(); 
+				Board board = new Board();
+				board.setBoardNo(rs.getInt("BOARD_NO"));
 				board.setBoardTit(rs.getString("BOARD_TITLE"));
 				board.setContent(rs.getString("BOARD_CT"));
 				board.setDateCalcul(rs.getLong("CREATE_DT"));
-				board.setUpdateDate(rs.getDate("UPDATE_DT"));
+				board.setDateCalcul2(rs.getLong("UPDATE_DT"));
 				board.setBoardSt(rs.getString("BOARD_ST"));
 				board.setBoardCode(rs.getInt("BOARD_CD"));
 				board.setMemberNm(rs.getString("MEMBER_NM"));
+				
 				long diffTime = board.getDateCalcul();
 				board.setMsg(calcul(diffTime));
+				
+				diffTime = board.getDateCalcul2();
 				board.setMsg2(calcul(diffTime));
 				boardList.add(board);
 			}
@@ -115,6 +120,69 @@ public class BoardDAO {
 		}
 		
 		return msg;
+	}
+
+	/** 문의 내역 조회 DAO
+	 * 
+	 * @param conn
+	 * @param boardNo
+	 * @return board
+	 * @throws Exception
+	 */
+	public Board boardContent(Connection conn, int boardNo) throws Exception {
+		Board board = new Board();
+		try {
+			String sql = prop.getProperty("boardContent");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board.setContent(rs.getString("BOARD_CT"));
+				board.setMemberNm(rs.getString("MEMBER_NM"));
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return board;
+	}
+
+	public int boardUpdate(Connection conn, Reply reply) throws Exception {
+		int result = 0;
+		try {
+			String sql = prop.getProperty("boardUpdate");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reply.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/** 마지막 활동 시간 업데이트 DAO
+	 * @param conn 
+	 * 
+	 * @param reply
+	 * @return result
+	 * @throws Exception
+	 */
+	public int boardUdate(Connection conn, Reply reply) throws Exception{
+		int result = 0;
+			try {
+				String sql = prop.getProperty("boardUdate");
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, reply.getBoardNo());
+				
+				result = pstmt.executeUpdate();
+			}finally {
+				close(pstmt);
+			}
+		return result;
 	}
 
 }
