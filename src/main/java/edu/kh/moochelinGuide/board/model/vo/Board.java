@@ -23,6 +23,7 @@ public class Board {
 	private int boardCode;
 	private String memberNm;
 	private long dateCalcul;
+	private long dateCalcul2;
 	private String msg;
 	private String msg2;
 }

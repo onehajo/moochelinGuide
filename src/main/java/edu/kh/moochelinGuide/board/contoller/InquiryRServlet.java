@@ -59,7 +59,7 @@ public class InquiryRServlet extends HttpServlet {
 		
 		resp.getWriter().print(result);
 		
-		resp.sendRedirect("../inquiryList");
+		resp.sendRedirect("../inquiryList?array=1");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

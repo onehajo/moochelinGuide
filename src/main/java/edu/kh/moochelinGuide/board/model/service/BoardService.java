@@ -8,6 +8,7 @@ import java.util.List;
 
 import edu.kh.moochelinGuide.board.model.dao.BoardDAO;
 import edu.kh.moochelinGuide.board.model.vo.Board;
+import edu.kh.moochelinGuide.board.model.vo.Reply;
 
 public class BoardService {
 	
@@ -35,18 +36,45 @@ public class BoardService {
 	/** 문의 사항 조회 Service
 	 * 
 	 * @param boardNo
+	 * @param array 
 	 * @return boardList
 	 * @throws Exception
 	 */
-	public List<Board> boardList(int boardNo) throws Exception {
+	public List<Board> boardList(int boardNo, int array) throws Exception {
 		Connection conn = getConnection();
 		
 		List<Board> boardList = new ArrayList<Board>();
 		
-		boardList = dao.boardList(conn,boardNo);
+		String condition = null;
+		
+		switch(array) {
+		case 1: condition = " ORDER BY UPDATE_DT ASC"; break;
+		case 2: condition = " ORDER BY UPDATE_DT DESC"; break;
+		case 3: condition = " ORDER BY CREATE_DT ASC"; break;
+		case 4: condition = " ORDER BY CREATE_DT DESC"; break;
+		}
+		
+		boardList = dao.boardList(conn,boardNo, condition);
 		
 		close(conn);
 		return boardList;
+	}
+	
+	/** 문의 내용 조회 Service
+	 * 
+	 * @param boardNo
+	 * @return board
+	 * @throws Exception
+	 */
+	public Board boardContent(int boardNo) throws Exception {
+		Connection conn = getConnection();
+		Board board = new Board();
+		
+		board = dao.boardContent(conn,boardNo);
+		
+		close(conn);
+		
+		return board;
 	}
 
 }
