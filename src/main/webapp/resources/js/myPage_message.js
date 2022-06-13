@@ -38,16 +38,34 @@ const messageNo = document.getElementsByName("messageNo");
     //}        
 //} 
 
+//
 
+
+
+// 답장하기 누르면
 function popupSend(){
-    messageContent.classList.remove('activeP');
-    messageSend.classList.add('activeP');
+    messageContent.classList.add('activeImportant');
+    messageSend.classList.add('activePblock');
 }
 
-function closeMessage(){
-    messageContent.classList.remove('activeP');
-    messageSend.classList.remove('activeP');
-}
+document.getElementById("sendMessagePop").addEventListener("click",function(){
+	messageContent.classList.add('activeImportant');
+    messageSend.classList.add('activePblock');
+})
+
+
+
+const sendMessageBtn = document.getElementById("sendMessageBtn");
+// 메세지 팝업에 // 보내기 버튼 클릭
+sendMessageBtn.addEventListener("click",function(){
+    window.close();
+})
+// 메세지 팝업에 삭제버튼
+const deleteMessageBtn = document.getElementById("deleteMessageBtn");
+deleteMessageBtn.addEventListener("click",function(){
+    window.close();
+})
+
     
 
 

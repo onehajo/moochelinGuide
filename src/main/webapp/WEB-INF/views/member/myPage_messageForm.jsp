@@ -28,32 +28,33 @@
 <body>
 
 
-			<!-- class="popup" -->
-			<!-- 쪽지 팝업 내용보기 -->
-            <div id="messageContent" class="detailPopup">
-                <p class="popupTitle">받은 쪽지<span class="smallText"></span></p>
-                <p class="">보낸 사람 : ${messageDetail.memberName}<span class="date">${messageDetail.enrollDate}</span></p>
-                <form class="messageForm-css">
-                    <textarea name="" id="messageC" class="textarea-css" disabled>${messageDetail.messageContent}</textarea>
-                    <div class="messageBtnBox">
-                        <button type="button" onclick="popupSend()">답장</button>
-                        <button onclick="deleteMessage()">삭제</button>
-                    </div>
-                </form>
-            </div>
-			
-			<!-- 쪽지 팝업 보내기 -->
-            <div id="messageSend" class="popup">
-                <img src="../images/logo-blue.png" alt="" width="200px">
-                <p class="popupTitle">쪽지 보내기</p>
-                <form class="messageForm-css">
-                    <textarea name="" id="" class="textarea-css" placeholder="내용을 입력해주세요.(200자)"></textarea>
-                    <div class="messageBtnBox">
-                        <button class="sendBtn">전송</button>
-                    </div>
-                </form>
-                <div class="close" onclick="closeMessage()">X</div>
-            </div>
+	<!-- if(내용보기, 쪽지 보내기)-->
+
+	<!-- 쪽지 팝업 - 내용보기 -->
+	<div id="messageContent" class="detailPopupHidden activePblock">
+	    <p class="popupTitle">받은 쪽지<span class="smallText"></span></p>
+	    <p class="">보낸 사람 : ${messageDetail.memberName}<span class="date">${messageDetail.enrollDate}</span></p>
+	    <form class="messageForm-css" action="deleteMessage" method="post">
+	        <textarea name="" id="messageC" class="textarea-css" disabled>${messageDetail.messageContent}</textarea>
+	        <input type="hidden" name="messageNo" value="${messageDetail.messageNo}">
+	        <div class="messageBtnBox">
+	            <button type="button" onclick="popupSend()">답장</button>
+	            <button id="deleteMessageBtn">삭제</button>
+	        </div>
+	    </form>
+	</div>
+
+	<!-- 쪽지 팝업 - 쪽지보내기 -->
+	<div id="messageSend" class="detailPopupHidden">
+	    <p class="popupTitle">쪽지 보내기<span class="smallText"></span></p>
+	    <p class="">받는 사람 : ${messageDetail.memberName}</p>
+	    <form class="messageForm-css" action="send" method="post" onsubmit="return sendValidate()">
+	        <textarea name="sendMessageContent" id="messageC" class="textarea-css"></textarea>
+	        <div class="messageBtnBox">
+	            <button id="sendMessageBtn">보내기</button>
+	        </div>
+	    </form>
+	</div>
             
 
 

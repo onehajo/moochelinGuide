@@ -53,40 +53,39 @@ public class MyPageMessageController extends HttpServlet {
 		    }
 		    
 		    
-			// 쪽지 상세보기
+			// 쪽지 상세보기 팝업
 		    if(command.equals("detail")) {
 		    	String no = req.getParameter("no");
 		    	int messageNo = Integer.parseInt(no);
-		    	System.out.println("비동기로 받아온 메세지 넘버 :" +messageNo);
-		    			
-				//req.setAttribute("messageList", messageList);
-				
-				//String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
-			    //req.getRequestDispatcher(path).forward(req, resp);
-			    
+		    	String type = req.getParameter("type");
+		    	
+		    	System.out.println("쿼리스트링으로 메세지 넘버 :" +messageNo);
 
-			    // service에 메세지 내용 요청, 반환
-			    Message messageDetail = service.messageDetail(messageNo);
-			    req.setAttribute("messageDetail", messageDetail);
-			    
-			    
-			    //new Gson().toJson(messageDetail,resp.getWriter());
-			    
-			    //resp.getWriter().print(messageDetail);
-		    //}
-			
-			// 쪽지 상세보기 화면
-		    //if(command.equals("detail")) {
-		    	
-		    	
-		    	System.out.println("넘버 전달 안되니2 " +messageNo);
-		    	
-				System.out.println("내용세팅 안됐니.."+messageDetail);
+		    	if(type.equals("confirm")) { // 타입이 확인일때
+		    		
+				    // service에 메세지 내용 요청, 반환
+				    Message messageDetail = service.messageDetail(messageNo);
+			    	
+			    	// messageDetail 반환 잘 되었는지
+					System.out.println("내용가져왔니 : "+messageDetail);
+					
+					// 전달할 값
+					req.setAttribute("messageDetail", messageDetail);
 				
-				String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
-			    req.getRequestDispatcher(path).forward(req, resp);
+					String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
+					req.getRequestDispatcher(path).forward(req, resp);
+
+				} else { // 타입이 보내기일때 
+
+					//int result = service.insertMessage(messageNo, memberNo);
+					
+					
+					
+				}
 		    	
 		    }
+		    
+		    
 		    
 		    
 		    
