@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -29,33 +28,23 @@
 <body>
 
 
-    
-
-
-        
-        
-        
-            
-
 			<!-- class="popup" -->
 			<!-- 쪽지 팝업 내용보기 -->
             <div id="messageContent" class="detailPopup">
-                <img src="../images/logo-blue.png" alt="">
-                <p class="popupTitle">받은 쪽지<span class="smallText">?</span></p>
+                <p class="popupTitle">받은 쪽지<span class="smallText"></span></p>
+                <p class="">보낸 사람 : ${messageDetail.memberName}<span class="date">${messageDetail.enrollDate}</span></p>
                 <form class="messageForm-css">
-                    <textarea name="" id="" class="textarea-css">쪽지 보낸 내용입니다. 클릭하면 내용 볼수 있음 어쩌고 저쩌고 가나다라 마바사아자 차카카카카메라 라디오레오레오
-                    </textarea>
+                    <textarea name="" id="messageC" class="textarea-css" disabled>${messageDetail.messageContent}</textarea>
                     <div class="messageBtnBox">
                         <button type="button" onclick="popupSend()">답장</button>
                         <button onclick="deleteMessage()">삭제</button>
                     </div>
                 </form>
-                <div class="close" onclick="closeMessage()">X</div>
             </div>
 			
 			<!-- 쪽지 팝업 보내기 -->
             <div id="messageSend" class="popup">
-                <img src="../images/logo-blue.png" alt="">
+                <img src="../images/logo-blue.png" alt="" width="200px">
                 <p class="popupTitle">쪽지 보내기</p>
                 <form class="messageForm-css">
                     <textarea name="" id="" class="textarea-css" placeholder="내용을 입력해주세요.(200자)"></textarea>
