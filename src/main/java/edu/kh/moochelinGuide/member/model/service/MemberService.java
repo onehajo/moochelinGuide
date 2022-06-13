@@ -534,6 +534,51 @@ public class MemberService {
 		
 	}
 
+	/** 쪽지 보내기
+	 * @param messageNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertMessage(int memberNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.insertMessage(conn, memberNo);
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	
+	/** 쪽지 삭제하기
+	 * @param messageNo
+	 * @param memberNo 
+	 * @return messageList
+	 * @throws Exception
+	 */
+	public List<Message> deletetMessage(int messageNo, int memberNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.deletetMessage(conn, messageNo);
+		
+		List<Message> messageList =null;
+		if(result>0) {
+			messageList = dao.selectMessage(conn, memberNo);			
+		}
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return messageList;
+	}
+
 	
 	
 	

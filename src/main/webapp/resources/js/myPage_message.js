@@ -40,6 +40,22 @@ const messageNo = document.getElementsByName("messageNo");
 
 //
 
+(function(){
+    $.ajax({
+        url : "selectList",
+        dataType: "json",
+        success: function(messageList){
+
+        },
+        error: function(messageList){}
+    });
+
+})()
+
+
+
+
+
 
 
 // 답장하기 누르면
@@ -63,6 +79,7 @@ sendMessageBtn.addEventListener("click",function(){
 // 메세지 팝업에 삭제버튼
 const deleteMessageBtn = document.getElementById("deleteMessageBtn");
 deleteMessageBtn.addEventListener("click",function(){
+	confirm("쪽지를 삭제 하시겠습니까?")
     window.close();
 })
 

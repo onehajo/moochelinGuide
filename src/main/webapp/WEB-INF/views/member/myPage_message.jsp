@@ -61,12 +61,12 @@
 
                             			<div class="text-area">
                                 			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
-                                			<span class="message"><a href="detail?type=confirm&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=400'); return false;">${message.messageContent}</a></span>
+                                			<span class="message"><a href="detail?type=confirm&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;">${message.messageContent}</a></span>
                             			</div>
                         			</div>
                         			<div class="message-right-btns">
-                            			<a href="detail?type=send&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=400'); return false;" id="sendMessagePop"><button type="button">답장</button></a>
-                            			<button onclick="deleteMessage()">쪽지삭제</button>
+                            			<a href="detail?type=send&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;" id="sendMessagePop"><button type="button">답장</button></a>
+                            			<form style="display:inline-block;" action="delete" method="post"><input type="hidden" name="messageNo" value="${message.messageNo}"><button>쪽지삭제</button></form>
                         			</div>
                     			</div>
                     			

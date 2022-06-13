@@ -1237,6 +1237,55 @@ public class MemberDAO {
 		return messageDetail;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	/** 쪽지 보내기
+	 * @param conn
+	 * @param messageNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertMessage(Connection conn, int memberNo) throws Exception {
+		int result=0;
+		
+		try {
+			String sql = prop.getProperty("insertMessage");
+			
+		}finally {
+			
+		}
+		return result;
+	}
+
+	
+	/** 쪽지 삭제하기
+	 * @param conn
+	 * @param messageNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deletetMessage(Connection conn, int messageNo) throws Exception {
+		int result=0; 
+		
+		try {
+			String sql = prop.getProperty("deletetMessage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, messageNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 
 
 }

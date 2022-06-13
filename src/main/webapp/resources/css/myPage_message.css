@@ -43,12 +43,14 @@
     cursor: pointer;
 }
 .message-right-btns button{
+    width: 110px;
     padding: 8px 24px;
     margin-left: 10px;
     background-color: #fff;
     border: 1px solid #555;
     border-radius: 5px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 
@@ -63,7 +65,8 @@
     border-radius: 10px;
 
     flex-direction: column;
-    align-items: center;    
+    align-items: center;   
+    overflow: hidden; 
 }
 
 .detailPopupHidden{
@@ -74,7 +77,8 @@
 
     display: none;
     flex-direction: column;
-    align-items: center;  
+    align-items: center; 
+    overflow: hidden; 
 }
 .smallText{
     font-size: 18px;
@@ -101,9 +105,15 @@
     justify-content: space-between;
     margin-top: 10px;
 }
-.messageBtnBox button {
-    width: 48%;
-    padding: 7px 0;
+
+.messagePopupBtn {
+    width: 153.59px;
+
+    padding: 7px 24px;
+    background-color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 16px;
 }
 .close{
     cursor: pointer;
