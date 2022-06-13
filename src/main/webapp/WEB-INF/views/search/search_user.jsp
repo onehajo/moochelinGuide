@@ -55,40 +55,40 @@
 
 				<c:if test="${!empty userList}">
 					<c:forEach var="user" items="${userList}">
-						<a href="#" class="sch-user">
-							<div>
-								<c:if test="${!empty user.profileImage}">
-									<img src="${contextPath}${user.profileImage}"
-										class="sch-img-user">
-								</c:if>
-								<c:if test="${empty user.profileImage}">
-									<img src="${contextPath}/resources/images/user.png"
-										class="sch-img-user">
-								</c:if>
+							<div class="sch-user">
+								<a href="${contextPath}/member/profile/my?memberNo=${user.memberNo}">
+									<c:if test="${!empty user.profileImage}">
+										<img src="${contextPath}${user.profileImage}"
+											class="sch-img-user">
+									</c:if>
+									<c:if test="${empty user.profileImage}">
+										<img src="${contextPath}/resources/images/user.png"
+											class="sch-img-user">
+									</c:if>
+								</a>
+							
+								<div class="sch-user-info">
+									<div>${user.memberName}</div>
+									<div>평가(7)</div>
+								</div>
+								<div class="sch-user-follow">
+									<input type="hidden" class="memberNo"
+										value="${loginMember.memberNo}"> <input type="hidden"
+										class="targetNo" value="${user.memberNo}">
 
+									<c:if test="${empty loginMember}">
+										<button class="followBtn">팔로우</button>
+									</c:if>
+
+									<c:if test="${!empty loginMember && user.secessionFlag=='N'}">
+										<button class="followBtn">팔로우</button>
+									</c:if>
+
+									<c:if test="${!empty loginMember && user.secessionFlag=='Y'}">
+										<button class="followingBtn followBtn">팔로잉</button>
+									</c:if>
+								</div>
 							</div>
-							<div class="sch-user-info">
-								<div>${user.memberName}</div>
-								<div>평가(7)</div>
-							</div>
-							<div class="sch-user-follow">
-								<input type="hidden" class="memberNo"
-									value="${loginMember.memberNo}"> <input type="hidden"
-									class="targetNo" value="${user.memberNo}">
-
-								<c:if test="${empty loginMember}">
-									<button class="followBtn">팔로우</button>
-								</c:if>
-
-								<c:if test="${!empty loginMember && user.secessionFlag=='N'}">
-									<button class="followBtn">팔로우</button>
-								</c:if>
-
-								<c:if test="${!empty loginMember && user.secessionFlag=='Y'}">
-									<button class="followingBtn followBtn">팔로잉</button>
-								</c:if>
-							</div>
-						</a>
 
 					</c:forEach>
 					<!-- <div class="view-more">
