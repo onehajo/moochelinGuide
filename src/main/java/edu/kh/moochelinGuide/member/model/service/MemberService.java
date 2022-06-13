@@ -2,6 +2,7 @@ package edu.kh.moochelinGuide.member.model.service;
 
 import static edu.kh.moochelinGuide.common.JDBCTemplate.*;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -451,12 +452,25 @@ public class MemberService {
 		
 		Connection conn = getConnection();
 		
+		// 1. personList 담아오기
 		List<Person> personList = dao.searchPerson(conn, query);
+		
+		if(personList.size()!=0) {
+			// 2. personList에 담긴 각 인물의 영화정보 movieList에 담아오기
+			List<Movie> movieList = new ArrayList<Movie>();
+			
+			for(Person p : personList) {
+				movieList = dao.selectPersonMovieList(conn, query, p);
+				p.setMovieList(movieList);
+			}
+			
+		}
 		
 		close(conn);
 		
 		return personList;
 	}
+
 	
 	
 	

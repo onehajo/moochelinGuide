@@ -263,10 +263,6 @@
 	</entry>
 	
 	
-	
-	
-	
-=======
 	<!-- 특정 키워드로 인물 검색 -->
 	<entry key="searchPerson">
 		SELECT PERSON_NO, PERSON_NM, PERSON_JOB, PERSON_IMG, MOVIE_NO, MOVIE_TITLE
@@ -276,9 +272,17 @@
 		WHERE PERSON_NM LIKE ?
 		ORDER BY PERSON_NO
 	</entry>
->>>>>>> ec5b22ab8065127471531bf9e40949abc87f67ae
 	
 	
+	<!-- 특정 인물의 관련 영화정보 조회 -->
+	<entry key="selectPersonMovieList">
+		SELECT PERSON_NO, MOVIE_NO, MOVIE_TITLE
+		FROM MOVIE
+		JOIN MV_PERSON USING (MOVIE_NO)
+		JOIN PERSON USING (PERSON_NO)
+		WHERE PERSON_NO = ?
+		ORDER BY RELEASE_YEAR DESC
+	</entry>
 	
 
 </properties>
