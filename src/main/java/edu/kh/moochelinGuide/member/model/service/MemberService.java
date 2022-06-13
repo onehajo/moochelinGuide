@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
+
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
 import edu.kh.moochelinGuide.member.model.vo.Follow;
@@ -389,12 +391,21 @@ public class MemberService {
 
 
 		// 3) 취향분석 (없슈)
+		// 2) 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
+		List<Analysis> analyAll = dao.analyAllScore(conn, memberNo);
+		
+		
+		// 5) 내가 평가한 전체 영화 평점 ㅡㅡ... dao왤케많아 
+		int allMovieAvg = dao.allMovieAvg(conn,memberNo);
+				
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 1) 평가한 영화 정보 조회 (4개) 담겨져 있어야함.
 		map.put("evalMovie", evalMovie);
 		// 2) 찜한 영화 정보(담을 예정)
 		// 3) 취향분석 (담을 예정)
+		map.put("analyAll", new Gson().toJson(analyAll) );
+		map.put("allMovieAvg", allMovieAvg);
 		
 		close(conn);
 		
@@ -414,27 +425,48 @@ public class MemberService {
 		// 1) 내가 평가한 영화의 모든 갯수 ( 프로필 오른쪽에 사용할 것임 )
 		int analyMovieCount = dao.analyMovieCount(conn, memberNo);
 		
+		
+		
 		// 2) 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
 		List<Analysis> analyAll = dao.analyAllScore(conn, memberNo);
 		
 		// 3) 내가 평가한 모든 영화의 가장 많은 country 는?
 		String analyMovieCountry = dao.analyMovieCountry(conn, memberNo);
 		
+		// 3-1) 내가 가장 선호한 나라의 평가한 영화 갯수. ( 3)의 country 영화의 갯수 )
+		int likeCountryCount = dao.likeCountryCount(conn, memberNo);
+		
+		
+		// 3-2) 내가 가장 선호한 나라의 영화, 평점 평균
+		int likeCountryAvg = dao.likeCountryAvg(conn, memberNo);
+		
+		
 		
 		// 4) 내가 평가한 모든 영화의 모든 RUNNING_TIME
 		//    -> 컬럼에 1시42분 되어있어서 substirng을 써야하는지 감이 안잡힘.
+		String myAllRunningTime = dao.myAllRunningTime(conn, memberNo);
 		
+		
+		// 5) 내가 평가한 전체 영화 평점 ㅡㅡ... dao왤케많아 
+		int allMovieAvg = dao.allMovieAvg(conn,memberNo);
+	
 		
 		
 		Map<String, Object>
 		map = new HashMap<String, Object>();
 		map.put("analyMovieCount", analyMovieCount);
-		map.put("analyAll", analyAll);
+		map.put("analyAll", new Gson().toJson(analyAll) );
 		map.put("analyMovieCountry", analyMovieCountry);
+		map.put("myAllRunningTime", myAllRunningTime);
+		map.put("likeCountryCount", likeCountryCount);
+		map.put("likeCountryAvg", likeCountryAvg);
+		map.put("allMovieAvg", allMovieAvg);
 		
+		//값 잘 불러와졌나확인용 - 나중에 주석처리 꼭!!!꼭하기
 		System.out.println(analyMovieCount);
 		System.out.println(analyAll);
 		System.out.println(analyMovieCountry);
+		System.out.println(myAllRunningTime);
 
 		close(conn);
 		

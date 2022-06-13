@@ -222,9 +222,21 @@
                             </div>
                 
                             <div>
-                                    <div class="title content-analysisn"> 취향분석 </div>
-                                    <div class="more-view anal"> "평점 3.79점의 까탈 영화 사랑꾼" </div>
-    
+                                
+                                <c:choose>
+                                    <c:when test="${ empty map.allMovieAvg}">
+                                        <div class="title content-analysisn"> 취향분석 </div>
+                                        <div>"평가한 영화가 없습니다."</div>
+                                    </c:when>
+                                    
+                                    <c:otherwise>
+                                        <div class="title content-analysisn"> 취향분석 </div>
+                                        <div class="more-view anal"> "평점  ${map.allMovieAvg}점의 영화 사랑꾼" </div>
+                                    </c:otherwise>
+                
+                                </c:choose>
+                
+
                                      <!-- 평점 그래프 -->
                                     <div class="sec-in-block">
                                         <div class="set-area">
@@ -271,6 +283,26 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <script src="${contextPath}/resources/js/header_white.js"></script>
+
+    <script>
+        const temp = '${map.analyAll}';
+        const analyAll = JSON.parse(temp);
+
+
+        for(let i=0.5 ; i<=5 ; i += 0.5){
+
+            for(let a of analyAll){
+                if(i == a.starRating){
+                    const s = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") > div");
+                    const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
+
+                    s.style.height = a.starRating * a.count  * 10 + 'px';
+                    p.style.animation = 'stick 2s 1';
+                }
+            }
+
+        }
+    </script>
     
 
 </body>

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +60,7 @@
                     </div>
                     <div class="info-profile name">${loginMember.memberName}</div>
                     <div class="info-profile count-star">⭐</div>
-                    <div class="info-profile moovie-count">평가한 영화 533개</div>
+                    <div class="info-profile moovie-count">평가한 영화 ${map.analyMovieCount}개</div>
                 </div>
             </div>
 
@@ -66,29 +69,38 @@
         <!-- 평균점수별 메인코멘트 / 서브코멘트 / 그래프 -->
         <section class="graph">
             <div class="sec-in-block">
-                <header class="sec-header line-anal">
-                    <h1 class="sec-h1">영화에 숨참고 Love Dive</h1>
-                </header>
-                <div>"평점 3.79점의 까탈 영화 사랑꾼"</div>
+
+                <c:choose>
+                    <c:when test="${ empty map.analyMovieCount}">
+                        <div>"평가한 영화가 없습니다."</div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <header class="sec-header line-anal">
+                            <h1 class="sec-h1">영화에 숨참고 Love Dive</h1>
+                        </header>
+                        <div>"평점 ${map.allMovieAvg}점의 영화 사랑꾼"</div>
+
+                    </c:otherwise>
+
+                </c:choose>
+
             </div>
 
             <!-- 평점 그래프 -->
             <div class="sec-in-block">
                 <div class="set-area">
                     <ul class="graph-around">
-                        <c:if test="${!empty loginMember.profileImage}">
-                            <!-- <img src="${contextPath}${loginMember.profileImage}" > -->
-                        </c:if>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
-                        <li><div style=" height: 50px;"></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
+                        <li><div></div></li>
                     </ul>
                 </div>
                 <div class="set-area-1">
@@ -116,9 +128,9 @@
                     <h2 class="sec-h2">영화 선호 국가</h2>
                 </header>
                 <div class="moovie-result">
-                    <div class="result-text main-text">미국</div>
-                    <div class="result-text">총 235편 감상</div>
-                    <div class="result-text">평균 4.23점</div>
+                    <div class="result-text main-text"> ${map.analyMovieCountry}</div>
+                    <div class="result-text">총 ${map.likeCountryCount}편 감상</div>
+                    <div class="result-text">평균 ${map.likeCountryAvg}점</div>
                 </div>
             </div>
         </section>
@@ -130,8 +142,8 @@
                     <h2 class="sec-h2">모든 영화 감상 시간</h2>
                 </header>
                 <div class="moovie-result">
-                    <div class="result-text main-text">1025시간</div>
-                    <div class="result-text">총 533편 감상</div>
+                    <div class="result-text main-text"> ${map.myAllRunningTime}</div>
+                    <div class="result-text">총 ${map.analyMovieCount}편 감상</div>
                 </div>
 
             </div>
@@ -141,7 +153,25 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+    <script>
+        const temp = '${map.analyAll}';
+        const analyAll = JSON.parse(temp);
 
+
+        for(let i=0.5 ; i<=5 ; i += 0.5){
+
+            for(let a of analyAll){
+                if(i == a.starRating){
+                    const s = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") > div");
+                    const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
+
+                    s.style.height = a.starRating * a.count  * 10 + 'px';
+                    p.style.animation = 'stick 2s 1';
+                }
+            }
+
+        }
+    </script>
 
     
 </body>
