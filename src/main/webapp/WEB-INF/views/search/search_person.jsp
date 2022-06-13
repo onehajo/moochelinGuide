@@ -41,6 +41,16 @@
                 <c:if test="${!empty personList}">
                     <c:forEach var="person" items="${personList}">
                         인물정보 : ${person}
+                        <div class="sch-person">
+                            <div>
+                                <img src="${person.personImage}" class="sch-img-person">
+                            </div>
+                            <div class="sch-person-info">
+                                <div>${person.personName}</div>
+                                <div>${person.personJob}</div>
+                                <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
+                            </div>
+                        </div>
                     </c:forEach>
                 </c:if>
 
