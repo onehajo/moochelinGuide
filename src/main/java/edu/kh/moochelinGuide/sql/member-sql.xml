@@ -232,9 +232,7 @@
 	)
 	WHERE RNUM BETWEEN 1 AND 4 
 	</entry>
-	
-	
-<<<<<<< HEAD
+
 	
 	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
 	<entry key="analyMovieCount">
