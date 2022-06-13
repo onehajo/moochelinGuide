@@ -1,0 +1,235 @@
+/*.content-main css추가*/
+main > .content-main{
+    min-height: 1300px; /*임시로 추가함..*/
+}
+
+/* 검색 스타일 */
+.search-area{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hd-fieldset{
+    width: 445px;
+    height: 50px;
+
+    padding: 0px 0px 0px 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(to right, #00ffbe, #fff);
+}
+
+#query{
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    margin: 0px 0px 0px 15px;
+    outline: 0;
+    width: 400px;
+    height: 100%;
+}
+
+#query::placeholder{ 
+    color: #aaa;
+}
+
+#search-btn{
+    width: 12%;
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+
+    color: #fff;
+}
+
+
+/* 검색 결과 출력 영역 */
+.search-result{
+    width: 80%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+}
+
+/*검색어 출력되는 p태그*/
+.search-result > p {
+    margin: 0;
+    padding-bottom: 20px;
+    color : rgb(150, 150, 150);
+}
+
+.search-result > table{
+    width: 1000px;
+    height: 300px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    border-color: rgb(150, 150, 150);
+}
+
+/*검색결과 table의 head*/
+.search-result thead{
+    background-color: rgb(240,240,240);
+    font-size: 18px;
+    height: 50px;
+}
+
+.search-result tbody{
+    text-align: center;
+    font-size: 17px;
+    height: 250px;
+}
+
+.selected:hover{
+    background-color: rgba(0, 255, 190, 0.1);
+    border: #00ffbe;
+}
+
+
+
+/*페이지네이션*/
+.pagination{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.pagination > li {
+    width: 20px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.pagination a{
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    display: block; /*inline 인 a태를 black형식으로 변경*/
+    /* letter-spacing: -2px; */
+}
+
+/* 현재 페이지 번호*/
+.pagination .current{
+    background-color: rgb(57, 46, 255);
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+/*코멘트*/
+/* 코멘트 검색 결과 출력 */
+.search-comment-result{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto 20px ;
+}
+
+/* 검색어 출력되는 p태그 */
+.search-comment-result > p {
+    margin: 0px 0px 20px 0px;
+    color : rgb(150, 150, 150);
+}
+
+.contaner{
+    width: 1000px;
+    height: 200px;
+    background-color: rgba(248, 248, 248, 233);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.info{
+    margin-bottom: 20px;
+}
+
+.comment-info{
+    width: 100%;
+    display: flex;
+    padding-bottom: 10px;
+}
+
+/* 프로필 이미지 영역 */
+.comment-proflie{
+    width: 60px;
+    height: 50px;
+}
+
+/* 이미지를 감싸고 있는 a 태그*/
+.comment-proflie > a{
+    display: block;
+    /* width: 42px;
+    height: 42px; */
+    border-radius: 50%;
+}
+
+/* IMG태그 */
+.member-profile{
+    width: 50px;
+   /* width: 42px;
+   height: 42px; */
+   border-radius: 50%;
+}
+
+/* 회원정보 영역 - 닉네임 */
+.comment-nickname{
+    width: 170px;
+    height: 30px;
+    padding: 2px 0 2px 2px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/*회원정보 영역 - 작성일자*/
+.comment-date{
+    height: 20px;
+    padding-left: 2px;
+    font-size: 13px;
+    color: rgb(0 0 0 / 30%)
+
+}
+
+/*삭제 버튼 영역*/
+.delete{
+    width: 750px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 35px;
+}
+
+.delete > button{
+    width: 50px;
+    height: 50px;
+    font-size: 15px;
+    padding: 2px;
+    background-color: rgb(150, 150, 150);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.delete > button:hover{
+    background-color: rgb(57, 46, 255);
+    color: white;
+}
+
+.hr{
+    margin: 0;
+}
+
+.comment-cotent{
+    padding: 10px 0px;
+}

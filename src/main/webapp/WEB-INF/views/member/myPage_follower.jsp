@@ -14,6 +14,7 @@
     <!-- 헤더푸터 CSS 연결-->
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +41,7 @@
                             <c:forEach var="f" items="${fList}">
                                 <li class="list">
                                     <div class="follower-img">
-                                        <a href="#">
+                                        <a href="${contextPath}/member/profile/my?memberNo=${f.memberNo}">
                                             <!-- 프로필 경로 없는 경우-->
                                             <c:if test="${ empty f.profileImage}"> 
                                                 <img src="${contextPath}/resources/images/user.png" class="profile-img">

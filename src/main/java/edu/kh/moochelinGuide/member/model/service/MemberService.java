@@ -491,7 +491,8 @@ public class MemberService {
 			// 2. personList에 담긴 각 인물의 영화정보 movieList에 담아오기
 			List<Movie> movieList = new ArrayList<Movie>();
 			
-			for(Person p : personList) {
+			for(int i =0; i<personList.size(); i++) {
+				Person p = personList.get(i);
 				movieList = dao.selectPersonMovieList(conn, query, p);
 				p.setMovieList(movieList);
 			}

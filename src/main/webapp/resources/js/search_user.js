@@ -10,7 +10,7 @@ for(let i = 0; i<tCount; i++){
 
     checkClick[i] = false;
 
-    followBtn[i].addEventListener("click",function(){
+    followBtn[i].addEventListener("mouseup",function(){
 
         if(loginMember==""){
             Swal.fire({

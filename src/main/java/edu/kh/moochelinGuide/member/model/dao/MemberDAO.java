@@ -1029,7 +1029,7 @@ public class MemberDAO {
 				Movie m = new Movie();
 				
 				m.setMovieNo(rs.getInt(2));
-				m.setMovieTitle(rs.getString(2));
+				m.setMovieTitle(rs.getString(3));
 				
 				movieList.add(m);
 			}

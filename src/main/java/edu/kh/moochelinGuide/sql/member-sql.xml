@@ -261,6 +261,7 @@
 	</entry>
 	
 	
+<<<<<<< HEAD
 	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
 	<entry key="analyMovieCountry">
 	SELECT MAX(COUNTRY)
@@ -281,6 +282,15 @@
 	FROM MOVIE
 	JOIN EVALUATION USING (MOVIE_NO)
 	WHERE MEMBER_NO = ?
+	</entry>
+
+
+	<!-- 특정 키워드로 인물 검색 -->
+	<entry key="searchPerson">
+		SELECT PERSON_NO, PERSON_NM, PERSON_JOB, PERSON_IMG
+		FROM PERSON
+		WHERE PERSON_NM LIKE ?
+		ORDER BY PERSON_NO
 	</entry>
 	
 	

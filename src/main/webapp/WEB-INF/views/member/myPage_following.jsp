@@ -40,7 +40,7 @@
                             <c:forEach var="f" items="${fList}">
                                 <li>
                                     <div class="follower-img">
-                                        <a href="#">
+                                        <a href="${contextPath}/member/profile/my?memberNo=${f.targetNo}">
                                             <!-- 프로필 경로 없는 경우-->
                                             <c:if test="${ empty f.profileImage}"> 
                                                 <img src="${contextPath}/resources/images/user.png" class="profile-img">

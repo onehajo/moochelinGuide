@@ -23,32 +23,46 @@ public class MyPageMessageController extends HttpServlet {
 		
 		String uri = req.getRequestURI();	
 		String contextPath = req.getContextPath();
-		String command = uri.substring(  (contextPath + "/member/myPage/message/").length()  );
+		String command = uri.substring(  (contextPath + "/member/myPage/message/").length()  );	
 		
-		
-		
-		try {
+		try {		
 			
+			// 세션에서 로그인 회원 정보 얻어오기
+			HttpSession session = req.getSession();
+			Member loginMember = (Member)(session.getAttribute("loginMember"));
+			int memberNo = loginMember.getMemberNo(); // 회원번호 얻어오기
 		    
-		    if(command.equals("list")) {
-		    	
+			// 쪽지 리스트 반환받기
+			MemberService service = new MemberService(); 
+			List<Message> messageList = service.selectMessage(memberNo);
 
+			// 쪽지 리스트화면
+			if(command.equals("list")) {
 		    	
-		    	HttpSession session = req.getSession();
-		    	Member loginMember = (Member)(session.getAttribute("loginMember"));
-		    	
-				int memberNo = loginMember.getMemberNo(); // 회원번호 얻어오기
+				// 파라미터 중 게시글 번호 얻어오기
+				// int messageNo = Integer.parseInt(req.getParameter("no"));
+				// System.out.println(messageNo);
 				
-				MemberService service = new MemberService(); 
-				List<Message> messageList = service.selectMessage(memberNo);
-				
-
 				req.setAttribute("messageList", messageList);
 				
 				String path = "/WEB-INF/views/member/myPage_message.jsp";
 			    req.getRequestDispatcher(path).forward(req, resp);
+		    }
+		    
+		    
+			
+			// 쪽지 상세보기 화면
+		    if(command.equals("detail")) {
+
+				req.setAttribute("messageList", messageList);
+				
+				String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
+			    req.getRequestDispatcher(path).forward(req, resp);
 		    	
 		    }
+		    
+		    
+		    
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

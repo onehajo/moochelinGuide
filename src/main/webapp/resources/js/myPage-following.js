@@ -12,14 +12,11 @@ for(let i = 0; i<fCount; i++){
 
     checkClick[i] = false;
 
-    deleteBtn[i].addEventListener("click",function(){
+    deleteBtn[i].addEventListener("mouseup",function(){
 
         if(!checkClick[i]){
-            console.log(i+"번째 팔로우 취소 버튼 클릭됨");
-            checkClick[i] = true;
 
-            console.log("타겟번호"+targetNo[i].value);
-            console.log("회원번호"+memberNo[i].value);
+            checkClick[i] = true;
             
             $.ajax({
                 url : contextPath+"/member/myPage/follow",
@@ -44,10 +41,6 @@ for(let i = 0; i<fCount; i++){
             })
         }else{
             checkClick[i] = false;
-            console.log(i+"번째 팔로우 신청");
-
-            console.log("타겟번호"+targetNo[i].value);
-            console.log("회원번호"+memberNo[i].value);
 
             $.ajax({
                 url : contextPath+"/member/myPage/follow",

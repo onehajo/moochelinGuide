@@ -34,25 +34,43 @@
                     <col style="width:25%">
                     <col style="width:25%">
                 </colgroup>
+                <c:if test="${empty boardList}">
+                    <section class="noneList">등록되어 있는 문의내역이 없습니다.</section>
+                </c:if>
+                <c:if test="${!empty boardList}">
                 <thead>
                     <tr>
                         <td>제목</td>
-                        <td>만든시간</td>
-                        <td><a href=""><span class="activity"><button id="activity">마지막 활동</button></span><label id="triangle-down" for="activity">&#x25BC;</label></a></td>
+                        <c:if test="${array==1}">
+                            <td id="array1"><a href="inquiryList?array=3"><span class="activity"><button id="activity">만든 시간</button></span><label id="triangle-down" for="activity"></label></a></td>
+                            <td id="array1"><a href="inquiryList?array=2"><span class="activity"><button id="activity">마지막 활동</button></span><label id="triangle-down" for="activity">&#x25BC;</label></a></td>
+                        </c:if>
+                        <c:if test="${array==2}">
+                            <td id="array1"><a href="inquiryList?array=3"><span class="activity"><button id="activity">만든 시간</button></span><label id="triangle-down" for="activity"></label></a></td>
+                            <td id="array1"><a href="inquiryList?array=1"><span class="activity"><button id="activity">마지막 활동</button></span><label id="triangle-down" for="activity">&#9650;</label></a></td>
+                        </c:if>
+                        <c:if test="${array==3}">
+                            <td id="array1"><a href="inquiryList?array=4"><span class="activity"><button id="activity">만든 시간</button></span><label id="triangle-down" for="activity">&#x25BC;</label></a></td>
+                            <td id="array1"><a href="inquiryList?array=1"><span class="activity"><button id="activity">마지막 활동</button></span><label id="triangle-down" for="activity"></label></a></td>
+                        </c:if>
+                        <c:if test="${array==4}">
+                            <td id="array1"><a href="inquiryList?array=3"><span class="activity"><button id="activity">만든 시간</button></span><label id="triangle-down" for="activity">&#9650;</label></a></td>
+                            <td id="array1"><a href="inquiryList?array=1"><span class="activity"><button id="activity">마지막 활동</button></span><label id="triangle-down" for="activity"></label></a></td>
+                        </c:if>
                         <td>상태</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:if test="${!empty boardList}">
                         <c:forEach var="board" items="${boardList}">
                             <tr>
-                                <td><form action="inquiryContent.html"><button class="list-name">${board.boardTit}</button></form></td>
+                                <!-- <td><form action="inquiryList/inquiryContent?list=${board.boardNo}" method="GET"><button class="list-name">${board.boardTit}</button></form></td> -->
+                                <td><a href="inquiryList/inquiryContent?list=${board.boardNo}"><button class="list-name">${board.boardTit}</button></a></td>
                                 <td>${board.msg}</td>
                                 <td>${board.msg2}</td>
-                                <c:if test="${board.boardSt=='N'}">
+                                <c:if test="${board.boardCode=='99'}">
                                     <td><span class="accepting">접수중</span></td>
                                 </c:if>
-                                <c:if test="${board.boardSt=='Y'}">
+                                <c:if test="${board.boardCode=='98'}">
                                     <td><span class="inqComplete">답변완료</span></td>
                                 </c:if>
                                 
