@@ -140,6 +140,13 @@ public class MovieDAO {
 		
 		return detail;
 	}
+
+	public int movieEvaluate(Connection conn, int movieNo, int ratingPoint, int memberNo) throws Exception{
+		
+		int result = 0;
+		
+		return result;
+	}
 	
 	
 	

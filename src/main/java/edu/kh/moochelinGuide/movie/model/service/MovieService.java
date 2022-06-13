@@ -50,9 +50,31 @@ public class MovieService {
 		
 		MovieDetail detail = dao.selectMovieDetail(conn, movieNo);
 		
-		
+		close(conn);
 		
 		return detail;
+	}
+
+
+
+
+	public int movieEvaluate(int movieNo, int ratingPoint, int memberNo) throws Exception {
+		
+		
+		
+		Connection conn = getConnection();
+		
+		int result = dao.movieEvaluate(conn, movieNo, ratingPoint, memberNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		close(conn);
+		
+		
+		return result;
 	}
 	
 	

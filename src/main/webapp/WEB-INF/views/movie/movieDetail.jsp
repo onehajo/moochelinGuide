@@ -154,6 +154,7 @@
                 </div>
             </div>
         </div>
+    <form action="#" method="POST" class="comment-write">    
         <div id="modal" class="modal-overlay">
             <div class="modal-window">
                 <div class="title" style="font-size: 25px; color: black;">
@@ -163,11 +164,16 @@
                 <div class="content">
                     <textarea class="coment-write" style="width: 100%; height: 400px;" placeholder="이 작품에 대한 생각을 마음껏 표현해주세요.";></textarea>
                     <!-- <input type="checkbox"><p id="spo" style="display: inline-block ; color: #392eff;">내용 숨기기</p> -->
-                    <button id="cm-save-btn" style="margin-left: 200px;">저장</button>
+                    <button type="submit" id="cm-save-btn" style="margin-left: 200px;"
+                   ">등록</button>
                 </div>
+                <!-- 동작 구분 -->
+                <input type="hidden" name="mode" value="insert">
+                <!-- 영화번호 구분 -->
+                <input type="hidden" name="movieNo" value="1">
             </div>
         </div>
-
+    </form>
         <footer>
             <section class="footer-top">지금까지 <span>★ 658,179,744 개</span>의 평가가 쌓였어요.</section>
             <section class="footer-bottom">
@@ -185,8 +191,8 @@
  </div>   
       
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="js/evaluation.js"></script>
-        <script src="js/Detail_page.js"></script>
-        <script src="js/header_white.js"></script>
+        <script src="${contextPath}/resources/js/Detail_page.js"
+        <script src="${contextPath}/resources/js/commentWriteForm.js"></script>
+        <script src="${contextPath}/resources/js/header_white.js"></script>
 </body>
 </html>
