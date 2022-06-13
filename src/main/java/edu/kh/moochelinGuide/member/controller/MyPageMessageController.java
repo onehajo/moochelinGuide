@@ -51,6 +51,14 @@ public class MyPageMessageController extends HttpServlet {
 				String path = "/WEB-INF/views/member/myPage_message.jsp";
 			    req.getRequestDispatcher(path).forward(req, resp);
 		    }
+			
+			// 쪽지 리스트화면(ajax)
+			if(command.equals("listAll")) {
+
+				req.setAttribute("messageList", messageList);
+				
+				resp.getWriter().print(messageList);
+		    }
 		    
 		    
 			// 쪽지 상세보기 팝업
@@ -61,28 +69,35 @@ public class MyPageMessageController extends HttpServlet {
 		    	
 		    	System.out.println("쿼리스트링으로 메세지 넘버 :" +messageNo);
 
-		    	if(type.equals("confirm")) { // 타입이 확인일때
+
 		    		
-				    // service에 메세지 내용 요청, 반환
-				    Message messageDetail = service.messageDetail(messageNo);
+				// service에 메세지 내용 요청, 반환
+				Message messageDetail = service.messageDetail(messageNo);
 			    	
-			    	// messageDetail 반환 잘 되었는지
-					System.out.println("내용가져왔니 : "+messageDetail);
+			    // messageDetail 반환 잘 되었는지
+				System.out.println("내용가져왔니 : "+messageDetail);
 					
-					// 전달할 값
-					req.setAttribute("messageDetail", messageDetail);
+				// 전달할 값
+				req.setAttribute("messageDetail", messageDetail);
+				req.setAttribute("type", type);
 				
-					String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
-					req.getRequestDispatcher(path).forward(req, resp);
+				String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
+				req.getRequestDispatcher(path).forward(req, resp);
 
-				} else { // 타입이 보내기일때 
 
-					//int result = service.insertMessage(messageNo, memberNo);
-					
-					
-					
-				}
 		    	
+		    }
+		    
+		    
+		    if(command.equals("insert")) {
+		    	int messageNo = Integer.parseInt(req.getParameter("messageNo"));
+		    	int result = service.insertMessage(messageNo);
+		    }
+		    
+		    
+		    // 쪽지 삭제하기 
+		    if(command.equals("delete")) {
+
 		    }
 		    
 		    
@@ -98,9 +113,36 @@ public class MyPageMessageController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String path = null;
-		path=req.getHeader("referer");
-		resp.sendRedirect(path);
+		//String path = null;
+		//path=req.getHeader("referer");
+		//resp.sendRedirect(path);
+		
+		
+		
+    	int messageNo = Integer.parseInt(req.getParameter("messageNo"));
+    	HttpSession session = req.getSession();
+		Member loginMember = (Member)(session.getAttribute("loginMember"));
+		int memberNo = loginMember.getMemberNo(); // 회원번호 얻어오기
+		
+		try {
+			
+			MemberService service = new MemberService();
+	    	List<Message> messageList = service.deletetMessage(messageNo,memberNo);
+	    	System.out.println("삭제확인"+messageNo);
+	    	System.out.println("삭제확인"+memberNo);
+	    	// 전달할 값(삭제후 메세지 리스트)
+			req.setAttribute("messageList", messageList);
+
+	    	resp.sendRedirect("list");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
+    	
 	}
 	
 
