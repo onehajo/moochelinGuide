@@ -869,6 +869,7 @@ public class MemberDAO {
 			String sql = prop.getProperty("searchPerson");
 			
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+query+"%");
 			
 			rs = pstmt.executeQuery();
 			
