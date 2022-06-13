@@ -1,4 +1,4 @@
-package edu.kh.moochelinGuide.coment.controller;
+package edu.kh.moochelinGuide.comment.controller;
 
 import javax.servlet.http.HttpServlet;
 
@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.kh.moochelinGuide.coment.service.ComentService;
+import edu.kh.moochelinGuide.comment.service.CommentService;
 
 @WebServlet("/coment/list")
-public class ComentListServlet extends HttpServlet{
+public class CommentListServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class ComentListServlet extends HttpServlet{
             }
             
             
-            ComentService service = new ComentService();
+            CommentService service = new CommentService();
             
             // 게시판 종류, 페이지네이션, 게시글 리스트
             // ** 게시글 리스트

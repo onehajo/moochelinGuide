@@ -1,4 +1,4 @@
-package edu.kh.moochelinGuide.coment.vo;
+package edu.kh.moochelinGuide.comment.vo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Coment {
+public class Comment {
 	private int comentNo;
 	private String comnetContent;
 	private String comentDate;

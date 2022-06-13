@@ -1,4 +1,4 @@
-package edu.kh.moochelinGuide.coment.vo;
+package edu.kh.moochelinGuide.comment.vo;
 
 public class Pagination {
 	
