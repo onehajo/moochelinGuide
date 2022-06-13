@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.kh.moochelinGuide.board.model.service.BoardService;
+import edu.kh.moochelinGuide.board.model.service.ReplyService;
 import edu.kh.moochelinGuide.board.model.vo.Board;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 
@@ -23,6 +24,8 @@ public class InquiryLServlet extends HttpServlet {
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 	try {
+		int array = Integer.parseInt(req.getParameter("array"));
+		
 	RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/inquiryList.jsp");
 	
 	List<Board> boardList = new ArrayList<Board>();
@@ -33,8 +36,9 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	Member member = (Member)session.getAttribute("loginMember");
 	
 	int boardNo = member.getMemberNo();
-	
-	boardList = service.boardList(boardNo);
+	boardList = service.boardList(boardNo, array);
+
+	req.setAttribute("array", array);
 	req.setAttribute("boardList", boardList);
 	
 	dispatcher.forward(req, resp);
