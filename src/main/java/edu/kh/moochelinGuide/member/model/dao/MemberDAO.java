@@ -1050,12 +1050,143 @@ public class MemberDAO {
 	 * @param memberNo
 	 * @return
 	 */
-	public String myAllRunningTime(Connection conn, int memberNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public String myAllRunningTime(Connection conn, int memberNo) throws Exception {
+		
+		String myAllRunningTime = null;
+		
+		try {
+			
+			String sql = prop.getProperty("myAllRunningTime");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				myAllRunningTime = rs.getString(1);
+			}
+			
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return myAllRunningTime;
+	}
+
+	
+	
+	
+	/** 취향분석  -내가 가장 선호한 나라에서, 평가한 영화의 갯수.
+	 * @param conn
+	 * @param memberNo
+	 * @return likeCountryCount
+	 * @throws Exception
+	 */
+	public int likeCountryCount(Connection conn, int memberNo) throws Exception {
+		int likeCountryCount = 0;
+		
+		
+		try {
+			
+			String sql = prop.getProperty("likeCountryCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				likeCountryCount = rs.getInt(1);
+			}
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return likeCountryCount;
+	}
+
+	
+	
+	
+	
+	/** 취향분석 - 내가 가장 선호한 나라의 영화의 평점 평균
+	 * @param conn
+	 * @param memberNo
+	 * @return likeCountryAvg
+	 * @throws Exception
+	 */
+	public int likeCountryAvg(Connection conn, int memberNo) throws Exception {
+		int likeCountryAvg = 0;
+			
+			
+		try {
+			
+			String sql = prop.getProperty("likeCountryAvg");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				likeCountryAvg = rs.getInt(1);
+			}
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+			
+		return likeCountryAvg;
+	}
+	
+	
+
+	/** 내가 평가한 전체 영화 평점
+	 * @param conn
+	 * @param memberNo
+	 * @return allMovieAvg
+	 * @throws Exception
+	 */
+	public int allMovieAvg(Connection conn, int memberNo) throws Exception {
+		int allMovieAvg = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("allMovieAvg");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				allMovieAvg = rs.getInt(1);
+			}
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+			
+		return allMovieAvg;
 	}
 
 
-      
 
 }

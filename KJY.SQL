@@ -109,6 +109,7 @@ GROUP BY STAR_RATING;
 
 
 
+-- 가장 선호하는 국가에 쓸 sql
 -- 3. 내가 가장 많은 평가를 한
 -- 영화의 나라 는?
 -- 1) 내가 평가한 무비의 넘버와 나라
@@ -116,6 +117,7 @@ SELECT MOVIE_NO, COUNTRY
 FROM EVALUATION
 JOIN MOVIE USING (MOVIE_NO)
 WHERE MEMBER_NO = 42;
+
 
 -- 1-1) 여기서 가장 많은 나라는?
 SELECT MAX(COUNTRY)
@@ -125,27 +127,59 @@ WHERE MEMBER_NO = 84;
 -- 성공!
 
 
-
--- 4. 내가 평가한 모든 영화의 모든 RUNNING_TIME
-SELECT RUNNING_TIME
+-- 가장 선호하는 국가에 쓸 sql
+-- 1-2) 여기서 가장 많은 나라를 조회 후
+--      해당 국가 영화의 갯수(컨트리 카운트 하면될듯?)
+SELECT COUNT(COUNTRY)
 FROM EVALUATION
 JOIN MOVIE USING (MOVIE_NO)
 WHERE MEMBER_NO = 84;
+-- 성공!
+
+-- 가장 선호하는 국가에 쓸 sql
+-- 1-3) 여기서 가장 많은 나라를 조회 후
+--      해당 국가 영화의 갯수(컨트리 카운트 하면될듯?)
+SELECT AVG(STAR_RATING)
+FROM EVALUATION
+WHERE MOVIE_NO = 2;
+                
+
+SELECT AVG(STAR_RATING)
+FROM EVALUATION
+JOIN MOVIE USING(MOVIE_NO)
+WHERE COUNTRY = '미국';
 
 
+SELECT AVG(STAR_RATING)
+FROM EVALUATION
+JOIN MOVIE USING(MOVIE_NO)
+WHERE COUNTRY = (SELECT MAX(COUNTRY)
+                FROM EVALUATION
+                JOIN MOVIE USING (MOVIE_NO)
+                WHERE MEMBER_NO = 84);
+-- 성공!           
+
+
+
+
+-- 4. 내가 평가한 모든 영화의 모든 RUNNING_TIME
 SELECT FLOOR(( SUM( SUBSTR(RUNNING_TIME, 0, INSTR(RUNNING_TIME, '시간')-1) ) * 60 +
       SUM(  SUBSTR(RUNNING_TIME, INSTR(RUNNING_TIME, ' ')+1 , INSTR(RUNNING_TIME, '분')-1-INSTR(RUNNING_TIME, ' ')) ) ) / 60)
     || '시간 '
     || MOD(( SUM( SUBSTR(RUNNING_TIME, 0, INSTR(RUNNING_TIME, '시간')-1) ) * 60 +
       SUM(  SUBSTR(RUNNING_TIME, INSTR(RUNNING_TIME, ' ')+1 , INSTR(RUNNING_TIME, '분')-1-INSTR(RUNNING_TIME, ' ')) ) ) , 60)
-    || '분' 
+    || '분'  AS ALL_TIME
 FROM MOVIE
 JOIN EVALUATION USING (MOVIE_NO)
 WHERE MEMBER_NO = 84;
 
 
+-- 5. 내가 평가한 모든 평점의 평균
+SELECT AVG(STAR_RATING)
+FROM EVALUATION
+WHERE MEMBER_NO = 84;
 
-desc movie;
+
 
 
 

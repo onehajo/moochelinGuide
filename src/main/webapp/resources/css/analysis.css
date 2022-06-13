@@ -117,8 +117,11 @@
 
 .graph-around > li > div{
     background-color: #00ffbe;
-    height: 100%;
-    animation: stick 1s 1;
+    
+    /* 평가 갯수가 0일때 기본공간을 주기위한 값. */
+    height: 3px; 
+
+    /* animation: stick 1s 1; */
 }
 
 
