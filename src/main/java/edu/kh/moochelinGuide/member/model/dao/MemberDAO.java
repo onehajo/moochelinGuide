@@ -1188,6 +1188,5 @@ public class MemberDAO {
 	}
 
 
-      
 
 }
