@@ -23,8 +23,6 @@ public class MyPageSecessionController extends HttpServlet{
 	    String contextPath = req.getContextPath();
 	    String command = uri.substring(  (contextPath + "/member/myPage/secession/").length()  );
 	    
-	    System.out.println("command = "+command);
-	    
 	    if(command.equals("do")) {
 	    	
 			String path = "/WEB-INF/views/member/myPage_secession.jsp";
@@ -40,9 +38,6 @@ public class MyPageSecessionController extends HttpServlet{
 		String uri = req.getRequestURI();
 	    String contextPath = req.getContextPath();
 	    String command = uri.substring(  (contextPath + "/member/myPage/secession/").length()  );
-	    
-	    System.out.println("command = "+command);
-	    
 	    
 	    try {
 	    	
