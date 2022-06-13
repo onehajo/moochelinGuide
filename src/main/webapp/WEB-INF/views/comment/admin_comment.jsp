@@ -53,33 +53,16 @@
 
             <!-- 검색 영역 -->
             <div class="search-area">
-                <form action="#" name="search-form">
-                    <fieldset class="hd-fieldset">
-                        <div id="search-btn">
-                            <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
-                        </div>
-                        <input type="search" name="query" id="query" autocomplete="off" placeholder="리뷰를 관리할 영화명을 입력해주세요.">
-                    </fieldset>
-                </form>
+                <fieldset class="hd-fieldset">
+                    <div id="search-btn">
+                        <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+                    </div>
+                    <input type="search" name="query" id="query" autocomplete="off" placeholder="리뷰를 관리할 영화명을 입력해주세요.">
+                </fieldset>
             </div>
 
             <!-- 검색 결과 출력-->
             <div class="search-result" id="search-result">
-                <p>"닥터 스트레인지"에 대한 검색 결과입니다.</p>
-                <table border="1px solid black">
-                    <thead>
-                        <tr>
-                            <th width="110">영화코드</th>
-                            <th width="436">영화제목</th>
-                            <th width="110">개봉년도</th>
-                            <th width="110">국가</th>
-                            <th width="110">코멘트수</th>
-                            <th width="110">기타</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
 
             <!-- 페이지네이션 -->
