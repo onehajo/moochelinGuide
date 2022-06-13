@@ -1207,7 +1207,7 @@ public class MemberDAO {
 	/** 각 메시지 번호로 메세지 내용 조회
 	 * @param conn
 	 * @param messageNo
-	 * @return
+	 * @return messageDetail
 	 * @throws Exception
 	 */
 	public Message messageDetail(Connection conn, int messageNo) throws Exception {
@@ -1227,6 +1227,7 @@ public class MemberDAO {
 				messageDetail.setMessageContent(rs.getString(1));
 				messageDetail.setEnrollDate(rs.getString(2));
 				messageDetail.setMemberName(rs.getString(3));
+				messageDetail.setMessageNo(rs.getInt(4));
 			}
 			
 		}finally {
