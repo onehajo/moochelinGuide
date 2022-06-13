@@ -102,3 +102,13 @@ cursor: pointer;
     border:1px solid none; 
     padding-right: 30px;
 }
+
+#activity:hover{
+    text-decoration: underline;
+}
+
+.noneList{
+    margin: auto;
+    font-size: 30px;
+    color: grey;
+}
