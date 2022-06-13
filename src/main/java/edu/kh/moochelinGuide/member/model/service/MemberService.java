@@ -510,5 +510,35 @@ public class MemberService {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	/** 각 메시지 번호로 메세지 내용 조회
+	 * @param messageNo
+	 * @return messageDetail
+	 * @throws Exception
+	 */
+	public Message messageDetail(int messageNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		Message messageDetail = dao.messageDetail(conn, messageNo);
+		
+		close(conn);
+		
+		return messageDetail;
+		
+	}
+
+	
+	
+	
+	
+	
+	
 
 }

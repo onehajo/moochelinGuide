@@ -61,7 +61,7 @@
 
                             			<div class="text-area">
                                 			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
-                                			<span class="message">${message.messageContent}</span>
+                                			<span class="message"><a href="detail?no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=400'); return false;">${message.messageContent}</a></span>
                             			</div>
                         			</div>
                         			<div class="message-right-btns">

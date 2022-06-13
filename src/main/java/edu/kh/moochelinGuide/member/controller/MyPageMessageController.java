@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.member.model.vo.*;
 
@@ -43,6 +45,7 @@ public class MyPageMessageController extends HttpServlet {
 				// int messageNo = Integer.parseInt(req.getParameter("no"));
 				// System.out.println(messageNo);
 				
+				
 				req.setAttribute("messageList", messageList);
 				
 				String path = "/WEB-INF/views/member/myPage_message.jsp";
@@ -50,11 +53,35 @@ public class MyPageMessageController extends HttpServlet {
 		    }
 		    
 		    
+			// 쪽지 상세보기
+		    if(command.equals("detail")) {
+		    	String no = req.getParameter("no");
+		    	int messageNo = Integer.parseInt(no);
+		    	System.out.println("비동기로 받아온 메세지 넘버 :" +messageNo);
+		    			
+				//req.setAttribute("messageList", messageList);
+				
+				//String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
+			    //req.getRequestDispatcher(path).forward(req, resp);
+			    
+
+			    // service에 메세지 내용 요청, 반환
+			    Message messageDetail = service.messageDetail(messageNo);
+			    req.setAttribute("messageDetail", messageDetail);
+			    
+			    
+			    //new Gson().toJson(messageDetail,resp.getWriter());
+			    
+			    //resp.getWriter().print(messageDetail);
+		    //}
 			
 			// 쪽지 상세보기 화면
-		    if(command.equals("detail")) {
-
-				req.setAttribute("messageList", messageList);
+		    //if(command.equals("detail")) {
+		    	
+		    	
+		    	System.out.println("넘버 전달 안되니2 " +messageNo);
+		    	
+				System.out.println("내용세팅 안됐니.."+messageDetail);
 				
 				String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
 			    req.getRequestDispatcher(path).forward(req, resp);

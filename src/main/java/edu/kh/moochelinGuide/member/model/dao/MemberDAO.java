@@ -1187,6 +1187,54 @@ public class MemberDAO {
 		return allMovieAvg;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/** 각 메시지 번호로 메세지 내용 조회
+	 * @param conn
+	 * @param messageNo
+	 * @return
+	 * @throws Exception
+	 */
+	public Message messageDetail(Connection conn, int messageNo) throws Exception {
+		
+		Message messageDetail = null; 
+		
+		try {
+			String sql = prop.getProperty("messageDetail");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, messageNo);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				messageDetail = new Message();
+				
+				messageDetail.setMessageContent(rs.getString(1));
+				messageDetail.setEnrollDate(rs.getString(2));
+				messageDetail.setMemberName(rs.getString(3));
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return messageDetail;
+	}
+
 
 
 }
