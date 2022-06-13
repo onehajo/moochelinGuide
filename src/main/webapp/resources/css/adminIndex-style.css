@@ -1,0 +1,205 @@
+*{
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    color : black;
+}
+body{
+    margin: 0;
+}
+
+a:visited, a:link {
+    color : black;
+}
+
+.main-css{
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background-color: #fff;
+    height: 83px;
+    box-shadow: 0px 3px 10px 1px rgb(0 0 0 / 10%);
+    position: sticky;
+    top: 0;  
+    z-index:2;
+}
+
+/* 상단 가로폭 잡아주는 div */
+.hd-center{
+    max-width: 1200px;
+    min-width: 800px;
+    margin: auto;
+}
+
+/* 상단 메뉴 들어있는 목록 */
+.main-css ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    height: 83px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* 상단메뉴 : 박스오피스,전체영화,검색,로그인,회원가입 */
+.main-css ul li {
+    font-size: 18px;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+/* svg로 적용한 상태. 
+svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
+.logo{
+    width: 100px;
+    height: 50px;
+    padding-right: 20px;
+}
+
+.sch{
+    display: flex;
+    margin: 0 20px 0 auto;
+}
+
+.signup{
+    margin-right: 0 !important;
+    /* border: 1px solid #00ffbe; */
+    padding: 5px 12px;
+    background-color: #00ffbe;
+    border-radius: 5px;
+}
+
+.signup a {
+    color: #392eff;
+    font-weight: 500;
+}
+
+.profile{
+    margin-right: 0 !important;
+}
+#profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #555765;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 중앙 콘텐츠 영역 */
+/*content-index*/
+main {
+    width: 100%;
+    padding: 0;
+}
+
+/* 중앙 가로 1200 내에서 작업할 때 */
+main > .content-main{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.current-data{
+    width: 300px;
+    margin: 150px auto 50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+.movie-btn{
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+
+.dashBoard{
+    max-width: 1200px;
+    margin: 100px auto 100px;
+    display: flex;
+    justify-content: center;
+}
+.dashMovie .dash-con {
+    background-color: #f8f2f2;
+}
+.dashUser .dash-con{
+    background-color:#f5f7e9 ;
+}
+.dashCS .dash-con{
+    background-color:#e7eef4 ;
+
+}
+.dashMovie, .dashUser, .dashCS {
+    width: 340px;
+    margin: 5px;
+
+    
+}
+.dash-con{
+    padding: 30px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #777;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer 스타일 */
+.footer-top {
+    height: 60px;
+    background-color: #392eff;
+    text-align: center;
+    padding: 18px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+.footer-top > span {color: #00ffbe;}
+
+.footer-bottom {
+    height: 200px;
+    background-color: #f9f9f9;
+    padding-top: 25px;
+    color: #777777;
+}
+.footer-bottom > div {
+    width: 1200px;
+    margin: 0 auto;
+}
+.footer-bottom p{
+    font-size: 12px;
+    line-height: 10px;
+}

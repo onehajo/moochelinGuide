@@ -46,4 +46,3 @@ secessionBtn.addEventListener("click",function(e){
     }
 
 });
-
