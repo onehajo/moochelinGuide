@@ -261,6 +261,29 @@
 	</entry>
 	
 	
+	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
+	<entry key="analyMovieCountry">
+	SELECT MAX(COUNTRY)
+	FROM EVALUATION
+	JOIN MOVIE USING (MOVIE_NO)
+	WHERE MEMBER_NO = ?
+	</entry>
+	
+	
+	<!-- 내가 평가한 모든 영화의 모든 RUNNING_TIME -->
+	<entry key="myAllRunningTime">
+	SELECT FLOOR(( SUM( SUBSTR(RUNNING_TIME, 0, INSTR(RUNNING_TIME, '시간')-1) ) * 60 +
+    SUM(  SUBSTR(RUNNING_TIME, INSTR(RUNNING_TIME, ' ')+1 , INSTR(RUNNING_TIME, '분')-1-INSTR(RUNNING_TIME, ' ')) ) ) / 60)
+    || '시간 '
+    || MOD(( SUM( SUBSTR(RUNNING_TIME, 0, INSTR(RUNNING_TIME, '시간')-1) ) * 60 +
+       SUM(  SUBSTR(RUNNING_TIME, INSTR(RUNNING_TIME, ' ')+1 , INSTR(RUNNING_TIME, '분')-1-INSTR(RUNNING_TIME, ' ')) ) ) , 60)
+    || '분'   AS ALL_TIME
+	FROM MOVIE
+	JOIN EVALUATION USING (MOVIE_NO)
+	WHERE MEMBER_NO = ?
+	</entry>
+
+
 	<!-- 특정 키워드로 인물 검색 -->
 	<entry key="searchPerson">
 		SELECT PERSON_NO, PERSON_NM, PERSON_JOB, PERSON_IMG
@@ -281,6 +304,7 @@
 	</entry>
 	
 	
+
 	
 	
 	
@@ -297,5 +321,38 @@
 		AND MESSAGE_ST='N'
 	</entry>
 	
+
+	<!-- 내가 가장 선호한 나라에서, 평가한 영화의 갯수. -->
+	<entry key="likeCountryCount">
+		SELECT COUNT(COUNTRY)
+		FROM EVALUATION
+		JOIN MOVIE USING (MOVIE_NO)
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	
+	<!-- 내가 가장 선호한 나라의 영화의 평점 평균 -->
+	<entry key="likeCountryAvg">
+		SELECT AVG(STAR_RATING)
+		FROM EVALUATION
+		JOIN MOVIE USING(MOVIE_NO)
+		WHERE COUNTRY = (SELECT MAX(COUNTRY)
+		                FROM EVALUATION
+		                JOIN MOVIE USING (MOVIE_NO)
+		                WHERE MEMBER_NO = ?)
+	</entry>
+	
+	
+	<!-- 내가 가장 선호한 나라의 영화의 평점 평균 -->
+	<entry key="allMovieAvg">
+		SELECT AVG(STAR_RATING)
+		FROM EVALUATION
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	
+	
+	
+
 
 </properties>
