@@ -1,10 +1,23 @@
 const searchBtn = document.getElementById("search-btn");
 const query = document.getElementById("query");
 const searchResult = document.getElementById("search-result");
-const p = searchResult.firstElementChild;
-const tbody = searchResult.firstElementChild.nextElementSibling.lastElementChild;
 
-searchBtn.addEventListener("mouseup", function(){
+// 검색어 알려주는 p태그 생성
+const p = document.createElement("p");
+
+// 테이블 생성
+const table = document.createElement("table");
+table.setAttribute("border", "1px solid black");
+
+query.addEventListener("onkeypress", function(e){
+    if(e.which == 13){
+        console.log("클릭됨");
+        searchBtn.click();
+    }
+});
+
+
+searchBtn.addEventListener("click", function(){
 
     if(query.value.trim().length!=0){
 
@@ -14,15 +27,52 @@ searchBtn.addEventListener("mouseup", function(){
             type : "GET",
             dataType : "JSON",
             success : function(movieList){
+
+                p.innerText = '"'+query.value+'"에 대한 코멘트 검색결과 ( '+movieList.length+' )';
+
+                const q = query.value;
+                query.value = "";
+                query.placeholder = q;
+
+                table.innerHTML = "";
+
                 if(movieList.length!=0){
-                    console.log("영화 조회 성공");
-                    console.log(movieList);
-                    p.innerText = '"'+query.value+'"에 대한 코멘트 검색결과입니다. ';
-                    tbody.innerHTML = "";
+
+                    const thead = document.createElement("thead");
+
+                    const tr1 = document.createElement("tr");
+
+                    const th1 = document.createElement("th");
+                    th1.innerText = "영화코드";
+                    th1.style.width = "100px";
+
+                    const th2 = document.createElement("th");
+                    th2.innerText = "영화제목";
+                    th2.style.width = "400px";
+
+                    const th3 = document.createElement("th");
+                    th3.innerText = "개봉년도";
+                    th3.style.width = "100px";
+
+                    const th4 = document.createElement("th");
+                    th4.innerText = "국가";
+                    th4.style.width = "100px";
+
+                    const th5 = document.createElement("th");
+                    th5.innerText = "코멘트수";
+                    th5.style.width = "100px";
+
+                    const th6 = document.createElement("th");
+                    th6.innerText = "기타";
+                    th6.style.width = "100px";
+
+                    tr1.append(th1,th2,th3,th4,th5,th6);
+
+                    thead.append(tr1);
+
+                    const tbody = document.createElement("tbody");
 
                     for(let movie of movieList){
-
-                        console.log(movie.commentCount);
 
                         const td1 = document.createElement("td");
                         td1.innerText = movie.movieNo;
@@ -42,17 +92,19 @@ searchBtn.addEventListener("mouseup", function(){
                         const td6 = document.createElement("td");
                         td6.innerText = "";
 
-                        const tr = document.createElement("tr");
-                        tr.classList.add("selected");
-                        tr.append(td1,td2,td3,td4,td5,td6);
+                        const tr2 = document.createElement("tr");
+                        tr2.classList.add("selected");
+                        tr2.append(td1,td2,td3,td4,td5,td6);
 
-                        tbody.append(tr);
+                        tbody.append(tr2);
                     }
 
+                    table.append(thead, tbody);
+
+                    searchResult.append(p,table);
+
                 }else{
-                    console.log("영화 조회 결과가 없습니다.");
-                    p.innerText = '"'+query.value+'"에 대한 코멘트 검색결과가 없습니다. ';
-                    tbody.innerHTML = "";
+                    searchResult.append(p,table);
                 }
             },
             error : function(request, status, error){
