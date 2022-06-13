@@ -711,6 +711,7 @@ public class MemberDAO {
 			
 		}finally {
 			
+			
 		}
 		
 		return fList;
@@ -892,7 +893,7 @@ public class MemberDAO {
 
 	
 	
-	/** 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
+	/** 취향분석 - 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
 	 * @param conn
 	 * @param memberNo
 	 * @return
@@ -932,7 +933,7 @@ public class MemberDAO {
 	
 	
 	
-	/** 내가 평가한 모든 영화의 가장 많은 country 는?
+	/** 취향분석 - 내가 평가한 모든 영화의 가장 많은 country 는?
 	 * @param conn
 	 * @param memberNo
 	 * @return
@@ -996,6 +997,7 @@ public class MemberDAO {
 			}
 			
 		}finally {
+			close(rs);
 			close(pstmt);
 		}
 		
@@ -1033,11 +1035,24 @@ public class MemberDAO {
 			}
 			
 		}finally {
+			close(rs);
 			close(pstmt);
 		}
 		
 		return movieList;
 		
+	}
+
+	
+	
+	/** 취향분석 - 내가 평가한 모든 영화의 모든 RUNNING_TIME
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 */
+	public String myAllRunningTime(Connection conn, int memberNo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
