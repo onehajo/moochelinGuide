@@ -33,4 +33,12 @@
 		ORDER BY TO_NUMBER(REGEXP_REPLACE(TICKETING, '\%')) DESC
 	</entry>
 	
+	<entry key="selectMovieDetail">
+	SELECT MOVIE_TITLE, RELEASE_YEAR, COUNTRY, SYNOPSIS, DETAIL_IMG, 
+		   PRODUCER, ACTOR, POSTER_IMG, DETAIL_IMG
+	FORM MOVIE
+	WHERE MOVIE_NO = ?
+	</entry>
+	
+	
 </properties>

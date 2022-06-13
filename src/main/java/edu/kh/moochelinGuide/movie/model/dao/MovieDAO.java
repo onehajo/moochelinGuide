@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
+import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
 
 
 
@@ -97,6 +98,47 @@ public class MovieDAO {
 			close(stmt);
 		}
 		return list;
+	}
+
+	/** 영화 정보 조회 DAO
+	 * @param conn
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public MovieDetail selectMovieDetail(Connection conn, int movieNo) throws Exception{
+		
+		MovieDetail detail = null;
+		
+		try {
+			String sql = prop.getProperty("selectMovieDetail");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				detail = new MovieDetail();
+				
+				detail.setMovieTitle(rs.getString("movieTitle"));
+				detail.setCountry(rs.getString("country"));
+				detail.setDetailImage(rs.getString("detailImg"));
+				detail.setPosterImage(rs.getString("posterImg"));
+				detail.setReleaseYear(rs.getInt("releaseYear"));
+				detail.setSynopsis(rs.getString("synopsis"));
+				
+			
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return detail;
 	}
 	
 	
