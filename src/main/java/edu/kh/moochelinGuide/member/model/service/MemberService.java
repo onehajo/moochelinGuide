@@ -13,6 +13,7 @@ import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Analysis;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
+import edu.kh.moochelinGuide.movie.model.vo.Person;
 
 public class MemberService {
 
@@ -424,7 +425,6 @@ public class MemberService {
 		
 		
 		
-		
 		Map<String, Object>
 		map = new HashMap<String, Object>();
 		map.put("analyMovieCount", analyMovieCount);
@@ -438,6 +438,24 @@ public class MemberService {
 		close(conn);
 		
 		return map;
+		
+	}
+	
+	
+	/** 특정 키워드로 인물 검색 Service
+	 * @param query
+	 * @return personList
+	 * @throws Exception
+	 */
+	public List<Person> searchPerson(String query) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		List<Person> personList = dao.searchPerson(conn, query);
+		
+		close(conn);
+		
+		return personList;
 	}
 	
 	

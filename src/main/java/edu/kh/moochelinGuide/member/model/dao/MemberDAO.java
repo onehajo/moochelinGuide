@@ -16,6 +16,7 @@ import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Analysis;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
+import edu.kh.moochelinGuide.movie.model.vo.Person;
 
 public class MemberDAO {
 	
@@ -857,7 +858,6 @@ public class MemberDAO {
 	
 	
 	
-	
 
 	/** 취향분석 DAO - 내가 평가한 영화의 갯수
 	 * @param conn
@@ -883,6 +883,7 @@ public class MemberDAO {
 			}
 			
 		} finally {
+			close(rs);
 			close(pstmt);
 		}
 		
@@ -921,6 +922,7 @@ public class MemberDAO {
 			} 
 			
 		}finally {
+			close(rs);
 			close(pstmt);
 		}
 		
@@ -963,6 +965,46 @@ public class MemberDAO {
 		return analyMovieCountry;
 	}
 
+
+	/** 특정 키워드로 인물 검색 DAO
+	 * @param conn
+	 * @param query
+	 * @return personList
+	 * @throws Exception
+	 */
+	public List<Person> searchPerson(Connection conn, String query) throws Exception{
+		
+		List<Person> personList = new ArrayList<Person>();
+		
+		try {
+			
+			String sql = prop.getProperty("searchPerson");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+query+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Person p = new Person();
+				
+				p.setPersonNo(rs.getInt(1));
+				p.setPersonName(rs.getString(2));
+				p.setPersonJob(rs.getString(3));
+				p.setPersonImage(rs.getString(4));
+				p.setMovieNo(rs.getInt(5));
+				p.setMovieTitle(rs.getString(6));
+				
+				personList.add(p);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return personList;
+	}
       
 
 }

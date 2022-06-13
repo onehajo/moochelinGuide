@@ -60,9 +60,10 @@ public class SearchController extends HttpServlet{
 		    // 인물 검색 결과
 		    if(command.equals("person")) {
 		    	
-		    	// List<Person> personList = service.searchPerson(query);
+		    	// 검색 결과를 조회하는 서비스르 호출하여 인물 리스트 반환
+		    	List<Person> personList = service.searchPerson(query);
 		    	
-		    	//req.setAttribute("personList", personList);
+		    	req.setAttribute("personList", personList);
 		    	
 		    }
 	    
