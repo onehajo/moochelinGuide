@@ -16,7 +16,7 @@ main > .content-main{
     width: 445px;
     height: 50px;
 
-    padding: 0px 0px 0px 15px;
+    padding: 0px;
     border-radius: 5px;
     border: 1px solid #ddd;
     display: flex;
@@ -26,11 +26,15 @@ main > .content-main{
     background: linear-gradient(to right, #00ffbe, #fff);
 }
 
+#search-btn{
+    padding: 15px;
+    cursor: pointer;
+}
+
 #query{
-    padding: 8px 15px;
+    padding: 8px 16px;
     font-size: 16px;
     border: none;
-    margin: 0px 0px 0px 15px;
     outline: 0;
     width: 400px;
     height: 100%;
@@ -40,9 +44,8 @@ main > .content-main{
     color: #aaa;
 }
 
-#search-btn{
+#search-icon{
     width: 12%;
-    cursor: pointer;
 
     border: none;
     outline: none;
@@ -54,7 +57,7 @@ main > .content-main{
 /* 검색 결과 출력 영역 */
 .search-result{
     width: 80%;
-    height: 400px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     margin: 20px auto;
@@ -69,7 +72,7 @@ main > .content-main{
 
 .search-result > table{
     width: 1000px;
-    height: 300px;
+    min-height: 100px;
     border-spacing: 0px;
     border-collapse: collapse;
     border-color: rgb(150, 150, 150);
@@ -85,7 +88,11 @@ main > .content-main{
 .search-result tbody{
     text-align: center;
     font-size: 17px;
-    height: 250px;
+    min-height: 50px;
+}
+
+.selected{
+    height: 50px;
 }
 
 .selected:hover{

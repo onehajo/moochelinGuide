@@ -27,5 +27,7 @@ public class Movie {
 	
 	private int rNum;
 	
+	private int commentCount;
+	
 	
 }

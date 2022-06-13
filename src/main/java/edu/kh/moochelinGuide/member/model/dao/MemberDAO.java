@@ -224,6 +224,7 @@ public class MemberDAO {
 				m.setPosterImage(rs.getString(3));
 				m.setReleaseYear(rs.getInt(4));
 				m.setCountry(rs.getString(5));
+				m.setCommentCount(rs.getInt(6));
 				
 				movieList.add(m);
 				

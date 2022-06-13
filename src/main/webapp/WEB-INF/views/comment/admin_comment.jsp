@@ -12,8 +12,14 @@
 
     <link rel="stylesheet" href="${contextPath}/resources/css/adminIndex-style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/adminComment-style.css">
-    <link rel="stylesheet" href="">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- sweetalert-->
+    <style>
+    .swal2-title {
+        font-size: 20px;
+    }
+    </style>
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,69 +55,29 @@
             <div class="search-area">
                 <form action="#" name="search-form">
                     <fieldset class="hd-fieldset">
-                        <a href="#">
-                            <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
-                        </a>
-                        <input type="search" id="query" autocomplete="off" placeholder="리뷰를 관리할 영화명을 입력해주세요.">
+                        <div id="search-btn">
+                            <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+                        </div>
+                        <input type="search" name="query" id="query" autocomplete="off" placeholder="리뷰를 관리할 영화명을 입력해주세요.">
                     </fieldset>
                 </form>
             </div>
 
             <!-- 검색 결과 출력-->
-            <div class="search-result">
+            <div class="search-result" id="search-result">
                 <p>"닥터 스트레인지"에 대한 검색 결과입니다.</p>
                 <table border="1px solid black">
                     <thead>
                         <tr>
-                            <th>영화코드</th>
-                            <th>영화제목</th>
-                            <th>개봉년도</th>
-                            <th>국가</th>
-                            <th>코멘트수</th>
-                            <th>기타</th>
+                            <th width="110">영화코드</th>
+                            <th width="436">영화제목</th>
+                            <th width="110">개봉년도</th>
+                            <th width="110">국가</th>
+                            <th width="110">코멘트수</th>
+                            <th width="110">기타</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="selected">
-                            <td>1</td>
-                            <td>닥터스트레인지</td>
-                            <td>2016</td>
-                            <td>미국</td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
-                        <tr class="selected">
-                            <td>1</td>
-                            <td>닥터스트레인지</td>
-                            <td>2016</td>
-                            <td>미국</td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
-                        <tr class="selected">
-                            <td>1</td>
-                            <td>닥터스트레인지</td>
-                            <td>2016</td>
-                            <td>미국</td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
-                        <tr class="selected">
-                            <td>1</td>
-                            <td>닥터스트레인지</td>
-                            <td>2016</td>
-                            <td>미국</td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
-                        <tr class="selected">
-                            <td>1</td>
-                            <td>닥터스트레인지</td>
-                            <td>2016</td>
-                            <td>미국</td>
-                            <td>1</td>
-                            <td></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -119,17 +85,17 @@
             <!-- 페이지네이션 -->
             <div class="pagination-area">
                 <ul class="pagination">
-                    <li><a href="#">&lt;&lt;</a></li>
-                    <li><a href="#">&lt;</a></li>
+                    <li><a href="member">&lt;&lt;</a></li>
+                    <li><a href="member">&lt;</a></li>
                     
                     <li><a class="current">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
+                    <li><a href="member">2</a></li>
+                    <li><a href="member">3</a></li>
+                    <li><a href="member">4</a></li>
+                    <li><a href="member">5</a></li>
 
-                    <li><a href="#">&gt;</a></li>
-                    <li><a href="#">&gt;&gt;</a></li>
+                    <li><a href="member">&gt;</a></li>
+                    <li><a href="member">&gt;&gt;</a></li>
 
                 </ul>
             </div>
@@ -196,21 +162,13 @@
         </section>
     </main>
 
-    <footer>
-        <section class="footer-top">지금까지 <span>★ 658,179,744 개</span>의 평가가 쌓였어요.</section>
-        <section class="footer-bottom">
-            <div>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-                <p>서비스 이용약관 | 개인정보 처리방침 | 회사 안내</p>
-                <p>고객센터 | cs@moochelin.co.kr, 02-123-4567</p>
-                <p>광고 문의 | ad@moochelin.com</p>
-                <p>제휴 및 대외 협력 | https://moochelin.team/contact</p>
-                <p>주식회사 무슐랭가이드 | 대표 원하조 | 서울특별시 서초구 강남대로 343 신덕빌딩 3층</p>
-                <p>사업자 등록 번호 211-88-66013</p>
-                <p>MOOCHELIN GUIDE © 2022 All rights reserved.</p>
-            </div>
-        </section>
-    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        const contextPath = "${contextPath}";
+    </script>
+	<script src="${contextPath}/resources/js/admin_comment.js"></script>
 
 </body>
 </html>
