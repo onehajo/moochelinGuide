@@ -28,18 +28,19 @@
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <jsp:include page="/WEB-INF/views/common/header.jsp" /> 
 
-	<main>
-		<jsp:include page="/WEB-INF/views/common/myPage_top.jsp" />
+    <main>
+        <jsp:include page="/WEB-INF/views/common/myPage_top.jsp" />
+        
+        <section class="mypage-content">
+        
+            <div><h2>쪽지함</h2></div>
+            <div class="contain-box">
+                <div class="message-container">
+                ${messageList}
 
-		<section class="mypage-content">
 
-			<div>
-				<h2>쪽지함</h2>
-			</div>
-			<div class="contain-box">
-				<div class="message-container">
 
 					<c:choose>
 
@@ -53,21 +54,29 @@
 							<c:forEach var="message" items="${messageList}">
 
 								<div class="message-form">
-									<div class="message-left">
-										<div class="image-area"
-											style=" background-size: 70px; background-image : url(${contextPath}${message.profileImage})"></div>
 
-										<div class="text-area">
-											<span class="name">${message.memberName}<span
-												class="date">${message.enrollDate}</span></span> <span
-												class="message">${message.messageContent}</span>
-										</div>
-									</div>
-									<div class="message-right-btns">
-										<button onclick="popupSend()">답장</button>
-										<button onclick="deleteMessage()">쪽지삭제</button>
-									</div>
-								</div>
+                        			<div class="message-left">
+                        				<input type="hidden" name="messageNo" value="${message.messageNo}">
+                            			<div class="image-area" style=" background-size: 70px; background-image : url(${contextPath}${message.profileImage})"></div>
+
+                            			<div class="text-area">
+                                			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
+                                			<span class="message">${message.messageContent}</span>
+                            			</div>
+                        			</div>
+                        			<div class="message-right-btns">
+                            			<button onclick="popupSend()">답장</button>
+                            			<button onclick="deleteMessage()">쪽지삭제</button>
+                        			</div>
+                    			</div>
+                    			
+
+
+
+
+
+
+
 
 							</c:forEach>
 						</c:otherwise>
