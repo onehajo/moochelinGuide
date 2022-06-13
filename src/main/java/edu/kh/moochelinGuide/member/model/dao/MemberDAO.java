@@ -965,7 +965,6 @@ public class MemberDAO {
 		return analyMovieCountry;
 	}
 
-
 	/** 특정 키워드로 인물 검색 DAO
 	 * @param conn
 	 * @param query
@@ -992,19 +991,56 @@ public class MemberDAO {
 				p.setPersonName(rs.getString(2));
 				p.setPersonJob(rs.getString(3));
 				p.setPersonImage(rs.getString(4));
-				p.setMovieNo(rs.getInt(5));
-				p.setMovieTitle(rs.getString(6));
 				
 				personList.add(p);
 			}
 			
 		}finally {
-			close(rs);
 			close(pstmt);
 		}
 		
 		return personList;
 	}
+
+	
+	/** 특정 인물의 관련 영화정보 조회 DAO
+	 * @param conn
+	 * @param query
+	 * @param person
+	 * @return movieList
+	 * @throws Exception
+	 */
+	public List<Movie> selectPersonMovieList(Connection conn, String query, Person p) throws Exception{
+		
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectPersonMovieList");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p.getPersonNo());
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Movie m = new Movie();
+				
+				m.setMovieNo(rs.getInt(2));
+				m.setMovieTitle(rs.getString(2));
+				
+				movieList.add(m);
+			}
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return movieList;
+		
+	}
+
+
       
 
 }

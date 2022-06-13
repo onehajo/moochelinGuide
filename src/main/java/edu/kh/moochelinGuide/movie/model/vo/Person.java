@@ -1,5 +1,7 @@
 package edu.kh.moochelinGuide.movie.model.vo;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +17,6 @@ public class Person {
 	private String personName;
 	private String personJob;
 	private String personImage;
-	private int movieNo;
-	private String movieTitle;
+	private List<Movie> movieList;
 
 }
