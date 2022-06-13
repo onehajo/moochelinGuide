@@ -14,6 +14,7 @@ import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.member.model.vo.Message;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
+import edu.kh.moochelinGuide.movie.model.vo.Person;
 
 public class MemberDAO {
 	
@@ -851,6 +852,44 @@ public class MemberDAO {
 			
 		}
 		return evalMovie;
+	}
+
+	/** 특정 키워드로 인물 검색 DAO
+	 * @param conn
+	 * @param query
+	 * @return personList
+	 * @throws Exception
+	 */
+	public List<Person> searchPerson(Connection conn, String query) throws Exception{
+		
+		List<Person> personList = new ArrayList<Person>();
+		
+		try {
+			
+			String sql = prop.getProperty("searchPerson");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Person p = new Person();
+				
+				p.setPersonNo(rs.getInt(1));
+				p.setPersonName(rs.getString(2));
+				p.setPersonJob(rs.getString(3));
+				p.setPersonImage(rs.getString(4));
+				p.setMovieNo(rs.getInt(5));
+				p.setMovieTitle(rs.getString(6));
+				
+				personList.add(p);
+			}
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return personList;
 	}
       
 
