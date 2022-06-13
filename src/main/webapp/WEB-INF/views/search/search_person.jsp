@@ -36,6 +36,22 @@
         </section>
         <section class="content-main">
             <section class="movie-list-row">
+
+                <!-- 인물 조회결과가 있는 경우 -->
+                <c:if test="${!empty personList}">
+                    <c:forEach var="person" items="${personList}">
+                        인물정보 : ${person}
+                    </c:forEach>
+                </c:if>
+
+                <!-- 인물 조회결과가 없는 경우 -->
+                <c:if test="${empty personList}">
+                    <div id="searchFail">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <p>검색 결과가 없습니다. 다른 검색어를 입력해보세요.</p>
+                    </div>
+                </c:if>
+
                     <div class="sch-person">
                         <div>
                             <img src="#" class="sch-img-person">
