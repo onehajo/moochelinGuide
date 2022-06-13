@@ -54,7 +54,7 @@
 		AND MEMBER_NO != ?
 	</entry>
 	
-		<!-- 특정 키워드로 영화 검색 -->
+	<!-- 특정 키워드로 영화 검색 -->
 	<entry key="searchTitle">
 		SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
 		FROM MOVIE
@@ -234,7 +234,15 @@
 	</entry>
 	
 	
-	
+	<!-- 특정 키워드로 인물 검색 -->
+	<entry key="searchPerson">
+		SELECT PERSON_NO, PERSON_NM, PERSON_JOB, PERSON_IMG, MOVIE_NO, MOVIE_TITLE
+		FROM PERSON
+		JOIN MV_PERSON USING(PERSON_NO)
+		JOIN MOVIE USING(MOVIE_NO)
+		WHERE PERSON_NM LIKE ?
+		ORDER BY PERSON_NO
+	</entry>
 	
 	
 	

@@ -24,10 +24,10 @@ public class ResetPwServlet extends HttpServlet {
 			// 외부에서 돌아오는 페이지라도 form에 있는 vlaue를 가지고 오기는 하는데???
 			// 응답페이지에 어떻게 넣지??
 			
-			req.setAttribute(memberEmail,"memberEmail");
+			req.setAttribute("memberEmail",memberEmail);
 			
-			HttpSession session = req.getSession();
-			session.setAttribute(memberEmail,"memberEmail");
+			//HttpSession session = req.getSession();
+			//session.setAttribute(memberEmail,"memberEmail");
 			
 			String path = "/WEB-INF/views/member/reset_pw.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);

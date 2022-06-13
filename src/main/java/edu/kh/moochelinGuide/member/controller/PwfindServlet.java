@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 
@@ -25,7 +26,7 @@ import edu.kh.moochelinGuide.member.model.service.MemberService;
 public class PwfindServlet extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String pwFindEmail = req.getParameter("pwFindEmail");
 		
@@ -85,8 +86,10 @@ public class PwfindServlet extends HttpServlet {
 	         		+ "<h2>새 비밀번호 설정</h2><hr style=\"background-color: #a1a1a1; width: 24px; height: 1px; margin: 19px 0 10px; padding: 0; border: 0;\">"
 	         		+ "<div style='font-size:16px; color:#555;'>안녕하세요, 왓챠피디아입니다.<br>"
 	         		+ "아래 버튼을 눌러 새 비밀번호를 설정해주세요.</div>"
-	         		+ "<div align='center' style=\"background-color: #392eff; color:#fff; font-weight:bold; line-height: 40px; font-size: 17px; font-weight: 500; height: 40px; width: 100%; border-radius: 6px; margin: 31px 0 0;\"><a href=\"http://localhost:8080/moochelinGuide/resetPw\" target=\"_blank\">비밀번호 변경하기</a></div>"
-	         		+ "<form action=\"http://localhost:8080/moochelinGuide/resetPw\" method='post'><input type=\"hidden\" name='memberEmail' value="+toEmail+"><button></button></form></div><div align=\"center\" style=\"color: #9b9b9b; background-color: #f6f6f6; line-height: 18px; font-size: 13px; padding-top: 20px; padding-bottom: 38px;\">\r\n"
+	         		+ "<div align='center' style=\"background-color: #392eff; line-height: 40px; font-size: 17px; font-weight: 500; height: 40px; width: 100%; border-radius: 6px; margin: 31px 0 0;\"><a href=\"http://localhost:8080/moochelinGuide/resetPw\" target=\"_blank\" style=\"text-decoration:none; color:#fff; font-weight:bold;\">비밀번호 변경하기</a></div>"
+	         		+ "<form target='_blank' action=\"http://localhost:8080/moochelinGuide/resetPw\" method=\"post\"><input type=\"hidden\" name=\"memberEmail\"value="+toEmail+">"
+	         				+ "<button style=\"color:#fff; font-weight:bold; background-color: #392eff; line-height: 40px; font-size: 17px; font-weight: 500; height: 40px; width: 100%; border-radius: 6px; margin: 31px 0 0;\">비밀번호 변경하기</button></form></div>"
+	         				+ "<div align=\"center\" style=\"color: #9b9b9b; background-color: #f6f6f6; line-height: 18px; font-size: 13px; padding-top: 20px; padding-bottom: 38px;\">\r\n"
 	         		+ "        <p style=\"margin: 8px 0;\">© 2022. Moochelin Guide All rights reserved.</p>\r\n"
 	         		+ "        <p style=\"margin: 8px 0;\">\r\n"
 	         		+ "          본 메일은 발신 전용입니다.\r\n"
@@ -125,14 +128,16 @@ public class PwfindServlet extends HttpServlet {
 	         // 인증번호를 받은 이메일, 인증번호, 인증번호 발급 시간 ->DB삽입
 	         //int result = new MemberService().insertCertification(pwFindEmail);
 	         
-	         //resp.getWriter().print(result); 
+	         // 단순 메일 전송 성공 어떻게함?
+	         int result=1;
+	         resp.getWriter().print(result); 
 	         
 	         // 세션 message에 성공메세지 저장하기 
 	         // 실패와 성공은 어떻게 구분함??
 	         
 	         // 메일 다 보내질때 까지 기다렸다가 페이지가 넘어감;;;;;;;;
 	         // 비동기로 다시 처리할것.... ㅜㅜ 
-	         resp.sendRedirect(req.getHeader("referer"));
+	         //resp.sendRedirect(req.getHeader("referer"));
 	         
 
 	      } catch (Exception e) {
@@ -142,8 +147,26 @@ public class PwfindServlet extends HttpServlet {
 	         resp.setStatus(500);
 	         resp.getWriter().print(e.getMessage());
 	      }
-		
-		
-		
+
 	}
+	
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		try {
+			
+			String message = "메일이 발송되었습니다.";
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("message", message);
+			
+			resp.sendRedirect(req.getHeader("referer"));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

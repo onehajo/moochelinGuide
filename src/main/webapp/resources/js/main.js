@@ -145,13 +145,14 @@ loginPw.addEventListener("input",function(){
 
 
 
-
+let valicheck=false;
 // 비밀번호 변경 이메일보내기 - 이메일 유효성 검사
 pwFindEmail.addEventListener("input", function(){
 
     if(pwFindEmail.value.trim().length==0){
         pwfindText.innerText="이메일을 입력해주세요.";
 
+		valicheck=false;
         return;
     }else{
 
@@ -165,8 +166,10 @@ pwFindEmail.addEventListener("input", function(){
 				success : function(result){
 	                if(result!=0) { // 중복임
 	                    pwfindText.innerText = ""
+	                    valicheck=true;
 	                } else{
 	                    pwfindText.innerText = "가입되지 않은 이메일입니다."
+	                    valicheck=false;
 	                }
 				},
 				error : function(){
@@ -175,11 +178,50 @@ pwFindEmail.addEventListener("input", function(){
 
 	    }else{
 	        pwfindText.innerText = "이메일 형식이 올바르지 않습니다."
-	
+			valicheck=false;
 	    }
     
     }
 })
+// 비밀번호 유효성 검사
+function pwfindValidate(){
+	if(!valicheck){
+		alert("가입한 이메일을 입력해주세요.");
+		return false;
+		
+	}
+	return true;
+}
+
+
+// 비밀번호 변경 이메일보내기
+pwfindBtn.addEventListener("click",function(){
+	
+	if(valicheck){// 유효할때
+		
+		$.ajax({
+            url: "pwfind",
+            data: {"pwFindEmail": pwFindEmail.value},
+            method:"post",
+            success: function(result){
+				alert("메일발송 성공");
+                console.log("이메일 발송 성공");
+                console.log(result);
+
+            }
+        });   
+        
+	}
+});
+
+
+
+
+
+
+
+
+
 
 
 
