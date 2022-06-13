@@ -11,6 +11,7 @@ import edu.kh.moochelinGuide.member.model.dao.MemberDAO;
 import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.member.model.vo.Message;
+import edu.kh.moochelinGuide.movie.model.vo.Analysis;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 public class MemberService {
@@ -379,7 +380,7 @@ public class MemberService {
 		// 1)평가한 영화 정보 조회 .. 를 가지고 영화(이름, 이미지, 년도, 국가 ) ( 평균별점 걍 빼자  )
 		List<Movie> evalMovie = dao.selectEvalMovie(conn, memberNo);
 		
-		System.out.println(evalMovie);
+//		System.out.println(evalMovie);
 		
 
 		// 2) 찜한 영화 정보(정보가 없슈)
@@ -393,6 +394,47 @@ public class MemberService {
 		// 2) 찜한 영화 정보(담을 예정)
 		// 3) 취향분석 (담을 예정)
 		
+		close(conn);
+		
+		return map;
+	}
+
+	
+	/** 취향분석 Service
+	 * @param memberNo
+	 * @return
+	 */
+	public Map<String, Object> analysis(int memberNo) throws Exception {
+		
+
+		Connection conn = getConnection();
+		
+		// 1) 내가 평가한 영화의 모든 갯수 ( 프로필 오른쪽에 사용할 것임 )
+		int analyMovieCount = dao.analyMovieCount(conn, memberNo);
+		
+		// 2) 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
+		List<Analysis> analyAll = dao.analyAllScore(conn, memberNo);
+		
+		// 3) 내가 평가한 모든 영화의 가장 많은 country 는?
+		String analyMovieCountry = dao.analyMovieCountry(conn, memberNo);
+		
+		
+		// 4) 내가 평가한 모든 영화의 모든 RUNNING_TIME
+		//    -> 컬럼에 1시42분 되어있어서 substirng을 써야하는지 감이 안잡힘.
+		
+		
+		
+		
+		Map<String, Object>
+		map = new HashMap<String, Object>();
+		map.put("analyMovieCount", analyMovieCount);
+		map.put("analyAll", analyAll);
+		map.put("analyMovieCountry", analyMovieCountry);
+		
+		System.out.println(analyMovieCount);
+		System.out.println(analyAll);
+		System.out.println(analyMovieCountry);
+
 		close(conn);
 		
 		return map;

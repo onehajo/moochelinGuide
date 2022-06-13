@@ -256,9 +256,9 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <button type="button" onclick="location.href='analysis.jsp'" class="anal-button" >취향분석 보기</button>
-    
-                            </div>
+                                    <button type="button" onclick="location.href='${contextPath}/member/profile/analysis'" class="anal-button" >취향분석 보기</button>
+                                    <!-- href="${contextPath}/member/myPage/mod" -->
+                            </div> 
     
                     </div>
     

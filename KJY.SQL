@@ -81,12 +81,105 @@ SELECT * FROM EVALUATION ;
 -- 찜한영화 아직 없어서 패쓰~!
 
 
---  3) 취향분석 
+
+
+--  3) 취향분석  - ANALYSIS, PROFILEMY  사용될것임.
+
+-- 1. 내가 평가한 영화의 모든 갯수 ( 프로필 오른쪽에 사용할 것임 )
 -- 회원 번호 00일 때,
 -- 별점을 몇개 사용했는가?
-SELECT STAR_RATING
+-- 결과 : 10 
+SELECT COUNT(STAR_RATING)
 FROM EVALUATION
 WHERE MEMBER_NO = 42;
+
+-- 2. 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
+-- 그래프에 사용될 SQL
+-- 회원 번호가 42 일 때, 1.5 점의 갯수 구하기.
+-- * 각 점수대 별로 VO만들어야할듯..?
+SELECT STAR_RATING, COUNT(*)
+FROM EVALUATION
+WHERE MEMBER_NO = 42
+GROUP BY STAR_RATING;
+
+SELECT STAR_RATING, COUNT(*)
+FROM EVALUATION
+WHERE MEMBER_NO = ?
+GROUP BY STAR_RATING;
+
+
+
+-- 3. 내가 가장 많은 평가를 한
+-- 영화의 나라 는?
+-- 1) 내가 평가한 무비의 넘버와 나라
+SELECT MOVIE_NO, COUNTRY
+FROM EVALUATION
+JOIN MOVIE USING (MOVIE_NO)
+WHERE MEMBER_NO = 42;
+
+-- 1-1) 여기서 가장 많은 나라는?
+SELECT MAX(COUNTRY)
+FROM EVALUATION
+JOIN MOVIE USING (MOVIE_NO)
+WHERE MEMBER_NO = 84;
+-- 성공!
+
+
+
+-- 4. 내가 평가한 모든 영화의 모든 RUNNING_TIME
+SELECT SUM(RUNNING_TIME)
+FROM EVALUATION
+JOIN MOVIE USING (MOVIE_NO)
+WHERE MEMBER_NO = 84;
+
+
+
+
+
+
+
+
+-- 실패 
+-- -- 2) 특정 영화 번호에서 나라 조회
+-- SELECT COUNTRY
+-- FROM MOVIE
+-- JOIN EVALUATION USING (MOVIE_NO)
+-- WHERE MEMBER_NO = 42
+-- AND MOVIE_NO = (SELECT MOVIE_NO
+--                 FROM EVALUATION
+--                 WHERE MEMBER_NO = 42);
+
+
+
+-- -- 악악 이거아님!!
+-- -- 2) 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
+-- SELECT COUNT(STAR_RATING),MOVIE_NO
+-- FROM EVALUATION
+-- WHERE MEMBER_NO = 42
+-- GROUP BY MOVIE_NO ;
+
+-- SELECT MOVIE_NO, COUNTRY
+-- FROM EVALUATION
+-- JOIN EVALUATION USING (MOVIE_NO)
+-- WHERE STAR_RATING = (SELECT COUNT(MAX(STAR_RATING)) AS HIGHT_COUNT
+--         FROM EVALUATION
+--         WHERE MEMBER_NO = 42
+--         GROUP BY STAR_RATING );
+
+
+-- SELECT DEPT_CODE, FLOOR(AVG(SALARY))
+-- FROM EMPLOYEE
+-- WHERE DEPT_CODE IN ('D5', 'D6')
+
+
+
+
+
+-- 2) 내가 가장 많은 평가를 한 무비 넘버를 조회하시오
+
+SELECT COUNTRY
+FROM MOVIE
+MOVIE_NO = ;
 
 
 

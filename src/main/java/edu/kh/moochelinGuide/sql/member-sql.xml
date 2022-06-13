@@ -235,6 +235,36 @@
 	
 	
 	
+	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
+	<entry key="analyMovieCount">
+	SELECT COUNT(STAR_RATING)
+	FROM EVALUATION
+	WHERE MEMBER_NO = ?
+	</entry>
+	
+	
+	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
+	<entry key="analyAllScore">
+	SELECT STAR_RATING, COUNT(*)
+	FROM EVALUATION
+	WHERE MEMBER_NO = ?
+	GROUP BY STAR_RATING
+	</entry>
+	
+	
+	
+	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
+	<entry key="analyMovieCountry">
+	SELECT MAX(COUNTRY)
+	FROM EVALUATION
+	JOIN MOVIE USING (MOVIE_NO)
+	WHERE MEMBER_NO = ?
+	</entry>
+	
+	
+	
+	
+	
 	
 	
 	
