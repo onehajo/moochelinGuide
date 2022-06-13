@@ -31,7 +31,7 @@
             <div><h2>쪽지함</h2></div>
             <div class="contain-box">
                 <div class="message-container">
-                
+                ${messageList}
 					<c:choose>
 					
 						<%-- 쪽지내역 없는 경우 --%>
@@ -45,6 +45,7 @@
 							
 								<div class="message-form">
                         			<div class="message-left">
+                        				<input type="hidden" name="messageNo" value="${message.messageNo}">
                             			<div class="image-area" style=" background-size: 70px; background-image : url(${contextPath}${message.profileImage})"></div>
 
                             			<div class="text-area">

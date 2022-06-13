@@ -21,7 +21,17 @@
 </head>
 <body>
 
-            <div id="messageContent" class="popup">
+    
+
+
+        
+        
+        
+            
+
+			<!-- class="popup" -->
+			<!-- 쪽지 팝업 내용보기 -->
+            <div id="messageContent" class="detailPopup">
                 <img src="../images/logo-blue.png" alt="">
                 <p class="popupTitle">받은 쪽지<span class="smallText">?</span></p>
                 <form class="messageForm-css">
@@ -35,7 +45,22 @@
                 <div class="close" onclick="closeMessage()">X</div>
             </div>
 			
-			
+			<!-- 쪽지 팝업 보내기 -->
+            <div id="messageSend" class="popup">
+                <img src="../images/logo-blue.png" alt="">
+                <p class="popupTitle">쪽지 보내기</p>
+                <form class="messageForm-css">
+                    <textarea name="" id="" class="textarea-css" placeholder="내용을 입력해주세요.(200자)"></textarea>
+                    <div class="messageBtnBox">
+                        <button class="sendBtn">전송</button>
+                    </div>
+                </form>
+                <div class="close" onclick="closeMessage()">X</div>
+            </div>
+            
+
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="${contextPath}/resources/js/main.js"></script>
 
