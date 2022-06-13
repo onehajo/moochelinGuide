@@ -150,13 +150,27 @@ memberName.addEventListener("input",function(){
 function modValidate(){
 
     if ( memberName.value.length == 0 ) {
-        alert("이름을 입력해주세요.");
+        Swal.fire({
+                title: '이름을 입력해주세요.',
+                width: 600,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: '#392eff',
+                confirmButtonText: '확인'
+              });
         memberName.focus(); 
         return false; 
     }
 
     if ( !nameReg.test(memberName.value) ) {
-        alert("이름은 2~11글자의 한글/영문/숫자만 사용해주세요.");
+        Swal.fire({
+            title: '이름은 2~11글자의 한글/영문/숫자만 사용해주세요.',
+            width: 600,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: '#392eff',
+            confirmButtonText: '확인'
+          });
         memberName.focus(); 
         return false; 
     }

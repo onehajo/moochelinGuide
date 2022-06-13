@@ -8,11 +8,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.member.model.vo.Follow;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.member.model.vo.Message;
+import edu.kh.moochelinGuide.movie.model.vo.Analysis;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.Person;
 
@@ -815,7 +817,7 @@ public class MemberDAO {
 		try {
 			
 			String sql = prop.getProperty("selectEvalMovie");
-			System.out.println(sql);
+//			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memberNo);
 			
@@ -853,6 +855,116 @@ public class MemberDAO {
 		}
 		return evalMovie;
 	}
+	
+	
+	
+
+	/** 취향분석 DAO - 내가 평가한 영화의 갯수
+	 * @param conn
+	 * @param memberNo
+	 * @return analyMovieCount
+	 * @throws Exception
+	 */
+	public int analyMovieCount(Connection conn, int memberNo) throws Exception {
+		int analyMovieCount = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("analyMovieCount");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				analyMovieCount = rs.getInt(1);
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return analyMovieCount;
+	}
+
+	
+	
+	/** 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Analysis> analyAllScore(Connection conn, int memberNo)  throws Exception {
+		
+		List<Analysis> analyAll = new ArrayList<Analysis>();
+		
+		try {
+			
+			String sql = prop.getProperty("analyAllScore");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				
+				Analysis anal = new Analysis();
+				anal.setStarRating(rs.getDouble(1));
+				anal.setCount(rs.getInt(2));
+				
+				
+				analyAll.add(anal);	
+			} 
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return analyAll;
+	}
+
+	
+	
+	
+	/** 내가 평가한 모든 영화의 가장 많은 country 는?
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public String analyMovieCountry(Connection conn, int memberNo)  throws Exception  {
+		String analyMovieCountry = null;
+		
+		try {
+			
+			String sql = prop.getProperty("analyMovieCountry");
+			
+			//Connection is null. 
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				analyMovieCountry = rs.getString(1);
+			}
+			
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return analyMovieCountry;
+	}
+
 
 	/** 특정 키워드로 인물 검색 DAO
 	 * @param conn
@@ -887,6 +999,7 @@ public class MemberDAO {
 			}
 			
 		}finally {
+			close(rs);
 			close(pstmt);
 		}
 		
