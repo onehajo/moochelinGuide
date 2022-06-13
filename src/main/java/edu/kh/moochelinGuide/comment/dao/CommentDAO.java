@@ -1,4 +1,4 @@
-package edu.kh.moochelinGuide.coment.dao;
+package edu.kh.moochelinGuide.comment.dao;
 import static edu.kh.moochelinGuide.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
@@ -10,21 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import edu.kh.moochelinGuide.coment.vo.Coment;
-import edu.kh.moochelinGuide.coment.vo.Pagination;
+import edu.kh.moochelinGuide.comment.vo.Comment;
+import edu.kh.moochelinGuide.comment.vo.Pagination;
 
-public class ComentDAO {
+public class CommentDAO {
 	private Statement stmt;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
 	private Properties prop;
 	
-	public ComentDAO() {
+	public CommentDAO() {
 		try {
 			prop = new Properties();
 			
-			String filePath = ComentDAO.class.getResource("/edu/kh/moochelinGuide/sql/coment-sql.xml").getPath();
+			String filePath = CommentDAO.class.getResource("/edu/kh/moochelinGuide/sql/coment-sql.xml").getPath();
 			
 			prop.loadFromXML( new FileInputStream(filePath) );
 			
@@ -97,9 +97,9 @@ public class ComentDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Coment> selectComentList(Connection conn, Pagination pagination, int movieNo) throws Exception {
+	public List<Comment> selectComentList(Connection conn, Pagination pagination, int movieNo) throws Exception {
 		
-		List<Coment> comentList = new ArrayList<Coment>();
+		List<Comment> comentList = new ArrayList<Comment>();
 		
 		try {
 			String sql = prop.getProperty("selectComentList");
@@ -117,7 +117,7 @@ public class ComentDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Coment coment = new Coment();
+				Comment coment = new Comment();
 				
 				coment.setComentNo( rs.getInt("COMENT_NO"));
 				coment.setComnetContent(rs.getString("COMNET_CT"));
