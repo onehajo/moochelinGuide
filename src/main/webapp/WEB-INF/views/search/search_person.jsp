@@ -40,7 +40,6 @@
                 <!-- 인물 조회결과가 있는 경우 -->
                 <c:if test="${!empty personList}">
                     <c:forEach var="person" items="${personList}">
-                        인물정보 : ${person}
                         <div class="sch-person">
                             <div>
                                 <img src="${person.personImage}" class="sch-img-person">
@@ -48,7 +47,20 @@
                             <div class="sch-person-info">
                                 <div>${person.personName}</div>
                                 <div>${person.personJob}</div>
-                                <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
+                                <div>
+                                    <!-- 영화정보가 1개인 경우 -->
+                                    <c:if test="${person.movieList.size()==1}">
+                                        <c:forEach var="movie" items="${person.movieList}" begin="0" end="1">
+                                            <a href="#">${movie.movieTitle}</a>
+                                        </c:forEach>
+                                    </c:if>
+                                    <!-- 영화정보가 2개이상인 경우 -->
+                                    <c:if test="${person.movieList.size()>1}">
+                                        <c:forEach var="movie" items="${person.movieList}" begin="0" end="2">
+                                            <a href="#">${movie.movieTitle}</a>
+                                        </c:forEach>
+                                    </c:if>
+                                </div>
                             </div>
                         </div>
                     </c:forEach>
@@ -62,98 +74,11 @@
                     </div>
                 </c:if>
 
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
-
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
-
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
-
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
-
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
-
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
-
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
-
-                    <div class="sch-person">
-                        <div>
-                            <img src="#" class="sch-img-person">
-                        </div>
-                        <div class="sch-person-info">
-                            <div>배우이름</div>
-                            <div>배우</div>
-                            <div><a href=#"">영화이름</a><a href="#">영화이름</a></div>
-                        </div>
-                    </div>
             </section>
 
-            <div class="view-more">
+            <!-- <div class="view-more">
                 <button>더보기 ▽ </button>
-            </div>
+            </div> -->
 
         </section>
     </main>
