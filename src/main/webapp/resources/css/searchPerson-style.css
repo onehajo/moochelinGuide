@@ -66,10 +66,9 @@ main > .content-explain > div, .sch-menu{
 }
 
 /*이미지 사이즈 71*71*/
-/* .sch-img-person {
-    width: 71px;
-    height: 71px;
-} */
+.sch-img-person {
+    width: 80%;
+}
 
 /*이미지에 대한 설명이 들어가는 영역*/
 .sch-person-info{
