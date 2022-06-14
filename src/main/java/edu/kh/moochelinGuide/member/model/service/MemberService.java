@@ -555,15 +555,17 @@ public class MemberService {
 	}
 
 	/** 쪽지 보내기
+	 * @param content 
+	 * @param targetNo 
 	 * @param messageNo
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertMessage(int memberNo) throws Exception {
+	public int insertMessage(int memberNo, int targetNo, String content) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.insertMessage(conn, memberNo);
+		int result = dao.insertMessage(conn, memberNo, targetNo, content );
 		
 		if(result>0) commit(conn);
 		else		 rollback(conn);
@@ -599,6 +601,30 @@ public class MemberService {
 		return messageList;
 	}
 
+
+	
+	
+	
+	
+	
+	/** 비밀번호 재설정
+	 * @param memberEmail
+	 * @param resetPw 
+	 * @return result
+	 * @throws Exception
+	 */
+	public int resetPw(String memberEmail, String resetPw) throws Exception {
+		Connection conn = getConnection();
+		
+		int result = dao.resetPw(conn, memberEmail, resetPw);
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 
 	
 	

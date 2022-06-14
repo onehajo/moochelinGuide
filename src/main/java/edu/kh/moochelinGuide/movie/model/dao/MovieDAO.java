@@ -57,6 +57,7 @@ public class MovieDAO {
 				movie.setCountry(rs.getString("COUNTRY"));
 				movie.setTicketing(rs.getString("TICKETING"));
 				movie.setAudience(rs.getString("AUDIENCE"));
+				movie.setStarRating(rs.getFloat("STAR_RATING"));
 				
 				list.add(movie);
 			}

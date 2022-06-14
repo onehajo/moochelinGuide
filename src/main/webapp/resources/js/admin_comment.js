@@ -9,13 +9,8 @@ const p = document.createElement("p");
 const table = document.createElement("table");
 table.setAttribute("border", "1px solid black");
 
-query.addEventListener("onkeypress", function(e){
-    if(e.which == 13){
-        console.log("클릭됨");
-        searchBtn.click();
-    }
-});
-
+// 코멘트 리스트 출력부분
+const commentResult = document.getElementById("commentResult");
 
 searchBtn.addEventListener("click", function(){
 
@@ -28,7 +23,7 @@ searchBtn.addEventListener("click", function(){
             dataType : "JSON",
             success : function(movieList){
 
-                p.innerText = '"'+query.value+'"에 대한 코멘트 검색결과 ( '+movieList.length+' )';
+                p.innerText = '"'+query.value+'"에 대한 영화 검색결과 ( '+movieList.length+' )';
 
                 const q = query.value;
                 query.value = "";
@@ -103,6 +98,165 @@ searchBtn.addEventListener("click", function(){
 
                     searchResult.append(p,table);
 
+                    // 클릭한 행의 코멘트 조회
+                    const select = document.getElementsByClassName("selected");
+              
+                    for(let i=0; i<select.length; i++){
+                        select[i].addEventListener("click", function(){
+
+                            const movieNo = select[i].firstElementChild.innerText;
+                            const movieTitle = select[i].firstElementChild.nextElementSibling.innerText;
+                            console.log(i+"번째 요소 클릭함");
+                            console.log(i+"번째 영화번호 : "+movieNo);
+
+                            $.ajax({
+                                url : contextPath+"/admin/comment/select/comment",
+                                data : {"movieNo" : movieNo},
+                                type : "GET",
+                                dataType : "JSON",
+                                success : function(cList){
+                                    if(cList.length!=0){
+
+                                        commentResult.innerHTML = "";
+                                        const p2 = document.createElement("p");
+                                        p2.innerText = '"'+movieTitle+'" 에 대한 코멘트 검색결과 ( '+cList.length+' )';
+                                        commentResult.append(p2);
+
+                                        for(let c of cList){
+                                            const img = document.createElement("img");
+                                            img.classList.add("member-profile");
+                                            if(c.profileImage!=null){
+                                                img.setAttribute("src", contextPath+c.profileImage);
+                                            }else{
+                                                img.setAttribute("src", contextPath+"/resources/images/user.png");
+                                            }
+
+                                            const a = document.createElement("a");
+                                            a.setAttribute("href", contextPath+"/member/profile/my?memberNo="+c.memberNo);
+
+                                            const profile = document.createElement("div");
+                                            profile.classList.add("comment-proflie");
+
+                                            a.append(img);
+                                            profile.append(a);
+
+                                            const date = document.createElement("div");
+                                            date.classList.add("comment-date");
+                                            date.innerText = c.commentDate;
+
+                                            const nickname = document.createElement("div");
+                                            nickname.classList.add("comment-nickname");
+                                            nickname.innerText = c.memberNickname;
+
+                                            const commentNo = document.createElement("span");
+                                            commentNo.innerText = c.commentNo;
+                                            commentNo.classList.add("commentNo");
+                                            commentNo.style.display = "none";
+
+                                            nickname.append(commentNo, date);
+
+                                            const commentBtn = document.createElement("button");
+                                            commentBtn.classList.add("deleteBtn");
+                                            if(c.commentST=='N'){
+                                                commentBtn.innerText = "삭제";
+                                            }else{
+                                                commentBtn.innerText = "복구";
+                                            }
+
+                                            const btnArea = document.createElement("div");
+                                            btnArea.classList.add("commentBtn");
+
+                                            btnArea.append(commentBtn);
+
+                                            const commentInfo = document.createElement("div");
+                                            commentInfo.classList.add("comment-info");
+                                            commentInfo.append(profile, nickname, btnArea);
+
+                                            const content = document.createElement("div");
+                                            content.classList.add("comment-content");
+                                            content.innerText = c.commentContent;
+                                            if(c.commentST=='Y'){
+                                                content.style.color ="#ccc";
+                                            }
+
+                                            const container = document.createElement("div");
+                                            container.classList.add("contaner");
+                                            container.append(commentInfo, content);
+
+                                            const production = document.createElement("div");
+                                            production.classList.add("production");
+                                            production.append(container);
+
+                                            const info = document.createElement("div");
+                                            info.classList.add("info");
+                                            info.append(production);
+
+                                            commentResult.append(info);
+                                        }
+
+                                        const deleteBtn = document.getElementsByClassName("deleteBtn");
+                                        const cNo = document.getElementsByClassName("commentNo");
+                                        const cContent = document.getElementsByClassName("comment-content");
+                                        let mode;
+                                        for(let i=0; i <cList.length; i++){
+
+                                            deleteBtn[i].addEventListener("click", function(){
+
+                                                if(deleteBtn[i].innerText=="삭제"){
+                                                    mode = 1; // 삭제는 모드 1
+                                                }else{
+                                                    mode = 2; // 복구는 모드 2
+                                                }
+                                                
+                                                $.ajax({
+                                                    url : contextPath + "/admin/comment/update",
+                                                    data : { "commentNo" : cNo[i].innerText,
+                                                             "mode" : mode},
+                                                    type : "GET",
+                                                    success : function(result){
+                                                        if(result==1){
+                                                            if(deleteBtn[i].innerText=="삭제"){
+                                                                console.log("삭제 성공");
+                                                                deleteBtn[i].innerText = "복구";
+                                                                cContent[i].style.color ="#ccc";
+                                                            }else{
+                                                                console.log("복구 성공");
+                                                                deleteBtn[i].innerText = "삭제";
+                                                                cContent[i].style.color ="black";
+                                                            }
+                                                        }else{
+                                                            console.log("삭제 실패");
+                                                        }
+                                                    },
+                                                    error : function(request, status, error){
+                                                        console.log("AJAX 에러 발생");
+                                                        console.log("상태코드 : "+request.status); // 에러번호 404, 500 출력
+                                                    }
+                                                });
+
+                                            });
+
+                                        }
+
+
+
+
+
+                                    }else{
+                                        console.log("코멘트 조회 결과가 없습니다.");
+                                        commentResult.innerHTML = "";
+                                        const p2 = document.createElement("p");
+                                        p2.innerText = '"'+movieTitle+'" 에 대한 코멘트 검색결과 ( '+cList.length+' )';
+                                        commentResult.append(p2);
+                                    }
+                                },
+                                error : function(request, status, error){
+                                    console.log("AJAX 에러 발생");
+                                    console.log("상태코드 : "+request.status); // 에러번호 404, 500 출력
+                                }
+                            });
+                        });
+                    }
                 }else{
                     searchResult.append(p,table);
                 }
@@ -114,6 +268,7 @@ searchBtn.addEventListener("click", function(){
         });
 
     }else{
+
         Swal.fire({
             title: '검색어를 입력해주세요.',
             width: 600,
@@ -126,3 +281,7 @@ searchBtn.addEventListener("click", function(){
     }
 
 });
+
+
+// 영화에 작성된 코멘트 조회, 삭제, 내용숨기기
+// 코멘트에 내용 숨김여부 체크할 컬럼이 있어야할듯.............. ㅠㅠ

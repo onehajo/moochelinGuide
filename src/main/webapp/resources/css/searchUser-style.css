@@ -48,8 +48,9 @@ main > .content-explain > div, .sch-menu{
 }
 
 .sch-user {
-    width: 500px;
-    height: 100px;
+   /* width: 500px;
+   height: 100px;*/
+    width: 40%;    
     margin: 0 40px 20px 40px;
     display: flex;
     align-items: center;

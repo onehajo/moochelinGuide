@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import edu.kh.moochelinGuide.board.model.service.BoardService;
 import edu.kh.moochelinGuide.board.model.service.ReplyService;
 import edu.kh.moochelinGuide.board.model.vo.Board;
+import edu.kh.moochelinGuide.board.model.vo.BoardImage;
 import edu.kh.moochelinGuide.board.model.vo.Reply;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 
@@ -56,7 +57,6 @@ public class InquiryCServlet extends HttpServlet {
 			String comment = req.getParameter("comment");
 			int boardNo = Integer.parseInt(req.getParameter("list"));
 			Reply reply = new Reply();
-			List<Reply> list = new ArrayList<Reply>();
 			reply.setBoardNo(boardNo);
 			reply.setContent(comment);
 			reply.setMemberNo(member.getMemberNo());
@@ -66,6 +66,7 @@ public class InquiryCServlet extends HttpServlet {
 			
 			int result = service.replyRegist(reply);
 			if(result>0) result=service2.boardUpdate(reply);
+		
 			resp.sendRedirect("inquiryContent?list="+boardNo);
 			
 		}catch(Exception e) {

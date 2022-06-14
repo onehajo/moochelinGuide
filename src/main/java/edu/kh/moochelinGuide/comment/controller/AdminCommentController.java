@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import edu.kh.moochelinGuide.comment.service.CommentService;
+import edu.kh.moochelinGuide.comment.vo.Comment;
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
@@ -51,20 +53,32 @@ public class AdminCommentController extends HttpServlet{
 				new Gson().toJson(movieList,resp.getWriter());				
 				
 		    }
+		    
+		    if(command.equals("select/comment")) {
+		    	
+		    	int movieNo = Integer.parseInt(req.getParameter("movieNo"));
+		    		    	
+		    	// 코멘트 리스트 조회
+		    	List<Comment> cList = new CommentService().commentForAdmin(movieNo);
+		    	
+				new Gson().toJson(cList,resp.getWriter());	
+		    	
+		    }
+		    
+		    if(command.equals(("update"))) {
+		    	
+		    	int commentNo = Integer.parseInt(req.getParameter("commentNo"));
+		    	int mode = Integer.parseInt(req.getParameter("mode"));
+		    		    	
+		    	int result = new CommentService().deleteComment(commentNo, mode);
+		    	
+		    	resp.getWriter().print(result);
+		    }
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	    
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		// 1. ajax로 영화검색결과 출력 
-		
-	}
-	
-	
+	}	
 
 }

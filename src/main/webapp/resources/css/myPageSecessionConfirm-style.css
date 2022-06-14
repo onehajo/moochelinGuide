@@ -62,6 +62,12 @@
     font-size: 18px;
 }
 
-#answer{background-color: #392eff;}
+#answer{
+    background-color: #392eff;
+    cursor: pointer;
+}
 
-#cancel{background-color: rgb(0, 255, 190);}
+#cancel{
+    background-color: rgb(0, 255, 190);
+    cursor: pointer;
+}

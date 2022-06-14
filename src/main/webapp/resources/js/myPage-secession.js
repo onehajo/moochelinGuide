@@ -43,6 +43,27 @@ secessionBtn.addEventListener("click",function(e){
         msg.innerText = " *현재 비밀번호를 입력한 뒤 탈퇴하기 버튼을 눌러주세요.";
         msg.focus();
         e.preventDefault();
+
+    }else{
+
+        e.preventDefault();
+
+        Swal.fire({
+            title: '정말 탈퇴하시겠습니까?',
+            text: "탈퇴 버튼을 누르면 회원 탈퇴가 진행됩니다.",
+            icon: 'warning',
+            iconColor: '#392eff',
+            showCancelButton: true,
+            confirmButtonColor: '#392eff',
+            cancelButtonColor: 'rgb(116, 116, 123)',
+            confirmButtonText: '탈퇴',
+            cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.secession.submit();                          
+                }
+            })
+
     }
 
 });

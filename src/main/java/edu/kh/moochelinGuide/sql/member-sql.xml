@@ -6,7 +6,7 @@
 	<!-- 로그인 테스트 (TEST_MEMBER 테스트 테이블) -->
 	<entry key="login">
 		SELECT MEMBER_NO,MEMBER_EMAIL,MEMBER_NM,PROFILE_IMG,PROFILE_BACK_IMG,
-    			TO_CHAR(ENROLL_DT, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DT 
+    			TO_CHAR(ENROLL_DT, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DT,MEMBER_TYPE 
     	FROM MEMBER
 		WHERE MEMBER_EMAIL = ?
 		AND MEMBER_PW = ?
@@ -318,7 +318,8 @@
 		SELECT MESSAGE_CT,
 	        A.ENROLL_DT,
 	        MEMBER_NM,
-	        MESSAGE_NO
+	        MESSAGE_NO,
+	        A.MEMBER_NO
 		FROM MESSAGE A
 		JOIN MEMBER B ON (A.MEMBER_NO = B.MEMBER_NO)
 		WHERE MESSAGE_NO=?
@@ -369,7 +370,15 @@
 		WHERE MESSAGE_NO=?
 	</entry>
 	
+	<!-- 비밀번호 재설정 -->
+	<entry key="resetPw">
+		UPDATE MEMBER SET
+		MEMBER_PW=?
+		WHERE MEMBER_EMAIL=?
+		AND SECESSION_FL = 'N'
+	</entry>
 	
+<<<<<<< HEAD
 	<!-- 쪽지 삭제하기 -->
 	<entry key="selectMemberUser">
 		SELECT MEMBER_NO, MEMBER_NM, PROFILE_IMG, PROFILE_BACK_IMG 
@@ -393,7 +402,6 @@
 		FROM FOLLOW
 		WHERE MEMBER_NO = ?
 	</entry>
-	
 	
 	
 

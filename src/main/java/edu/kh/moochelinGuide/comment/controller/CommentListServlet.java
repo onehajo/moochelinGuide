@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import edu.kh.moochelinGuide.comment.service.CommentService;
 
-@WebServlet("/coment/list")
+@WebServlet("/comment/list")
 public class CommentListServlet extends HttpServlet{
 	
 	@Override
@@ -24,7 +24,8 @@ public class CommentListServlet extends HttpServlet{
 		try {
 			
             // 쿼리스트링 영화번호
-            int movieNo = Integer.parseInt(req.getParameter("movieNo"));
+//            int movieNo = Integer.parseInt(req.getParameter("movieNo"));
+            int movieNo = 12;
             
             
             int cp = 1;
@@ -48,11 +49,11 @@ public class CommentListServlet extends HttpServlet{
             //request 범위로 map을 세팅
             req.setAttribute("map", map);
             
+            System.out.println(map);
             
             
             
-            
-            String path = "/WEB-INF/views/coment/comment_detail.jsp";
+            String path = "/WEB-INF/views/comment/comment_detail.jsp";
             
             RequestDispatcher dispatcher = req.getRequestDispatcher(path);
             

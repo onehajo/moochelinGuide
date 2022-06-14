@@ -24,7 +24,7 @@ public class CommentDAO {
 		try {
 			prop = new Properties();
 			
-			String filePath = CommentDAO.class.getResource("/edu/kh/moochelinGuide/sql/coment-sql.xml").getPath();
+			String filePath = CommentDAO.class.getResource("/edu/kh/moochelinGuide/sql/comment-sql.xml").getPath();
 			
 			prop.loadFromXML( new FileInputStream(filePath) );
 			
@@ -65,11 +65,11 @@ public class CommentDAO {
      * @return
      * @throws Exception
      */
-    public int getcomentCount(Connection conn, int movieNo) throws Exception{
-        int comentCount = 0;
+    public int getcommentCount(Connection conn, int movieNo) throws Exception{
+        int commentCount = 0;
         
         try {
-            String spl = prop.getProperty("comentCount");
+            String spl = prop.getProperty("commentCount");
             
             pstmt = conn.prepareStatement(spl);
             
@@ -78,7 +78,7 @@ public class CommentDAO {
             rs = pstmt.executeQuery();
             
             if(rs.next()) {
-                comentCount = rs.getInt(1);
+                commentCount = rs.getInt(1);
             }
             
             
@@ -88,7 +88,7 @@ public class CommentDAO {
         }
         
         
-        return comentCount;
+        return commentCount;
     }
 	/** 특정 영화에서 목록 조회 DAO
 	 * @param conn
@@ -97,9 +97,9 @@ public class CommentDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Comment> selectComentList(Connection conn, Pagination pagination, int movieNo) throws Exception {
+	public List<Comment> selectCommentList(Connection conn, Pagination pagination, int movieNo) throws Exception {
 		
-		List<Comment> comentList = new ArrayList<Comment>();
+		List<Comment> commentList = new ArrayList<Comment>();
 		
 		try {
 			String sql = prop.getProperty("selectComentList");
@@ -119,13 +119,12 @@ public class CommentDAO {
 			while(rs.next()) {
 				Comment coment = new Comment();
 				
-				coment.setComentNo( rs.getInt("COMENT_NO"));
-				coment.setComnetContent(rs.getString("COMNET_CT"));
+				coment.setCommentNo( rs.getInt("COMMENT_NO"));
+				coment.setCommentContent(rs.getString("COMMENT_CT"));
 				coment.setMemberNickname(rs.getString("MEMBER_NM"));
-				coment.setComentST(rs.getString("COMENT_ST"));
-				coment.setComentDate(rs.getString("COMENT_DATE"));
+				coment.setCommentDate(rs.getString("COMMENT_DT"));
 				
-				comentList.add(coment);
+				commentList.add(coment);
 				
 			}
 			
@@ -135,6 +134,83 @@ public class CommentDAO {
 			close(pstmt);
 		}
 		
-		return comentList;
+		return commentList;
 	}
+	
+	
+	
+	/** 관리자 - 코멘트 목록 조회 DAO
+	 * @param conn
+	 * @param movieNo
+	 * @return cList
+	 * @throws Exception
+	 */
+	public List<Comment> commentForAdmin(Connection conn, int movieNo) throws Exception{
+		List<Comment> cList = new ArrayList<Comment>();
+		
+		try {
+			
+			String sql = prop.getProperty("commentForAdmin");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Comment c = new Comment();
+				c.setCommentNo(rs.getInt(1));
+				c.setCommentContent(rs.getString(2));
+				c.setCommentDate(rs.getString(3));
+				c.setCommentST(rs.getString(4));
+				c.setMemberNo(rs.getInt(5));
+				c.setMemberNickname(rs.getString(6));
+				c.setProfileImage(rs.getString(7));
+				
+				cList.add(c);
+			}
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return cList;
+	}
+	
+	/** 관리자 - 코멘트 삭제, 복구 DAO
+	 * @param conn
+	 * @param commentNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(Connection conn, int mode, int commentNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			if(mode==1) {
+				pstmt.setString(1, "Y");
+			}
+			
+			if(mode==2) {
+				pstmt.setString(1, "N");
+			}
+			
+			pstmt.setInt(2, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 }

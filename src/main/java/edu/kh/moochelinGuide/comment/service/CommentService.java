@@ -25,24 +25,62 @@ public class CommentService {
         Comment Coment = new Comment();
         // 영화 이름 조회 DAO
         String movieTitle = dao.selectMovieTitle(conn, movieNo);
+        
+        
         // 특정 영화 코멘트 수 조회 DAO
-        int comentCount = dao.getcomentCount(conn, movieNo);
+        int commentCount = dao.getcommentCount(conn, movieNo);
         // 코멘트 수 + 현재 페이지(CP)를 이용해서 페이지네이션 객체 생성
-        Pagination pagination = new Pagination(cp, comentCount);
+        Pagination pagination = new Pagination(cp, commentCount);
+        
         // 게시글 목록 조회
-        List<Comment> comentList = dao.selectComentList(conn, pagination, movieNo);
+        List<Comment> commentList = dao.selectCommentList(conn, pagination, movieNo);
+        
         // Map 객체를 생성하여 1,2,3 결과 객체를 모두 저장
         Map<String, Object> map = new HashMap<String, Object>();
         
         map.put("movieTitle", movieTitle);
         map.put("pagination", pagination);
-        map.put("boardList", comentList);
+        map.put("commentList", commentList);
         
         close(conn);
         
         
         return map; // Map 반환
     }
+
+	/** 관리자 - 코멘트 목록 조회 Service
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Comment> commentForAdmin(int movieNo) throws Exception{
+		Connection conn = getConnection();
+		
+		List<Comment> cList = dao.commentForAdmin(conn, movieNo);
+		
+		close(conn);
+		
+		return cList;
+	}
+
+	/** 관리자 - 코멘트 삭제 / 복구 Service
+	 * @param commentNo
+	 * @param mode
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteComment(int commentNo, int mode) throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.deleteComment(conn, mode, commentNo);
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
     
 
 }

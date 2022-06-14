@@ -109,6 +109,7 @@ public class MemberDAO {
 				member.setProfileImage(rs.getString(4));
 				member.setProfileBackImage(rs.getString(5));
 				member.setEnrollDate(rs.getString(6));
+				member.setMemberType(rs.getString(7));
 			}
 			
 		}finally {
@@ -1228,6 +1229,7 @@ public class MemberDAO {
 				messageDetail.setEnrollDate(rs.getString(2));
 				messageDetail.setMemberName(rs.getString(3));
 				messageDetail.setMessageNo(rs.getInt(4));
+				messageDetail.setTargetNo(rs.getInt(5));
 			}
 			
 		}finally {
@@ -1240,23 +1242,28 @@ public class MemberDAO {
 	
 	
 	
-	
-	
-	
+
 	/** 쪽지 보내기
 	 * @param conn
+	 * @param content 
+	 * @param targetNo 
 	 * @param messageNo
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertMessage(Connection conn, int memberNo) throws Exception {
+	public int insertMessage(Connection conn, int memberNo, int targetNo, String content) throws Exception {
 		int result=0;
 		
 		try {
 			String sql = prop.getProperty("insertMessage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, targetNo);
+			pstmt.setInt(3, memberNo);
+			result = pstmt.executeUpdate();
 			
 		}finally {
-			
+			close(pstmt);
 		}
 		return result;
 	}
@@ -1385,6 +1392,37 @@ public class MemberDAO {
 		
 		return followingCount;
 		
+	}
+
+	
+	
+	
+	
+	
+	
+	/** 비밀번호 재설정
+	 * @param conn
+	 * @param memberEmail
+	 * @param resetPw 
+	 * @return result
+	 * @throws Exception
+	 */
+	public int resetPw(Connection conn, String memberEmail, String resetPw) throws Exception {
+		
+		int result=0; 
+		
+		try {
+			String sql = prop.getProperty("resetPw");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, resetPw);
+			pstmt.setString(2, memberEmail);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 

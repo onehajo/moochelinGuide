@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.board.model.vo.Board;
+import edu.kh.moochelinGuide.board.model.vo.BoardImage;
 import edu.kh.moochelinGuide.board.model.vo.Reply;
 
 public class BoardDAO {
@@ -61,10 +62,10 @@ public class BoardDAO {
 		return result;
 	}
 
-	public List<Board> boardList(Connection conn, int boardNo, String condition) throws Exception {
+	public List<Board> boardList(Connection conn, int boardNo, String condition, String between) throws Exception {
 		List<Board> boardList = new ArrayList<Board>();
 		try {
-			String sql = prop.getProperty("boardList")+condition;
+			String sql = prop.getProperty("boardList")+condition+between;
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -184,5 +185,70 @@ public class BoardDAO {
 			}
 		return result;
 	}
+
+	/** 전체 게시글 수 조회 DAO
+	 * 
+	 * @param conn
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int getListCount(Connection conn, int boardNo) throws Exception {
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("getListCount");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/** 문의 내용 이미지 조회 DAO
+	 * 
+	 * @param conn
+	 * @param boardNo
+	 * @return imageList
+	 * @throws Exception
+	 */
+	public List<BoardImage> selectImageList(Connection conn, int boardNo) throws Exception {
+		
+		List<BoardImage> imageList = new ArrayList<>();
+		
+		try {
+			String sql = prop.getProperty("selectImageList");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardImage image = new BoardImage();
+				image.setImageNo(rs.getInt(1));
+				image.setImageReName(rs.getString(2));
+				image.setImageOriginal(rs.getString(3));
+				image.setImageLevel(rs.getInt(4));
+				image.setBoardNo(rs.getInt(5));
+				
+				imageList.add(image);
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return imageList;
+	}
+
+	
 
 }
