@@ -132,7 +132,7 @@ searchBtn.addEventListener("click", function(){
                                             }
 
                                             const a = document.createElement("a");
-                                            a.setAttribute("src", contextPath+"/member/profile/my?memberNo="+c.memberNo);
+                                            a.setAttribute("href", contextPath+"/member/profile/my?memberNo="+c.memberNo);
 
                                             const profile = document.createElement("div");
                                             profile.classList.add("comment-proflie");
@@ -148,10 +148,20 @@ searchBtn.addEventListener("click", function(){
                                             nickname.classList.add("comment-nickname");
                                             nickname.innerText = c.memberNickname;
 
-                                            nickname.append(date);
+                                            const commentNo = document.createElement("span");
+                                            commentNo.innerText = c.commentNo;
+                                            commentNo.classList.add("commentNo");
+                                            commentNo.style.display = "none";
+
+                                            nickname.append(commentNo, date);
 
                                             const commentBtn = document.createElement("button");
-                                            commentBtn.innerText = "삭제";
+                                            commentBtn.classList.add("deleteBtn");
+                                            if(c.commentST=='N'){
+                                                commentBtn.innerText = "삭제";
+                                            }else{
+                                                commentBtn.innerText = "복구";
+                                            }
 
                                             const btnArea = document.createElement("div");
                                             btnArea.classList.add("commentBtn");
@@ -165,6 +175,9 @@ searchBtn.addEventListener("click", function(){
                                             const content = document.createElement("div");
                                             content.classList.add("comment-content");
                                             content.innerText = c.commentContent;
+                                            if(c.commentST=='Y'){
+                                                content.style.color ="#ccc";
+                                            }
 
                                             const container = document.createElement("div");
                                             container.classList.add("contaner");
@@ -180,32 +193,70 @@ searchBtn.addEventListener("click", function(){
 
                                             commentResult.append(info);
                                         }
+
+                                        const deleteBtn = document.getElementsByClassName("deleteBtn");
+                                        const cNo = document.getElementsByClassName("commentNo");
+                                        const cContent = document.getElementsByClassName("comment-content");
+                                        let mode;
+                                        for(let i=0; i <cList.length; i++){
+
+                                            deleteBtn[i].addEventListener("click", function(){
+
+                                                if(deleteBtn[i].innerText=="삭제"){
+                                                    mode = 1; // 삭제는 모드 1
+                                                }else{
+                                                    mode = 2; // 복구는 모드 2
+                                                }
+                                                
+                                                $.ajax({
+                                                    url : contextPath + "/admin/comment/update",
+                                                    data : { "commentNo" : cNo[i].innerText,
+                                                             "mode" : mode},
+                                                    type : "GET",
+                                                    success : function(result){
+                                                        if(result==1){
+                                                            if(deleteBtn[i].innerText=="삭제"){
+                                                                console.log("삭제 성공");
+                                                                deleteBtn[i].innerText = "복구";
+                                                                cContent[i].style.color ="#ccc";
+                                                            }else{
+                                                                console.log("복구 성공");
+                                                                deleteBtn[i].innerText = "삭제";
+                                                                cContent[i].style.color ="black";
+                                                            }
+                                                        }else{
+                                                            console.log("삭제 실패");
+                                                        }
+                                                    },
+                                                    error : function(request, status, error){
+                                                        console.log("AJAX 에러 발생");
+                                                        console.log("상태코드 : "+request.status); // 에러번호 404, 500 출력
+                                                    }
+                                                });
+
+                                            });
+
+                                        }
+
+
+
+
+
                                     }else{
                                         console.log("코멘트 조회 결과가 없습니다.");
                                         commentResult.innerHTML = "";
                                         const p2 = document.createElement("p");
                                         p2.innerText = '"'+movieTitle+'" 에 대한 코멘트 검색결과 ( '+cList.length+' )';
                                         commentResult.append(p2);
-
                                     }
                                 },
                                 error : function(request, status, error){
                                     console.log("AJAX 에러 발생");
                                     console.log("상태코드 : "+request.status); // 에러번호 404, 500 출력
                                 }
-
-
                             });
                         });
                     }
-
-
-
-
-
-
-
-
                 }else{
                     searchResult.append(p,table);
                 }
