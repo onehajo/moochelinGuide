@@ -122,12 +122,12 @@ public class MovieDAO {
 			if(rs.next()) {
 				detail = new MovieDetail();
 				
-				detail.setMovieTitle(rs.getString("movieTitle"));
-				detail.setCountry(rs.getString("country"));
-				detail.setDetailImage(rs.getString("detailImg"));
-				detail.setPosterImage(rs.getString("posterImg"));
-				detail.setReleaseYear(rs.getInt("releaseYear"));
-				detail.setSynopsis(rs.getString("synopsis"));
+				detail.setMovieTitle(rs.getString("MOVIE_TITLE"));
+				detail.setCountry(rs.getString("COUNTRY"));
+				detail.setDetailImage(rs.getString("DETAIL_IMG"));
+				detail.setPosterImage(rs.getString("POSTER_IMG"));
+				detail.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+				detail.setSynopsis(rs.getString("SYNOPSIS"));
 				
 			
 			}
