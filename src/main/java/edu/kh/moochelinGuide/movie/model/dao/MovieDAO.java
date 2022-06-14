@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import edu.kh.moochelinGuide.comment.vo.Comment;
-import edu.kh.moochelinGuide.comment.vo.Pagination;
+import edu.kh.moochelinGuide.movie.model.vo.DetailComment;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
 
@@ -130,6 +129,7 @@ public class MovieDAO {
 				detail.setPosterImage(rs.getString("POSTER_IMG"));
 				detail.setReleaseYear(rs.getInt("RELEASE_YEAR"));
 				detail.setSynopsis(rs.getString("SYNOPSIS"));
+				detail.setStarRating(rs.getFloat("STAR_RATING"));
 				
 			
 			}
@@ -177,9 +177,9 @@ public class MovieDAO {
 	}
 
 
-public List<Comment> selectCommentList(Connection conn, int movieNo) throws Exception {
+public List<DetailComment> detailCommentList(Connection conn, int movieNo) throws Exception {
 		
-		List<Comment> commentList = new ArrayList<Comment>();
+		List<DetailComment> commentList = new ArrayList<DetailComment>();
 		
 		try {
 			String sql = prop.getProperty("detailCommentList");
@@ -192,7 +192,7 @@ public List<Comment> selectCommentList(Connection conn, int movieNo) throws Exce
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Comment comment = new Comment();
+				DetailComment comment = new DetailComment();
 				
 				comment.setCommentNo( rs.getInt("COMMENT_NO"));
 				comment.setCommentContent(rs.getString("COMMENT_CT"));

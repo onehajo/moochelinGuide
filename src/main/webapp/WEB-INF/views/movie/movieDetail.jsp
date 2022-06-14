@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail page</title>
+    <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/Detail_page.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style-white.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/Detail_ev.css">
@@ -70,7 +71,7 @@
                     <hr style="border: 1px solid #ccc">
                     <div class="info-date">${detail.releaseYear}・${detail.country}</div>
                     <hr style="border: 1px solid #ccc">
-                    <div class="info-point">평균점수</div>
+                    <div class="info-point">${detail.starRating}</div>
                     <hr style="border: 1px solid #ccc">
                     <div class="starpoint_wrap">
                         <div class="starpoint_box">
@@ -169,19 +170,21 @@
                 </div>
             </div>
         </div>
-        <div id="modal" class="modal-overlay">
-            <div class="modal-window">
-                <div class="title" style="font-size: 25px; color: black;">
-                    ${detail.movieTitle}
-                </div>
-                <div class="close-area">X</div>
-                <div class="content">
-                    <textarea class="coment-write" style="width: 100%; height: 400px;" placeholder="이 작품에 대한 생각을 마음껏 표현해주세요.";></textarea>
-                    <!-- <input type="checkbox"><p id="spo" style="display: inline-block ; color: #392eff;">내용 숨기기</p> -->
-                    <button id="cm-save-btn" style="margin-left: 200px;">저장</button>
+        <form>
+            <div id="modal" class="modal-overlay">
+                <div class="modal-window">
+                    <div class="title" style="font-size: 25px; color: black;">
+                        ${detail.movieTitle}
+                    </div>
+                    <div class="close-area">X</div>
+                    <div class="content">
+                        <textarea class="coment-write" style="width: 100%; height: 400px;" placeholder="이 작품에 대한 생각을 마음껏 표현해주세요.";></textarea>
+                        <!-- <input type="checkbox"><p id="spo" style="display: inline-block ; color: #392eff;">내용 숨기기</p> -->
+                        <button id="cm-save-btn" style="margin-left: 300px;">저장</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
 
         <footer>
             <section class="footer-top">지금까지 <span>★ 658,179,744 개</span>의 평가가 쌓였어요.</section>
