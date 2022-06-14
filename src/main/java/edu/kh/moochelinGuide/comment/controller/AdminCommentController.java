@@ -64,6 +64,16 @@ public class AdminCommentController extends HttpServlet{
 				new Gson().toJson(cList,resp.getWriter());	
 		    	
 		    }
+		    
+		    if(command.equals(("update"))) {
+		    	
+		    	int commentNo = Integer.parseInt(req.getParameter("commentNo"));
+		    	int mode = Integer.parseInt(req.getParameter("mode"));
+		    		    	
+		    	int result = new CommentService().deleteComment(commentNo, mode);
+		    	
+		    	resp.getWriter().print(result);
+		    }
 			
 		}catch(Exception e) {
 			e.printStackTrace();

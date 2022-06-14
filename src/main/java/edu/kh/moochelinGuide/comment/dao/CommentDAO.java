@@ -178,4 +178,40 @@ public class CommentDAO {
 		
 		return cList;
 	}
+	
+	/** 관리자 - 코멘트 삭제, 복구 DAO
+	 * @param conn
+	 * @param commentNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteComment(Connection conn, int mode, int commentNo) throws Exception{
+		
+		int result = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("deleteComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			if(mode==1) {
+				pstmt.setString(1, "Y");
+			}
+			
+			if(mode==2) {
+				pstmt.setString(1, "N");
+			}
+			
+			pstmt.setInt(2, commentNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 }
