@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail page</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/Detail_page.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/header-white.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/main-style-white.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/Detail_ev.css">
 
     
