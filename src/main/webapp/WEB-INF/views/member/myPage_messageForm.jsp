@@ -39,7 +39,7 @@
 			        <div class="messageBtnBox">
 			            <a href="detail?type=send&no=${messageDetail.messageNo}"><button type="button" class="messagePopupBtn">답장</button></a>
 			            <input type="hidden" name="messageNo" value="${messageDetail.messageNo}">
-			            <button type="submit" id="deleteMessageBtn" class="messagePopupBtn">삭제</button>
+			            <button type="submit" id="deleteMessageBtn" class="messagePopupBtn" onclick="self.close();">삭제</button>
 			        </div>
 			    </form>
 			</div>
@@ -55,7 +55,7 @@
 			    <form class="messageForm-css" action="insert" method="post" onsubmit="return sendValidate()">
 			        <textarea name="sendMessageContent" id="messageC" class="textarea-css"></textarea>
 			        <div class="messageBtnBox">
-			            <button id="sendMessageBtn" onclick="window.close()" class="messagePopupBtn">보내기</button>
+			            <button id="sendMessageBtn" onclick="self.close();" class="messagePopupBtn">보내기</button>
 			        </div>
 			    </form>
 			</div>
