@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="movieTitle" value="${map.movieTitle}"/>
-<c:set var="movieTitle" value="${map.pagination}"/>
+<c:set var="pagination" value="${map.pagination}"/>
 <c:set var="commentList" value="${map.commentList}"/>
 
 
@@ -15,10 +15,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet"
-	href="${contextPath}/resources/css/comment_detail.css" type="text/css">
-<link rel="stylesheet"
-	href="${contextPath}/resources/css/main-style.css" type="text/css">
+<link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/comment_detail.css">
 
 <script src="https://kit.fontawesome.com/e4f51ae88c.js"
 	crossorigin="anonymous"></script>
@@ -68,7 +66,7 @@
 								<div class="hart">하트</div>
 							</div>
 								<hr>
-								<div class="comment-cotent">${commnet.commentContent}</div>               
+								<div class="comment-cotent">${comment.commentContent}</div>               
 							</div>
 
 					</c:forEach>

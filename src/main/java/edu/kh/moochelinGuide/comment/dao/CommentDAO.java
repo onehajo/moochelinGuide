@@ -65,11 +65,11 @@ public class CommentDAO {
      * @return
      * @throws Exception
      */
-    public int getcomentCount(Connection conn, int movieNo) throws Exception{
-        int comentCount = 0;
+    public int getcommentCount(Connection conn, int movieNo) throws Exception{
+        int commentCount = 0;
         
         try {
-            String spl = prop.getProperty("comentCount");
+            String spl = prop.getProperty("commentCount");
             
             pstmt = conn.prepareStatement(spl);
             
@@ -78,7 +78,7 @@ public class CommentDAO {
             rs = pstmt.executeQuery();
             
             if(rs.next()) {
-                comentCount = rs.getInt(1);
+                commentCount = rs.getInt(1);
             }
             
             
@@ -88,7 +88,7 @@ public class CommentDAO {
         }
         
         
-        return comentCount;
+        return commentCount;
     }
 	/** 특정 영화에서 목록 조회 DAO
 	 * @param conn

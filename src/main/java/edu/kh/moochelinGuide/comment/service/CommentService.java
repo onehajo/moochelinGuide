@@ -25,11 +25,12 @@ public class CommentService {
         Comment Coment = new Comment();
         // 영화 이름 조회 DAO
         String movieTitle = dao.selectMovieTitle(conn, movieNo);
-        // 특정 영화 코멘트 수 조회 DAO
-        int comentCount = dao.getcomentCount(conn, movieNo);
         
+        
+        // 특정 영화 코멘트 수 조회 DAO
+        int commentCount = dao.getcommentCount(conn, movieNo);
         // 코멘트 수 + 현재 페이지(CP)를 이용해서 페이지네이션 객체 생성
-        Pagination pagination = new Pagination(cp, comentCount);
+        Pagination pagination = new Pagination(cp, commentCount);
         
         // 게시글 목록 조회
         List<Comment> commentList = dao.selectCommentList(conn, pagination, movieNo);

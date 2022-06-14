@@ -8,7 +8,8 @@
 		SELECT MOVIE_TITLE FROM MOVIE
 		WHERE MOVIE_NO = ?
 	</entry>
-	<entry key="comentCount">
+	
+	<entry key="commentCount">
 	SELECT COUNT(*) FROM "COMMENT"
 	WHERE COMMENT_FL = 'N'
 	AND MOVIE_NO = ?

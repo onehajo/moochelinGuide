@@ -3,12 +3,13 @@ package edu.kh.moochelinGuide.comment.vo;
 public class Pagination {
 	
 	private int currentPage; // 현재 페이지 번호
-	private int comentCount; // 코멘트 수
+	private int commentCount; // 코멘트 수
 	
 	// 보여질 코멘트 수 일단 모두 3개씩 보이게 하고
 	// 추후에 2페이지부터 5개씩 보이게 조건문 변경 시도
 	// 아마 html도 새로 만들어야하지 않을까...
-	private int limit = 3; 
+	private int limit = 3; // 한 페이지에 보여질 게시글 수 
+	
 	private int limit2 = 5;
 	////////////////////////////////////////////////////////////////////
 	
@@ -22,9 +23,9 @@ public class Pagination {
 	private int nextPage; // 다음 목록 시작 번호
 	
 	// 생성자
-	public Pagination(int currentPage, int comentCount) {
+	public Pagination(int currentPage, int commentCount) {
 		this.currentPage = currentPage;
-		this.comentCount = comentCount;
+		this.commentCount = commentCount;
 	}
 
 	public int getCurrentPage() {
@@ -35,12 +36,12 @@ public class Pagination {
 		this.currentPage = currentPage;
 	}
 
-	public int getComentCount() {
-		return comentCount;
+	public int getcommentCount() {
+		return commentCount;
 	}
 
-	public void setComentCount(int comentCount) {
-		this.comentCount = comentCount;
+	public void setcommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 
 	public int getLimit() {
@@ -109,7 +110,7 @@ public class Pagination {
 
 	@Override
 	public String toString() {
-		return "Pagination [currentPage=" + currentPage + ", comentCount=" + comentCount + ", limit=" + limit
+		return "Pagination [currentPage=" + currentPage + ", commentCount=" + commentCount + ", limit=" + limit
 				+ ", limit2=" + limit2 + ", pageSize=" + pageSize + ", maxPage=" + maxPage + ", startPage=" + startPage
 				+ ", endPage=" + endPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + "]";
 	}
@@ -117,7 +118,7 @@ public class Pagination {
 	private void calculatePagination() {
 		
 		//최대 페이지 수 == 마지막 페이지 번호
-		maxPage = (int)Math.ceil( (double)comentCount / limit );
+		maxPage = (int)Math.ceil( (double)commentCount / limit );
 		
 		// 시작 페이지 계산
 		startPage = (currentPage - 1) / pageSize * pageSize +1;
