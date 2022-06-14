@@ -27,7 +27,7 @@
 				목록</a></li>
 		<li><a href="${contextPath}/member/myPage/message/list">쪽지</a></li>
 		<li><a href="${contextPath}/member/myPage/inquiryList?array=1">문의하기</a></li>
-		<li><a href="#">공지사항</a></li>
+		<li><a href="${contextPath}/member/myPage/notice">공지사항</a></li>
 		<li class="member-drop"><a
 			href="${contextPath}/member/myPage/secession/do">탈퇴하기</a></li>
 	</ul>

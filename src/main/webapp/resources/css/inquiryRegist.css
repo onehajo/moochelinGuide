@@ -54,7 +54,7 @@
 	padding-right: 5px;
 }
 
-#upload-btn {
+.upload_btn {
 	width: 648px;
 	height: 44px;
 	display: flex;
@@ -65,13 +65,14 @@
 	cursor: pointer;
 }
 
-#file-upload>#uploadfile {
+.uploadfile {
 	position: absolute;
 	width: 0;
 	height: 0;
 	padding: 0;
 	overflow: hidden;
 	border: 0;
+	display: none;
 }
 
 .regist {
@@ -101,6 +102,8 @@
 .imgArea{
     padding-bottom: 5px;
     display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	position: relative;
 }
 

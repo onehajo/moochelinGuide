@@ -62,17 +62,27 @@ public class BoardDAO {
 		return result;
 	}
 
-	public List<Board> boardList(Connection conn, int boardNo, String condition, String between) throws Exception {
+	public List<Board> boardList(Connection conn, int boardNo, String condition, String between, int memberCd) throws Exception {
 		List<Board> boardList = new ArrayList<Board>();
 		try {
-			String sql = prop.getProperty("boardList")+condition+between;
+			String sql = null;
+			if(memberCd==0) {
+				sql = prop.getProperty("boardList")+condition+between;
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, boardNo);
+				
+				rs=pstmt.executeQuery();
+			} else {
+				sql = prop.getProperty("AllBoardList")+condition+between;
+				
+				stmt = conn.createStatement();
+				
+				rs = stmt.executeQuery(sql);
+			}
 			
-			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, boardNo);
-			
-			rs=pstmt.executeQuery();
-			
+			System.out.println(sql);
 			while(rs.next()) {
 				Board board = new Board();
 				board.setBoardNo(rs.getInt("BOARD_NO"));
@@ -190,18 +200,27 @@ public class BoardDAO {
 	 * 
 	 * @param conn
 	 * @param boardNo
+	 * @param memberCd 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int getListCount(Connection conn, int boardNo) throws Exception {
+	public int getListCount(Connection conn, int boardNo, int memberCd) throws Exception {
 		int result = 0;
 		
 		try {
-			String sql = prop.getProperty("getListCount");
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNo);
+			String sql = null;
+			if(memberCd==0) {
+				sql = prop.getProperty("getListCount");	
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, boardNo);
+				rs = pstmt.executeQuery();
+			} else {
+				sql = prop.getProperty("getListAllCount");
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+			}
 			
-			rs = pstmt.executeQuery();
+			
 			
 			if(rs.next()) {
 				result = rs.getInt(1);

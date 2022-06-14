@@ -108,3 +108,59 @@
 .selectBox2 .label {
 	margin-right: 30px;
 }
+
+.accepting{
+    padding: 1px 20px; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    color: white; 
+    background-color: red; 
+    border: 1px solid white;
+}
+
+.inqComplete{
+    padding: 2px 15px; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    color: white; 
+    background-color: grey; 
+    border: 1px solid white;
+}
+
+.activity{
+    border:1px solid none; 
+    padding-right: 30px;
+}
+
+#activity:hover{
+    text-decoration: underline;
+}
+
+.noneList{
+    margin: auto;
+    font-size: 30px;
+    color: grey;
+}
+
+.listArea{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 37px;
+}
+
+.listArea *{
+    margin: 12px;
+    cursor: pointer;
+}
+
+.listArea span:not(:first-of-type,:last-of-type){
+    padding: 3px 0px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.listArea span:first-of-type,.listArea span:last-of-type{
+    font-size: 18px;
+    padding-top: 2px;
+}

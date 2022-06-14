@@ -13,6 +13,7 @@ import edu.kh.moochelinGuide.board.model.vo.Board;
 import edu.kh.moochelinGuide.board.model.vo.BoardImage;
 import edu.kh.moochelinGuide.board.model.vo.Pagination;
 import edu.kh.moochelinGuide.board.model.vo.Reply;
+import edu.kh.moochelinGuide.common.Util;
 
 public class BoardService {
 	
@@ -26,8 +27,11 @@ public class BoardService {
 	 */
 	public int boardRegist(Board board) throws Exception {
 		int result = 0;
-		
 		Connection conn = getConnection();
+		board.setBoardTit(Util.XSSHandling(board.getBoardTit()));
+		board.setBoardTit(Util.newLineHandling(board.getBoardTit()));
+		board.setContent(Util.XSSHandling(board.getContent()));
+		board.setContent(Util.newLineHandling(board.getContent()));
 		
 		result = dao.boardRegist(conn, board);
 		
@@ -42,10 +46,11 @@ public class BoardService {
 	 * @param boardNo
 	 * @param array 
 	 * @param cp 
+	 * @param memberCd 
 	 * @return boardList
 	 * @throws Exception
 	 */
-	public Map<String, Object> boardList(int boardNo, int array, int cp) throws Exception {
+	public Map<String, Object> boardList(int boardNo, int array, int cp, int memberCd) throws Exception {
 		Connection conn = getConnection();
 		
 		List<Board> boardList = new ArrayList<Board>();
@@ -57,16 +62,18 @@ public class BoardService {
 		case 2: condition = " ORDER BY UPDATE_DT DESC) A) "; break;
 		case 3: condition = " ORDER BY CREATE_DT ASC) A) "; break;
 		case 4: condition = " ORDER BY CREATE_DT DESC) A) "; break;
+		case 5: condition = " ORDER BY BOARD_CD DESC) A)"; break;
+		case 6: condition = " ORDER BY BOARD_CD ASC) A)"; break;
 		}
 		
-		int listCount = dao.getListCount(conn,boardNo);
+		int listCount = dao.getListCount(conn,boardNo,memberCd);
 		
 		Pagination pagination = new Pagination(cp,listCount);
 		int start = (pagination.getCurrentPage()-1) * pagination.getLimit() + 1;
 		int end = start + pagination.getLimit() - 1;
 		String between = "WHERE RNUM BETWEEN "+start+" AND "+end;
 		
-		boardList = dao.boardList(conn,boardNo, condition, between);
+		boardList = dao.boardList(conn,boardNo, condition, between,memberCd);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -86,7 +93,6 @@ public class BoardService {
 	public Board boardContent(int boardNo) throws Exception {
 		Connection conn = getConnection();
 		Board board = new Board();
-		
 		board = dao.boardContent(conn,boardNo);
 		
 		if(board != null) {
