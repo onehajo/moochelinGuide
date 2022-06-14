@@ -57,7 +57,7 @@
 			        <input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
 			        <div class="messageBtnBox">
 			        	<!--onclick="self.close();"-->
-			            <button id="sendMessageBtn" class="messagePopupBtn">보내기</button>
+			            <button id="sendMessageBtn" class="messagePopupBtn" onclick="self.close();">보내기</button>
 			        </div>
 			    </form>
 			</div>
