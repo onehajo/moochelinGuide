@@ -1241,7 +1241,29 @@ public class MemberDAO {
 	
 	
 	
-	
+	/** 팔로워수 / 팔로잉 수 / 회원이름 / 회원번호 / 프로필이미지 조회
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public Member selectMember(Connection conn, int memberNo) throws Exception {
+		Member member = null;
+		
+		try {
+			
+			String sql = prop.getProperty("messageDetail");
+			
+			
+			
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return member;
+	}
 	
 	
 	

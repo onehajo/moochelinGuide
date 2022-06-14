@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- map 저장된 값 변수에 세팅 -->
 
@@ -68,14 +69,30 @@
                         </div>
                         <div>
                             <div class="profile-name">${loginMember.memberName}</div>
-                            <div class="follow"><span><a href="#">팔로워</a> : 3</span><span>   |   </span><span><a href="#">팔로잉</a>  : 3</span></div>
+                            <div class="follow"><span><a href="#">팔로워</a> : <span id="">3</span> </span><span>   |   </span><span><a href="#">팔로잉</a>  : 3</span></div>
                         </div>
-                        <!-- 제가 마이페이지에 a태그 넣어서 깨져버렸어용-->
-                        <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod">마이페이지</a> </div>
+                        
+                        <c:if test="${!empty fList}">
+                            <c:forEach var="f" items="${fList}">
+                                
+                                <button class="mypage-button"  id="followBtn" >팔로우</button>
+                                
+                            </c:forEach>
+                        </c:if>
+                        
+                        <c:if test="${empty fList}">
+                            <div id="searchFail">
+                                <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod}">마이페이지</a> </div>
+                            </div>
+                        </c:if>
+                        
                         <div class="pick-heart">❤</div>
                         <div class="bucket-list">찜한 영화 30</div>
                         <div class="count-star">⭐</div>
+                        <!-- EL문 넣으시오 -->
                         <div class="moovie-analysis">평가한 영화 533</div>
+                        ${member.memberNo}
+                        ${member}
                     </div>
                 </div>
             </section>
@@ -222,7 +239,6 @@
                             </div>
                 
                             <div>
-                                
                                 <c:choose>
                                     <c:when test="${ empty map.allMovieAvg}">
                                         <div class="title content-analysisn"> 취향분석 </div>
@@ -269,8 +285,6 @@
                                         </div>
                                     </div>
                                     <button type="button" onclick="location.href='${contextPath}/member/profile/analysis'" class="anal-button" >취향분석 보기</button>
-                                    <!-- href="${contextPath}/member/myPage/mod" -->
-                            </div> 
     
                     </div>
     
@@ -296,7 +310,7 @@
                     const s = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") > div");
                     const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
 
-                    s.style.height = a.starRating * a.count  * 10 + 'px';
+                    s.style.height =  a.count  * 10 + 'px';
                     p.style.animation = 'stick 2s 1';
                 }
             }
@@ -304,6 +318,15 @@
         }
     </script>
     
+
+    <!-- <script>
+        const fCount = "${fn:length(fList)}";
+        const contextPath = "${contextPath}";
+        -> ajax 할 때, memberNo = loginMeberNo / targetNo = member.memberNo / 팔로워의수 
+
+    </script> -->
+
+    <!-- <script src="${contextPath}/resources/js/profile_user.js"></script> -->
 
 </body>
 </html>

@@ -397,6 +397,12 @@ public class MemberService {
 		
 		// 5) 내가 평가한 전체 영화 평점 ㅡㅡ... dao왤케많아 
 		int allMovieAvg = dao.allMovieAvg(conn,memberNo);
+		
+		
+		// 6) 팔로워수 / 팔로잉 수 / 회원이름 / 회원번호 / 프로필이미지 조회
+		Member member = dao.selectMember(conn, memberNo);
+		
+		
 				
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -406,6 +412,7 @@ public class MemberService {
 		// 3) 취향분석 (담을 예정)
 		map.put("analyAll", new Gson().toJson(analyAll) );
 		map.put("allMovieAvg", allMovieAvg);
+		map.put("member", member);
 		
 		close(conn);
 		
@@ -450,6 +457,9 @@ public class MemberService {
 		// 5) 내가 평가한 전체 영화 평점 ㅡㅡ... dao왤케많아 
 		int allMovieAvg = dao.allMovieAvg(conn,memberNo);
 	
+		
+		// 6) 회원정보 조회
+		
 		
 		
 		Map<String, Object>

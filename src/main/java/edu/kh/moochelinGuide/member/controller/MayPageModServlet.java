@@ -31,14 +31,6 @@ public class MayPageModServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//		private int memberNo;
-//		private String memberName;
-//		private String memberEmail;
-//		private String memberPw;
-//		private String profileImage;
-//		private String profileBackImage;
-//		private String enrollDate;
-//		private String secessionFlag;
 		
 		try {
 			
@@ -83,7 +75,6 @@ public class MayPageModServlet extends HttpServlet{
 				bgImage = folderPath + mpReq.getFilesystemName("backgroundFile");
 			}
 
-			
 			
 //          ----- 유저정보  -----		
 			String memberName = mpReq.getParameter("memberName");

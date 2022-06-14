@@ -36,13 +36,12 @@ public class Analysis extends HttpServlet{
 			
 			// 회원번호 확인용 - 나중에 삭제할것 
 			System.out.println(memberNo); 
-			
+
 			// 멤버서비스에서 처리 
 			MemberService service = new MemberService();
 			
 			// map이 Vo가 필요없데, 왜? 모름.
-			Map<String, Object> map;
-				map = service.analysis(memberNo);
+			Map<String, Object> map = service.analysis(memberNo);
 			
 			// req에 map 세팅 
 			req.setAttribute("map", map);
@@ -56,6 +55,9 @@ public class Analysis extends HttpServlet{
 		}
 	
 	}
+	
+	
+	
 	
 	
 	

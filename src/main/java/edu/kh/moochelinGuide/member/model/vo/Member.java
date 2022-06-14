@@ -22,4 +22,8 @@ public class Member {
 	private String enrollDate;
 	private String secessionFlag;
 	
+	private int followerCount;
+	private int followingCount;
+	
+	
 }
