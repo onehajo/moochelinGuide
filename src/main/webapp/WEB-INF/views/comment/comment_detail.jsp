@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <link rel="stylesheet"
-	href="${contextPath}/resources/css/coment_detail.css" type="text/css">
+	href="${contextPath}/resources/css/comment_detail.css" type="text/css">
 <link rel="stylesheet"
 	href="${contextPath}/resources/css/main-style.css" type="text/css">
 
@@ -41,7 +41,7 @@
 			<header id="header">
 				<div class="header-wrap">
 
-					<div class="coment-title">${movieTitle}</div>
+					<div class="comment-title">${movieTitle}</div>
 				</div>
 		</div>
 		</header>
@@ -60,20 +60,16 @@
 					<c:forEach var="comment" items="${commentList}">
 						
 						<div class="contaner">
-							<div class="conment-info">
-								<div class="coment-proflie">
-									<a href="#"><img src="css/image/user.png" id="member-profile"></a>
-								</div>
-								<div class="coment-nickname">
-									${comment.memberNickname}
-									<div class="coment-row">${comment.commentDate}</div>
+							<div class="comment-info">
+								<div class="comment-proflie"><a href="#"><img src="css/image/user.png" id="member-profile"></a></div>
+								<div class="comment-nickname">${comment.memberNickname}
+								<div class="comment-row">${comment.commentDate}</div>
 								</div>
 								<div class="hart">하트</div>
 							</div>
-							<hr>
-							<div class="coment-cotent">${commnet.commentContent}</div>
-						</div>
-					</div>
+								<hr>
+								<div class="comment-cotent">${commnet.commentContent}</div>               
+							</div>
 
 					</c:forEach>
 				</c:otherwise>
@@ -83,7 +79,7 @@
 
 			<div class="pagination-area">
 				
-				<c:set var="url" value="list?no=${param.movieNo}"></c:set>
+				<c:set var="url" value="list?type=${param.movieNo}&cp="/>
 
 				<ul class="pagination">
 					<li><a href="${url}1">&lt;&lt;</a></li>
