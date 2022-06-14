@@ -2,7 +2,9 @@ package edu.kh.moochelinGuide.board.contoller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,11 +26,14 @@ public class InquiryLServlet extends HttpServlet {
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 	try {
-		int array = Integer.parseInt(req.getParameter("array"));
+	int array = Integer.parseInt(req.getParameter("array"));
+	int cp = 1;
+	
+	if(req.getParameter("cp")!=null) {
+		cp = Integer.parseInt(req.getParameter("cp"));
+	}
 		
 	RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/inquiryList.jsp");
-	
-	List<Board> boardList = new ArrayList<Board>();
 	
 	BoardService service = new BoardService();
 	
@@ -36,10 +41,11 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	Member member = (Member)session.getAttribute("loginMember");
 	
 	int boardNo = member.getMemberNo();
-	boardList = service.boardList(boardNo, array);
-
+	Map<String, Object> map = service.boardList(boardNo, array,cp);
+	
 	req.setAttribute("array", array);
-	req.setAttribute("boardList", boardList);
+	req.setAttribute("boardList", map.get("boardList"));
+	req.setAttribute("pagination", map.get("pagination"));
 	
 	dispatcher.forward(req, resp);
 	}catch(Exception e) {

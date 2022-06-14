@@ -136,4 +136,45 @@ public class CommentDAO {
 		
 		return commentList;
 	}
+	
+	
+	
+	/** 관리자 - 코멘트 목록 조회 DAO
+	 * @param conn
+	 * @param movieNo
+	 * @return cList
+	 * @throws Exception
+	 */
+	public List<Comment> commentForAdmin(Connection conn, int movieNo) throws Exception{
+		List<Comment> cList = new ArrayList<Comment>();
+		
+		try {
+			
+			String sql = prop.getProperty("commentForAdmin");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Comment c = new Comment();
+				c.setCommentNo(rs.getInt(1));
+				c.setCommentContent(rs.getString(2));
+				c.setCommentDate(rs.getString(3));
+				c.setCommentST(rs.getString(4));
+				c.setMemberNo(rs.getInt(5));
+				c.setMemberNickname(rs.getString(6));
+				c.setProfileImage(rs.getString(7));
+				
+				cList.add(c);
+			}
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return cList;
+	}
 }

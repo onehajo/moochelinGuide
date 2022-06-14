@@ -594,6 +594,30 @@ public class MemberService {
 	
 	
 	
+	/** 비밀번호 재설정
+	 * @param memberEmail
+	 * @param resetPw 
+	 * @return result
+	 * @throws Exception
+	 */
+	public int resetPw(String memberEmail, String resetPw) throws Exception {
+		Connection conn = getConnection();
+		
+		int result = dao.resetPw(conn, memberEmail, resetPw);
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	
+	
+	
+	
+	
 	
 
 }
