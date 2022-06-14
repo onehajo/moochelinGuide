@@ -13,7 +13,7 @@
 				</li>
 				
 				<li class="showing"><a href="">영화관리</a></li>
-				<li class="all"><a href="">리뷰관리</a></li>
+				<li class="all"><a href="${contextPath}/admin/comment/search">리뷰관리</a></li>
 				<li class="all"><a href="">문의관리</a></li>
 				<li class="all"><a href="">공지관리</a></li>
 

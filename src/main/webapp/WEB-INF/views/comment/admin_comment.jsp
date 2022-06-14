@@ -65,46 +65,10 @@
             <div class="search-result" id="search-result">
             </div>
 
-            <!-- 페이지네이션 -->
-            <!-- <div class="pagination-area">
-                <ul class="pagination">
-                    <li><a href="member">&lt;&lt;</a></li>
-                    <li><a href="member">&lt;</a></li>
-                    
-                    <li><a class="current">1</a></li>
-                    <li><a href="member">2</a></li>
-                    <li><a href="member">3</a></li>
-                    <li><a href="member">4</a></li>
-                    <li><a href="member">5</a></li>
-
-                    <li><a href="member">&gt;</a></li>
-                    <li><a href="member">&gt;&gt;</a></li>
-
-                </ul>
-            </div> -->
-
-            <!-- 코멘트 검색결과 조회 -->
+            <!-- 특정 영화 코멘트 리스트 출력-->
             <div class="search-comment-result" id="commentResult">
-                <!-- <p>'닥터 스트레인지'에 대한 코멘트입니다. </p> -->
-
-                <!-- <div class="info">
-                    <div class="production">
-                        <div class="contaner">  
-                            <div class="comment-info">
-                                <div class="comment-proflie"><a href="#"><img src="images/user.png" class="member-profile"></a></div>
-                                <div class="comment-nickname">못할 바이며
-                                    <div class="comment-date">2022.05.30</div>
-                                </div>
-                                <div class="commentBtn">
-                                    <button>삭제</button>
-                                </div>
-                            </div>
-                            <div class="comment-content">낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? 이상! 우리의 청춘이 가장 많이 품고 있는 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? </div> 
-                        </div>   
-                    </div>  
-                </div> -->
-
             </div>
+            
         </section>
     </main>
 
