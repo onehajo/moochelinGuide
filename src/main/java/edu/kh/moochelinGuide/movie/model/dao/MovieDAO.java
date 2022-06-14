@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.kh.moochelinGuide.comment.vo.Comment;
+import edu.kh.moochelinGuide.comment.vo.Pagination;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
 
@@ -173,6 +175,43 @@ public class MovieDAO {
 			close(pstmt);
 		}
 	}
+
+
+public List<Comment> selectCommentList(Connection conn, int movieNo) throws Exception {
+		
+		List<Comment> commentList = new ArrayList<Comment>();
+		
+		try {
+			String sql = prop.getProperty("detailCommentList");
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Comment comment = new Comment();
+				
+				comment.setCommentNo( rs.getInt("COMMENT_NO"));
+				comment.setCommentContent(rs.getString("COMMENT_CT"));
+				comment.setMemberNickname(rs.getString("MEMBER_NM"));
+				comment.setCommentDate(rs.getString("COMMENT_DT"));
+				
+				commentList.add(comment);
+				
+			}
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return commentList;
+	}
+
 	
 	
 	

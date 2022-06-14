@@ -1,6 +1,7 @@
 package edu.kh.moochelinGuide.movie.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,16 +27,13 @@ public class MovieDetailServlet extends HttpServlet{
 		
 		MovieService service = new MovieService();
 		
-		MovieDetail detail = service.selectMovieDetail(movieNo);
 		
-		// 평가한 회원수 조회 해서 평균값 계산
-		
-		// 평가한 점수 조회
-		
-		req.setAttribute("detail", detail);
+		Map<String, Object> map = service.selectMovieDetail(movieNo);
 		
 		
-		System.out.println(detail);
+		
+		req.setAttribute("map", map);
+		
 		
 		String path = "/WEB-INF/views/movie/movieDetail.jsp";
            
