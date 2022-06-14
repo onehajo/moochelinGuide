@@ -39,6 +39,8 @@
 	FORM MOVIE
 	WHERE MOVIE_NO = ?
 	</entry>
-	
+	<entry key="movieEvaluate">
+	INSERT INTO MOVIE_EVALUATE VALUES ( ?, ?, ?)
+	</entry>
 	
 </properties>

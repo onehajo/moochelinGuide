@@ -50,16 +50,20 @@ public class MovieDetailServlet extends HttpServlet{
 			
 			int result = 0;
 			
+			// 평가한 점수 파라미터 얻어오기
 			int ratingPoint = Integer.parseInt(req.getParameter("ratingPoint"));
+			// 영화번호 파라미터 얻어오기
 			int movieNo = Integer.parseInt( req.getParameter("no"));
 			
+			
 			HttpSession session = req.getSession();
+			// 세션에서 로그인 정보 얻어옴
 			Member loginMember = (Member)session.getAttribute("loginMember");
-			
+			// 회원 번호
 			int memberNo = loginMember.getMemberNo();
-			
 			MovieService service = new MovieService();
 			
+			// 평가한 점수 insert JDBC
 			result = service.movieEvaluate(movieNo, ratingPoint, memberNo);
 			
 			String path = "/WBE-INF/views/movie/movieDetail.jsp";

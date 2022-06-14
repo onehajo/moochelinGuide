@@ -141,11 +141,36 @@ public class MovieDAO {
 		return detail;
 	}
 
+	/** 영화 평가하기
+	 * @param conn
+	 * @param movieNo
+	 * @param ratingPoint
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
 	public int movieEvaluate(Connection conn, int movieNo, int ratingPoint, int memberNo) throws Exception{
 		
-		int result = 0;
-		
-		return result;
+		try {
+			
+			int result = 0;
+			
+			String sql = prop.getProperty("movieEvaluate");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, ratingPoint);
+			pstmt.setInt(2, memberNo);
+			pstmt.setInt(3, movieNo);
+			
+			
+			result = pstmt.executeUpdate();
+			
+			return result;
+			
+		}finally{
+			close(pstmt);
+		}
 	}
 	
 	
