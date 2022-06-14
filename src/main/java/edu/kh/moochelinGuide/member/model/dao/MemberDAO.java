@@ -1228,6 +1228,7 @@ public class MemberDAO {
 				messageDetail.setEnrollDate(rs.getString(2));
 				messageDetail.setMemberName(rs.getString(3));
 				messageDetail.setMessageNo(rs.getInt(4));
+				messageDetail.setTargetNo(rs.getInt(5));
 			}
 			
 		}finally {
@@ -1241,46 +1242,31 @@ public class MemberDAO {
 	
 	
 	
-	/** 팔로워수 / 팔로잉 수 / 회원이름 / 회원번호 / 프로필이미지 조회
-	 * @param conn
-	 * @param memberNo
-	 * @return
-	 * @throws Exception
-	 */
-	public Member selectMember(Connection conn, int memberNo) throws Exception {
-		Member member = null;
-		
-		try {
-			
-			String sql = prop.getProperty("messageDetail");
-			
-			
-			
-			
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return member;
-	}
+
 	
 	
 	
 	/** 쪽지 보내기
 	 * @param conn
+	 * @param content 
+	 * @param targetNo 
 	 * @param messageNo
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertMessage(Connection conn, int memberNo) throws Exception {
+	public int insertMessage(Connection conn, int memberNo, int targetNo, String content) throws Exception {
 		int result=0;
 		
 		try {
 			String sql = prop.getProperty("insertMessage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, targetNo);
+			pstmt.setInt(3, memberNo);
+			result = pstmt.executeUpdate();
 			
 		}finally {
-			
+			close(pstmt);
 		}
 		return result;
 	}

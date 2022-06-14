@@ -545,15 +545,17 @@ public class MemberService {
 	}
 
 	/** 쪽지 보내기
+	 * @param content 
+	 * @param targetNo 
 	 * @param messageNo
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertMessage(int memberNo) throws Exception {
+	public int insertMessage(int memberNo, int targetNo, String content) throws Exception {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.insertMessage(conn, memberNo);
+		int result = dao.insertMessage(conn, memberNo, targetNo, content );
 		
 		if(result>0) commit(conn);
 		else		 rollback(conn);
