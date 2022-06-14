@@ -52,10 +52,12 @@
 			<div id="messageSend" class="detailPopupHidden activePblock">
 			    <p class="popupTitle">쪽지 보내기<span class="smallText"></span></p>
 			    <p class="">받는 사람 : ${messageDetail.memberName}</p>
-			    <form class="messageForm-css" action="insert" method="post" onsubmit="return sendValidate()">
-			        <textarea name="sendMessageContent" id="messageC" class="textarea-css"></textarea>
+			    <form class="messageForm-css" action="insert" method="post" onsubmit="return sendValidate()" target="parentWindow">
+			        <textarea name="content" id="messageC" class="textarea-css"></textarea>
+			        <input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
 			        <div class="messageBtnBox">
-			            <button id="sendMessageBtn" onclick="self.close();" class="messagePopupBtn">보내기</button>
+			        	<!--onclick="self.close();"-->
+			            <button id="sendMessageBtn" class="messagePopupBtn" onclick="self.close();">보내기</button>
 			        </div>
 			    </form>
 			</div>

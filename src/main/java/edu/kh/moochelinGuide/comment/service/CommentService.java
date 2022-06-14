@@ -62,6 +62,25 @@ public class CommentService {
 		
 		return cList;
 	}
+
+	/** 관리자 - 코멘트 삭제 / 복구 Service
+	 * @param commentNo
+	 * @param mode
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteComment(int commentNo, int mode) throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.deleteComment(conn, mode, commentNo);
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
     
 
 }
