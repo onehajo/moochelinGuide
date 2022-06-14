@@ -369,7 +369,15 @@
 		WHERE MESSAGE_NO=?
 	</entry>
 	
+	<!-- 비밀번호 재설정 -->
+	<entry key="resetPw">
+		UPDATE MEMBER SET
+		MEMBER_PW=?
+		WHERE MEMBER_EMAIL=?
+		AND SECESSION_FL = 'N'
+	</entry>
 	
+
 	
 
 

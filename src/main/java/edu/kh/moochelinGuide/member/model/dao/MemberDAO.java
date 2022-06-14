@@ -1308,6 +1308,37 @@ public class MemberDAO {
 		return result;
 	}
 
+	
+	
+	
+	
+	
+	
+	/** 비밀번호 재설정
+	 * @param conn
+	 * @param memberEmail
+	 * @param resetPw 
+	 * @return result
+	 * @throws Exception
+	 */
+	public int resetPw(Connection conn, String memberEmail, String resetPw) throws Exception {
+		
+		int result=0; 
+		
+		try {
+			String sql = prop.getProperty("resetPw");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, resetPw);
+			pstmt.setString(2, memberEmail);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 
 
 }
