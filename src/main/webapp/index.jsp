@@ -50,7 +50,7 @@
 					<c:otherwise>
 						<c:forEach var="movie" items="${movieList}"  varStatus="num">
 					
-						<li><a href="resources/yjg/Detail_page.html">
+						<li><a href="movie/detail?no=${movie.movieNo}">
 								<div class="movie">
 									<div class="movie-top">
 										<div class="movie-poster">
