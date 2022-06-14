@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="pagination" value="${pagination}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +80,23 @@
                     </c:if>
                 </tbody>
             </table>
+            <div class="contentArea">
+                <c:set var="url" value="inquiryList?array=${param.array}&cp="/>
+                    <section class="listArea">
+                            <span><a href="${url}${pagination.prevPage}">&lt;</a></span>
+                            <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+                                <c:choose>
+                                    <c:when test="${i==pagination.currentPage}">
+                                        <span style="background-color: #392eff;" class="listNumber"><a href="${url}${i}" style="color: white;">${i}</a></span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="listNumber"><a href="${url}${i}">${i}</a></span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            <span><a href="${url}${pagination.nextPage}">&gt;</a></span>
+                    </section> 
+            </div>
             <form action="inquiryList/inquiryRegist">
                 <button id="registration">문의 등록</button>
             </form>

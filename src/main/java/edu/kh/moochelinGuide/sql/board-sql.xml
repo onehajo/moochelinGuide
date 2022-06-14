@@ -10,12 +10,15 @@
 	
 	<!-- 문의 리스트 조회 -->
 	<entry key="boardList">
-		SELECT BOARD_NO,BOARD_TITLE, BOARD_CT, 
-		(SYSDATE - CREATE_DT)*24*60*60 AS "CREATE_DT", 
-		(SYSDATE - UPDATE_DT)*24*60*60 AS "UPDATE_DT", BOARD_ST,BOARD_CD,MEMBER_NM
-		FROM BOARD
-		JOIN MEMBER USING(MEMBER_NO)
-		WHERE MEMBER_NO = ?
+	SELECT * FROM(
+       SELECT ROWNUM RNUM, A.* FROM(
+       SELECT BOARD_NO,BOARD_TITLE, BOARD_CT, 
+       (SYSDATE - CREATE_DT)*24*60*60 AS "CREATE_DT", 
+       (SYSDATE - UPDATE_DT)*24*60*60 AS "UPDATE_DT", BOARD_ST,BOARD_CD,MEMBER_NM
+       FROM BOARD
+       JOIN MEMBER USING(MEMBER_NO)
+       WHERE MEMBER_NO = ?
+       AND BOARD_ST = 'N'
 	</entry>
 	
 	<!-- 문의 사항 조회 -->
@@ -32,5 +35,21 @@
 	<!-- 게시판 마지막 활동 시간 업데이트 -->
 	<entry key="boardUdate">
 		UPDATE BOARD SET UPDATE_DT = SYSDATE WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 전체 문의 게시글 수 조회 -->
+	<entry key="getListCount">
+		SELECT COUNT(*) FROM BOARD
+		WHERE (BOARD_CD =99
+		OR BOARD_CD = 98)
+		AND BOARD_ST = 'N'
+		AND MEMBER_NO = ?
+	</entry>
+	
+	<!-- 문의 내용 사진 조회 -->
+	<entry key="selectImageList">
+		SELECT * FROM BOARD_IMG
+		WHERE BOARD_NO = ?
+		ORDER BY IMG_LEVEL
 	</entry>
 </properties>

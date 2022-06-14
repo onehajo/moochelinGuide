@@ -4,10 +4,14 @@ import static edu.kh.moochelinGuide.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.kh.moochelinGuide.board.model.dao.BoardDAO;
 import edu.kh.moochelinGuide.board.model.vo.Board;
+import edu.kh.moochelinGuide.board.model.vo.BoardImage;
+import edu.kh.moochelinGuide.board.model.vo.Pagination;
 import edu.kh.moochelinGuide.board.model.vo.Reply;
 
 public class BoardService {
@@ -37,10 +41,11 @@ public class BoardService {
 	 * 
 	 * @param boardNo
 	 * @param array 
+	 * @param cp 
 	 * @return boardList
 	 * @throws Exception
 	 */
-	public List<Board> boardList(int boardNo, int array) throws Exception {
+	public Map<String, Object> boardList(int boardNo, int array, int cp) throws Exception {
 		Connection conn = getConnection();
 		
 		List<Board> boardList = new ArrayList<Board>();
@@ -48,16 +53,28 @@ public class BoardService {
 		String condition = null;
 		
 		switch(array) {
-		case 1: condition = " ORDER BY UPDATE_DT ASC"; break;
-		case 2: condition = " ORDER BY UPDATE_DT DESC"; break;
-		case 3: condition = " ORDER BY CREATE_DT ASC"; break;
-		case 4: condition = " ORDER BY CREATE_DT DESC"; break;
+		case 1: condition = " ORDER BY UPDATE_DT ASC) A) "; break;
+		case 2: condition = " ORDER BY UPDATE_DT DESC) A) "; break;
+		case 3: condition = " ORDER BY CREATE_DT ASC) A) "; break;
+		case 4: condition = " ORDER BY CREATE_DT DESC) A) "; break;
 		}
 		
-		boardList = dao.boardList(conn,boardNo, condition);
+		int listCount = dao.getListCount(conn,boardNo);
+		
+		Pagination pagination = new Pagination(cp,listCount);
+		int start = (pagination.getCurrentPage()-1) * pagination.getLimit() + 1;
+		int end = start + pagination.getLimit() - 1;
+		String between = "WHERE RNUM BETWEEN "+start+" AND "+end;
+		
+		boardList = dao.boardList(conn,boardNo, condition, between);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("boardList", boardList);
+		map.put("pagination", pagination);
 		
 		close(conn);
-		return boardList;
+		return map;
 	}
 	
 	/** 문의 내용 조회 Service
@@ -71,6 +88,12 @@ public class BoardService {
 		Board board = new Board();
 		
 		board = dao.boardContent(conn,boardNo);
+		
+		if(board != null) {
+			List<BoardImage> imagelist = dao.selectImageList(conn,boardNo);
+			
+			board.setImageList(imagelist);
+		}
 		
 		close(conn);
 		
