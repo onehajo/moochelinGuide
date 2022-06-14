@@ -18,5 +18,6 @@ public class MovieDetail {
 	private String actor;
 	private String posterImage;
 	private String detailImage;
+	private float starRating;
 	
 }

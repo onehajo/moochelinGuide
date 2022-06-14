@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.kh.moochelinGuide.comment.vo.Comment;
+
 import edu.kh.moochelinGuide.movie.model.dao.MovieDAO;
+import edu.kh.moochelinGuide.movie.model.vo.DetailComment;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
 
@@ -73,22 +74,23 @@ public class MovieService {
 
 	public Map<String, Object> selectMovieDetail(int movieNo) throws Exception{
 		
+		
 		Connection conn = getConnection();
 		
 		// 영화 정보 조회
 		MovieDetail detail = dao.selectMovieDetail(conn, movieNo);	
 		// 코멘트 조회
-		List<Comment> commentList = dao.selectCommentList(conn, movieNo);
+		List<DetailComment> detailCommentList = dao.detailCommentList(conn, movieNo);
 		
 		System.out.println(detail);
-		System.out.println(commentList);
+		System.out.println(detailCommentList);
 		
 		// 코멘트 리스트 왜 조회 결과가 안 나오지?...
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("detail", detail);
-        map.put("commentList", commentList);
+        map.put("commentList", detailCommentList);
 		
 		close(conn);
 		
