@@ -45,20 +45,20 @@
                     <h2 class="sec-h2">취향분석</h2>
                 </header>
             </div>
-            
+            ${map.member}
             <div class="sec-in-block">
                 <div class="info-block">
                     <div class="info-profile profile-img-area">
-                        <c:if test="${empty loginMember.profileImage}">
+                        <c:if test="${empty map.member.profileImage}">
                                 <img src="${contextPath}/resources/images/user.png" style="width: 50px; height: 50px;">
 							    					
 						    </c:if>
 						
-                            <c:if test="${!empty loginMember.profileImage}">
+                            <c:if test="${!empty map.member.profileImage}">
                                 <img src="${contextPath}${loginMember.profileImage}" style="width: 50px; height: 50px;">
                             </c:if>
                     </div>
-                    <div class="info-profile name">${loginMember.memberName}</div>
+                    <div class="info-profile name">${map.member.memberName}</div>
                     <div class="info-profile count-star">⭐</div>
                     <div class="info-profile moovie-count">평가한 영화 ${map.analyMovieCount}개</div>
                 </div>
@@ -79,7 +79,7 @@
                         <header class="sec-header line-anal">
                             <h1 class="sec-h1">영화에 숨참고 Love Dive</h1>
                         </header>
-                        <div>"평점 ${map.allMovieAvg}점의 영화 사랑꾼"</div>
+                        <div>"평점 ${map.allMovieAvg}점의 영화 를평가하였습니다."</div>
 
                     </c:otherwise>
 
@@ -161,10 +161,14 @@
 
             for(let a of analyAll){
                 if(i == a.starRating){
+                    // 그래프 div의 css 자식값 계산 ==  li:nth-of-type(1~10) 
                     const s = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") > div");
+                    //  li:nth-of-type(1~10) -> 애니메이션 넣을려고
                     const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
 
                     s.style.height = a.starRating * a.count  * 10 + 'px';
+
+                    // 애니매이션 값 넣기
                     p.style.animation = 'stick 2s 1';
                 }
             }

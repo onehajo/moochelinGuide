@@ -56,33 +56,31 @@
                     <div class="info-center-flex">
                         <!-- 배경이미지 / 내프로필 / 팔로워/팔로잉 .... 평가한 영화 -->
                         <div class="profile-position profile-img-area">
-                            <c:if test="${empty loginMember.profileImage}">
+                            <c:if test="${empty map.member.profileImage}">
                                 <img src="${contextPath}/resources/images/user.png" style="width: 110px; height: 110px;">
 							    					
 						    </c:if>
 						
-                            <c:if test="${!empty loginMember.profileImage}">
-                                <img src="${contextPath}${loginMember.profileImage}" style="width: 110px; height: 110px;">
+                            <c:if test="${!empty map.member.profileImage}">
+                                <img src="${contextPath}${map.member.profileImage}" style="width: 110px; height: 110px;">
                             </c:if>
 				
                             <!-- <div class="fa-solid fa-user"></div> -->
                         </div>
                         <div>
-                            <div class="profile-name">${loginMember.memberName}</div>
-                            <div class="follow"><span><a href="#">팔로워</a> : <span id="">3</span> </span><span>   |   </span><span><a href="#">팔로잉</a>  : 3</span></div>
+                            <div class="profile-name">${map.member.memberName}</div>
+                            <div class="follow"><span><a href="#">팔로워</a> : <span id="">${map.followerCount}</span> </span><span>   |   </span><span><a href="#">팔로잉</a>  : <span id="followingCount2">${map.followingCount}</span></span></div>
                         </div>
                         
-                        <c:if test="${!empty fList}">
-                            <c:forEach var="f" items="${fList}">
-                                
-                                <button class="mypage-button"  id="followBtn" >팔로우</button>
-                                
-                            </c:forEach>
+                        <c:if test="${ map.member.memberNo != loginMember.memberNo}">
+                            
+                            <button class="mypage-button"  id="followBtn" >팔로우</button>
+                            
                         </c:if>
                         
-                        <c:if test="${empty fList}">
+                        <c:if test="${ map.member.memberNo == loginMember.memberNo}">
                             <div id="searchFail">
-                                <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod}">마이페이지</a> </div>
+                                <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod">마이페이지</a> </div>
                             </div>
                         </c:if>
                         
@@ -90,11 +88,11 @@
                         <div class="bucket-list">찜한 영화 30</div>
                         <div class="count-star">⭐</div>
                         <!-- EL문 넣으시오 -->
-                        <div class="moovie-analysis">평가한 영화 533</div>
-                        ${member.memberNo}
-                        ${member}
+                        <div class="moovie-analysis">평가한 영화 ${map.analyMovieCount}</div>
                     </div>
                 </div>
+                <!-- 맴버값 확인 -->
+                ${map.member}
             </section>
       
             
@@ -284,7 +282,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <button type="button" onclick="location.href='${contextPath}/member/profile/analysis'" class="anal-button" >취향분석 보기</button>
+                                    <button type="button" onclick="location.href='${contextPath}/member/profile/analysis?memberNo=${map.member.memberNo}'" class="anal-button" >취향분석 보기</button>
     
                     </div>
     
@@ -310,7 +308,7 @@
                     const s = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") > div");
                     const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
 
-                    s.style.height =  a.count  * 10 + 'px';
+                    s.style.height =  a.count  * 10 + 3 +'px';
                     p.style.animation = 'stick 2s 1';
                 }
             }
@@ -319,14 +317,18 @@
     </script>
     
 
-    <!-- <script>
-        const fCount = "${fn:length(fList)}";
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
+    <script>
         const contextPath = "${contextPath}";
-        -> ajax 할 때, memberNo = loginMeberNo / targetNo = member.memberNo / 팔로워의수 
+        const memberNo = "${loginMember.memberNo}";
+        const targetNo = "${map.member.memberNo}";
+        
+        // -> ajax 할 때, memberNo = loginMeberNo / targetNo = member.memberNo / 팔로워의수 
+        let followerCount = Number("${map.followerCount}");
+    </script>
 
-    </script> -->
-
-    <!-- <script src="${contextPath}/resources/js/profile_user.js"></script> -->
+    <script src="${contextPath}/resources/js/myPage-following2.js"></script>
 
 </body>
 </html>

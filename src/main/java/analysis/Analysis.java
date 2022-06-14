@@ -21,24 +21,26 @@ public class Analysis extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		try {
-			// 필요한 것
-			// '특정 회원'의
-			// 1) 각 점수 별 카운트 갯수 
-			// 2) 평가 테이블에 가장 많은 나라(country)
-			// 3) 평가한 테이블의 총 영화 시간.
 			
 			// 로그인 세션 불러오기 
 			HttpSession session = req.getSession();
 			Member loginMember = (Member)(session.getAttribute("loginMember"));
 			
-			// 회원번호
-			int memberNo = loginMember.getMemberNo();	
 			
-			// 회원번호 확인용 - 나중에 삭제할것 
-			System.out.println(memberNo); 
-
+			int memberNo = loginMember.getMemberNo();
+			int targetNo = Integer.parseInt(req.getParameter("memberNo"));
+			
+			
 			// 멤버서비스에서 처리 
 			MemberService service = new MemberService();
+			
+			if (targetNo != memberNo) { // 다른 회원 정보 조회
+				
+				memberNo = targetNo;
+				
+			}
+			
+			
 			
 			// map이 Vo가 필요없데, 왜? 모름.
 			Map<String, Object> map = service.analysis(memberNo);

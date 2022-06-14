@@ -373,10 +373,11 @@ public class MemberService {
 	
 	/** 마이프로필 Service
 	 * @param memberNo
+	 * @param targetNo 
 	 * @return map 
 	 * @throws Exception
 	 */
-	public Map<String, Object> profileMy(int memberNo) throws Exception{
+	public Map<String, Object> profileMy(int memberNo, int targetNo) throws Exception{
 		
 		
 		Connection conn = getConnection();
@@ -384,8 +385,8 @@ public class MemberService {
 		// 1)평가한 영화 정보 조회 .. 를 가지고 영화(이름, 이미지, 년도, 국가 ) ( 평균별점 걍 빼자  )
 		List<Movie> evalMovie = dao.selectEvalMovie(conn, memberNo);
 		
-//		System.out.println(evalMovie);
-		
+		// 1-1) 내가 평가한 영화의 모든 갯수 ( 프로필 오른쪽에 사용할 것임 )
+		int analyMovieCount = dao.analyMovieCount(conn, memberNo);
 
 		// 2) 찜한 영화 정보(정보가 없슈)
 
@@ -399,11 +400,16 @@ public class MemberService {
 		int allMovieAvg = dao.allMovieAvg(conn,memberNo);
 		
 		
-		// 6) 팔로워수 / 팔로잉 수 / 회원이름 / 회원번호 / 프로필이미지 조회
-		Member member = dao.selectMember(conn, memberNo);
+		// 6) memberNo 가 내가아닌 타인일때,
+		//    회원이름 / 회원번호 / 프로필이미지 / 배경이미지 
+		Member member = dao.selectMemberUser(conn, memberNo);
 		
+		// 6-1)페이지 멤버의 팔로워
+		int followerCount = dao.followerCount(conn, memberNo);
 		
-				
+		// 6-2) 페이지 멤버의 팔로잉
+		int followingCount = dao.followingCount(conn, targetNo );
+		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 1) 평가한 영화 정보 조회 (4개) 담겨져 있어야함.
@@ -413,6 +419,8 @@ public class MemberService {
 		map.put("analyAll", new Gson().toJson(analyAll) );
 		map.put("allMovieAvg", allMovieAvg);
 		map.put("member", member);
+		map.put("followerCount", followerCount);
+		map.put("followingCount", followingCount);
 		
 		close(conn);
 		
@@ -458,9 +466,10 @@ public class MemberService {
 		int allMovieAvg = dao.allMovieAvg(conn,memberNo);
 	
 		
-		// 6) 회원정보 조회
-		
-		
+		// 6) memberNo 가 내가아닌 타인일때,
+		//    회원이름 / 회원번호 / 프로필이미지 / 배경이미지 
+		Member member = dao.selectMemberUser(conn, memberNo);
+
 		
 		Map<String, Object>
 		map = new HashMap<String, Object>();
@@ -471,6 +480,7 @@ public class MemberService {
 		map.put("likeCountryCount", likeCountryCount);
 		map.put("likeCountryAvg", likeCountryAvg);
 		map.put("allMovieAvg", allMovieAvg);
+		map.put("member", member);
 		
 		//값 잘 불러와졌나확인용 - 나중에 주석처리 꼭!!!꼭하기
 		System.out.println(analyMovieCount);
@@ -515,7 +525,7 @@ public class MemberService {
 	}
 
 	
-	
+	 
 	
 	
 	
@@ -590,6 +600,7 @@ public class MemberService {
 		
 		return messageList;
 	}
+
 
 	
 	

@@ -44,11 +44,13 @@ public class ProfileMyServlet extends HttpServlet{
 			
 			// 나/타인 번호로 서비스프로필 마이 처리
 			// map이 Vo가 필요없데, 왜? 모름.
-			Map<String, Object> map = service.profileMy(memberNo);
+			Map<String, Object> map = service.profileMy(memberNo,targetNo);
 			
 			
 			// req에 map 세팅 
 			req.setAttribute("map", map);
+			
+			
 			
 			
 //   	    요청 주소.
@@ -59,13 +61,9 @@ public class ProfileMyServlet extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
-	
-	
-	
+		
+		
 	
 	
 	
