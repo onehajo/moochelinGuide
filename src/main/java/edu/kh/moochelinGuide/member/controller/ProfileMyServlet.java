@@ -31,7 +31,6 @@ public class ProfileMyServlet extends HttpServlet{
 			int memberNo = loginMember.getMemberNo();
 			int targetNo = Integer.parseInt(req.getParameter("memberNo"));
 			
-			
 			// 멤버서비스에서 처리 
 			MemberService service = new MemberService();
 			
