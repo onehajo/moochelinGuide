@@ -51,13 +51,13 @@
                                     <!-- 영화정보가 1개인 경우 -->
                                     <c:if test="${person.movieList.size()==1}">
                                         <c:forEach var="movie" items="${person.movieList}" begin="0" end="1">
-                                            <a href="#">${movie.movieTitle}</a>
+                                            <a href="${contextPath}/movie/detail?no=${movie.movieNo}">${movie.movieTitle}</a>
                                         </c:forEach>
                                     </c:if>
                                     <!-- 영화정보가 2개이상인 경우 -->
                                     <c:if test="${person.movieList.size()>1}">
                                         <c:forEach var="movie" items="${person.movieList}" begin="0" end="2">
-                                            <a href="#">${movie.movieTitle}</a>
+                                            <a href="${contextPath}/movie/detail?no=${movie.movieNo}">${movie.movieTitle}</a>
                                         </c:forEach>
                                     </c:if>
                                 </div>
