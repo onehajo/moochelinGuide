@@ -109,6 +109,7 @@ public class MemberDAO {
 				member.setProfileImage(rs.getString(4));
 				member.setProfileBackImage(rs.getString(5));
 				member.setEnrollDate(rs.getString(6));
+				member.setMemberType(rs.getString(7));
 			}
 			
 		}finally {
