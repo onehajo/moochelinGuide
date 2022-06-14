@@ -161,10 +161,14 @@
 
             for(let a of analyAll){
                 if(i == a.starRating){
+                    // 그래프 div의 css 자식값 계산 ==  li:nth-of-type(1~10) 
                     const s = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") > div");
+                    //  li:nth-of-type(1~10) -> 애니메이션 넣을려고
                     const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
 
                     s.style.height = a.starRating * a.count  * 10 + 'px';
+
+                    // 애니매이션 값 넣기
                     p.style.animation = 'stick 2s 1';
                 }
             }

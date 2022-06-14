@@ -68,21 +68,19 @@
                             <!-- <div class="fa-solid fa-user"></div> -->
                         </div>
                         <div>
-                            <!-- 맴버값 확인 -->
-                            ${map.member}
                             <div class="profile-name">${map.member.memberName}</div>
                             <div class="follow"><span><a href="#">팔로워</a> : <span id="">${map.followerCount}</span> </span><span>   |   </span><span><a href="#">팔로잉</a>  : <span id="followingCount2">${map.followingCount}</span></span></div>
                         </div>
                         
                         <c:if test="${ map.member.memberNo != loginMember.memberNo}">
-                                
-                                <button class="mypage-button"  id="followBtn" >팔로우</button>
-                                
+                            
+                            <button class="mypage-button"  id="followBtn" >팔로우</button>
+                            
                         </c:if>
                         
-                        <c:if test="${map.member.memberNo != loginMember.memberNo}}">
+                        <c:if test="${ map.member.memberNo == loginMember.memberNo}">
                             <div id="searchFail">
-                                <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod}">마이페이지</a> </div>
+                                <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod">마이페이지</a> </div>
                             </div>
                         </c:if>
                         
@@ -93,6 +91,8 @@
                         <div class="moovie-analysis">평가한 영화 ${map.analyMovieCount}</div>
                     </div>
                 </div>
+                <!-- 맴버값 확인 -->
+                ${map.member}
             </section>
       
             

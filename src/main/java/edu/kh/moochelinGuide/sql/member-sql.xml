@@ -378,7 +378,6 @@
 		AND SECESSION_FL = 'N'
 	</entry>
 	
-<<<<<<< HEAD
 	<!-- 쪽지 삭제하기 -->
 	<entry key="selectMemberUser">
 		SELECT MEMBER_NO, MEMBER_NM, PROFILE_IMG, PROFILE_BACK_IMG 

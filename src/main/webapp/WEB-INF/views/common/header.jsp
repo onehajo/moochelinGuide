@@ -52,15 +52,15 @@
 					<c:otherwise>
 						<li class="grade"><a href="${contextPath}/member/evaluation">평가하기</a></li>
 						
-						<!-- pofile_my로 넘어가야함. 임시로 내정보수정으로 연결 -->
-						<li class="profile"><a href="${contextPath}/member/profile/my?memberNo=${loginMember.memberNo}"><div id="profileImage"></div></a></li>
 						
 						<c:if test="${empty loginMember.profileImage}">
-							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage"  style=" background-size: 40px; background-image : url('${contextPath}/resources/images/user.png')"></div></a></li>						
+							<!-- 프로필 my로 넘어가기 -->
+							<!-- 프로필 my로 넘어가기 -->
+							<li class="profile"><a href="${contextPath}/member/profile/my?memberNo=${loginMember.memberNo}"><div id="profileImage"  style=" background-size: 40px; background-image : url('${contextPath}/resources/images/user.png')"></div></a></li>						
 						</c:if>
 						
 						<c:if test="${!empty loginMember.profileImage}">
-							<li class="profile"><a href="${contextPath}/member/myPage/mod"><div id="profileImage" style=" background-size: 40px; background-image : url(${contextPath}${loginMember.profileImage})"></div></a></li>						
+							<li class="profile"><a href="${contextPath}/member/profile/my?memberNo=${loginMember.memberNo}"><div id="profileImage" style=" background-size: 40px; background-image : url(${contextPath}${loginMember.profileImage})"></div></a></li>						
 						</c:if>
 						
 					</c:otherwise>            	
