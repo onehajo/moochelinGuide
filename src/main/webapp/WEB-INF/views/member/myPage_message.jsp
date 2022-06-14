@@ -61,23 +61,15 @@
 
                             			<div class="text-area">
                                 			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
-                                			<span class="message"><a href="detail?no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=400'); return false;">${message.messageContent}</a></span>
+                                			<span class="message"><a href="detail?type=confirm&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;">${message.messageContent}</a></span>
                             			</div>
                         			</div>
                         			<div class="message-right-btns">
-                            			<button onclick="popupSend()">답장</button>
-                            			<button onclick="deleteMessage()">쪽지삭제</button>
+                            			<a href="detail?type=send&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;" id="sendMessagePop"><button type="button">답장</button></a>
+                            			<form style="display:inline-block;" action="delete" method="post"><input type="hidden" name="messageNo" value="${message.messageNo}"><button>쪽지삭제</button></form>
                         			</div>
                     			</div>
                     			
-
-
-
-
-
-
-
-
 							</c:forEach>
 						</c:otherwise>
 
@@ -91,7 +83,7 @@
 			</div>
 
 			<!-- 쪽지 팝업 내용보기 -->
-			<div id="messageContent" class="popup">
+<!-- 			<div id="messageContent" class="popup">
 				<img src="../images/logo-blue.png" alt="">
 				<p class="popupTitle">
 					받은 쪽지<span class="smallText">?</span>
@@ -105,10 +97,10 @@
 					</div>
 				</form>
 				<div class="close" onclick="closeMessage()">X</div>
-			</div>
+			</div> -->
 
 			<!-- 쪽지 팝업 보내기 -->
-			<div id="messageSend" class="popup">
+<!-- 			<div id="messageSend" class="popup">
 				<img src="../images/logo-blue.png" alt="">
 				<p class="popupTitle">쪽지 보내기</p>
 				<form class="messageForm-css">
@@ -119,7 +111,7 @@
 					</div>
 				</form>
 				<div class="close" onclick="closeMessage()">X</div>
-			</div>
+			</div> -->
 
 		</section>
 

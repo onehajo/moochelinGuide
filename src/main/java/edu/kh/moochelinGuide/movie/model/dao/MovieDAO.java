@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
+import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
 
 
 
@@ -97,6 +98,79 @@ public class MovieDAO {
 			close(stmt);
 		}
 		return list;
+	}
+
+	/** 영화 정보 조회 DAO
+	 * @param conn
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public MovieDetail selectMovieDetail(Connection conn, int movieNo) throws Exception{
+		
+		MovieDetail detail = null;
+		
+		try {
+			String sql = prop.getProperty("selectMovieDetail");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				detail = new MovieDetail();
+				
+				detail.setMovieTitle(rs.getString("movieTitle"));
+				detail.setCountry(rs.getString("country"));
+				detail.setDetailImage(rs.getString("detailImg"));
+				detail.setPosterImage(rs.getString("posterImg"));
+				detail.setReleaseYear(rs.getInt("releaseYear"));
+				detail.setSynopsis(rs.getString("synopsis"));
+				
+			
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return detail;
+	}
+
+	/** 영화 평가하기
+	 * @param conn
+	 * @param movieNo
+	 * @param ratingPoint
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int movieEvaluate(Connection conn, int movieNo, int ratingPoint, int memberNo) throws Exception{
+		
+		try {
+			
+			int result = 0;
+			
+			String sql = prop.getProperty("movieEvaluate");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, ratingPoint);
+			pstmt.setInt(2, memberNo);
+			pstmt.setInt(3, movieNo);
+			
+			
+			result = pstmt.executeUpdate();
+			
+			return result;
+			
+		}finally{
+			close(pstmt);
+		}
 	}
 	
 	

@@ -52,7 +52,7 @@ public class CommentListServlet extends HttpServlet{
             
             
             
-            String path = "/WEB-INF/views/coment/coment_detail.jsp";
+            String path = "/WEB-INF/views/coment/comment_detail.jsp";
             
             RequestDispatcher dispatcher = req.getRequestDispatcher(path);
             

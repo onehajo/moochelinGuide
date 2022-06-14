@@ -224,6 +224,7 @@ public class MemberDAO {
 				m.setPosterImage(rs.getString(3));
 				m.setReleaseYear(rs.getInt(4));
 				m.setCountry(rs.getString(5));
+				m.setCommentCount(rs.getInt(6));
 				
 				movieList.add(m);
 				
@@ -1206,7 +1207,7 @@ public class MemberDAO {
 	/** 각 메시지 번호로 메세지 내용 조회
 	 * @param conn
 	 * @param messageNo
-	 * @return
+	 * @return messageDetail
 	 * @throws Exception
 	 */
 	public Message messageDetail(Connection conn, int messageNo) throws Exception {
@@ -1226,6 +1227,7 @@ public class MemberDAO {
 				messageDetail.setMessageContent(rs.getString(1));
 				messageDetail.setEnrollDate(rs.getString(2));
 				messageDetail.setMemberName(rs.getString(3));
+				messageDetail.setMessageNo(rs.getInt(4));
 			}
 			
 		}finally {
@@ -1261,6 +1263,49 @@ public class MemberDAO {
 		}
 		
 		return member;
+	}
+	
+	
+	
+	/** 쪽지 보내기
+	 * @param conn
+	 * @param messageNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertMessage(Connection conn, int memberNo) throws Exception {
+		int result=0;
+		
+		try {
+			String sql = prop.getProperty("insertMessage");
+			
+		}finally {
+			
+		}
+		return result;
+	}
+
+	
+	/** 쪽지 삭제하기
+	 * @param conn
+	 * @param messageNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deletetMessage(Connection conn, int messageNo) throws Exception {
+		int result=0; 
+		
+		try {
+			String sql = prop.getProperty("deletetMessage");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, messageNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 

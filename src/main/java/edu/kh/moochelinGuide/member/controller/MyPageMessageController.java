@@ -51,42 +51,56 @@ public class MyPageMessageController extends HttpServlet {
 				String path = "/WEB-INF/views/member/myPage_message.jsp";
 			    req.getRequestDispatcher(path).forward(req, resp);
 		    }
+			
+			// 쪽지 리스트화면(ajax)
+			if(command.equals("listAll")) {
+
+				req.setAttribute("messageList", messageList);
+				
+				resp.getWriter().print(messageList);
+		    }
 		    
 		    
-			// 쪽지 상세보기
+			// 쪽지 상세보기 팝업
 		    if(command.equals("detail")) {
 		    	String no = req.getParameter("no");
 		    	int messageNo = Integer.parseInt(no);
-		    	System.out.println("비동기로 받아온 메세지 넘버 :" +messageNo);
-		    			
-				//req.setAttribute("messageList", messageList);
-				
-				//String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
-			    //req.getRequestDispatcher(path).forward(req, resp);
-			    
+		    	String type = req.getParameter("type");
+		    	
+		    	System.out.println("쿼리스트링으로 메세지 넘버 :" +messageNo);
 
-			    // service에 메세지 내용 요청, 반환
-			    Message messageDetail = service.messageDetail(messageNo);
-			    req.setAttribute("messageDetail", messageDetail);
-			    
-			    
-			    //new Gson().toJson(messageDetail,resp.getWriter());
-			    
-			    //resp.getWriter().print(messageDetail);
-		    //}
-			
-			// 쪽지 상세보기 화면
-		    //if(command.equals("detail")) {
-		    	
-		    	
-		    	System.out.println("넘버 전달 안되니2 " +messageNo);
-		    	
-				System.out.println("내용세팅 안됐니.."+messageDetail);
+
+		    		
+				// service에 메세지 내용 요청, 반환
+				Message messageDetail = service.messageDetail(messageNo);
+			    	
+			    // messageDetail 반환 잘 되었는지
+				System.out.println("내용가져왔니 : "+messageDetail);
+					
+				// 전달할 값
+				req.setAttribute("messageDetail", messageDetail);
+				req.setAttribute("type", type);
 				
 				String path = "/WEB-INF/views/member/myPage_messageForm.jsp";
-			    req.getRequestDispatcher(path).forward(req, resp);
+				req.getRequestDispatcher(path).forward(req, resp);
+
+
 		    	
 		    }
+		    
+		    
+		    if(command.equals("insert")) {
+		    	int messageNo = Integer.parseInt(req.getParameter("messageNo"));
+		    	int result = service.insertMessage(messageNo);
+		    }
+		    
+		    
+		    // 쪽지 삭제하기 
+		    if(command.equals("delete")) {
+
+		    }
+		    
+		    
 		    
 		    
 		    
@@ -99,9 +113,36 @@ public class MyPageMessageController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String path = null;
-		path=req.getHeader("referer");
-		resp.sendRedirect(path);
+		//String path = null;
+		//path=req.getHeader("referer");
+		//resp.sendRedirect(path);
+		
+		
+		
+    	int messageNo = Integer.parseInt(req.getParameter("messageNo"));
+    	HttpSession session = req.getSession();
+		Member loginMember = (Member)(session.getAttribute("loginMember"));
+		int memberNo = loginMember.getMemberNo(); // 회원번호 얻어오기
+		
+		try {
+			
+			MemberService service = new MemberService();
+	    	List<Message> messageList = service.deletetMessage(messageNo,memberNo);
+	    	System.out.println("삭제확인"+messageNo);
+	    	System.out.println("삭제확인"+memberNo);
+	    	// 전달할 값(삭제후 메세지 리스트)
+			req.setAttribute("messageList", messageList);
+
+	    	resp.sendRedirect("list");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
+    	
 	}
 	
 

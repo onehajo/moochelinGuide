@@ -360,6 +360,8 @@ hr {
 
 
 .activeP{z-index: 3; opacity: 1; transition: opacity 0.5s; display: flex;}
+.activePblock{z-index: 3; opacity: 1; transition: opacity 0.5s; display: block;}
+.activeImportant{display: none !important;}
 
 /* 바디에 스크롤 막는 방법 */
 .not_scroll{

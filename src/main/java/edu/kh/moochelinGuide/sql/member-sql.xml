@@ -56,9 +56,12 @@
 	
 	<!-- 특정 키워드로 영화 검색 -->
 	<entry key="searchTitle">
-		SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+		SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY, COUNT(COMMENT_NO) AS COUNT
 		FROM MOVIE
+		LEFT JOIN "COMMENT" USING(MOVIE_NO) 
 		WHERE MOVIE_TITLE LIKE ?
+		GROUP BY MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+		ORDER BY MOVIE_NO
 	</entry>
 	
 	<!-- 회원 탈퇴 - 비밀번호 일치여부 확인 -->
@@ -314,7 +317,8 @@
 	<entry key="messageDetail">
 		SELECT MESSAGE_CT,
 	        A.ENROLL_DT,
-	        MEMBER_NM
+	        MEMBER_NM,
+	        MESSAGE_NO
 		FROM MESSAGE A
 		JOIN MEMBER B ON (A.MEMBER_NO = B.MEMBER_NO)
 		WHERE MESSAGE_NO=?
@@ -350,6 +354,20 @@
 		WHERE MEMBER_NO = ?
 	</entry>
 	
+	
+	
+	<!-- 쪽지보내기 -->
+	<entry key="insertMessage">
+		INSERT INTO MESSAGE
+		VALUES(SEQ_MESSAGE_NO.NEXTVAL, ?, DEFAULT, DEFAULT, DEFAULT, ?, ?)
+	</entry>
+	
+	<!-- 쪽지 삭제하기 -->
+	<entry key="deletetMessage">
+		UPDATE MESSAGE SET
+		MESSAGE_ST='Y'
+		WHERE MESSAGE_NO=?
+	</entry>
 	
 	
 	
