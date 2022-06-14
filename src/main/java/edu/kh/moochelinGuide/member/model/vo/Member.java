@@ -25,5 +25,7 @@ public class Member {
 	private int followerCount;
 	private int followingCount;
 	
+	private String memberType;
+	
 	
 }
