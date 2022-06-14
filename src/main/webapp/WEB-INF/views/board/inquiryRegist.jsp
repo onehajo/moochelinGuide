@@ -40,35 +40,34 @@
 					양해 부탁드립니다.</p>
 				<pre>설명</pre>
 				<textarea id="explain" name="explain" cols="30" rows="10"></textarea>
-				<p
-					style="font-size: 12px; color: rgba(171, 171, 171, 161); margin-bottom: 20px;">문의
+				<p style="font-size: 12px; color: rgba(171, 171, 171, 161); margin-bottom: 20px;">문의
 					내용을 최대한 자세하게 작성해 주세요. (내용에 욕설이 포함되어 있는 경우 답변이 어려울 수 있는 점 양해
 					부탁드립니다.)</p>
-			</div>
+				<div class="imgArea">
+					<div class="img"><img class="preview">
+						<span class="delete-Img">&times;</span></div>
+						<input type="file" id="uploadfile" class="uploadfile" name="0" accept="image/*">
+				</div>
+				</div>
+				
 			<section id="file-top">
 				첨부 파일<span>(선택사항)</span><br>
 			</section>
 			<section id="file-upload">
-				<label for="uploadfile" id="upload-btn"><span>파일 추가</span>
-					또는 파일을 여기로 드래그</label> <input type="file" id="uploadfile">
+				<label for="uploadfile" class="upload_btn"><span>파일 추가</span>
+					또는 파일을 여기로 드래그</label>
 			</section>
 
 			<section class="regist">
 				<button id="registration">제출</button>
 			</section>
 		</form>
-
-
-
-
-
-
-
-
-
-
 	</main>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<script>
+		 const loginMemberNo = "${loginMember.memberNo}";
+		 let num = 0;
+	</script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 		crossorigin="anonymous"></script>
