@@ -41,33 +41,44 @@
 			<section class="movie-list-all">
 				<ul class="movie-list">
 
-					<!-- 영화리스트 노출폼 - 샘플로 하나 남겨둠 -->
-					<li><a href="resources/yjg/Detail_page.html">
-							<div class="movie">
-								<div class="movie-top">
-									<div class="movie-poster">
-										<img src="resources/images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
+					
+					<!-- 상영중인 영화리스트 -->
+					<c:choose>
+					<c:when test="${empty movieList}">
+						<div>영화리스트가 존재하지 않습니다.</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="movie" items="${movieList}"  varStatus="num">
+					
+						<li><a href="resources/yjg/Detail_page.html">
+								<div class="movie">
+									<div class="movie-top">
+										<div class="movie-poster">
+											<img src="${movie.posterImage}" alt="">
+										</div>
+										<div class="ranking">${num.count}</div>
 									</div>
-									<div class="ranking">1</div>
-								</div>
-								<div class="movie-bottom">
-									<div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-									<div class="movie-year-contry">2022 ・ 미국</div>
-									<div class="average">
-										<span>평균</span>
-										<svg width="12" height="10" viewBox="0 0 12 10"
-											xmlns="http://www.w3.org/2000/svg" fill="#555765"
-											class="css-1g90l0x">
-											<path fill-rule="evenodd" clip-rule="evenodd"
-												d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-										<span>3.3</span>
+									<div class="movie-bottom">
+										<div class="movie-title">${movie.movieTitle}</div>
+										<div class="movie-year-contry">${movie.releaseYear} ・ ${movie.country}</div>
+										<div class="average">
+											<span>평균</span>
+											<svg width="12" height="10" viewBox="0 0 12 10"
+												xmlns="http://www.w3.org/2000/svg" fill="#555765"
+												class="css-1g90l0x">
+												<path fill-rule="evenodd" clip-rule="evenodd"
+													d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
+											<span>${movie.starRating}</span>
+										</div>
+										<div class="showing-info">예매율 ${movie.ticketing} ・ ${movie.audience}</div>
 									</div>
-									<div class="showing-info">예매율 59% ・ 누적 관객 407만명</div>
 								</div>
-							</div>
-					</a></li>
-
-
+							</a>
+						</li>
+						
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>
 
 				</ul>
 			</section>

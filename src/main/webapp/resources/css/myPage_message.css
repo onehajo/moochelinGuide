@@ -26,6 +26,8 @@
 .text-area > span {
     display: block;
     margin: 5px;
+    width: 650px;
+    text-overflow: ellipsis;
 }
 
 .text-area .name {
