@@ -1,6 +1,7 @@
 package edu.kh.moochelinGuide.board.model.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,4 +27,5 @@ public class Board {
 	private long dateCalcul2;
 	private String msg;
 	private String msg2;
+	private List<BoardImage> imageList;
 }

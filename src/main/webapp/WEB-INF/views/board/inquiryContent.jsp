@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,16 @@
         <div class="inquiry">
             <h2 class="content">문의하기</h2>
             <em class="user">${board.memberNm}</em>
-            <p class="content">${board.content}</p>
+            <p class="content" style="border-bottom: none;">${board.content}</p>
+            <div class="imgArea">
+                <c:if test="${!empty board.imageList}">
+                <c:set var="i" value="0"/>
+                <c:forEach var="i" begin="0" end="${fn:length(board.imageList)-1}">
+                <div class="img"><img src="${contextPath}${board.imageList[i].imageReName}"></div>
+                </c:forEach>
+                <div class="img">&#43;</div>
+                </c:if>
+            </div>
                 <c:forEach var="reply" items="${replyList}">
                 <em class="user">${reply.memberNm}</em>
                 <p class="content">
