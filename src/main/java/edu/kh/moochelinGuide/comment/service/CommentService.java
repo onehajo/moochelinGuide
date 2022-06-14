@@ -43,6 +43,21 @@ public class CommentService {
         
         return map; // Map 반환
     }
+
+	/** 관리자 - 코멘트 목록 조회 Service
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Comment> commentForAdmin(int movieNo) throws Exception{
+		Connection conn = getConnection();
+		
+		List<Comment> cList = dao.commentForAdmin(conn, movieNo);
+		
+		close(conn);
+		
+		return cList;
+	}
     
 
 }

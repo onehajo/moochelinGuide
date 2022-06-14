@@ -9,6 +9,9 @@ const p = document.createElement("p");
 const table = document.createElement("table");
 table.setAttribute("border", "1px solid black");
 
+// 코멘트 리스트 출력부분
+const commentResult = document.getElementById("commentResult");
+
 searchBtn.addEventListener("click", function(){
 
     if(query.value.trim().length!=0){
@@ -20,7 +23,7 @@ searchBtn.addEventListener("click", function(){
             dataType : "JSON",
             success : function(movieList){
 
-                p.innerText = '"'+query.value+'"에 대한 코멘트 검색결과 ( '+movieList.length+' )';
+                p.innerText = '"'+query.value+'"에 대한 영화 검색결과 ( '+movieList.length+' )';
 
                 const q = query.value;
                 query.value = "";
@@ -102,6 +105,7 @@ searchBtn.addEventListener("click", function(){
                         select[i].addEventListener("click", function(){
 
                             const movieNo = select[i].firstElementChild.innerText;
+                            const movieTitle = select[i].firstElementChild.nextElementSibling.innerText;
                             console.log(i+"번째 요소 클릭함");
                             console.log(i+"번째 영화번호 : "+movieNo);
 
@@ -112,9 +116,77 @@ searchBtn.addEventListener("click", function(){
                                 dataType : "JSON",
                                 success : function(cList){
                                     if(cList.length!=0){
-                                        console.log("코멘트 조회 성공");
+
+                                        commentResult.innerHTML = "";
+                                        const p2 = document.createElement("p");
+                                        p2.innerText = '"'+movieTitle+'" 에 대한 코멘트 검색결과 ( '+cList.length+' )';
+                                        commentResult.append(p2);
+
+                                        for(let c of cList){
+                                            const img = document.createElement("img");
+                                            img.classList.add("member-profile");
+                                            if(c.profileImage!=null){
+                                                img.setAttribute("src", contextPath+c.profileImage);
+                                            }else{
+                                                img.setAttribute("src", contextPath+"/resources/images/user.png");
+                                            }
+
+                                            const a = document.createElement("a");
+                                            a.setAttribute("src", contextPath+"/member/profile/my?memberNo="+c.memberNo);
+
+                                            const profile = document.createElement("div");
+                                            profile.classList.add("comment-proflie");
+
+                                            a.append(img);
+                                            profile.append(a);
+
+                                            const date = document.createElement("div");
+                                            date.classList.add("comment-date");
+                                            date.innerText = c.commentDate;
+
+                                            const nickname = document.createElement("div");
+                                            nickname.classList.add("comment-nickname");
+                                            nickname.innerText = c.memberNickname;
+
+                                            nickname.append(date);
+
+                                            const commentBtn = document.createElement("button");
+                                            commentBtn.innerText = "삭제";
+
+                                            const btnArea = document.createElement("div");
+                                            btnArea.classList.add("commentBtn");
+
+                                            btnArea.append(commentBtn);
+
+                                            const commentInfo = document.createElement("div");
+                                            commentInfo.classList.add("comment-info");
+                                            commentInfo.append(profile, nickname, btnArea);
+
+                                            const content = document.createElement("div");
+                                            content.classList.add("comment-content");
+                                            content.innerText = c.commentContent;
+
+                                            const container = document.createElement("div");
+                                            container.classList.add("contaner");
+                                            container.append(commentInfo, content);
+
+                                            const production = document.createElement("div");
+                                            production.classList.add("production");
+                                            production.append(container);
+
+                                            const info = document.createElement("div");
+                                            info.classList.add("info");
+                                            info.append(production);
+
+                                            commentResult.append(info);
+                                        }
                                     }else{
-                                        console.log("코멘트 조회 실패");
+                                        console.log("코멘트 조회 결과가 없습니다.");
+                                        commentResult.innerHTML = "";
+                                        const p2 = document.createElement("p");
+                                        p2.innerText = '"'+movieTitle+'" 에 대한 코멘트 검색결과 ( '+cList.length+' )';
+                                        commentResult.append(p2);
+
                                     }
                                 },
                                 error : function(request, status, error){

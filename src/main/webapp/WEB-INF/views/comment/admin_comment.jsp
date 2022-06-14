@@ -84,65 +84,25 @@
             </div> -->
 
             <!-- 코멘트 검색결과 조회 -->
-            <div class="search-comment-result">
-                <p>'닥터 스트레인지'에 대한 코멘트입니다. </p>
+            <div class="search-comment-result" id="commentResult">
+                <!-- <p>'닥터 스트레인지'에 대한 코멘트입니다. </p> -->
 
-                <div class="info">
+                <!-- <div class="info">
                     <div class="production">
                         <div class="contaner">  
                             <div class="comment-info">
-                                <div class="comment-proflie"><a href="#"><img src="images/user.png" class="member-profile"id="member-profile1"></a></div>
+                                <div class="comment-proflie"><a href="#"><img src="images/user.png" class="member-profile"></a></div>
                                 <div class="comment-nickname">못할 바이며
                                     <div class="comment-date">2022.05.30</div>
                                 </div>
                                 <div class="commentBtn">
-                                    <button>hide</button>
-                                    <button>delete</button>
+                                    <button>삭제</button>
                                 </div>
                             </div>
-                            <hr class="hr">
                             <div class="comment-content">낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? 이상! 우리의 청춘이 가장 많이 품고 있는 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? </div> 
                         </div>   
                     </div>  
-                </div>
-
-                <div class="info">
-                    <div class="production">
-                        <div class="contaner">  
-                            <div class="comment-info">
-                                <div class="comment-proflie"><a href="#"><img src="images/user.png" class="member-profile" id="member-profile2"></a></div>
-                                <div class="comment-nickname">못할 바이며
-                                    <div class="comment-date">2022.05.30</div>
-                                </div>
-                                <div class="commentBtn">
-                                    <button>hide</button>
-                                    <button>delete</button>
-                                </div>
-                            </div>
-                            <hr class="hr">
-                            <div class="comment-cotent">낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? 이상! 우리의 청춘이 가장 많이 품고 있는 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? </div> 
-                        </div>   
-                    </div>  
-                </div>
-
-                <div class="info">
-                    <div class="production">
-                        <div class="contaner">  
-                            <div class="comment-info">
-                                <div class="comment-proflie"><a href="#"><img src="images/user.png" class="member-profile" id="member-profile3"></a></div>
-                                <div class="comment-nickname">못할 바이며
-                                    <div class="comment-date">2022.05.30</div>
-                                </div>
-                                <div class="commentBtn">
-                                    <button>hide</button>
-                                    <button>delete</button>
-                                </div>
-                            </div>
-                            <hr class="hr">
-                            <div class="comment-cotent">낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? 이상! 우리의 청춘이 가장 많이 품고 있는 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? </div> 
-                        </div>   
-                    </div>  
-                </div>
+                </div> -->
 
             </div>
         </section>
