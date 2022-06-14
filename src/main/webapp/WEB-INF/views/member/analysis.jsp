@@ -157,7 +157,6 @@
         const temp = '${map.analyAll}';
         const analyAll = JSON.parse(temp);
 
-
         for(let i=0.5 ; i<=5 ; i += 0.5){
 
             for(let a of analyAll){
