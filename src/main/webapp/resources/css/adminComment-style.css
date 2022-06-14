@@ -1,6 +1,6 @@
 /*.content-main css추가*/
 main > .content-main{
-    min-height: 1300px; /*임시로 추가함..*/
+    min-height: 800px; /*임시로 추가함..*/
 }
 
 /* 검색 스타일 */
@@ -57,7 +57,7 @@ main > .content-main{
 /* 검색 결과 출력 영역 */
 .search-result{
     width: 80%;
-    min-height: 400px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     margin: 20px auto;
@@ -66,12 +66,12 @@ main > .content-main{
 /*검색어 출력되는 p태그*/
 .search-result > p {
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     color : rgb(150, 150, 150);
 }
 
 .search-result > table{
-    width: 1000px;
+    width: 100%;
     min-height: 100px;
     border-spacing: 0px;
     border-collapse: collapse;
@@ -103,7 +103,7 @@ main > .content-main{
 
 
 /*페이지네이션*/
-.pagination{
+/* .pagination{
     list-style: none;
     display: flex;
     justify-content: center;
@@ -120,17 +120,16 @@ main > .content-main{
     width: 100%;
     height: 100%;
     font-size: 20px;
-    display: block; /*inline 인 a태를 black형식으로 변경*/
-    /* letter-spacing: -2px; */
-}
+    display: block;
+} */
 
 /* 현재 페이지 번호*/
-.pagination .current{
+/* .pagination .current{
     background-color: rgb(57, 46, 255);
     border-radius: 50%;
     color: white;
     font-weight: bold;
-}
+} */
 
 
 
@@ -138,6 +137,7 @@ main > .content-main{
 /* 코멘트 검색 결과 출력 */
 .search-comment-result{
     width: 80%;
+    min-height: 0px;
     display: flex;
     flex-direction: column;
     margin: 0px auto 20px ;
@@ -145,7 +145,8 @@ main > .content-main{
 
 /* 검색어 출력되는 p태그 */
 .search-comment-result > p {
-    margin: 0px 0px 20px 0px;
+    padding-bottom: 10px;
+    margin: 0px 0px -20px 0px;
     color : rgb(150, 150, 150);
 }
 
@@ -158,13 +159,14 @@ main > .content-main{
 }
 
 .info{
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .comment-info{
     width: 100%;
     display: flex;
     padding-bottom: 10px;
+    border-bottom: 1px solid rgb(150, 150, 150);
 }
 
 /* 프로필 이미지 영역 */
@@ -232,10 +234,6 @@ main > .content-main{
 .commentBtn > button:hover{
     background-color: rgb(57, 46, 255);
     color: white;
-}
-
-.hr{
-    margin: 0;
 }
 
 .comment-content{

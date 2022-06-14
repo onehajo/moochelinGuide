@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import edu.kh.moochelinGuide.comment.service.CommentService;
 import edu.kh.moochelinGuide.comment.vo.Comment;
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
@@ -56,11 +57,11 @@ public class AdminCommentController extends HttpServlet{
 		    if(command.equals("select/comment")) {
 		    	
 		    	int movieNo = Integer.parseInt(req.getParameter("movieNo"));
-		    	
+		    		    	
 		    	// 코멘트 리스트 조회
-		    	//List<Comment> cList = new MemberService().commentForAdmin(movieNo);
+		    	List<Comment> cList = new CommentService().commentForAdmin(movieNo);
 		    	
-				//new Gson().toJson(cList,resp.getWriter());	
+				new Gson().toJson(cList,resp.getWriter());	
 		    	
 		    }
 			
@@ -68,15 +69,6 @@ public class AdminCommentController extends HttpServlet{
 			e.printStackTrace();
 		}
 	    
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		// 1. ajax로 영화검색결과 출력 
-		
-	}
-	
-	
+	}	
 
 }
