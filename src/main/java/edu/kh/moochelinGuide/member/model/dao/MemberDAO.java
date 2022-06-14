@@ -1241,30 +1241,6 @@ public class MemberDAO {
 	
 	
 	
-	/** 팔로워수 / 팔로잉 수 / 회원이름 / 회원번호 / 프로필이미지 조회
-	 * @param conn
-	 * @param memberNo
-	 * @return
-	 * @throws Exception
-	 */
-	public Member selectMember(Connection conn, int memberNo) throws Exception {
-		Member member = null;
-		
-		try {
-			
-			String sql = prop.getProperty("messageDetail");
-			
-			
-			
-			
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return member;
-	}
-	
 	
 	
 	/** 쪽지 보내기
@@ -1306,6 +1282,109 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	
+	
+	
+
+	/**6) memberNo 가 내가아닌 타인일때,
+     *    회원이름 / 회원번호 / 프로필이미지 / 배경이미지
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public Member selectMemberUser(Connection conn, int memberNo) throws Exception {
+		Member member = null; 
+		
+		try {
+			String sql = prop.getProperty("selectMemberUser");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+//			MEMBER_NO, MEMBER_NM, PROFILE_IMG, PROFILE_BACK_IMG 
+			
+			if ( rs.next()) {
+				
+				member = new Member();
+				
+				member.setMemberNo(rs.getInt(1));
+				member.setMemberName(rs.getString(2));
+				member.setProfileImage(rs.getString(3));
+				member.setProfileBackImage(rs.getString(4));
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return member;
+	}
+
+	
+	
+	/** 페이지 멤버의 팔로워 
+	 * @param conn
+	 * @param targetNo
+	 * @return follower
+	 * @throws Exception
+	 */
+	public int followerCount(Connection conn, int memberNo) throws Exception {
+		int followerCount = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("followerCount");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			if ( rs.next()) {
+				followerCount = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return followerCount;
+	}
+	
+	
+	
+	
+	/** 페이지 멤버의 팔로잉
+	 * @param conn
+	 * @param targetNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int followingCount(Connection conn, int targetNo)throws Exception  {
+		
+		int followingCount = 0;
+		
+		try {
+			
+			String sql = prop.getProperty("followingCount");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, targetNo);
+			
+			rs = pstmt.executeQuery();
+			if ( rs.next()) {
+				followingCount = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return followingCount;
+		
 	}
 
 

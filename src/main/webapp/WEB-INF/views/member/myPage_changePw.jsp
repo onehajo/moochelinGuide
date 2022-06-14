@@ -28,6 +28,12 @@
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
 	rel="stylesheet">
 
+	<style>
+        .swal2-title{
+            font-size: 20px;
+        }
+    </style>
+
 </head>
 <body>
 	<!-- member 폴더에 넣기 -->

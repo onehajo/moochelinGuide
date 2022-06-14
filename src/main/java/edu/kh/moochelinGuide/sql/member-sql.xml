@@ -370,6 +370,31 @@
 	</entry>
 	
 	
+	<!-- 쪽지 삭제하기 -->
+	<entry key="selectMemberUser">
+		SELECT MEMBER_NO, MEMBER_NM, PROFILE_IMG, PROFILE_BACK_IMG 
+		FROM MEMBER
+		JOIN FOLLOW USING(MEMBER_NO)
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	
+	<!-- 페이지 멤버의 팔로워  -->
+	<entry key="followerCount">
+		SELECT COUNT(MEMBER_NO) FOLLOWER_COUNT
+		FROM FOLLOW
+		WHERE TARGET_NO = ?
+		AND FOLLOW_FL='N'
+	</entry>
+	
+	<!-- 페이지 멤버의 팔로잉  -->
+	<entry key="followingCount">
+		SELECT COUNT(TARGET_NO) FOLLOING_COUNT
+		FROM FOLLOW
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	
 	
 
 
