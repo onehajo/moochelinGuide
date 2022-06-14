@@ -10,9 +10,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class Comment {
-	private int comentNo;
-	private String comnetContent;
-	private String comentDate;
-	private String comentST;
+	private int commentNo;
+	private String commentContent;
+	private String commentDate;
+	private String commentST;
 	private String memberNickname;
+	private String profileImage;
 }

@@ -9,14 +9,6 @@ const p = document.createElement("p");
 const table = document.createElement("table");
 table.setAttribute("border", "1px solid black");
 
-query.addEventListener("onkeypress", function(e){
-    if(e.which == 13){
-        console.log("클릭됨");
-        searchBtn.click();
-    }
-});
-
-
 searchBtn.addEventListener("click", function(){
 
     if(query.value.trim().length!=0){
@@ -103,6 +95,45 @@ searchBtn.addEventListener("click", function(){
 
                     searchResult.append(p,table);
 
+                    // 클릭한 행의 코멘트 조회
+                    const select = document.getElementsByClassName("selected");
+              
+                    for(let i=0; i<select.length; i++){
+                        select[i].addEventListener("click", function(){
+
+                            const movieNo = select[i].firstElementChild.innerText;
+                            console.log(i+"번째 요소 클릭함");
+                            console.log(i+"번째 영화번호 : "+movieNo);
+
+                            $.ajax({
+                                url : contextPath+"/admin/comment/select/comment",
+                                data : {"movieNo" : movieNo},
+                                type : "GET",
+                                dataType : "JSON",
+                                success : function(cList){
+                                    if(cList.length!=0){
+                                        console.log("코멘트 조회 성공");
+                                    }else{
+                                        console.log("코멘트 조회 실패");
+                                    }
+                                },
+                                error : function(request, status, error){
+                                    console.log("AJAX 에러 발생");
+                                    console.log("상태코드 : "+request.status); // 에러번호 404, 500 출력
+                                }
+
+
+                            });
+                        });
+                    }
+
+
+
+
+
+
+
+
                 }else{
                     searchResult.append(p,table);
                 }
@@ -114,6 +145,7 @@ searchBtn.addEventListener("click", function(){
         });
 
     }else{
+
         Swal.fire({
             title: '검색어를 입력해주세요.',
             width: 600,
@@ -126,3 +158,7 @@ searchBtn.addEventListener("click", function(){
     }
 
 });
+
+
+// 영화에 작성된 코멘트 조회, 삭제, 내용숨기기
+// 코멘트에 내용 숨김여부 체크할 컬럼이 있어야할듯.............. ㅠㅠ

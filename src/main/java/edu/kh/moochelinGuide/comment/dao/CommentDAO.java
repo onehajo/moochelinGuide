@@ -24,7 +24,7 @@ public class CommentDAO {
 		try {
 			prop = new Properties();
 			
-			String filePath = CommentDAO.class.getResource("/edu/kh/moochelinGuide/sql/coment-sql.xml").getPath();
+			String filePath = CommentDAO.class.getResource("/edu/kh/moochelinGuide/sql/comment-sql.xml").getPath();
 			
 			prop.loadFromXML( new FileInputStream(filePath) );
 			
@@ -119,11 +119,11 @@ public class CommentDAO {
 			while(rs.next()) {
 				Comment coment = new Comment();
 				
-				coment.setComentNo( rs.getInt("COMENT_NO"));
-				coment.setComnetContent(rs.getString("COMNET_CT"));
+				coment.setCommentNo( rs.getInt("COMMENT_NO"));
+				coment.setCommentContent(rs.getString("COMMENT_CT"));
 				coment.setMemberNickname(rs.getString("MEMBER_NM"));
-				coment.setComentST(rs.getString("COMENT_ST"));
-				coment.setComentDate(rs.getString("COMENT_DATE"));
+				coment.setCommentST(rs.getString("COMMENT_ST"));
+				coment.setCommentDate(rs.getString("COMMENT_DT"));
 				
 				comentList.add(coment);
 				

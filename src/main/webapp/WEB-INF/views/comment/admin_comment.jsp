@@ -66,7 +66,7 @@
             </div>
 
             <!-- 페이지네이션 -->
-            <div class="pagination-area">
+            <!-- <div class="pagination-area">
                 <ul class="pagination">
                     <li><a href="member">&lt;&lt;</a></li>
                     <li><a href="member">&lt;</a></li>
@@ -81,7 +81,7 @@
                     <li><a href="member">&gt;&gt;</a></li>
 
                 </ul>
-            </div>
+            </div> -->
 
             <!-- 코멘트 검색결과 조회 -->
             <div class="search-comment-result">
@@ -95,12 +95,13 @@
                                 <div class="comment-nickname">못할 바이며
                                     <div class="comment-date">2022.05.30</div>
                                 </div>
-                                <div class="delete">
-                                    <button>삭제</button>
+                                <div class="commentBtn">
+                                    <button>hide</button>
+                                    <button>delete</button>
                                 </div>
                             </div>
                             <hr class="hr">
-                            <div class="comment-cotent">낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? 이상! 우리의 청춘이 가장 많이 품고 있는 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? </div> 
+                            <div class="comment-content">낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? 이상! 우리의 청춘이 가장 많이 품고 있는 낙원을 장식하는 천자만홍이 어디 있으며 인생을 풍부하게 하는 온갖 과실이 어디 있으랴? </div> 
                         </div>   
                     </div>  
                 </div>
@@ -113,8 +114,9 @@
                                 <div class="comment-nickname">못할 바이며
                                     <div class="comment-date">2022.05.30</div>
                                 </div>
-                                <div class="delete">
-                                    <button>삭제</button>
+                                <div class="commentBtn">
+                                    <button>hide</button>
+                                    <button>delete</button>
                                 </div>
                             </div>
                             <hr class="hr">
@@ -131,8 +133,9 @@
                                 <div class="comment-nickname">못할 바이며
                                     <div class="comment-date">2022.05.30</div>
                                 </div>
-                                <div class="delete">
-                                    <button>삭제</button>
+                                <div class="commentBtn">
+                                    <button>hide</button>
+                                    <button>delete</button>
                                 </div>
                             </div>
                             <hr class="hr">

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import edu.kh.moochelinGuide.comment.vo.Comment;
 import edu.kh.moochelinGuide.common.Util;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
@@ -50,6 +51,17 @@ public class AdminCommentController extends HttpServlet{
 				// GSON 라이브러리 이용, JSON형태로 변환 후 응답
 				new Gson().toJson(movieList,resp.getWriter());				
 				
+		    }
+		    
+		    if(command.equals("select/comment")) {
+		    	
+		    	int movieNo = Integer.parseInt(req.getParameter("movieNo"));
+		    	
+		    	// 코멘트 리스트 조회
+		    	//List<Comment> cList = new MemberService().commentForAdmin(movieNo);
+		    	
+				//new Gson().toJson(cList,resp.getWriter());	
+		    	
 		    }
 			
 		}catch(Exception e) {
