@@ -17,6 +17,7 @@
 <link rel="stylesheet"
 	href="${contextPath}/resources/css/main-style.css">
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
 <script src="https://kit.fontawesome.com/e4f51ae88c.js"
 	crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +44,7 @@
 				<div>
 					<span>정말 탈퇴하시겠습니까 ?</span>
 				</div>
-				<form action="confirm" method="POST">
+				<form action="do" method="POST" name="secession">
 					<div>
 						<input type="password" name="inputPw" id="inputPw"
 							placeholder="현재 비밀번호를 입력해주세요."> <span id="msg"></span>

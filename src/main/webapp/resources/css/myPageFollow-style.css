@@ -166,3 +166,7 @@
     color: rgb(116, 116, 123);
     margin: 5px;
 }
+
+.follower button {
+    cursor: pointer;
+}

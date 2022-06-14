@@ -35,7 +35,7 @@
                     <span>팔로워 목록</span>
                 </div>
                 <div class="follower">
-                    <ul class="follower-row" id="ul">
+                    <ul class="follower-row">
 
                         <c:if test="${!empty fList}">
                             <c:forEach var="f" items="${fList}">

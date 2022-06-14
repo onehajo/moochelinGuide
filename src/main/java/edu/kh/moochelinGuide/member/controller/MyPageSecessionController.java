@@ -58,15 +58,15 @@ public class MyPageSecessionController extends HttpServlet{
 	    		
 	    	}
 	    	
-	    	// 2) confirm - 탈퇴 여부 재확인페이지로 요청
-	    	if(command.equals("confirm")) {
-	    		
-	    		String path = "/WEB-INF/views/member/myPage_secessionConfirm.jsp";
-	    		req.getRequestDispatcher(path).forward(req, resp);
-	    		
-	    	}
+	    	//  confirm - 탈퇴 여부 재확인페이지로 요청
+//	    	if(command.equals("confirm")) {
+//	    		
+//	    		String path = "/WEB-INF/views/member/myPage_secessionConfirm.jsp";
+//	    		req.getRequestDispatcher(path).forward(req, resp);
+//	    		
+//	    	}
 	    	
-	    	// 3) do - 탈퇴 진행
+	    	// 2) do - 탈퇴 진행
 	    	if(command.equals("do")) {
 	    		
 	    		// 세션에 저장된 loginMember 객체에서 회원번호 얻어오기
