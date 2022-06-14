@@ -86,8 +86,8 @@ public class PwfindServlet extends HttpServlet {
 	         		+ "<h2>새 비밀번호 설정</h2><hr style=\"background-color: #a1a1a1; width: 24px; height: 1px; margin: 19px 0 10px; padding: 0; border: 0;\">"
 	         		+ "<div style='font-size:16px; color:#555;'>안녕하세요, 왓챠피디아입니다.<br>"
 	         		+ "아래 버튼을 눌러 새 비밀번호를 설정해주세요.</div>"
-	         		+ "<div align='center' style=\"background-color: #392eff; line-height: 40px; font-size: 17px; font-weight: 500; height: 40px; width: 100%; border-radius: 6px; margin: 31px 0 0;\"><a href=\"http://localhost:8080/moochelinGuide/resetPw\" target=\"_blank\" style=\"text-decoration:none; color:#fff; font-weight:bold;\">비밀번호 변경하기</a></div>"
-	         		+ "<form target='_blank' action=\"http://localhost:8080/moochelinGuide/resetPw\" method=\"post\"><input type=\"hidden\" name=\"memberEmail\"value="+toEmail+">"
+	         		
+	         		+ "<form action=\"http://localhost:8080/moochelinGuide/resetPw/page\" method=\"post\" target='_blank'><input type=\"hidden\" name=\"memberEmail\"value="+toEmail+">"
 	         				+ "<button style=\"color:#fff; font-weight:bold; background-color: #392eff; line-height: 40px; font-size: 17px; font-weight: 500; height: 40px; width: 100%; border-radius: 6px; margin: 31px 0 0;\">비밀번호 변경하기</button></form></div>"
 	         				+ "<div align=\"center\" style=\"color: #9b9b9b; background-color: #f6f6f6; line-height: 18px; font-size: 13px; padding-top: 20px; padding-bottom: 38px;\">\r\n"
 	         		+ "        <p style=\"margin: 8px 0;\">© 2022. Moochelin Guide All rights reserved.</p>\r\n"
