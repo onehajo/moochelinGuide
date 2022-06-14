@@ -64,12 +64,13 @@
                 <div class="info-img">
                     <img src="${detail.posterImage}">
                 </div>
-                <div class="info-text">
+                <div class="info-text" style="width: 550px;">
                     <div class="info-title">${detail.movieTitle}</div>
+                    <hr style="border: 1px solid #ccc">
                     <div class="info-date">${detail.releaseYear}・${detail.country}</div>
-                    <hr>
+                    <hr style="border: 1px solid #ccc">
                     <div class="info-point">평균 별점</div>
-                    <hr> 
+                    <hr style="border: 1px solid #ccc">
                     <div class="starpoint_wrap">
                         <div class="starpoint_box">
                           <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5</span></label>
@@ -107,6 +108,7 @@
                 <div class="synopsis">
                     <div class="contaner">
                        <div class="title">시놉시스</div>
+                       <hr/>
                        <div id="content">
                              ${detail.synopsis}
                         </div>
