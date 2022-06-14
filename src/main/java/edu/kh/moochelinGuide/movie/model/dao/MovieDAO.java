@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import edu.kh.moochelinGuide.comment.vo.Comment;
+import edu.kh.moochelinGuide.comment.vo.Pagination;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
 
@@ -175,40 +176,15 @@ public class MovieDAO {
 		}
 	}
 
-	public float movieRating(Connection conn, int movieNo) throws Exception{
-		
-		try {
-			
-		float rating = 0;
-		
-		String sql = prop.getProperty("movieRating");
-		
-		pstmt.setInt(1, movieNo);
-		
-		rs = pstmt.executeQuery();
-		
-		if(rs.next()) {
-			rating = rs.getFloat(1);
-        }
-		
-		return rating;
-		
-		}finally{
-			close(rs);
-			close(pstmt);
-		}
-		
-		
-	}
 
-	public List<Comment> selectCommentList(Connection conn, int movieNo) throws Exception{
+public List<Comment> selectCommentList(Connection conn, int movieNo) throws Exception {
 		
 		List<Comment> commentList = new ArrayList<Comment>();
 		
 		try {
+			String sql = prop.getProperty("detailCommentList");
 			
-			String sql = prop.getProperty("selectComentList");
-					
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, movieNo);
@@ -216,14 +192,14 @@ public class MovieDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Comment coment = new Comment();
+				Comment comment = new Comment();
 				
-				coment.setCommentNo( rs.getInt("COMMENT_NO"));
-				coment.setCommentContent(rs.getString("COMMENT_CT"));
-				coment.setMemberNickname(rs.getString("MEMBER_NM"));
-				coment.setCommentDate(rs.getString("COMMENT_DT"));
+				comment.setCommentNo( rs.getInt("COMMENT_NO"));
+				comment.setCommentContent(rs.getString("COMMENT_CT"));
+				comment.setMemberNickname(rs.getString("MEMBER_NM"));
+				comment.setCommentDate(rs.getString("COMMENT_DT"));
 				
-				commentList.add(coment);
+				commentList.add(comment);
 				
 			}
 			

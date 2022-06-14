@@ -102,7 +102,7 @@ public class CommentDAO {
 		List<Comment> commentList = new ArrayList<Comment>();
 		
 		try {
-			String sql = prop.getProperty("selectComentList");
+			String sql = prop.getProperty("selectCommentList");
 			
 			// BETWEEN 구문에 들어갈 범위 계산
 			int start =  ( pagination.getCurrentPage() -1 ) * pagination.getLimit() + 1;
@@ -117,14 +117,14 @@ public class CommentDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Comment coment = new Comment();
+				Comment comment = new Comment();
 				
-				coment.setCommentNo( rs.getInt("COMMENT_NO"));
-				coment.setCommentContent(rs.getString("COMMENT_CT"));
-				coment.setMemberNickname(rs.getString("MEMBER_NM"));
-				coment.setCommentDate(rs.getString("COMMENT_DT"));
+				comment.setCommentNo( rs.getInt("COMMENT_NO"));
+				comment.setCommentContent(rs.getString("COMMENT_CT"));
+				comment.setMemberNickname(rs.getString("MEMBER_NM"));
+				comment.setCommentDate(rs.getString("COMMENT_DT"));
 				
-				commentList.add(coment);
+				commentList.add(comment);
 				
 			}
 			

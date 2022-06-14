@@ -27,14 +27,13 @@ public class MovieDetailServlet extends HttpServlet{
 		
 		MovieService service = new MovieService();
 		
+		
 		Map<String, Object> map = service.selectMovieDetail(movieNo);
 		
 		
 		
 		req.setAttribute("map", map);
 		
-		
-		System.out.println(map);
 		
 		String path = "/WEB-INF/views/movie/movieDetail.jsp";
            

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="detail" value="${map.detail}"/>
-<c:set var="rating" value="${map.rating}"/>
 <c:set var="commentList" value="${map.commentList}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +70,7 @@
                     <hr style="border: 1px solid #ccc">
                     <div class="info-date">${detail.releaseYear}・${detail.country}</div>
                     <hr style="border: 1px solid #ccc">
-                    <div class="info-point">${rating}</div>
+                    <div class="info-point">평균점수</div>
                     <hr style="border: 1px solid #ccc">
                     <div class="starpoint_wrap">
                         <div class="starpoint_box">

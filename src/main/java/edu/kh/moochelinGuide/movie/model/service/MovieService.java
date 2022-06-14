@@ -76,24 +76,23 @@ public class MovieService {
 		Connection conn = getConnection();
 		
 		// 영화 정보 조회
-		
-		MovieDetail detail = dao.selectMovieDetail(conn, movieNo);
-		
-		// 평가한 점수/평가한 회원수 조회 해서 평균값 계산
-		float rating = dao.movieRating(conn,movieNo);
-				
-		// 코멘트 좋아요 순으로 3개 조회
+		MovieDetail detail = dao.selectMovieDetail(conn, movieNo);	
+		// 코멘트 조회
 		List<Comment> commentList = dao.selectCommentList(conn, movieNo);
+		
+		System.out.println(detail);
+		System.out.println(commentList);
+		
+		// 코멘트 리스트 왜 조회 결과가 안 나오지?...
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("detail", detail);
-        map.put("rating", rating);
         map.put("commentList", commentList);
 		
 		close(conn);
 		
-		return null;
+		return map;
 	}
 	
 	

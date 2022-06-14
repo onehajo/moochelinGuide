@@ -9,14 +9,14 @@
 		WHERE MOVIE_NO = ?
 	</entry>
 
-	<entry key="comentCount">
-		SELECT COUNT(*) "COMMENT"
-		WHERE MOVIE_ST = 'N'
+	<entry key="commentCount">
+		SELECT COUNT(*) FROM "COMMENT"
+		WHERE COMMENT_FL = 'N'
 		AND
 		MOVIE_NO = ?
 	</entry>
 	
-	<entry key="selectComentList">
+	<entry key="selectCommentList">
 	SELECT * FROM(
 	SELECT ROWNUM RNUM, A.* FROM(
 	SELECT COMMENT_NO, MEMBER_NM,COMMENT_CT,
@@ -27,7 +27,7 @@
 	AND COMMENT_FL = 'N'
 	ORDER BY COMMENT_NO DESC
 	)A
-) WHERE RNUM BETWEEN ? AND ?;
+) WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	
