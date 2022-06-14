@@ -438,37 +438,37 @@ public class MemberService {
 		Connection conn = getConnection();
 		
 		// 1) 내가 평가한 영화의 모든 갯수 ( 프로필 오른쪽에 사용할 것임 )
-		int analyMovieCount = dao.analyMovieCount(conn, memberNo);
+		int analyMovieCount = dao.analyMovieCount(conn, memberNo); //
 		
 		
 		
 		// 2) 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
-		List<Analysis> analyAll = dao.analyAllScore(conn, memberNo);
+		List<Analysis> analyAll = dao.analyAllScore(conn, memberNo); //
 		
 		// 3) 내가 평가한 모든 영화의 가장 많은 country 는?
 		String analyMovieCountry = dao.analyMovieCountry(conn, memberNo);
 		
 		// 3-1) 내가 가장 선호한 나라의 평가한 영화 갯수. ( 3)의 country 영화의 갯수 )
-		int likeCountryCount = dao.likeCountryCount(conn, memberNo);
+		int likeCountryCount = dao.likeCountryCount(conn, memberNo); //
 		
 		
 		// 3-2) 내가 가장 선호한 나라의 영화, 평점 평균
-		int likeCountryAvg = dao.likeCountryAvg(conn, memberNo);
+		int likeCountryAvg = dao.likeCountryAvg(conn, memberNo); //
 		
 		
 		
 		// 4) 내가 평가한 모든 영화의 모든 RUNNING_TIME
 		//    -> 컬럼에 1시42분 되어있어서 substirng을 써야하는지 감이 안잡힘.
-		String myAllRunningTime = dao.myAllRunningTime(conn, memberNo);
+		String myAllRunningTime = dao.myAllRunningTime(conn, memberNo); //
 		
 		
 		// 5) 내가 평가한 전체 영화 평점 ㅡㅡ... dao왤케많아 
-		int allMovieAvg = dao.allMovieAvg(conn,memberNo);
+		int allMovieAvg = dao.allMovieAvg(conn,memberNo); //
 	
 		
 		// 6) memberNo 가 내가아닌 타인일때,
 		//    회원이름 / 회원번호 / 프로필이미지 / 배경이미지 
-		Member member = dao.selectMemberUser(conn, memberNo);
+		Member member = dao.selectMemberUser(conn, memberNo); //
 
 		
 		Map<String, Object>

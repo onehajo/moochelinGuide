@@ -245,7 +245,7 @@
 	</entry>
 	
 	
-	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
+	<!-- 취향분석 - 평가한 점수의 각각의 갯수   -->
 	<entry key="analyAllScore">
 	SELECT STAR_RATING, COUNT(*)
 	FROM EVALUATION
@@ -255,7 +255,7 @@
 	
 	
 	
-	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
+	<!-- 취향분석 - 내가 평가한 모든 영화의 가장 많은 country 는?  -->
 	<entry key="analyMovieCountry">
 	SELECT MAX(COUNTRY)
 	FROM EVALUATION
@@ -263,14 +263,6 @@
 	WHERE MEMBER_NO = ?
 	</entry>
 	
-	
-	<!-- 취향분석 - 내가 평가한 영화의 갯수.  -->
-	<entry key="analyMovieCountry">
-	SELECT MAX(COUNTRY)
-	FROM EVALUATION
-	JOIN MOVIE USING (MOVIE_NO)
-	WHERE MEMBER_NO = ?
-	</entry>
 	
 	
 	<!-- 내가 평가한 모든 영화의 모든 RUNNING_TIME -->
@@ -378,28 +370,35 @@
 		AND SECESSION_FL = 'N'
 	</entry>
 	
-	<!-- 쪽지 삭제하기 -->
+	<!-- 쪽지 6) memberNo 가 내가아닌 타인일때,
+		         회원이름 / 회원번호 / 프로필이미지 / 배경이미지  -->
 	<entry key="selectMemberUser">
 		SELECT MEMBER_NO, MEMBER_NM, PROFILE_IMG, PROFILE_BACK_IMG 
 		FROM MEMBER
-		JOIN FOLLOW USING(MEMBER_NO)
 		WHERE MEMBER_NO = ?
 	</entry>
 	
 	
 	<!-- 페이지 멤버의 팔로워  -->
 	<entry key="followerCount">
-		SELECT COUNT(MEMBER_NO) FOLLOWER_COUNT
-		FROM FOLLOW
-		WHERE TARGET_NO = ?
-		AND FOLLOW_FL='N'
+		SELECT COUNT(MEMBER_NO)
+		FROM MEMBER
+		WHERE MEMBER_NO IN (SELECT MEMBER_NO
+		               FROM FOLLOW
+		               WHERE TARGET_NO = ?
+		               AND FOLLOW_FL='N')
+		ORDER BY MEMBER_NO
 	</entry>
 	
 	<!-- 페이지 멤버의 팔로잉  -->
 	<entry key="followingCount">
-		SELECT COUNT(TARGET_NO) FOLLOING_COUNT
-		FROM FOLLOW
-		WHERE MEMBER_NO = ?
+		SELECT COUNT(MEMBER_NO)
+		FROM MEMBER
+		WHERE MEMBER_NO IN (SELECT TARGET_NO
+		               FROM FOLLOW
+		               WHERE MEMBER_NO = ?
+		               AND FOLLOW_FL='N')
+		ORDER BY MEMBER_NO
 	</entry>
 	
 	
