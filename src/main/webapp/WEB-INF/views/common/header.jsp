@@ -20,18 +20,18 @@
 					<article class="search-area">
 
 						<c:if test="${empty query}"> <!-- 검색어 최초 입력시 -->
-							<form action="${contextPath}/search/title" name="search-form">
+							<form action="${contextPath}/search/title" name="search-form" onsubmit="return searchValidate()>
 								<fieldset class="hd-fieldset">
-									<i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
+									<button class="btnSchI"><i class="fa-solid fa-magnifying-glass" id="search-btn"></i></button>
 										<input type="search" id="query" name="query" autocomplete="off" placeholder="제목, 인물, 유저를 검색해보세요">
 								</fieldset>
 							</form>
 						</c:if>
 
 						<c:if test="${!empty query}"> <!-- 기존에 입력된 검색어가 입력된 경우 -->
-							<form action="${contextPath}/search/title" name="search-form">
+							<form action="${contextPath}/search/title" name="search-form" onsubmit="return searchValidate()>
 								<fieldset class="hd-fieldset">
-									<i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
+									<button class="btnSchI"><i class="fa-solid fa-magnifying-glass" id="search-btn"></i></button>
 										<input type="search" id="query" name="query" autocomplete="off" placeholder="${query}">
 								</fieldset>
 							</form>
