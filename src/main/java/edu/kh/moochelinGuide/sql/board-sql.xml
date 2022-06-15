@@ -29,7 +29,7 @@
 	
 	<!-- 게시판 상태 수정 -->
 	<entry key="boardUpdate">
-		UPDATE BOARD SET BOARD_CD = 98 WHERE BOARD_NO = ?
+		UPDATE BOARD SET BOARD_CD = ? WHERE BOARD_NO = ?
 	</entry>
 	
 	<!-- 게시판 마지막 활동 시간 업데이트 -->

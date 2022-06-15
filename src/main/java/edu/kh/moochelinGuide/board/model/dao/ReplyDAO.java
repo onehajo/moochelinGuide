@@ -79,6 +79,7 @@ public class ReplyDAO {
 				a.setReplyNo(rs.getInt("REPLY_NO"));
 				a.setContent(rs.getString("REPLY_CT"));
 				a.setMemberNm(rs.getString("MEMBER_NM"));
+				a.setMemberType(rs.getString("MEMBER_TYPE"));
 				
 				list.add(a);
 			}
@@ -87,31 +88,6 @@ public class ReplyDAO {
 			close(pstmt);
 		}
 		return list;
-	}
-
-	/** 관리자 답변 여부 확인 DAO
-	 * 
-	 * @param conn
-	 * @param reply
-	 * @return result
-	 * @throws Exception
-	 */
-	public int memberList(Connection conn, Reply reply) throws Exception {
-		int result = 0;
-		try {
-			String sql = prop.getProperty("repUpdate");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reply.getBoardNo());
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) result = rs.getInt(1);
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return result;
 	}
 
 
