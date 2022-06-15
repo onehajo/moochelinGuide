@@ -29,11 +29,7 @@
             <p class="content" style="border-bottom: none;">${board.content}</p>
             <div class="imgArea">
                 <c:if test="${!empty board.imageList}">
-                <c:set var="i" value="0"/>
-                <c:forEach var="i" begin="0" end="${fn:length(board.imageList)-1}">
-                <div class="img"><img src="${contextPath}${board.imageList[i].imageReName}"></div>
-                </c:forEach>
-                <div class="img">&#43;</div>
+                <div class="img"><img src="${contextPath}${board.imageList[0].imageReName}"></div>
                 </c:if>
             </div>
                 <c:forEach var="reply" items="${replyList}">

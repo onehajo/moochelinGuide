@@ -29,7 +29,8 @@ public class AdminICServlet extends HttpServlet {
 		BoardService service = new BoardService();
 		Board board = new Board();
 		int boardNo = Integer.parseInt(req.getParameter("list"));
-		board = service.boardContent(boardNo);
+		int boardCd = 0;
+		board = service.boardContent(boardNo,boardCd);
 		req.setAttribute("board", board);
 		
 		ReplyService service2 = new ReplyService();

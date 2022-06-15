@@ -22,42 +22,22 @@ const inputImage = document.getElementsByClassName("uploadfile");
 const preview = document.getElementsByClassName("preview");
 const deleteImage = document.getElementsByClassName("delete-Img");
 const divImg = document.getElementsByClassName("img");
-let num2 = 1;
+const imgArea = document.getElementsByClassName("imgArea")[0];
+imgArea.style.display = "none";
 
 for(let i=0; i<inputImage.length; i++){
     inputImage[i].addEventListener("change", function(){
-        console.log("작동");
-        if(preview[i] !=undefined){
+        if(this.files[0] !=undefined){
             const reader = new FileReader();
             reader.readAsDataURL(this.files[0]);
             reader.onload = function(event){
-                const area = document.getElementsByClassName("imgArea")[0];
-              const newTag = document.createElement("div");
-              const newImg = document.createElement("img");
-              const newSpan = document.createElement("span");
-              const newInput = document.createElement("input");
-              newTag.setAttribute("class","img");
-              newImg.setAttribute("class","preview");
-              newSpan.setAttribute("class","delete-Img");
-              
-                newInput.setAttribute("type","file");
-                newInput.setAttribute("id","uploadfile"+num2);
-                newInput.setAttribute("class","uploadfile");
-                newInput.setAttribute("name",num2);
-                newInput.setAttribute("accept","image/*");
-              document.getElementById("file-top").appendChild(newInput);
-
-              document.getElementsByClassName("upload_btn")[0].setAttribute("for","uploadfile"+num2);
-              if(num>0){
-              area.appendChild(newTag);
-              divImg[num].appendChild(newImg);
-              divImg[num].appendChild(newSpan);
-              deleteImage[num].innerHTML= "&times";
-            }
-              preview[num].setAttribute("src",event.target.result);
-              num++;
-              num2 ++;
-              console.log(num);
+                if(num==0){
+                    preview[i].setAttribute("src",event.target.result);
+                    imgArea.style.display = "block";
+                    num++;    
+                } else{
+                    alert("사진은 1장만 삽입할 수 있습니다");
+                }
         }
     }
     });

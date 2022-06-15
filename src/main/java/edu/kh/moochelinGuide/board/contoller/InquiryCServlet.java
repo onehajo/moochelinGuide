@@ -30,9 +30,10 @@ public class InquiryCServlet extends HttpServlet {
 		BoardService service = new BoardService();
 		Board board = new Board();
 		int boardNo = Integer.parseInt(req.getParameter("list"));
-		
-		board = service.boardContent(boardNo);
+		int boardCd = 0;
+		board = service.boardContent(boardNo,boardCd);
 		req.setAttribute("board", board);
+		System.out.println(board.getImageList());
 		
 		ReplyService service2 = new ReplyService();
 		Reply reply = new Reply();

@@ -22,11 +22,13 @@ public class BoardService {
 	/** 문의 등록 Service
 	 * 
 	 * @param board
+	 * @param imageList 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int boardRegist(Board board) throws Exception {
+	public int boardRegist(Board board, List<BoardImage> imageList) throws Exception {
 		int result = 0;
+		int boardNo = 0;
 		Connection conn = getConnection();
 		board.setBoardTit(Util.XSSHandling(board.getBoardTit()));
 		board.setBoardTit(Util.newLineHandling(board.getBoardTit()));
@@ -35,7 +37,18 @@ public class BoardService {
 		
 		result = dao.boardRegist(conn, board);
 		
-		if(result > 0) commit(conn);
+		if(result > 0) {
+			for(BoardImage image : imageList) {
+				boardNo = dao.getBoardNo(conn);
+				image.setBoardNo(boardNo);
+				result = dao.insertBoardImage(conn,image);
+				if(result==0) {
+					break;
+				}
+			}
+		}
+		
+		if(result>0) commit(conn);
 		else rollback(conn);
 		
 		return result;
@@ -87,23 +100,49 @@ public class BoardService {
 	/** 문의 내용 조회 Service
 	 * 
 	 * @param boardNo
+	 * @param boardCd 
 	 * @return board
 	 * @throws Exception
 	 */
-	public Board boardContent(int boardNo) throws Exception {
+	public Board boardContent(int boardNo, int boardCd) throws Exception {
 		Connection conn = getConnection();
 		Board board = new Board();
 		board = dao.boardContent(conn,boardNo);
 		
 		if(board != null) {
-			List<BoardImage> imagelist = dao.selectImageList(conn,boardNo);
-			
+			List<BoardImage> imagelist = dao.selectImageList(conn,boardNo,boardCd);
 			board.setImageList(imagelist);
 		}
 		
 		close(conn);
 		
 		return board;
+	}
+
+	/** 공지 목록 조회 Service
+	 * 
+	 * @param boardCd
+	 * @return list
+	 * @throws Exception
+	 */
+	public Map<String, Object> listNotice(int boardCd) throws Exception {
+		Connection conn = getConnection();
+		
+		List<Board> list = new ArrayList<Board>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		list = dao.listNotice(conn,boardCd);
+		int boardNo = 0;
+		if(!list.isEmpty()) {
+			List<BoardImage> imagelist = dao.selectImageList(conn,boardNo, boardCd);
+			
+			map.put("imageList", imagelist);
+		}
+		map.put("noticeList", list);
+		
+		close(conn);
+		
+		return map;
 	}
 
 }

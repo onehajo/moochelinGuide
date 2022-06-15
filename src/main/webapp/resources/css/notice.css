@@ -6,12 +6,12 @@
 .notice2 {
 	width: 1150px;
 	margin: auto;
+	position: relative;
 }
 
 .notice #noticeName {
 	font-size: 17px;
 	height: 22px;
-	margin: 0 90% 0 0;
 	font-weight: bold;
 }
 
@@ -27,6 +27,8 @@
 	font-weight: bold;
 	color: grey;
 	font-size: 12px;
+	position: absolute;
+	right: 0;
 }
 
 .notice #imageArea {
