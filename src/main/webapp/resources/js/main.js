@@ -515,8 +515,18 @@ document.getElementById("search-btn").addEventListener("click",function(){
     const searchForm = document.getElementsByName("search-form");
 
     // 검색어 유효성 검사
-    if( !queryExp.test(query.value) ){
-        alert("영어/숫자/한글 1~10글자 사이로 작성해주세요.");
+    if( !queryExp.test(query.value) ){	
+  
+        Swal.fire({
+            title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
+                width: 600,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: '#392eff',
+                confirmButtonText: '확인'
+         })
+
+        //alert("영어/숫자/한글 1~10글자 사이로 작성해주세요.");
         query.value = "";
         query.focus();
         return;

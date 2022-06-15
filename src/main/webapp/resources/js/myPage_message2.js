@@ -29,8 +29,7 @@ deleteMessageBtn.addEventListener("click",function(e){
 
     e.preventDefault();
 	
-	console.log(e);
-/*    Swal.fire({
+    Swal.fire({
         title: '받은 쪽지를 삭제하시겠습니까?',
         text: "확인 버튼을 클릭하면 쪽지가 삭제됩니다.",
         icon: 'warning',
@@ -45,7 +44,7 @@ deleteMessageBtn.addEventListener("click",function(e){
                 document.deletepop.submit(); 
                 self.close();
             }
-     	})*/
+     	})
     
 })
 
