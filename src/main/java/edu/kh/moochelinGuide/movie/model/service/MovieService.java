@@ -12,6 +12,7 @@ import edu.kh.moochelinGuide.movie.model.dao.MovieDAO;
 import edu.kh.moochelinGuide.movie.model.vo.DetailComment;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
+import edu.kh.moochelinGuide.movie.model.vo.Rating;
 
 public class MovieService {
 
@@ -130,6 +131,23 @@ public class MovieService {
 		close(conn);
 
 		return null;
+	}
+
+
+
+
+	public int rating(Rating rating) throws Exception{
+		
+		Connection conn = getConnection();
+
+		int result = dao.rating(conn,rating);
+
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	

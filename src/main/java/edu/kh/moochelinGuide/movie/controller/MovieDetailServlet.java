@@ -15,6 +15,7 @@ import edu.kh.moochelinGuide.comment.vo.Comment;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.service.MovieService;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
+import edu.kh.moochelinGuide.movie.model.vo.Rating;
 
 @WebServlet("/movie/detail/*")
 public class MovieDetailServlet extends HttpServlet{
@@ -65,6 +66,24 @@ public class MovieDetailServlet extends HttpServlet{
 				// 서비스 호출 결과를 그대로 응답 데이터로 보냄
 				resp.getWriter().print(result);
 				
+				
+			}
+			if(command.equals("rating")) {
+				int inputst =Integer.parseInt(req.getParameter("inputst"));
+				
+				int memberNo =Integer.parseInt(req.getParameter("loginMemberNo"));
+				
+				int movieNo = Integer.parseInt(req.getParameter("movieNo"));
+
+				Rating rating = new Rating();
+				
+				rating.setInputst(inputst);
+				rating.setLoginMemberNo(memberNo);
+				rating.setMovieNo(movieNo);
+				
+				int result = service.rating(rating);
+				
+				resp.getWriter().print(result);
 				
 			}
 		

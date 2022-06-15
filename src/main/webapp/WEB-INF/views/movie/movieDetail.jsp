@@ -75,16 +75,16 @@
                     <hr style="border: 1px solid #ccc">
                     <div class="starpoint_wrap">
                         <div class="starpoint_box">
-                          <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5</span></label>
-                          <label for="starpoint_2" class="label_star" title="1"><span class="blind">1</span></label>
-                          <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5</span></label>
-                          <label for="starpoint_4" class="label_star" title="2"><span class="blind">2</span></label>
-                          <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5</span></label>
-                          <label for="starpoint_6" class="label_star" title="3"><span class="blind">3</span></label>
-                          <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5</span></label>
-                          <label for="starpoint_8" class="label_star" title="4"><span class="blind">4</span></label>
-                          <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5</span></label>
-                          <label for="starpoint_10" class="label_star" title="5"><span class="blind">5</span></label>
+                          <label for="starpoint_1" class="label_star" id="star05" title="0.5"><span class="blind">0.5</span></label>
+                          <label for="starpoint_2" class="label_star" id="star10" title="1"><span class="blind">1</span></label>
+                          <label for="starpoint_3" class="label_star" id="star15" title="1.5"><span class="blind">1.5</span></label>
+                          <label for="starpoint_4" class="label_star" id="star20" title="2"><span class="blind">2</span></label>
+                          <label for="starpoint_5" class="label_star" id="star25" title="2.5"><span class="blind">2.5</span></label>
+                          <label for="starpoint_6" class="label_star" id="star30" title="3"><span class="blind">3</span></label>
+                          <label for="starpoint_7" class="label_star" id="star35" title="3.5"><span class="blind">3.5</span></label>
+                          <label for="starpoint_8" class="label_star" id="star40" title="4"><span class="blind">4</span></label>
+                          <label for="starpoint_9" class="label_star"id="star45" title="4.5"><span class="blind">4.5</span></label>
+                          <label for="starpoint_10" class="label_star" id="star50" title="5"><span class="blind">5</span></label>
                           <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
                           <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
                           <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
@@ -99,11 +99,12 @@
                         </div>
                       </div>
                     <div style="display: inline-block;">
-                        <span style="font-size: 16px;">+</span><button id="wish-add">보고 싶어요</button>
+                        <button id="wish-add"><span id="wish-add" style="font-size: 16px;">+</span>보고 싶어요</button>
                     </div>
                     <div style="display: inline-block;">
                         <img style="width: 16px;" src="${contextPath}/resources/images/write_icon.png"><button id="btn-modal">코멘트</button>
                     </div>
+                    <div id="inputst"tyep="text" style="display:block; border:none;"></div>
                 </div>
             </div>
             <div class="info">

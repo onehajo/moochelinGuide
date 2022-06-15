@@ -63,4 +63,7 @@
 	<entry key="insertComment">
 		INSERT INTO "COMMENT" VALUES(SEQ_CNO.NEXTVAL,?,DEFAULT,?,?,DEFAULT)
 	</entry>
+	<entry key="rating">
+		INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT,SEQ_RNO.NEXTVAL)
+	</entry>
 </properties>
