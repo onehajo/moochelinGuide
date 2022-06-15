@@ -1,23 +1,30 @@
-const m = document.getElementsByClassName("message");
-const messageContent = document.getElementById("messageContent");
-const messageSend = document.getElementById("messageSend");
-const close = document.getElementsByClassName("close")[0];
-const messageNo = document.getElementsByName("messageNo");
 
 
 
 
-// 팝업에서 보내기 버튼 클릭시 유효성검사
-const messageC = document.getElementById("messageC");
 
-function sendValidate(){
+// 팝업에서 보내기 버튼 클릭시
+const messageC = document.getElementById("messageCsend");
+const sendMessageBtn = document.getElementById("sendMessageBtn");
 
-    if(messageC.value.trim().length==0){
-        messageC.focus();
-        return false;
-    }
-    return true;
+if(sendMessageBtn!=null){
+	
+	sendMessageBtn.addEventListener("click",function(e){
+
+		// textarea 비어있는데 왜 else로 넘어가서 close됨?????
+		if(messageC.innerText.trim().length=0){
+			e.preventDefault();
+	        messageC.focus();
+
+	    }else{
+		
+		self.close();
+		
+		}
+	
+	})
 }
+
 
 
 
@@ -25,33 +32,36 @@ function sendValidate(){
 // 메세지 팝업에 삭제버튼
 const deleteMessageBtn = document.getElementById("deleteMessageBtn");
 
-deleteMessageBtn.addEventListener("click",function(e){
-
-    e.preventDefault();
+if(deleteMessageBtn!=null){
+	deleteMessageBtn.addEventListener("click",function(e){
 	
-    Swal.fire({
-        title: '받은 쪽지를 삭제하시겠습니까?',
-        text: "확인 버튼을 클릭하면 쪽지가 삭제됩니다.",
-        icon: 'warning',
-        iconColor: '#392eff',
-        showCancelButton: true,
-        confirmButtonColor: '#392eff',
-        cancelButtonColor: 'rgb(116, 116, 123)',
-        confirmButtonText: '확인',
-        cancelButtonText: '취소'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.deletepop.submit(); 
-                self.close();
-            }
-     	})
-    
-})
+		//와 prevent적용되네... 근데 swal안먹음
+	    //e.preventDefault();
+		
+	    Swal.fire({
+	        title: '받은 쪽지를 삭제하시겠습니까?',
+	        text: "확인 버튼을 클릭하면 쪽지가 삭제됩니다.",
+	        icon: 'warning',
+	        iconColor: '#392eff',
+	        showCancelButton: true,
+	        confirmButtonColor: '#392eff',
+	        cancelButtonColor: 'rgb(116, 116, 123)',
+	        confirmButtonText: '확인',
+	        cancelButtonText: '취소'
+	        }).then((result) => {
+	            if (result.isConfirmed) {
+	                document.deletepop.submit(); 
+	                self.close();
+	            }
+	     	})
+	    
+	})
+}
 
 // 
 function delvalidate(){
 
-window.open(alert("으아ㅏㅏㅏㅏㅏㅏ"));
+open(alert("으아ㅏㅏㅏㅏㅏㅏ"));
     //const delvaliText = confirm("삭제하시겠습니까?");
 
 /*    if(delvaliText == true){
@@ -64,7 +74,7 @@ window.open(alert("으아ㅏㅏㅏㅏㅏㅏ"));
         return false;
       }
 */
-    return false;
+    return true;
 }
 
 

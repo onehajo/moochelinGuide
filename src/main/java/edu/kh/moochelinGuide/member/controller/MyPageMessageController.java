@@ -129,29 +129,45 @@ public class MyPageMessageController extends HttpServlet {
 				int targetNo = Integer.parseInt(req.getParameter("targetNo"));
 				String content = req.getParameter("content");
 				
-				System.out.println(content);
-				System.out.println(memberNo);
-				System.out.println(targetNo);
+				// JS에서 유효성검사 처리 안돼서 SERVLET에서 검사해서 처리
+				if(content=="") { // 쪽지 내용 없을때
+					
+					session.setAttribute("message", "내용을 작성해주세요");
+					
+					// 요청주소에 따라 redirect 경로 변경
+					int no = Integer.parseInt(req.getParameter("no"));
+					if(no==-1) {
+						resp.sendRedirect(contextPath+"/member/myPage/follow?mode=1&memberNo="+memberNo);
+					}else if(no==-2) {
+						resp.sendRedirect(contextPath+"/member/myPage/follow?mode=2&memberNo="+memberNo);
+					}else {
+						resp.sendRedirect("list");
+					}
+					
+				}else { // 쪽지내용 있을때
+					
+					MemberService service = new MemberService();
+					int result = service.insertMessage(memberNo,targetNo,content);
 				
-				MemberService service = new MemberService();
-				int result = service.insertMessage(memberNo,targetNo,content);
 				
-				
-				if(result>0) {
-					session.setAttribute("message", "쪽지를 보냈습니다.");
+					if(result>0) { // insert 성공했을때
+						
+						session.setAttribute("message", "쪽지를 보냈습니다.");
+						
+						// 요청주소에 따라 redirect 경로 변경
+						int no = Integer.parseInt(req.getParameter("no"));
+						if(no==-1) {
+							resp.sendRedirect(contextPath+"/member/myPage/follow?mode=1&memberNo="+memberNo);
+						}else if(no==-2) {
+							resp.sendRedirect(contextPath+"/member/myPage/follow?mode=2&memberNo="+memberNo);
+						}else {
+							resp.sendRedirect("list");
+						}
+					}
+
 				}
 
-				// 요청주소에 따라 redirect 경로 변경
-				int no = Integer.parseInt(req.getParameter("no"));
-				if(no==-1) {
-					resp.sendRedirect(contextPath+"/member/myPage/follow?mode=1&memberNo="+memberNo);
-				}else if(no==-2) {
-					resp.sendRedirect(contextPath+"/member/myPage/follow?mode=2&memberNo="+memberNo);
-				}else {
-					resp.sendRedirect("list");
-				}
-			}
-			
+			}		
 			
 		}catch(Exception e) {
 			e.printStackTrace();

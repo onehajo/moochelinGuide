@@ -1260,6 +1260,11 @@ public class MemberDAO {
 			pstmt.setString(1, content);
 			pstmt.setInt(2, targetNo);
 			pstmt.setInt(3, memberNo);
+			
+			System.out.println("content"+content);
+			System.out.println("targetNo"+targetNo);
+			System.out.println("memberNo"+memberNo);
+			
 			result = pstmt.executeUpdate();
 			
 		}finally {
