@@ -305,7 +305,17 @@ function addRating(){
     })
 }
 
-function addRating(){
+
+// 찜 목록 추가
+const like = document.getElementById("wish-add");
+
+like.addEventListener("click",function(){
+
+    addlike();
+
+})
+
+function addlike(){
     // 로그인 여부 확인
     if(loginMemberNo == ""){
         alert("로그인 후 이용해주세요.");

@@ -387,6 +387,12 @@ public int rating(Connection conn, Rating rating) throws Exception{
 		return allShow;
 	}
 
+	/** 찜한 영화 조회
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Movie> selectWishMovie(Connection conn, int memberNo) throws Exception{
 		
 		List<Movie> selectWishMovie= new ArrayList<Movie>();
@@ -397,7 +403,10 @@ public int rating(Connection conn, Rating rating) throws Exception{
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			rs = stmt.executeQuery(sql);
+			pstmt.setInt(1, memberNo);
+			
+			
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 			Movie movie = new Movie();
@@ -409,7 +418,6 @@ public int rating(Connection conn, Rating rating) throws Exception{
 			movie.setCountry(rs.getString("COUNTRY"));
 			movie.setTicketing(rs.getString("TICKETING"));
 			movie.setAudience(rs.getString("AUDIENCE"));
-			movie.setStarRating(rs.getFloat("STAR_RATING"));
 			
 			selectWishMovie.add(movie);
 			
@@ -419,6 +427,26 @@ public int rating(Connection conn, Rating rating) throws Exception{
 			close(pstmt);
 		}
 		return selectWishMovie;
+	}
+
+	public int movieLike(Connection conn, int memberNo, int movieNo) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql =prop.getProperty("movieLike");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

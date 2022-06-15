@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/wish_list.css">
-    <link rel="stylesheet" href="../ksj/css/main-style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/wish_list.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,37 +68,16 @@
        
         <section class="rating">
             <section class="movie-list">
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                </a>
-        </section>
+                <c:forEach var="Movie" items="${selectWishMovie}">
+
+                    <a href="#" class="rating-title">
+                        <div class="movie"><img src="${posterImage}" class="img-title"></div>
+                        <div style="display:block">${movieTitle}</div> 
+                        <span style="font-size: 13px; color:#392eff">${audience}명이 봤어요!</span>
+                        <div style="display:block">${releaseYear}・${country} / ${ticketing}</div>
+                    </a>
+                </c:forEach>
+            </section>
     </div>
 
         <footer>
@@ -117,10 +97,8 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</body>
-</html>
-               
-    </div>
+
+
         
 </body>
 </html>

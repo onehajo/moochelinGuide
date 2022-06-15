@@ -15,6 +15,7 @@ import edu.kh.moochelinGuide.comment.vo.Comment;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 import edu.kh.moochelinGuide.movie.model.service.MovieService;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
+import edu.kh.moochelinGuide.movie.model.vo.MovieLike;
 import edu.kh.moochelinGuide.movie.model.vo.Rating;
 
 @WebServlet("/movie/detail/*")

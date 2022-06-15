@@ -59,16 +59,19 @@
 	WHERE MOVIE_NO = ?
 	AND COMMENT_FL='N'
 	ORDER BY COMMENT_NO DESC
+	</entry>
+	<!-- 찜 목록 추가 -->
+	<entry key="movieLike">
+	INSERT INTO MOVIE_LIKE VALUES(SEQ_MOLIKE_NO.NEXTVAL,DEFAULT, ?, ?)
 	
-	
+	</entry>
 	
 	<!-- 찜한 영화 정보 조회 -->
 	<entry key="selectWishMovie">
-	SELECT MOVIE_NO, MOVIE_TITLE,POSTER_IMG,RELEASE_YEAR,COUNTRY,TICKETING,STAR_RATING
-    FROM MOVIE
+	SELECT MOVIE_NO, MOVIE_TITLE, RELEASE_YEAR, COUNTRY, POSTER_IMG, TICKETING, AUDIENCE
+	FROM MOVIE
     JOIN MOVIE_LIKE USING(MOVIE_NO)
-    WHERE MEMBER_NO = 4
-	
+	WHERE MEMBER_NO = :memberNo
 	</entry>
 	<!-- 코멘트 insert -->
 	<entry key="insertComment">

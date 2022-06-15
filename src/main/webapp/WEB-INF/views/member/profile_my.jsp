@@ -87,7 +87,7 @@
                         </c:if>
                         
                         <div class="pick-heart">❤</div>
-                        <div class="bucket-list"><a href="/movie/wish?no={mqp.member.memberNo}">찜한 영화</a></div>
+                        <div class="bucket-list"><a href="movie/wish?no=${ map.member.memberNo }">찜한 영화</a></div>
                         <div class="count-star">⭐</div>
                         <!-- EL문 넣으시오 -->
                         <div class="moovie-analysis"><a href="/movie/evaluatedmovie?no={map.member.memberNo}"></a> ${map.analyMovieCount}</div>
