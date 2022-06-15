@@ -66,7 +66,13 @@
 	<entry key="movieEvaluate">
 	INSERT INTO MOVIE_EVALUATE VALUES ( ?, ?, ?)
 	</entry>
+	<entry key="insertComment">
+		INSERT INTO "COMMENT" VALUES(SEQ_CNO.NEXTVAL,?,DEFAULT,?,?,DEFAULT)
+	</entry>
 	
+	<entry key="rating">
+		INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT,SEQ_RNO.NEXTVAL)
+	</entry>
 	<!-- 전체 영화 리스트 가나다 순 -->
 	<entry key="allShowGanada">
 		SELECT 

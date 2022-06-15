@@ -17,4 +17,5 @@ public class Comment {
 	private String memberNickname;
 	private String profileImage;
 	private int memberNo;
+	private int movieNo;
 }

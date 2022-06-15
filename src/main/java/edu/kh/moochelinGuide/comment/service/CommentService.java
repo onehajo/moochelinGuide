@@ -81,6 +81,19 @@ public class CommentService {
 		
 		return result;
 	}
+
+	public int insertComment(Comment comment) throws Exception{
+		Connection conn = getConnection();
+
+		int result = dao.insertReply(conn,comment);
+
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
     
 
 }
