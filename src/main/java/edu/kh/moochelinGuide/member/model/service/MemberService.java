@@ -421,6 +421,7 @@ public class MemberService {
 		map.put("member", member);
 		map.put("followerCount", followerCount);
 		map.put("followingCount", followingCount);
+		map.put("analyMovieCount", analyMovieCount);
 		
 		close(conn);
 		

@@ -8,7 +8,7 @@ const newPwConfirm = document.getElementById("newPwConfirm");
 function changePwValidate() {
     
 
-    if(currentPw.value.length == 0 ){
+    if(currentPw.value.trim().length == 0 ){
         swal.fire({
             title: '현재 비밀번호를 작성해주세요.',
             width: 600,
@@ -20,7 +20,7 @@ function changePwValidate() {
         currentPw.focus(); // 포커스를 맞춰줌
         return false; // 기본 이벤트 제거를 위해 false 반환
     }
-    if(newPw.value.length == 0 ){
+    if(newPw.value.trim().length == 0 ){
         swal.fire({
             title: '새비밀번호를 작성해주세요.',
             width: 600,
@@ -32,7 +32,7 @@ function changePwValidate() {
         newPw.focus(); // 포커스를 맞춰줌
         return false; // 기본 이벤트 제거를 위해 false 반환
     }
-    if(newPwConfirm.value.length == 0 ){
+    if(newPwConfirm.value.trim().length == 0 ){
         swal.fire({
             title: '새비밀번호 확인을 작성해주세요.',
             width: 600,
@@ -87,5 +87,6 @@ function changePwValidate() {
     return true;
 
 }
+
 
 
