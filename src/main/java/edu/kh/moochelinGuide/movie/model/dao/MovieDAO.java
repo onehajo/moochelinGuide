@@ -452,10 +452,10 @@ public int rating(Connection conn, Rating rating) throws Exception{
 		return result;
 	}
 
-	public List<Movie> EvaluatedMovie(Connection conn, int memberNo) throws Exception{
+	public List<Movie> evaluatedMovie(Connection conn, int memberNo) throws Exception{
 		
 		
-		List<Movie> EvaluatedMovie = new ArrayList<Movie>();
+		List<Movie> evaluatedMovie = new ArrayList<Movie>();
 		
 		
 		
@@ -478,7 +478,8 @@ public int rating(Connection conn, Rating rating) throws Exception{
 			movie.setCountry(rs.getString("COUNTRY"));
 			movie.setTicketing(rs.getString("TICKETING"));
 			movie.setStarRating(rs.getFloat("STAR_RATING"));
-			EvaluatedMovie.add(movie);
+			
+			evaluatedMovie.add(movie);
 			}
 			
 			
@@ -489,7 +490,7 @@ public int rating(Connection conn, Rating rating) throws Exception{
 		
 		
 		
-		return EvaluatedMovie;
+		return evaluatedMovie;
 	}
 
 	

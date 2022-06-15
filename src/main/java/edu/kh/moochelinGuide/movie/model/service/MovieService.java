@@ -229,17 +229,17 @@ public class MovieService {
 
 
 
-	public Map<String, Object> EvaluatedMovie(int memberNo) throws Exception{
+	public Map<String, Object> evaluatedMovie(int memberNo) throws Exception{
 		
 		Connection conn = getConnection();
 		
 		
 		// 평가한 영화 정보 조회
-		List<Movie> EvaluatedMovie = dao.EvaluatedMovie(conn, memberNo);
+		List<Movie> evaluatedMovie = dao.evaluatedMovie(conn, memberNo);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("EvaluatedMovie", EvaluatedMovie);
+		map.put("evaluatedMovie", evaluatedMovie);
 		
 		System.out.println(map);
 		

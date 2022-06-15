@@ -23,13 +23,13 @@ public class EvaluatedMovie extends HttpServlet{
 
 			MovieService service = new MovieService();
 			
-			Map<String, Object> map = service.EvaluatedMovie(memberNo);
+			Map<String, Object> map = service.evaluatedMovie(memberNo);
 			
 				
 			req.setAttribute("map", map);
 			
 			
-			String path = "/WEB-INF/views/movie/evaluatedMovie.jsp";
+			String path = "/WEB-INF/views/movie/evaluated.jsp";
 	           
 			RequestDispatcher dispatcher = req.getRequestDispatcher(path);
        
