@@ -565,6 +565,7 @@ margin-bottom: 50px;
 }
 .scroll #query{
     background-color: rgb(0 0 0 / 20%);
+    color: white;
 }
 .scroll .search-area fieldset{
     background :none;
@@ -578,3 +579,7 @@ margin-bottom: 50px;
     border-radius: 5px;
 }
 
+/* 
+#search-btn{
+    z-index: 10px;
+} */
