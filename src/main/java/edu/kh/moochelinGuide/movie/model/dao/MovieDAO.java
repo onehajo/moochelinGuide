@@ -386,6 +386,42 @@ public int rating(Connection conn, Rating rating) throws Exception{
 		}
 		return allShow;
 	}
+
+	public List<Movie> selectWishMovie(Connection conn, int memberNo) throws Exception{
+		
+		List<Movie> selectWishMovie= new ArrayList<Movie>();
+		
+		try {
+			
+			String sql = prop.getProperty("selectWishMovie");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+			Movie movie = new Movie();
+			
+			movie.setMovieNo(rs.getInt("MOVIE_NO"));
+			movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+			movie.setPosterImage(rs.getString("POSTER_IMG"));
+			movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+			movie.setCountry(rs.getString("COUNTRY"));
+			movie.setTicketing(rs.getString("TICKETING"));
+			movie.setAudience(rs.getString("AUDIENCE"));
+			movie.setStarRating(rs.getFloat("STAR_RATING"));
+			
+			selectWishMovie.add(movie);
+			
+			}
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return selectWishMovie;
+	}
+
+	
 	
 	
 }

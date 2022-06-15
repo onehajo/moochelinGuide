@@ -157,16 +157,18 @@ public class MovieService {
 
 
 
-	public Map<String, Object> selectWishMovie(int memberNo) {
+	public Map<String, Object> selectWishMovie(int memberNo) throws Exception{
 		
 		
 		Connection conn = getConnection();
 		
-		// 찜한 영화 갯수, 찜한 영화 정보 조회
 		
-		MovieDetail detail = dao.selectMovieDetail(conn, memberNo);	
+		// 찜한 영화 정보 조회
+		List<Movie> selectWishMovie = dao.selectWishMovie(conn, memberNo);
 		
-		List<DetailComment> selectWishMovie = dao.selectWishMovie(conn, memberNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("selectWishMovie", selectWishMovie);
 		
 		close(conn);
 
