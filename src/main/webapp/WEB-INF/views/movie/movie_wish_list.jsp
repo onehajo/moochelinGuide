@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:set var="selectWishMovie" value="{map.selectWishMovie}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,13 +68,13 @@
        
         <section class="rating">
             <section class="movie-list">
-                <c:forEach var="Movie" items="${selectWishMovie}">
+                <c:forEach var="movie" items="${selectWishMovie}">
 
                     <a href="#" class="rating-title">
-                        <div class="movie"><img src="${posterImage}" class="img-title"></div>
-                        <div style="display:block">${movieTitle}</div> 
-                        <span style="font-size: 13px; color:#392eff">${audience}명이 봤어요!</span>
-                        <div style="display:block">${releaseYear}・${country} / ${ticketing}</div>
+                        <div class="movie"><img src="${movie.posterImage}" class="img-title"></div>
+                        <div style="display:block">${movie.movieTitle}</div> 
+                        <span style="font-size: 13px; color:#392eff">${movie.audience}명이 봤어요!</span>
+                        <div style="display:block">${movie.releaseYear}・${movie.country} / ${movie.ticketing}</div>
                     </a>
                 </c:forEach>
             </section>

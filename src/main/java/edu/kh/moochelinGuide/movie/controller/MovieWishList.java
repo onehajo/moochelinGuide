@@ -23,9 +23,13 @@ public class MovieWishList extends HttpServlet{
 			
 			MovieService service = new MovieService();
 			
-			List<Movie> selectWishMovie = service.selectWishMovie(memberNo);
+			Map<String, Object> map = service.selectWishMovie(memberNo);
 			
-			req.setAttribute("selectWishMovie", selectWishMovie);
+			
+
+			
+			req.setAttribute("map", map);
+			
 			
 			
 			String path = "/WEB-INF/views/movie/movie_wish_list.jsp";
