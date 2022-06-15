@@ -59,7 +59,7 @@
 	WHERE MOVIE_NO = ?
 	AND COMMENT_FL='N'
 	ORDER BY COMMENT_NO DESC
-	
+	</entry>
 	
 	
 	<!-- 찜한 영화 정보 조회 -->

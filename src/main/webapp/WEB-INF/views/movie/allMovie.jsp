@@ -63,7 +63,7 @@
                         <ul class="movie-list">
                             <c:forEach var="movieList" items="${allShow}">
                                 <li>
-                                    <a href="${contextPath}/movie/detail?no=${movieList.movieNo}">
+                                    <a href="${contextPath}/movie/detail/select?no=${movieList.movieNo}">
                                         <div class="movie">
                                             <div class="movie-top">
                                                 <div class="movie-poster">
