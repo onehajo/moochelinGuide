@@ -547,7 +547,7 @@ function selectAll(selectAll){
 	const queryExp = /^[a-zA-Z0-9가-힣]{1,10}$/;
 
 	// 검색어 유효성 검사
-	if( !queryExp.test(query.value) || query.value == ""){	
+	if( !queryExp.test(query.value)){	
 
 		Swal.fire({
 			title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
@@ -571,3 +571,4 @@ function selectAll(selectAll){
 
 
  }
+
