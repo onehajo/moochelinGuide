@@ -86,6 +86,20 @@ public class MovieDetailServlet extends HttpServlet{
 				resp.getWriter().print(result);
 				
 			}
+			if(command.equals("like")) {
+				
+				int memberNo =Integer.parseInt(req.getParameter("loginMemberNo"));
+				
+				int movieNo = Integer.parseInt(req.getParameter("movieNo"));
+
+				MovieLike movieLike = new MovieLike();
+				
+				
+				int result = service.movieLike(memberNo, movieNo);
+				
+				resp.getWriter().print(result);
+				
+			}
 		
 		}catch (Exception e) {
 			e.printStackTrace();
