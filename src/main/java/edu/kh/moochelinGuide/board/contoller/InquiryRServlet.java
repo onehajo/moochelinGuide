@@ -1,6 +1,7 @@
 package edu.kh.moochelinGuide.board.contoller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,6 +48,13 @@ public class InquiryRServlet extends HttpServlet {
 		if(content.length() <= 15) title = content;
 		else {
 			title = content.substring(0, 15) + "...";
+		}
+		
+		Enumeration<String> files = mpReq.getFileNames();
+		
+		while(files.hasMoreElements()) {
+			String name = files.nextElement();
+			System.out.println(name);
 		}
 		
 		Board board = new Board();

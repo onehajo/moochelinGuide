@@ -15,22 +15,20 @@ import javax.servlet.http.HttpSession;
 import edu.kh.moochelinGuide.board.model.service.BoardService;
 import edu.kh.moochelinGuide.board.model.service.ReplyService;
 import edu.kh.moochelinGuide.board.model.vo.Board;
-import edu.kh.moochelinGuide.board.model.vo.BoardImage;
 import edu.kh.moochelinGuide.board.model.vo.Reply;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 
-@WebServlet("/member/myPage/inquiryList/inquiryContent")
-public class InquiryCServlet extends HttpServlet {
+@WebServlet("/admin/inquiryList/inquiryContent")
+public class AdminICServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/inquiryContent.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/adminIC.jsp");
 		
 		BoardService service = new BoardService();
 		Board board = new Board();
 		int boardNo = Integer.parseInt(req.getParameter("list"));
-		
 		board = service.boardContent(boardNo);
 		req.setAttribute("board", board);
 		
@@ -56,7 +54,7 @@ public class InquiryCServlet extends HttpServlet {
 			Member member = (Member)session.getAttribute("loginMember");
 			String comment = req.getParameter("comment");
 			int boardNo = Integer.parseInt(req.getParameter("list"));
-			int boardCd = 99;
+			int boardCd = 98;
 			Reply reply = new Reply();
 			reply.setBoardNo(boardNo);
 			reply.setContent(comment);

@@ -8,21 +8,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>inquiryContent</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css">
-    <!-- 헤더푸터 CSS 연결-->
-    <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/inquiryContent.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>adminInquiryContent</title>
+
+    <link rel="stylesheet" href="${contextPath}/resources/css/adminIndex-style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/adminIC.css">
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
-    <main>
-        <jsp:include page="/WEB-INF/views/common/myPage_top.jsp" />
-        <form action="inquiryContent" method="POST">
+
+    <jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
+    
+    <form action="inquiryContent" method="POST">
         <div class="inquiry">
             <h2 class="content">문의하기</h2>
             <em class="user">${board.memberNm}</em>
@@ -38,11 +37,11 @@
             </div>
                 <c:forEach var="reply" items="${replyList}">
                     <c:if test="${reply.memberType=='M'}">
-                        <em class="user">${reply.memberNm}</em>
-                            </c:if>
-                            <c:if test="${reply.memberType=='A'}">
-                        <em class="user">관리자</em>
-                            </c:if>
+                <em class="user">${reply.memberNm}</em>
+                    </c:if>
+                    <c:if test="${reply.memberType=='A'}">
+                <em class="user">관리자</em>
+                    </c:if>
                 <p class="content">
                     ${reply.content}
                 </p>
@@ -60,8 +59,11 @@
             <input type="hidden" name="list" value="${param.list}">
         </form>
     </main>
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+    
 </body>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
 </html>

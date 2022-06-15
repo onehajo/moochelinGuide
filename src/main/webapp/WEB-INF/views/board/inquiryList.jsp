@@ -80,6 +80,7 @@
                     </c:if>
                 </tbody>
             </table>
+            <c:if test="${!empty boardList}">
             <div class="contentArea">
                 <c:set var="url" value="inquiryList?array=${param.array}&cp="/>
                     <section class="listArea">
@@ -97,6 +98,7 @@
                             <span><a href="${url}${pagination.nextPage}">&gt;</a></span>
                     </section> 
             </div>
+            </c:if>
             <form action="inquiryList/inquiryRegist">
                 <button id="registration">문의 등록</button>
             </form>
