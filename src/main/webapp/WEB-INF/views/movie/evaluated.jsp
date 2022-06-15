@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<c:set var="EvaluatedMovie" value="${map.EvaluatedMovie}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/evaluated.css">
-    <link rel="stylesheet" href="../ksj/css/main-style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/evaluated.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,42 +73,14 @@
        
         <section class="rating">
             <section class="movie-list">
+            <c:forEach var="Movie" items="${EvaluatedMovie}">
                 <a href="#" class="rating-title">
                     <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
+                    <div>${EvaluatedMovie.movieTitle}</div>
+                    <div>${EvaluatedMovie.releaseYear}・${EvaluatedMovie.country}</div>
+                    <div class="rating-text">평가 함${EvaluatedMovie.starRating}★</div>
+                </a>        
+            </c:forEach>
              
         </section>
     </div>

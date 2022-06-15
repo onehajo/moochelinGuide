@@ -225,6 +225,29 @@ public class MovieService {
 		
 		return result;
 	}
+
+
+
+
+	public Map<String, Object> EvaluatedMovie(int memberNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		
+		// 평가한 영화 정보 조회
+		List<Movie> EvaluatedMovie = dao.EvaluatedMovie(conn, memberNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("EvaluatedMovie", EvaluatedMovie);
+		
+		System.out.println(map);
+		
+		close(conn);
+
+		return map;
+		
+	}
 	
 	
 }

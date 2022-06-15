@@ -137,14 +137,14 @@
                                 </div>
                                 <div class="hart">하트</div>
                                 </div>
-                                <div class="coment-cotent"><a href="comment/list&no=${detail.movieNo}">${comment.commentContent}<a></div>                       
+                                <div class="coment-cotent"><a href="comment/list&no=${detail.movieNo}"> ${comment.commentContent}<a></div>                       
                                 </div>
                             </c:forEach>
 			        	</c:otherwise>
 
 			         </c:choose>
 
-                            <div style="display:inline-block"><a><img src=""></a></div>
+                           
                      </section>
                 </div>
             </div>
