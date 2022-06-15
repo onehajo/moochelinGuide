@@ -75,8 +75,13 @@ public class MovieDAO {
 
 	
 	
-	public List<Movie> allShow(Connection conn) throws Exception {
-		List<Movie> list = new ArrayList<Movie>();
+	/** 모든 영화 조회 최신순 DAO
+	 * @param conn
+	 * @return allShow
+	 * @throws Exception
+	 */
+	public List<Movie> allShowNew(Connection conn) throws Exception {
+		List<Movie> allShow = new ArrayList<Movie>();
 		try {
 			String sql = prop.getProperty("allShow");
 			stmt = conn.createStatement();
@@ -92,8 +97,9 @@ public class MovieDAO {
 				movie.setCountry(rs.getString("COUNTRY"));
 				movie.setTicketing(rs.getString("TICKETING"));
 				movie.setAudience(rs.getString("AUDIENCE"));
+				movie.setStarRating(rs.getFloat("STAR_RATING"));
 				
-				list.add(movie);
+				allShow.add(movie);
 			}
 			
 		}finally {
@@ -101,7 +107,7 @@ public class MovieDAO {
 			close(rs);
 			close(stmt);
 		}
-		return list;
+		return allShow;
 	}
 
 	/** 영화 정보 조회 DAO
@@ -141,10 +147,9 @@ public class MovieDAO {
 			close(pstmt);
 		}
 		
-		
-		
 		return detail;
 	}
+	
 
 	/** 영화 평가하기
 	 * @param conn
@@ -271,8 +276,79 @@ public int rating(Connection conn, Rating rating) throws Exception{
 
 	
 	
+
+	/** 전체 영화 조회 가나다 순  DAO 
+	 * @param conn
+	 * @return allShow
+	 * @throws Exception
+	 */
+	public List<Movie> allShowGanada(Connection conn) throws Exception{
+		List<Movie> allShow = new ArrayList<Movie>();
+		try {
+			String sql = prop.getProperty("allShowGanada");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Movie movie = new Movie();
+				
+				movie.setMovieNo(rs.getInt("MOVIE_NO"));
+				movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+				movie.setPosterImage(rs.getString("POSTER_IMG"));
+				movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+				movie.setCountry(rs.getString("COUNTRY"));
+				movie.setTicketing(rs.getString("TICKETING"));
+				movie.setAudience(rs.getString("AUDIENCE"));
+				movie.setStarRating(rs.getFloat("STAR_RATING"));
+				
+				allShow.add(movie);
+			}
+			
+		}finally {
+		
+			close(rs);
+			close(stmt);
+		}
+		return allShow;
+	}
+
 	
 	
+	
+	/** 전체 영화 조회 인기 순 DAO
+	 * @param conn
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Movie> allShowPopular(Connection conn) throws Exception {
+		List<Movie> allShow = new ArrayList<Movie>();
+		try {
+			String sql = prop.getProperty("allShowPopular");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Movie movie = new Movie();
+				
+				movie.setMovieNo(rs.getInt("MOVIE_NO"));
+				movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+				movie.setPosterImage(rs.getString("POSTER_IMG"));
+				movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+				movie.setCountry(rs.getString("COUNTRY"));
+				movie.setTicketing(rs.getString("TICKETING"));
+				movie.setAudience(rs.getString("AUDIENCE"));
+				movie.setStarRating(rs.getFloat("STAR_RATING"));
+				
+				allShow.add(movie);
+			}
+			
+		}finally {
+		
+			close(rs);
+			close(stmt);
+		}
+		return allShow;
+	}
 	
 	
 }

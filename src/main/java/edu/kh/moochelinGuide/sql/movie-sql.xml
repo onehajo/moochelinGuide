@@ -25,19 +25,23 @@
 	
 	<!-- 전체 영화 리스트 -->
 	<entry key="allShow">
-		SELECT 
-			MOVIE_NO,
-			MOVIE_TITLE,
-			POSTER_IMG,
-			RELEASE_YEAR,
-			COUNTRY,
-			TICKETING, 
-			AUDIENCE
+				SELECT 
+		    MOVIE_NO,
+		    MOVIE_TITLE,
+		    POSTER_IMG,
+		    RELEASE_YEAR,
+		    COUNTRY,
+		    TICKETING, 
+		    AUDIENCE,
+		    STAR_RATING
 		FROM MOVIE
-		WHERE NOW_SHOWING_FL='Y'
-		ORDER BY TO_NUMBER(REGEXP_REPLACE(TICKETING, '\%')) DESC
+		JOIN (SELECT MOVIE_NO, ROUND(AVG(STAR_RATING),1) STAR_RATING
+		        FROM EVALUATION
+		        WHERE EVALUATION_FL ='N'
+		        GROUP BY MOVIE_NO) USING (MOVIE_NO)
 	</entry>
 	
+	<!-- 상세 영화 조회 -->
 	<entry key="selectMovieDetail">
 	SELECT MOVIE_TITLE, RELEASE_YEAR, COUNTRY, SYNOPSIS, DETAIL_IMG, POSTER_IMG, DETAIL_IMG, ROUND(AVG(STAR_RATING),1) AS STAR_RATING
 	FROM MOVIE
@@ -57,13 +61,48 @@
 	ORDER BY COMMENT_NO DESC
 	
 	</entry>
+	
+	
 	<entry key="movieEvaluate">
 	INSERT INTO MOVIE_EVALUATE VALUES ( ?, ?, ?)
 	</entry>
-	<entry key="insertComment">
-		INSERT INTO "COMMENT" VALUES(SEQ_CNO.NEXTVAL,?,DEFAULT,?,?,DEFAULT)
+	
+	<!-- 전체 영화 리스트 가나다 순 -->
+	<entry key="allShowGanada">
+		SELECT 
+		      MOVIE_NO,
+		      MOVIE_TITLE,
+		      POSTER_IMG,
+		      RELEASE_YEAR,
+		      COUNTRY,
+		      TICKETING, 
+		      AUDIENCE,
+		      STAR_RATING
+		FROM MOVIE
+		JOIN (SELECT MOVIE_NO, ROUND(AVG(STAR_RATING),1) STAR_RATING
+		         FROM EVALUATION
+		         WHERE EVALUATION_FL ='N'
+		         GROUP BY MOVIE_NO) USING (MOVIE_NO)
+		ORDER BY MOVIE_TITLE
 	</entry>
-	<entry key="rating">
-		INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT,SEQ_RNO.NEXTVAL)
+	
+	<!-- 전체 영화 리스트 인기순 -->
+	<entry key="allShowPopular">
+		SELECT 
+		      MOVIE_NO,
+		      MOVIE_TITLE,
+		      POSTER_IMG,
+		      RELEASE_YEAR,
+		      COUNTRY,
+		      TICKETING, 
+		      AUDIENCE,
+		      STAR_RATING
+		FROM MOVIE
+		JOIN (SELECT MOVIE_NO, ROUND(AVG(STAR_RATING),1) STAR_RATING
+		         FROM EVALUATION
+		         WHERE EVALUATION_FL ='N'
+		         GROUP BY MOVIE_NO) USING (MOVIE_NO)
+		ORDER BY  STAR_RATING DESC
 	</entry>
+	
 </properties>

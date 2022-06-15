@@ -103,10 +103,18 @@ public class MayPageModServlet extends HttpServlet{
 				loginMember.setProfileBackImage(bgImage);
 				loginMember.setMemberName(memberName);
 				
+				session.setAttribute("message", "회원 정보 수정완료!");
+				// 동기화 - 세션값 변경
+				session.setAttribute("loginMember", loginMember);
+				
+				
 				
 			} else {
 				
 				session.setAttribute("message", "회원 정보 수정실패..");
+				
+
+				
 				
 			}
 			
