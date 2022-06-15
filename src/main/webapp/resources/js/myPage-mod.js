@@ -145,7 +145,6 @@ memberName.addEventListener("input",function(){
 
 
 
-// 이미지 유효성 
 // 이름 유효성 검사(제출 시)
 function modValidate(){
 
@@ -175,19 +174,6 @@ function modValidate(){
         return false; 
     }
 
-
-    // const inputProfile =  document.getElementById("input-image");
-    // const inputBackground =  document.getElementById("input-background");
-    // // 이미지 선택확인 
-    // if (inputProfile.value == '' && inputBackground.value != '') { 
-    //     alert("프로필 이미지를 선택 한 후 변경 버튼을 클릭해 주세요.");
-    //     // alert 말고 기본이미지를 삽입할 수 없는가?
-    //     return false;
-    // }
-    // if (inputProfile.value != '' && inputBackground.value == '') { 
-    //     alert("배경 이미지를 선택 한 후 변경 버튼을 클릭해 주세요.");
-    //     return false;
-    // }
 
     return true;
 }

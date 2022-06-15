@@ -107,7 +107,7 @@
 				</div>
 
 
-
+				${map.member}
 				<span>배경 이미지</span>
 				<div class="myPage-row input-none">
 					<div class="profile-image-area">
