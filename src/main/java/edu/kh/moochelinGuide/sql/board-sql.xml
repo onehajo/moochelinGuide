@@ -29,7 +29,7 @@
 	
 	<!-- 게시판 상태 수정 -->
 	<entry key="boardUpdate">
-		UPDATE BOARD SET BOARD_CD = 98 WHERE BOARD_NO = ?
+		UPDATE BOARD SET BOARD_CD = ? WHERE BOARD_NO = ?
 	</entry>
 	
 	<!-- 게시판 마지막 활동 시간 업데이트 -->
@@ -51,5 +51,25 @@
 		SELECT * FROM BOARD_IMG
 		WHERE BOARD_NO = ?
 		ORDER BY IMG_LEVEL
+	</entry>
+	
+	<!-- 모든 문의 게시글 수 조회 -->
+	<entry key="getListAllCount">
+		SELECT COUNT(*) FROM BOARD
+		WHERE (BOARD_CD =99
+		OR BOARD_CD = 98)
+		AND BOARD_ST = 'N'
+	</entry>
+	
+	<!-- 모든 문의 리스트 조회 -->
+	<entry key="AllBoardList">
+		SELECT * FROM(
+       SELECT ROWNUM RNUM, A.* FROM(
+       SELECT BOARD_NO,BOARD_TITLE, BOARD_CT, 
+       (SYSDATE - CREATE_DT)*24*60*60 AS "CREATE_DT", 
+       (SYSDATE - UPDATE_DT)*24*60*60 AS "UPDATE_DT", BOARD_ST,BOARD_CD,MEMBER_NM
+       FROM BOARD
+       JOIN MEMBER USING(MEMBER_NO)
+       WHERE BOARD_ST = 'N'
 	</entry>
 </properties>

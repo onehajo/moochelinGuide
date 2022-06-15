@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.kh.moochelinGuide.movie.model.vo.DetailComment;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
 
@@ -134,6 +135,8 @@ public class MovieDAO {
 				detail.setPosterImage(rs.getString("POSTER_IMG"));
 				detail.setReleaseYear(rs.getInt("RELEASE_YEAR"));
 				detail.setSynopsis(rs.getString("SYNOPSIS"));
+				detail.setStarRating(rs.getFloat("STAR_RATING"));
+				
 			
 			}
 			
@@ -144,6 +147,7 @@ public class MovieDAO {
 		
 		return detail;
 	}
+	
 
 	/** 영화 평가하기
 	 * @param conn
@@ -176,6 +180,43 @@ public class MovieDAO {
 			close(pstmt);
 		}
 	}
+
+
+public List<DetailComment> detailCommentList(Connection conn, int movieNo) throws Exception {
+		
+		List<DetailComment> commentList = new ArrayList<DetailComment>();
+		
+		try {
+			String sql = prop.getProperty("detailCommentList");
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				DetailComment comment = new DetailComment();
+				
+				comment.setCommentNo( rs.getInt("COMMENT_NO"));
+				comment.setCommentContent(rs.getString("COMMENT_CT"));
+				comment.setMemberNickname(rs.getString("MEMBER_NM"));
+				comment.setCommentDate(rs.getString("COMMENT_DT"));
+				
+				commentList.add(comment);
+				
+			}
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return commentList;
+	}
+
 	
 	
 

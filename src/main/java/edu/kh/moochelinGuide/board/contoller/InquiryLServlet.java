@@ -32,7 +32,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	if(req.getParameter("cp")!=null) {
 		cp = Integer.parseInt(req.getParameter("cp"));
 	}
-		
+	int memberCd = 0;
 	RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/inquiryList.jsp");
 	
 	BoardService service = new BoardService();
@@ -41,7 +41,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	Member member = (Member)session.getAttribute("loginMember");
 	
 	int boardNo = member.getMemberNo();
-	Map<String, Object> map = service.boardList(boardNo, array,cp);
+	Map<String, Object> map = service.boardList(boardNo, array,cp,memberCd);
 	
 	req.setAttribute("array", array);
 	req.setAttribute("boardList", map.get("boardList"));

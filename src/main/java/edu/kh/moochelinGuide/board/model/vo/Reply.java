@@ -15,4 +15,5 @@ public class Reply {
 	private int boardNo;
 	private int replyNo;
 	private int memberNo;
+	private String memberType;
 }

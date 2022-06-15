@@ -73,7 +73,7 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(to right, #00ffbe, #fff);
+    background: linear-gradient(to right, #00ffbe 13%, #fff 0);
 }
 
 #query{
