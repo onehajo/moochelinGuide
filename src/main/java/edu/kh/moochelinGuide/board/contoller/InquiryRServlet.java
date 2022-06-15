@@ -1,7 +1,9 @@
 package edu.kh.moochelinGuide.board.contoller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import edu.kh.moochelinGuide.board.model.service.BoardService;
 import edu.kh.moochelinGuide.board.model.vo.Board;
+import edu.kh.moochelinGuide.board.model.vo.BoardImage;
 import edu.kh.moochelinGuide.common.MyRenamePolicy;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 
@@ -35,11 +38,11 @@ public class InquiryRServlet extends HttpServlet {
 		
 		int maxSize = 1024 * 1024 * 20;
 		String root = session.getServletContext().getRealPath("/");
-		String folderPath = "/resources/images/border/";
+		String folderPath = "/resources/images/board/";
 		String filePath = root + folderPath;
 		String encoding = "UTF-8";
 		MultipartRequest mpReq = new MultipartRequest(req, filePath, maxSize, encoding, new MyRenamePolicy());
-		
+		System.out.println(filePath);
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		String content = mpReq.getParameter("explain");
@@ -51,11 +54,18 @@ public class InquiryRServlet extends HttpServlet {
 		}
 		
 		Enumeration<String> files = mpReq.getFileNames();
-		
+		List<BoardImage> imageList = new ArrayList<BoardImage>();
 		while(files.hasMoreElements()) {
 			String name = files.nextElement();
-			System.out.println(name);
+			String rename = mpReq.getFilesystemName(name);
+			String original = mpReq.getOriginalFileName(name);
+			if(rename!=null) {
+				BoardImage image = new BoardImage();
+		
+				imageList.add(image);
+			}
 		}
+		
 		
 		Board board = new Board();
 		board.setBoardNo(member.getMemberNo());
@@ -63,7 +73,7 @@ public class InquiryRServlet extends HttpServlet {
 		board.setBoardTit(title);
 		
 		BoardService service = new BoardService();
-		int result = service.boardRegist(board);
+		int result = service.boardRegist(board,imageList);
 		
 		resp.getWriter().print(result);
 		

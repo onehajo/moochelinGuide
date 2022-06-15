@@ -81,8 +81,6 @@ public class BoardDAO {
 				rs = stmt.executeQuery(sql);
 			}
 			
-			
-			System.out.println(sql);
 			while(rs.next()) {
 				Board board = new Board();
 				board.setBoardNo(rs.getInt("BOARD_NO"));
@@ -104,6 +102,7 @@ public class BoardDAO {
 		}finally {
 			close(rs);
 			close(pstmt);
+			close(stmt);
 		}
 		
 		return boardList;
@@ -143,6 +142,7 @@ public class BoardDAO {
 	public Board boardContent(Connection conn, int boardNo) throws Exception {
 		Board board = new Board();
 		try {
+			
 			String sql = prop.getProperty("boardContent");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
@@ -228,6 +228,7 @@ public class BoardDAO {
 			}
 		}finally {
 			close(pstmt);
+			close(stmt);
 		}
 		return result;
 	}
@@ -236,21 +237,30 @@ public class BoardDAO {
 	 * 
 	 * @param conn
 	 * @param boardNo
+	 * @param boardCd 
 	 * @return imageList
 	 * @throws Exception
 	 */
-	public List<BoardImage> selectImageList(Connection conn, int boardNo) throws Exception {
+	public List<BoardImage> selectImageList(Connection conn, int boardNo, int boardCd) throws Exception {
 		
 		List<BoardImage> imageList = new ArrayList<>();
 		
 		try {
-			String sql = prop.getProperty("selectImageList");
+			String sql = null;
+			if(boardCd==0) {
+				sql = prop.getProperty("selectImageList");
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
 			
 			rs= pstmt.executeQuery();
-			
+			} else {
+				sql = prop.getProperty("noticeImageList");
+				
+				stmt = conn.createStatement();
+				
+				rs = stmt.executeQuery(sql);
+			}
 			while(rs.next()) {
 				BoardImage image = new BoardImage();
 				image.setImageNo(rs.getInt(1));
@@ -264,9 +274,85 @@ public class BoardDAO {
 		}finally {
 			close(rs);
 			close(pstmt);
+			close(stmt);
 		}
 		
 		return imageList;
+	}
+
+	/** 공지 목록 조회 DAO
+	 * 
+	 * @param conn
+	 * @param boardCd
+	 * @return list
+	 * @throws Exception
+	 */
+	public List<Board> listNotice(Connection conn, int boardCd) throws Exception {
+		List<Board> list = new ArrayList<Board>();
+		try {
+			String sql = prop.getProperty("listNotice");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board board = new Board();
+				
+				board.setBoardNo(rs.getInt("BOARD_NO"));
+				board.setBoardTit(rs.getString("BOARD_TITLE"));
+				board.setContent(rs.getString("BOARD_CT"));
+				board.setCreateDate(rs.getString("CREATE_DT"));
+				
+				list.add(board);
+			}
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return list;
+	}
+
+	/** 문의 게시글 이미지 삽입 DAO
+	 * 
+	 * @param conn
+	 * @param image
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertBoardImage(Connection conn, BoardImage image) throws Exception {
+		int result = 0;
+		try {
+			String sql = prop.getProperty("insertBoardImage");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, image.getImageReName());
+			pstmt.setString(2, image.getImageOriginal());
+			pstmt.setInt(3, image.getImageLevel());
+			pstmt.setInt(4, image.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public int getBoardNo(Connection conn) throws Exception {
+		int boardNo = 0;
+			try {
+				String sql = prop.getProperty("getBoardNo");
+				
+				stmt= conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				if(rs.next()) boardNo=rs.getInt("BOARD_NO");
+			}finally {
+				close(rs);
+				close(stmt);
+			}
+		return boardNo;
 	}
 
 	

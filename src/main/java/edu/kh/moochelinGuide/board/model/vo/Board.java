@@ -16,8 +16,8 @@ public class Board {
 	private int boardNo;
 	private String boardTit;
 	private String content;
-	private Date createDate;
-	private Date updateDate;
+	private String createDate;
+	private String updateDate;
 	private int readCount;
 	private String boardSt;
 	private int memberNo;
@@ -28,4 +28,5 @@ public class Board {
 	private String msg;
 	private String msg2;
 	private List<BoardImage> imageList;
+	private String link;
 }
