@@ -46,7 +46,7 @@
                 </select>
             </form>
             </fieldset>
-
+            ${allShow}
 
             <section class="movie-list-all">
 
@@ -63,7 +63,7 @@
                         <ul class="movie-list">
                             <c:forEach var="movieList" items="${allShow}">
                                 <li>
-                                    <a href="resources/yjg/Detail_page.html">
+                                    <a href="${contextPath}/movie/detail?no=${movieList.movieNo}">
                                         <div class="movie">
                                             <div class="movie-top">
                                                 <div class="movie-poster">

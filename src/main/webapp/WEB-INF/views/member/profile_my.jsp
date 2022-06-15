@@ -43,7 +43,7 @@
 <body>
 
 
-    <jsp:include page="/WEB-INF/views/common/header_white.jsp" /> 
+    <jsp:include page="/WEB-INF/views/common/header.jsp" /> 
 
     
     <main> 
@@ -59,12 +59,12 @@
                         <!-- 배경이미지 / 내프로필 / 팔로워/팔로잉 .... 평가한 영화 -->
                         <div class="profile-position profile-img-area">
                             <c:if test="${empty map.member.profileImage}">
-                                <img src="${contextPath}/resources/images/user.png" style="width: 110px; height: 110px;">
+                                <img src="${contextPath}/resources/images/user.png" style=" object-fit: cover; width: 100%; height: 100%;">
 							    					
 						    </c:if>
 						
                             <c:if test="${!empty map.member.profileImage}">
-                                <img src="${contextPath}${loginMember.profileImage}" style="width: 110px; height: 110px;">
+                                <img src="${contextPath}${loginMember.profileImage}" style="object-fit: cover; width: 100%; height: 100%;">
                             </c:if>
 				
                             <!-- <div class="fa-solid fa-user"></div> -->
