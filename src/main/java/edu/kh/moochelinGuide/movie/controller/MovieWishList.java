@@ -18,7 +18,9 @@ import edu.kh.moochelinGuide.movie.model.vo.Movie;
 public class MovieWishList extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		try {
+			
 			int memberNo = Integer.parseInt( req.getParameter("no"));
 			
 			MovieService service = new MovieService();
