@@ -23,6 +23,22 @@
 <c:if test="${ !empty sessionScope.message }">
 	<script>
          alert("${message}");
+         
+         
+         Swal.fire({
+             title: '${message}',
+                 width: 600,
+                 padding: '3em',
+                 color: 'black',
+                 confirmButtonColor: '#392eff',
+                 confirmButtonText: '확인'
+          })
+         
+         
+         
+         
+         
+         
          // EL 작성 시 scope를 지정하지 않으면
          // page -> request -> session -> application 순서로 검색하여
          // 일치하는 속성이 있으면 출력
