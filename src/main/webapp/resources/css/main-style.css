@@ -85,6 +85,8 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     outline: 0;
     width: 100%;
     margin: -2px;
+    
+    margin: -2px -2px -2px 10px;
 }
 
 #query::placeholder{ 
@@ -99,6 +101,8 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     outline: none;
 
     color: #fff;
+    
+    margin-left: -13px;
     
 }
 
@@ -203,6 +207,10 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     font-size: 18px;
     margin-top: 10px;
     cursor: pointer;
+}
+.btnSchI{
+	border:none;
+	background-color:transparent;
 }
 
 .login-other {

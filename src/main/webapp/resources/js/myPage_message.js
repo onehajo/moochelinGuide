@@ -71,7 +71,7 @@ document.getElementById("sendMessagePop").addEventListener("click",function(){
 
 
 
-const sendMessageBtn = document.getElementById("sendMessageBtn");
+/*const sendMessageBtn = document.getElementById("sendMessageBtn");
 // 메세지 팝업에 // 보내기 버튼 클릭
 sendMessageBtn.addEventListener("click",function(){
     window.close();
@@ -81,7 +81,7 @@ const deleteMessageBtn = document.getElementById("deleteMessageBtn");
 deleteMessageBtn.addEventListener("click",function(){
 	confirm("쪽지를 삭제 하시겠습니까?")
     window.close();
-})
+})*/
 
     
 

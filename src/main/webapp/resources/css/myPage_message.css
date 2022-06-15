@@ -126,3 +126,18 @@
 .sendBtn{
     margin: 0 auto;
 }
+
+.transColor{
+	background-color: #fff;
+}
+
+.transColor:hover{
+	background-color: #392eff;
+	color:#fff;
+    transition-duration: 0.5s;
+    border:none;
+}
+
+
+
+
