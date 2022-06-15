@@ -77,37 +77,6 @@
                     <div>개봉년도 국가</div>
                     <div class="rating-text">평가 함 4.5★</div>
                 </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-                <a href="#" class="rating-title">
-                    <div class="movie"><img src="./css/image/99bf6b056d4f594d302031b5f1fc52e6.jpg" class="img-title"></div>
-                    <div>영화 제목</div>
-                    <div>개봉년도 국가</div>
-                    <div class="rating-text">평가 함 4.5★</div>
-                </a>
-             
         </section>
     </div>
 

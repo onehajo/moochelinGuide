@@ -452,6 +452,46 @@ public int rating(Connection conn, Rating rating) throws Exception{
 		return result;
 	}
 
+	public List<Movie> EvaluatedMovie(Connection conn, int memberNo) throws Exception{
+		
+		
+		List<Movie> EvaluatedMovie = new ArrayList<Movie>();
+		
+		
+		
+		try {
+			String sql = prop.getProperty("EvaluatedMovie");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+			Movie movie = new Movie();
+			
+			movie.setMovieNo(rs.getInt("MOVIE_NO"));
+			movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+			movie.setPosterImage(rs.getString("POSTER_IMG"));
+			movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+			movie.setCountry(rs.getString("COUNTRY"));
+			movie.setTicketing(rs.getString("TICKETING"));
+			movie.setStarRating(rs.getFloat("STAR_RATING"));
+			EvaluatedMovie.add(movie);
+			}
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return EvaluatedMovie;
+	}
+
 	
 	
 	

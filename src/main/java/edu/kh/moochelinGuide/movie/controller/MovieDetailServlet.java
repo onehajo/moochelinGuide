@@ -33,14 +33,15 @@ public class MovieDetailServlet extends HttpServlet{
 		
 		
 		
-		
+		                     
 				Map<String, Object> map = service.selectMovieDetail(movieNo);
 		
-		
+				System.out.println(map);
 		
 				req.setAttribute("map", map);
 		
-		
+				System.out.println(map);
+				
 				String path = "/WEB-INF/views/movie/movieDetail.jsp";
            
 				RequestDispatcher dispatcher = req.getRequestDispatcher(path);
@@ -69,6 +70,8 @@ public class MovieDetailServlet extends HttpServlet{
 				
 				
 			}
+			
+			
 			if(command.equals("rating")) {
 				int inputst =Integer.parseInt(req.getParameter("inputst"));
 				
@@ -87,6 +90,10 @@ public class MovieDetailServlet extends HttpServlet{
 				resp.getWriter().print(result);
 				
 			}
+			
+			
+			
+			
 			if(command.equals("like")) {
 				
 				int memberNo =Integer.parseInt(req.getParameter("loginMemberNo"));
