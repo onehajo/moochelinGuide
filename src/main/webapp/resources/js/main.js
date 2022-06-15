@@ -361,13 +361,24 @@ function selectAll(selectAll){
 
 
 
+// 로그인
+// const loginBbtn = document.getElementById("loginBbtn");
+
+// loginBbtn.addEventListener("click",function(){
+//     $.ajax({
+//         url:"login",
+//         data: {loginEmail:"loginEmail",loginPw"}
+//     })
+// })
+
+
 
 
 
 
 
 // google 로그인 관련 // 왜 안받아와지냐고 !!!!!!!!!
-function onSignIn(googleUser) {
+/*function onSignIn(googleUser) {
 	// Useful data for your client-side scripts:
 	var profile = googleUser.getBasicProfile();
 	console.log("ID: " + profile.getId()); // Don't send this directly to your server!
@@ -380,7 +391,7 @@ function onSignIn(googleUser) {
 	// The ID token you need to pass to your backend:
 	var id_token = googleUser.getAuthResponse().id_token;
 	console.log("ID Token: " + id_token);
-}
+}*/
 
 
 
