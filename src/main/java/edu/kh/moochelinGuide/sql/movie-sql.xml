@@ -60,16 +60,21 @@
 	AND COMMENT_FL='N'
 	ORDER BY COMMENT_NO DESC
 	
-	</entry>
 	
 	
-	<entry key="movieEvaluate">
-	INSERT INTO MOVIE_EVALUATE VALUES ( ?, ?, ?)
+	<!-- 찜한 영화 정보 조회 -->
+	<entry key="selectWishMovie">
+	SELECT MOVIE_NO, MOVIE_TITLE,POSTER_IMG,RELEASE_YEAR,COUNTRY,TICKETING,STAR_RATING
+    FROM MOVIE
+    JOIN MOVIE_LIKE USING(MOVIE_NO)
+    WHERE MEMBER_NO = 4
+	
 	</entry>
+	<!-- 코멘트 insert -->
 	<entry key="insertComment">
 		INSERT INTO "COMMENT" VALUES(SEQ_CNO.NEXTVAL,?,DEFAULT,?,?,DEFAULT)
 	</entry>
-	
+	<!-- 평가 점수 insert -->
 	<entry key="rating">
 		INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT,SEQ_RNO.NEXTVAL)
 	</entry>
