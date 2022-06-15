@@ -292,6 +292,43 @@ public List<DetailComment> detailCommentList(Connection conn, int movieNo) throw
 		}
 		return allShow;
 	}
+
+	
+	
+	/** 전체 영화 조회 인기 순 DAO
+	 * @param conn
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Movie> allShowRelease(Connection conn) throws Exception {
+		List<Movie> allShow = new ArrayList<Movie>();
+		try {
+			String sql = prop.getProperty("allShowRelease");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Movie movie = new Movie();
+				
+				movie.setMovieNo(rs.getInt("MOVIE_NO"));
+				movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+				movie.setPosterImage(rs.getString("POSTER_IMG"));
+				movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+				movie.setCountry(rs.getString("COUNTRY"));
+				movie.setTicketing(rs.getString("TICKETING"));
+				movie.setAudience(rs.getString("AUDIENCE"));
+				movie.setStarRating(rs.getFloat("STAR_RATING"));
+				
+				allShow.add(movie);
+			}
+			
+		}finally {
+		
+			close(rs);
+			close(stmt);
+		}
+		return allShow;
+	}
 	
 	
 }

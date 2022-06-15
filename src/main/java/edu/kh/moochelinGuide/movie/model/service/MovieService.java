@@ -139,6 +139,23 @@ public class MovieService {
 		
 		return map;
 	}
+
+
+
+
+	/** 영화 상세 조회 년도 순 Service
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Movie> allShowRelease()  throws Exception{
+		Connection conn = getConnection();
+		
+		List<Movie> allShow = dao.allShowRelease(conn);
+		
+		close(conn);
+		
+		return allShow;
+	}
 	
 	
 }
