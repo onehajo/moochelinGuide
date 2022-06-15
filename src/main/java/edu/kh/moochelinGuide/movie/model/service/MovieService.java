@@ -157,7 +157,7 @@ public class MovieService {
 
 
 
-	public Map<String, Object> selectWishMovie (int memberNo) throws Exception{
+	public Map<String, Object> selectWishMovie(int memberNo) throws Exception{
 		
 		
 		Connection conn = getConnection();
@@ -170,7 +170,7 @@ public class MovieService {
 		
 		map.put("selectWishMovie", selectWishMovie);
 		
-		System.out.println(selectWishMovie);
+		System.out.println(map);
 		
 		close(conn);
 

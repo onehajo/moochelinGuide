@@ -131,6 +131,7 @@ public class MovieDAO {
 			if(rs.next()) {
 				detail = new MovieDetail();
 				
+				detail.setMovieNo(rs.getInt("MOVIE_NO"));
 				detail.setMovieTitle(rs.getString("MOVIE_TITLE"));
 				detail.setCountry(rs.getString("COUNTRY"));
 				detail.setDetailImage(rs.getString("DETAIL_IMG"));
@@ -211,7 +212,7 @@ public List<DetailComment> detailCommentList(Connection conn, int movieNo) throw
 				comment.setCommentContent(rs.getString("COMMENT_CT"));
 				comment.setMemberNickname(rs.getString("MEMBER_NM"));
 				comment.setCommentDate(rs.getString("COMMENT_DT"));
-				
+				comment.setProfileImage(rs.getString("PROFILE_IMG"));
 				commentList.add(comment);
 				
 			}
