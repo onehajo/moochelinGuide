@@ -36,18 +36,18 @@
         <section class="content-main">
             <p class="sectionTitle">전체영화 조회</p>
 
-            <form action="movie/allMovie" name="selectCategory">
             <fieldset class="field">
+            <form action="allMovie" name="selectCategory">
                 <select name="category" id="category">
-                    <option value="new" selected>최신순</option>
-                    <option value="ganada">가나다순</option>
-                    <option value="popular">인기순</option>
+                    <option value="select" >선택해주세요.</option>
+                    <option value="new" >최신순</option>
+                    <option value="ganada" >가나다순</option>
+                    <option value="popular" >인기순</option>
                 </select>
-            </fieldset>
             </form>
+            </fieldset>
 
 
-            ${allShow}
             <section class="movie-list-all">
 
                 <c:choose>
@@ -124,14 +124,14 @@
 	<script src="${contextPath}/resources/js/allMovie.js"></script>
 
     <script>
-//    selectCategory
-//                category
 
         const category = document.getElementById("category");
 
         category.addEventListener("change",function(){
 
-            document.selectCategory.submit();
+        document.selectCategory.submit();
+
+            const selected = document.getElementById("selected")
 
         });
 

@@ -13,7 +13,7 @@
 				</li>
 				
 				<li class="showing"><a href="${contextPath}">박스오피스</a></li>
-				<li class="all"><a href="${contextPath}/movie/allMovie">전체영화</a></li>
+				<li class="all"><a href="${contextPath}/movie/allMovie?category=select">전체영화</a></li>
 				
 				<!-- 검색 -->
 				<li class="sch">
