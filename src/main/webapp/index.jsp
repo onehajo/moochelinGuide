@@ -43,7 +43,7 @@
 
 					
 					<!-- 상영중인 영화리스트 -->
-					<c:choose>
+					<%-- <c:choose>
 					<c:when test="${empty movieList}">
 						<div>영화리스트가 존재하지 않습니다.</div>
 					</c:when>
@@ -78,7 +78,7 @@
 						
 						</c:forEach>
 					</c:otherwise>
-					</c:choose>
+					</c:choose> --%>
 
 				</ul>
 			</section>

@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet{
 			MemberService service = new MemberService();
 			Member member = service.login(mem);
 			
-			
 			HttpSession session = req.getSession();
 			
 			if(member!=null) {
@@ -36,20 +35,20 @@ public class LoginServlet extends HttpServlet{
 			}else {
 				session.setAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			}
-			System.out.println(member.getMemberType());
+			//System.out.println(member.getMemberType());
 			
 			// 멤버 타입이 일반회원인 경우
-			if(member.getMemberType().equals("M")) {
+			//if(member.getMemberType().equals("M")) {
 				
 				String path = null;
 				path=req.getHeader("referer");
 				resp.sendRedirect(path);
 
-			}else { // 멤버타입 어드민인 경우
+			/*}else if(member.getMemberType().equals("A")){ // 멤버타입 어드민인 경우
 				
 				String path="/WEB-INF/views/admin/adminIndex.jsp";
 				req.getRequestDispatcher(path).forward(req, resp);
-			}
+			}*/
 			
 			
 		}catch(Exception e) {

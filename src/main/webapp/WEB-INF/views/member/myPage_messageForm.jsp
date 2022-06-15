@@ -54,7 +54,14 @@
 			    <p class="">받는 사람 : ${messageDetail.memberName}</p>
 			    <form class="messageForm-css" action="insert" method="post" onsubmit="return sendValidate()" target="parentWindow">
 			        <textarea name="content" id="messageC" class="textarea-css"></textarea>
-			        <input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
+			        
+			        <c:if test="${empty messageDetail.targetNo}">
+			        	<input type="hidden" name="targetNo" value="${param.targetNo}">
+			        </c:if>
+			        <c:if test="${!empty messageDetail.targetNo}">
+			        	<input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
+			        </c:if>
+			        
 			        <div class="messageBtnBox">
 			        	<!--onclick="self.close();"-->
 			            <button id="sendMessageBtn" class="messagePopupBtn" onclick="self.close();">보내기</button>

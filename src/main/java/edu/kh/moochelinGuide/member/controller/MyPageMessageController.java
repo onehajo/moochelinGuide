@@ -34,12 +34,14 @@ public class MyPageMessageController extends HttpServlet {
 			Member loginMember = (Member)(session.getAttribute("loginMember"));
 			int memberNo = loginMember.getMemberNo();
 		    
-			// 쪽지 리스트 요청-반환받기
-			MemberService service = new MemberService(); 
-			List<Message> messageList = service.selectMessage(memberNo);
+			
 
 			// 쪽지 리스트화면
 			if(command.equals("list")) {
+				
+				// 쪽지 리스트 요청-반환받기
+				MemberService service = new MemberService(); 
+				List<Message> messageList = service.selectMessage(memberNo);
 		    	
 				// 파라미터 중 게시글 번호 얻어오기
 				// int messageNo = Integer.parseInt(req.getParameter("no"));
@@ -53,14 +55,6 @@ public class MyPageMessageController extends HttpServlet {
 		    }
 			
 			
-			// 쪽지 리스트화면(ajax)-일단은 동기로 처리....
-			/*
-			 * if(command.equals("listAll")) {
-			 * 
-			 * req.setAttribute("messageList", messageList);
-			 * 
-			 * resp.getWriter().print(messageList); }
-			 */
 		    
 		    
 			// 쪽지 상세보기 팝업
@@ -76,6 +70,7 @@ public class MyPageMessageController extends HttpServlet {
 
 		    		
 				// service에 메세지 내용 요청, 반환
+		    	MemberService service = new MemberService();
 				Message messageDetail = service.messageDetail(messageNo);
 			    	
 			    // messageDetail 반환 잘 되었는지
@@ -134,8 +129,13 @@ public class MyPageMessageController extends HttpServlet {
 				int targetNo = Integer.parseInt(req.getParameter("targetNo"));
 				String content = req.getParameter("content");
 				
+				System.out.println(content);
+				System.out.println(memberNo);
+				System.out.println(targetNo);
+				
 				MemberService service = new MemberService();
 				int result = service.insertMessage(memberNo,targetNo,content);
+				
 				
 				if(result>0) {
 					session.setAttribute("message", "쪽지를 보냈습니다.");

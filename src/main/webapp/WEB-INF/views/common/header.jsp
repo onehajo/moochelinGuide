@@ -82,7 +82,7 @@
 		<div id="emailComment"></div>
 		<input type="password" placeholder="비밀번호" id="loginPw" name="memberPw">
 		<div id="pwComment"></div>
-		<button id="login-btn" class="btn">로그인</button>
+		<button id="loginBbtn" class="btn">로그인</button>
 	</form>
 	<div class="login-other">
 		<div><a onclick="openPw()">비밀번호를 잊어버리셨나요?</a></div>
@@ -98,15 +98,15 @@
 	</div> -->
 	
 	<!-- 2번방식 , 계정 로그인 과정은 구현은 되나 결과적으로 로그인되지 않음. 콘솔에 프로필이 불러와지지 않음 (js의 onSignIn()에 콘솔) -->
-	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+	<!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
 	
 	<!-- 3번 방식 , 구글에 게시된 최근폼?으로 버튼 번경 
 	// 지정된 클라이언트 ID에 대해 지정된 출처가 허용되지 않습니다 // 에러 발생 -->
-	<div id="g_id_onload"
+<!-- 	<div id="g_id_onload"
          data-client_id="263322996104-ijiaiibe7ha6d2g8c7vm0ktdhqlkiq7t.apps.googleusercontent.com"
          data-callback="handleCredentialResponse">
     </div>
-    <div class="g_id_signin" data-type="standard" data-onsuccess="onSignIn"></div>
+    <div class="g_id_signin" data-type="standard" data-onsuccess="onSignIn"></div> -->
     
 </div>
 
@@ -134,7 +134,7 @@
 			<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAuNjQgMTIuMjA0MkMyMC42NCAxMS41NjYgMjAuNTgyNyAxMC45NTI0IDIwLjQ3NjQgMTAuMzYzM0gxMlYxMy44NDQ2SDE2Ljg0MzZDMTYuNjM1IDE0Ljk2OTYgMTYuMDAwOSAxNS45MjI4IDE1LjA0NzcgMTYuNTYxVjE4LjgxOTJIMTcuOTU2NEMxOS42NTgyIDE3LjI1MjQgMjAuNjQgMTQuOTQ1MSAyMC42NCAxMi4yMDQyVjEyLjIwNDJaIiBmaWxsPSIjNDI4NUY0Ii8+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTExLjk5OTggMjFDMTQuNDI5OCAyMSAxNi40NjcgMjAuMTk0MSAxNy45NTYxIDE4LjgxOTVMMTUuMDQ3NSAxNi41NjEzQzE0LjI0MTYgMTcuMTAxMyAxMy4yMTA3IDE3LjQyMDQgMTEuOTk5OCAxNy40MjA0QzkuNjU1NjcgMTcuNDIwNCA3LjY3MTU4IDE1LjgzNzIgNi45NjM4NSAxMy43MUgzLjk1NzAzVjE2LjA0MThDNS40Mzc5NCAxOC45ODMxIDguNDgxNTggMjEgMTEuOTk5OCAyMVYyMVoiIGZpbGw9IiMzNEE4NTMiLz4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNi45NjQwOSAxMy43MDk4QzYuNzg0MDkgMTMuMTY5OCA2LjY4MTgyIDEyLjU5MyA2LjY4MTgyIDExLjk5OThDNi42ODE4MiAxMS40MDY2IDYuNzg0MDkgMTAuODI5OCA2Ljk2NDA5IDEwLjI4OThWNy45NTgwMUgzLjk1NzI3QzMuMzQ3NzMgOS4xNzMwMSAzIDEwLjU0NzYgMyAxMS45OTk4QzMgMTMuNDUyMSAzLjM0NzczIDE0LjgyNjYgMy45NTcyNyAxNi4wNDE2TDYuOTY0MDkgMTMuNzA5OFYxMy43MDk4WiIgZmlsbD0iI0ZCQkMwNSIvPgogICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4wNDI3IDYuNTc5NTVDMTMuMzY0MSA2LjU3OTU1IDE0LjU1MDUgNy4wMzM2NCAxNS40ODMyIDcuOTI1NDVMMTguMDY0NSA1LjM0NDA5QzE2LjUwNTkgMy44OTE4MiAxNC40Njg2IDMgMTIuMDQyNyAzQzguNTI0NTUgMyA1LjQ4MDkxIDUuMDE2ODIgNCA3Ljk1ODE4TDcuMDA2ODIgMTAuMjlDNy43MTQ1NSA4LjE2MjczIDkuNjk4NjQgNi41Nzk1NSAxMi4wNDI3IDYuNTc5NTVWNi41Nzk1NVoiIGZpbGw9IiNFQTQzMzUiLz4KPC9zdmc+Cg==" class="css-1hfgk44">
 		</a>
 	</div> -->
-	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+	<!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
 </div>
 
 <!-- 팝업될 약관동의 화면 -->
