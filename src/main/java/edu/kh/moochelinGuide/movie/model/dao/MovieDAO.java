@@ -121,6 +121,8 @@ public class MovieDAO {
 		MovieDetail detail = null;
 		
 		try {
+			
+			
 			String sql = prop.getProperty("selectMovieDetail");
 			
 			pstmt = conn.prepareStatement(sql);
