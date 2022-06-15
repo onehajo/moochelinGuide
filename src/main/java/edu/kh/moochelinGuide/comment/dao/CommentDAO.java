@@ -212,5 +212,25 @@ public class CommentDAO {
 		
 		return result;
 	}
+	public int insertReply(Connection conn, Comment comment) throws Exception {
+		int result=0;
+		
+		try {
+			String sql= prop.getProperty("insertComment");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, comment.getCommentContent());
+			pstmt.setInt(2, comment.getMovieNo());
+			pstmt.setInt(3, comment.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 	
 }

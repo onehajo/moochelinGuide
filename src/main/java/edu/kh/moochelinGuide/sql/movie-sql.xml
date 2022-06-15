@@ -60,5 +60,7 @@
 	<entry key="movieEvaluate">
 	INSERT INTO MOVIE_EVALUATE VALUES ( ?, ?, ?)
 	</entry>
-	
+	<entry key="insertComment">
+		INSERT INTO "COMMENT" VALUES(SEQ_CNO.NEXTVAL,?,DEFAULT,?,?,DEFAULT)
+	</entry>
 </properties>

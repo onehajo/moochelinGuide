@@ -178,9 +178,9 @@
                     </div>
                     <div class="close-area">X</div>
                     <div class="content">
-                        <textarea class="coment-write" style="width: 100%; height: 400px;" placeholder="이 작품에 대한 생각을 마음껏 표현해주세요.";></textarea>
+                        <textarea id="comment-write" class="coment-write" style="width: 100%; height: 400px;" placeholder="이 작품에 대한 생각을 마음껏 표현해주세요.";></textarea>
                         <!-- <input type="checkbox"><p id="spo" style="display: inline-block ; color: #392eff;">내용 숨기기</p> -->
-                        <button id="cm-save-btn" style="margin-left: 300px;">저장</button>
+                        <button type="button" id="cm-save-btn" style="margin-left: 300px;">저장</button>
                     </div>
                 </div>
             </div>
@@ -201,7 +201,13 @@
             </section>
         </footer>
  </div>   
-      
+        <script>
+            const contextPath = "${contextPath}"
+
+            const movieNo = "${param.no}"
+
+            const loginMemberNo = "${loginMember.memberNo}"
+        </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="${contextPath}/resources/js/evaluation.js"></script>
         <script src="${contextPath}/resources/js/Detail_page.js"></script>

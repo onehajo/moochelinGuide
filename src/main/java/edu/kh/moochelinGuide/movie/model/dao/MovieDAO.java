@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.kh.moochelinGuide.comment.vo.Comment;
 import edu.kh.moochelinGuide.movie.model.vo.DetailComment;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
@@ -211,6 +212,29 @@ public List<DetailComment> detailCommentList(Connection conn, int movieNo) throw
 		
 		return commentList;
 	}
+
+
+
+public int insertComment(Connection conn, Comment comment) throws Exception{
+	int result=0;
+	
+	try {
+		String sql= prop.getProperty("insertComment");
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, comment.getCommentContent());
+		pstmt.setInt(2, comment.getMovieNo());
+		pstmt.setInt(3, comment.getMemberNo());
+		
+		result = pstmt.executeUpdate();
+		
+	}finally{
+		close(pstmt);
+	}
+	
+	
+	return result;
+}
 
 	
 	
