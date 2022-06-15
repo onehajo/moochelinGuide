@@ -65,9 +65,11 @@
 			        
 			        <c:if test="${empty messageDetail.targetNo}">
 			        	<input type="hidden" name="targetNo" value="${param.targetNo}">
+						<input type="hidden" name="no" value="${param.no}">
 			        </c:if>
 			        <c:if test="${!empty messageDetail.targetNo}">
 			        	<input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
+						<input type="hidden" name="no" value="1">
 			        </c:if>
 			        
 			        <div class="messageBtnBox">
