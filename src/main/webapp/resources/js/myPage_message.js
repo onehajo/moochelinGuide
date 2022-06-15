@@ -40,7 +40,7 @@ const messageNo = document.getElementsByName("messageNo");
 
 //
 
-(function(){
+/*(function(){
     $.ajax({
         url : "selectList",
         dataType: "json",
@@ -50,7 +50,7 @@ const messageNo = document.getElementsByName("messageNo");
         error: function(messageList){}
     });
 
-})()
+})()*/
 
 
 
@@ -59,15 +59,15 @@ const messageNo = document.getElementsByName("messageNo");
 
 
 // 답장하기 누르면
-function popupSend(){
+/*function popupSend(){
     messageContent.classList.add('activeImportant');
     messageSend.classList.add('activePblock');
-}
+}*/
 
-document.getElementById("sendMessagePop").addEventListener("click",function(){
+/*document.getElementById("sendMessagePop").addEventListener("click",function(){
 	messageContent.classList.add('activeImportant');
     messageSend.classList.add('activePblock');
-})
+})*/
 
 
 

@@ -48,8 +48,6 @@
     width: 110px;
     padding: 8px 24px;
     margin-left: 10px;
-    background-color: #fff;
-    border: 1px solid #555;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -128,16 +126,26 @@
 }
 
 .transColor{
-	background-color: #fff;
+	background-color: #392eff;
+	color:#fff;
+	transition: all 150ms;
+	border:#392eff 1px solid;
 }
 
 .transColor:hover{
-	background-color: #392eff;
-	color:#fff;
-    transition-duration: 0.5s;
-    border:none;
+	background-color: #00ffbe;
+	font-weight:500;
+	border:#13e1ad 1px solid;
 }
 
+.mint{
+	background-color: #fff;
+	color:#555;
+	border:#555 1px solid;
+}
 
-
-
+.mint:hover{
+	background-color: #fff;
+	color:#00ffbe;
+	border:#00ffbe 1px solid;
+}

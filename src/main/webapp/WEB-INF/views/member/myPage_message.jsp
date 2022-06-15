@@ -74,7 +74,7 @@
                         			</div>
                         			<div class="message-right-btns">
                             			<a href="detail?type=send&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;" id="sendMessagePop"><button type="button" class="transColor">답장하기</button></a>
-                            			<form style="display:inline-block;" action="delete" method="post"><input type="hidden" name="messageNo" value="${message.messageNo}"><button class="transColor">쪽지삭제</button></form>
+                            			<form style="display:inline-block;" action="delete" method="post"><input type="hidden" name="messageNo" value="${message.messageNo}"><button class="mint">쪽지삭제</button></form>
                         			</div>
                     			</div>
                     			
@@ -90,36 +90,6 @@
 
 			</div>
 
-			<!-- 쪽지 팝업 내용보기 -->
-<!-- 			<div id="messageContent" class="popup">
-				<img src="../images/logo-blue.png" alt="">
-				<p class="popupTitle">
-					받은 쪽지<span class="smallText">?</span>
-				</p>
-				<form class="messageForm-css">
-					<textarea name="" id="" class="textarea-css">쪽지 보낸 내용입니다. 클릭하면 내용 볼수 있음 어쩌고 저쩌고 가나다라 마바사아자 차카카카카메라 라디오레오레오
-                    </textarea>
-					<div class="messageBtnBox">
-						<button type="button" onclick="popupSend()">답장</button>
-						<button onclick="deleteMessage()">삭제</button>
-					</div>
-				</form>
-				<div class="close" onclick="closeMessage()">X</div>
-			</div> -->
-
-			<!-- 쪽지 팝업 보내기 -->
-<!-- 			<div id="messageSend" class="popup">
-				<img src="../images/logo-blue.png" alt="">
-				<p class="popupTitle">쪽지 보내기</p>
-				<form class="messageForm-css">
-					<textarea name="" id="" class="textarea-css"
-						placeholder="내용을 입력해주세요.(200자)"></textarea>
-					<div class="messageBtnBox">
-						<button class="sendBtn">전송</button>
-					</div>
-				</form>
-				<div class="close" onclick="closeMessage()">X</div>
-			</div> -->
 
 		</section>
 
