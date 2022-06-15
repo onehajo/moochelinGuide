@@ -115,6 +115,8 @@
 		crossorigin="anonymous"></script>
 	<script src="${contextPath}/resources/js/main.js"></script>
 	<script src="${contextPath}/resources/js/indexNowshowing.js"></script>
-
+	<script>
+		const contextPath = "${contextPath}";
+	</script>
 </body>
 </html>

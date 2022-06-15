@@ -98,7 +98,18 @@ function loginValidate() {
 
     // 이메일이 입력되지 않은 경우 false를 반환
     if(loginEmail.value.trim().length==0){
-        alert("이메일을 입력해주세요.");
+		
+		  Swal.fire({
+             title: '이메일을 입력해주세요.',
+             width: 600,
+             padding: '3em',
+             color: 'black',
+             confirmButtonColor: '#392eff',
+             confirmButtonText: '확인'
+          })
+          
+          
+        //alert("이메일을 입력해주세요.");
         loginEmail.value = ""; 
         loginEmail.focus(); 
         return false; 
@@ -115,7 +126,17 @@ function loginValidate() {
 
     // 비밀번호를 입력하지 않은 경우 false 반환
     if(loginPw.value.trim() == ""){
-        alert("비밀번호를 입력해주세요.");
+	
+		Swal.fire({
+             title: '비밀번호를 입력해주세요.',
+             width: 600,
+             padding: '3em',
+             color: 'black',
+             confirmButtonColor: '#392eff',
+             confirmButtonText: '확인'
+          })
+          
+        //alert("비밀번호를 입력해주세요.");
         loginPw.value = ""; 
         loginPw.focus(); 
         return false; 
@@ -195,7 +216,18 @@ if(pwFindEmail!=null){
 	// 비밀번호 유효성 검사
 	function pwfindValidate(){
 		if(!valicheck){
-			alert("가입한 이메일을 입력해주세요.");
+			
+		Swal.fire({
+             title: '가입한 이메일을 입력해주세요.',
+             width: 600,
+             padding: '3em',
+             color: 'black',
+             confirmButtonColor: '#392eff',
+             confirmButtonText: '확인'
+          })
+          
+          
+			//alert("가입한 이메일을 입력해주세요.");
 			return false;
 			
 		}
@@ -216,7 +248,17 @@ if(pwFindEmail!=null){
 	            data: {"pwFindEmail": pwFindEmail.value},
 	            method:"post",
 	            success: function(result){
-					alert("메일발송 성공");
+		
+					Swal.fire({
+			             title: '메일발송 성공',
+			             width: 600,
+			             padding: '3em',
+			             color: 'black',
+			             confirmButtonColor: '#392eff',
+			             confirmButtonText: '확인'
+			          })
+          
+					//alert("메일발송 성공");
 	                console.log("이메일 발송 성공");
 	                console.log(result);
 	
@@ -342,7 +384,18 @@ if(signUpName!=null){
 	            }
 	
 	            document.getElementById(key).focus();
-	            alert(str+"다시 입력해주세요.");
+	            
+	            	Swal.fire({
+			             title: str+"다시 입력해주세요.",
+			             width: 600,
+			             padding: '3em',
+			             color: 'black',
+			             confirmButtonColor: '#392eff',
+			             confirmButtonText: '확인'
+			          })
+	            
+	            
+	            //alert(str+"다시 입력해주세요.");
 	            return;
 	        }
 	    }
@@ -363,7 +416,19 @@ function signUpValidate(){
     if(agree1.checked && agree2.checked){
         return true;
     }else{
-        alert("약관에 동의해주세요");
+	
+	
+		Swal.fire({
+             title: "약관에 동의해주세요",
+             width: 600,
+             padding: '3em',
+             color: 'black',
+             confirmButtonColor: '#392eff',
+             confirmButtonText: '확인'
+		 })
+			          
+			          
+        //alert("약관에 동의해주세요");
         return false;
     }
 }
