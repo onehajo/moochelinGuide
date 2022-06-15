@@ -59,19 +59,17 @@ public class ReplyService {
 	/** 게시판 문의 상태 변경 Service
 	 * 
 	 * @param reply
-	 * @return 
+	 * @param boardCd 
+	 * @return result
 	 */
-	public int boardUpdate(Reply reply) throws Exception {
+	public int boardUpdate(Reply reply, int boardCd) throws Exception {
 		int result = 0;
 		Connection conn = getConnection();
 			try {
-			
-			result = dao.memberList(conn,reply);
-			if(result>0) {
-				result=dao2.boardUpdate(conn,reply);
+				result=dao2.boardUpdate(conn,reply,boardCd);
 				if(result>0) commit(conn);
 				else rollback(conn);
-			}
+			
 		}finally {
 			close(conn);	
 		}

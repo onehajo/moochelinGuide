@@ -161,12 +161,13 @@ public class BoardDAO {
 		return board;
 	}
 
-	public int boardUpdate(Connection conn, Reply reply) throws Exception {
+	public int boardUpdate(Connection conn, Reply reply, int boardCd) throws Exception {
 		int result = 0;
 		try {
 			String sql = prop.getProperty("boardUpdate");
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reply.getBoardNo());
+			pstmt.setInt(1,boardCd);
+			pstmt.setInt(2, reply.getBoardNo());
 			
 			result = pstmt.executeUpdate();
 		}finally {
