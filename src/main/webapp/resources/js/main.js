@@ -486,38 +486,88 @@ function selectAll(selectAll){
 
 
 // 검색버튼 있을때만 실행
-if(document.getElementById("search-btn")!=null){
+// if(document.getElementById("search-btn")!=null){
 	
-	// 검색
-	document.getElementById("search-btn").addEventListener("click",function(){
+// 	// 검색
+// 	document.getElementById("search-btn").addEventListener("click",function(){
 	
-	    const query = document.getElementById("query");
-	    const queryExp = /^[a-zA-Z0-9가-힣]{1,10}$/;
-	    const searchForm = document.getElementsByName("search-form");
+// 	    const query = document.getElementById("query");
+// 	    const queryExp = /^[a-zA-Z0-9가-힣]{1,10}$/;
+// 	    const searchForm = document.getElementsByName("search-form");
 	
-	    // 검색어 유효성 검사
-	    if( !queryExp.test(query.value) ){	
+// 	    // 검색어 유효성 검사
+// 	    if( !queryExp.test(query.value)){	
 	  
-	        Swal.fire({
-	            title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
-	                width: 600,
-	                padding: '3em',
-	                color: 'black',
-	                confirmButtonColor: '#392eff',
-	                confirmButtonText: '확인'
-	         })
+// 	        Swal.fire({
+// 	            title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
+// 	                width: 600,
+// 	                padding: '3em',
+// 	                color: 'black',
+// 	                confirmButtonColor: '#392eff',
+// 	                confirmButtonText: '확인'
+// 	         })
 	
-	        //alert("영어/숫자/한글 1~10글자 사이로 작성해주세요.");
-	        query.value = "";
-	        query.focus();
-	        return;
-	    }
+// 	        //alert("영어/숫자/한글 1~10글자 사이로 작성해주세요.");
+// 	        query.value = "";
+// 	        query.focus();
+// 	        return;
+// 	    }
 	
-	    // 검색어가 작성된 경우
-	    if(query.value.trim().length!=0){
-	        searchForm[0].submit();
-	    }
+// 	    // 검색어가 작성된 경우
+// 	    if(query.value.trim().length!=0){
+// 	        searchForm[0].submit();
+// 	    }
 	
-	})
+// 	})
 
-}
+// }
+
+
+// if (window.event.keyCode == 13) {
+// 	// 엔터키가 눌렸을 때
+
+// 	if(query==""){
+
+// 		Swal.fire({
+// 			title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
+// 				width: 600,
+// 				padding: '3em',
+// 				color: 'black',
+// 				confirmButtonColor: '#392eff',
+// 				confirmButtonText: '확인'
+// 		 })
+
+// 	}
+
+//  }
+
+ function searchValidate(){
+
+	const query = document.getElementById("query");
+	const queryExp = /^[a-zA-Z0-9가-힣]{1,10}$/;
+
+	// 검색어 유효성 검사
+	if( !queryExp.test(query.value) || query.value == ""){	
+
+		Swal.fire({
+			title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
+				width: 600,
+				padding: '3em',
+				color: 'black',
+				confirmButtonColor: '#392eff',
+				confirmButtonText: '확인'
+		})
+
+		//alert("영어/숫자/한글 1~10글자 사이로 작성해주세요.");
+		query.value = "";
+		query.focus();
+		return false;
+	}
+
+	// 검색어가 작성된 경우
+	if(query.value.trim().length!=0){
+		return true;
+	}
+
+
+ }

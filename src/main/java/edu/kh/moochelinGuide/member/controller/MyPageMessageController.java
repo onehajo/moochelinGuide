@@ -141,8 +141,15 @@ public class MyPageMessageController extends HttpServlet {
 					session.setAttribute("message", "쪽지를 보냈습니다.");
 				}
 
-				
-				resp.sendRedirect("list");
+				// 요청주소에 따라 redirect 경로 변경
+				int no = Integer.parseInt(req.getParameter("no"));
+				if(no==-1) {
+					resp.sendRedirect(contextPath+"/member/myPage/follow?mode=1&memberNo="+memberNo);
+				}else if(no==-2) {
+					resp.sendRedirect(contextPath+"/member/myPage/follow?mode=2&memberNo="+memberNo);
+				}else {
+					resp.sendRedirect("list");
+				}
 			}
 			
 			
