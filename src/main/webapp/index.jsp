@@ -12,6 +12,14 @@
 
 <link rel="stylesheet" href="resources/css/main-style.css">
 
+<!-- 스윗얼럿 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
+    <style>
+        .swal2-title{
+            font-size: 20px;
+        }
+    </style>
+
 <script src="https://kit.fontawesome.com/e4f51ae88c.js"
 	crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +51,7 @@
 
 					
 					<!-- 상영중인 영화리스트 -->
-					<c:choose>
+					<%-- <c:choose>
 					<c:when test="${empty movieList}">
 						<div>영화리스트가 존재하지 않습니다.</div>
 					</c:when>
@@ -78,7 +86,7 @@
 						
 						</c:forEach>
 					</c:otherwise>
-					</c:choose>
+					</c:choose> --%>
 
 				</ul>
 			</section>
@@ -106,6 +114,9 @@
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 		crossorigin="anonymous"></script>
 	<script src="${contextPath}/resources/js/main.js"></script>
-
+	<script src="${contextPath}/resources/js/indexNowshowing.js"></script>
+	<script>
+		const contextPath = "${contextPath}";
+	</script>
 </body>
 </html>

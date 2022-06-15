@@ -19,6 +19,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
+<!-- 스윗얼럿 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
+    <style>
+        .swal2-title{
+            font-size: 20px;
+        }
+    </style>
+    
 </head>
 <body>
 
@@ -54,7 +62,14 @@
 			    <p class="">받는 사람 : ${messageDetail.memberName}</p>
 			    <form class="messageForm-css" action="insert" method="post" onsubmit="return sendValidate()" target="parentWindow">
 			        <textarea name="content" id="messageC" class="textarea-css"></textarea>
-			        <input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
+			        
+			        <c:if test="${empty messageDetail.targetNo}">
+			        	<input type="hidden" name="targetNo" value="${param.targetNo}">
+			        </c:if>
+			        <c:if test="${!empty messageDetail.targetNo}">
+			        	<input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
+			        </c:if>
+			        
 			        <div class="messageBtnBox">
 			        	<!--onclick="self.close();"-->
 			            <button id="sendMessageBtn" class="messagePopupBtn" onclick="self.close();">보내기</button>

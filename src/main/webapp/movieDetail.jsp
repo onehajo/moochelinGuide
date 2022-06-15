@@ -185,5 +185,6 @@
         <script src="${contextPath}/resources/js/evaluation.js"></script>
         <script src="${contextPath}/resources/js/Detail_page.js"></script>
         <script src="${contextPath}/resources/js/header_white.js"></script>
+        <script src="${contextPath}/resources/js/main.js"></script>   
 </body>
 </html>
