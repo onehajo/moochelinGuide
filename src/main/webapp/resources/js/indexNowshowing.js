@@ -21,7 +21,7 @@
 			for(let movie of list){
                 const li = document.createElement("li");
                 const a = document.createElement("a");
-                a.setAttribute("herf","#");
+                a.setAttribute("href",contextPath+'/movie/detail/select?no='+movie.movieNo);
                 
                 const divMovie = document.createElement("div");
                 divMovie.setAttribute("class","movie");

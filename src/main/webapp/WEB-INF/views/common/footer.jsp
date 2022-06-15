@@ -22,8 +22,7 @@
 <%-- session에 message 속성이 존재하는 경우 alert창으로 해당 내용을 출력 --%>
 <c:if test="${ !empty sessionScope.message }">
 	<script>
-         alert("${message}");
-         
+         //alert("${message}");      
          
          Swal.fire({
              title: '${message}',
@@ -33,10 +32,6 @@
                  confirmButtonColor: '#392eff',
                  confirmButtonText: '확인'
           })
-         
-         
-         
-         
          
          
          // EL 작성 시 scope를 지정하지 않으면

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 import edu.kh.moochelinGuide.member.model.vo.Member;
 
-@WebServlet(urlPatterns = {"/login","/search/login","/movie/login"})
+@WebServlet(urlPatterns = {"/login","/search/login","/movie/login","/movie/detail/login"})
 public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
