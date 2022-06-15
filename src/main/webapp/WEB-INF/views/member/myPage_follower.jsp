@@ -57,7 +57,9 @@
                                         <span>평가한 영화 수 : ${f.evaluationCount}</span>
                                     </div>
                                     <div class="userMessage">
-                                        <button type="button" class="userMessageBtn" >쪽지</button>
+                                        <a href="${contextPath}/member/myPage/message/detail?type=send&no=0&targetNo=${f.memberNo}">
+                                            <button type="button" class="userMessageBtn" >쪽지</button>
+                                        </a>
                                     </div>
                                     <div class="userDelete">
                                         <input type="hidden" class="memberNo" value="${f.memberNo}">

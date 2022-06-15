@@ -29,7 +29,9 @@
 	)A
 ) WHERE RNUM BETWEEN ? AND ?
 	</entry>
-	
+	<entry key="insertComment">
+		INSERT INTO COMMENT VALUES(SEQ_CNO.NEXTVAL,?,DEFAULT,?,?,DEFAULT)
+	</entry>
 	
 	
 	<!--  관리자 - 코멘트 목록 조회 -->

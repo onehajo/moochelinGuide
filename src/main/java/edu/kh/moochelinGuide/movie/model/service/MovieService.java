@@ -7,11 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import edu.kh.moochelinGuide.comment.vo.Comment;
 import edu.kh.moochelinGuide.movie.model.dao.MovieDAO;
 import edu.kh.moochelinGuide.movie.model.vo.DetailComment;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 import edu.kh.moochelinGuide.movie.model.vo.MovieDetail;
+import edu.kh.moochelinGuide.movie.model.vo.Rating;
 
 public class MovieService {
 
@@ -140,7 +141,54 @@ public class MovieService {
 		return map;
 	}
 
+	public int insertComment(Comment comment) throws Exception {
+		Connection conn = getConnection();
 
+		int result = dao.insertComment(conn,comment);
+
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+
+
+	public Map<String, Object> selectWishMovie(int memberNo) {
+		
+		
+		Connection conn = getConnection();
+		
+		// 찜한 영화 갯수, 찜한 영화 정보 조회
+		
+		MovieDetail detail = dao.selectMovieDetail(conn, memberNo);	
+		
+		List<DetailComment> selectWishMovie = dao.selectWishMovie(conn, memberNo);
+		
+		close(conn);
+
+		return null;
+	}
+
+
+
+
+	public int rating(Rating rating) throws Exception{
+		
+		Connection conn = getConnection();
+
+		int result = dao.rating(conn,rating);
+
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 
 
 	/** 영화 상세 조회 년도 순 Service
