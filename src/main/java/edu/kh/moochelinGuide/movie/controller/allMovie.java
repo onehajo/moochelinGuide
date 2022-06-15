@@ -30,18 +30,18 @@ public class allMovie extends HttpServlet{
 			String category = req.getParameter("category");
 			MovieService service = new MovieService();
 			
-			System.out.println(category);
-			System.out.println(category);
 			
 			List<Movie> allShow = null;
 			
-			System.out.println(allShow);
 			
-			if ( category.equals("new")) {
+			if ( category.equals("select")) {
 				
 				allShow = service.allShowNew();
-				System.out.println(allShow);
 				
+			}
+			if ( category.equals("new")) {
+				
+				allShow = service.allShowRelease();
 			}
 			if ( category.equals("ganada")) {
 				
@@ -55,9 +55,7 @@ public class allMovie extends HttpServlet{
 			}
 			
 			
-			
 			req.setAttribute("allShow", allShow);
-			
 			
 			
 //			new Gson().toJson(list,resp.getWriter());

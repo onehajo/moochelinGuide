@@ -66,13 +66,6 @@
 	<entry key="movieEvaluate">
 	INSERT INTO MOVIE_EVALUATE VALUES ( ?, ?, ?)
 	</entry>
-	<entry key="insertComment">
-		INSERT INTO "COMMENT" VALUES(SEQ_CNO.NEXTVAL,?,DEFAULT,?,?,DEFAULT)
-	</entry>
-	
-	<entry key="rating">
-		INSERT INTO EVALUATION VALUES(?,?,?,DEFAULT,SEQ_RNO.NEXTVAL)
-	</entry>
 	
 	<!-- 전체 영화 리스트 가나다 순 -->
 	<entry key="allShowGanada">
@@ -112,5 +105,23 @@
 		ORDER BY  STAR_RATING DESC
 	</entry>
 	
->>>>>>> fa2ee302a741e9f18a2c12b2f39f20c335ee25e7
+	<!-- 전체 영화 리스트 년도순  -->
+	<entry key="allShowRelease">
+		SELECT 
+		      MOVIE_NO,
+		      MOVIE_TITLE,
+		      POSTER_IMG,
+		      RELEASE_YEAR,
+		      COUNTRY,
+		      TICKETING, 
+		      AUDIENCE,
+		      STAR_RATING
+		FROM MOVIE
+		JOIN (SELECT MOVIE_NO, ROUND(AVG(STAR_RATING),1) STAR_RATING
+		         FROM EVALUATION
+		         WHERE EVALUATION_FL ='N'
+		         GROUP BY MOVIE_NO) USING (MOVIE_NO)
+		ORDER BY  RELEASE_YEAR DESC
+	</entry>
+	
 </properties>

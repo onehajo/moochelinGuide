@@ -69,10 +69,17 @@ public class MayPageModServlet extends HttpServlet{
 			
 			if ( mpReq.getFilesystemName("imgFile") != null ) {
 				profileImage = folderPath + mpReq.getFilesystemName("imgFile");
-			} 
+			} else {
+				
+				profileImage = loginMember.getProfileImage();
+				
+			}
 			
 			if ( mpReq.getFilesystemName("backgroundFile") != null ) {
 				bgImage = folderPath + mpReq.getFilesystemName("backgroundFile");
+			} else {
+				
+				bgImage = loginMember.getProfileBackImage();
 			}
 
 			
@@ -95,6 +102,9 @@ public class MayPageModServlet extends HttpServlet{
 			int result = service.updateMember(memberMod, memberNo, imgDelete, bgDelete);
 			
 			if( result > 0 ) {
+				
+				
+				System.out.println(loginMember.getProfileImage());
 				
 				session.setAttribute("message", "회원 정보 수정완료!");
 				

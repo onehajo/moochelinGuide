@@ -104,7 +104,7 @@
                     <div style="display: inline-block;">
                         <img style="width: 16px;" src="${contextPath}/resources/images/write_icon.png"><button id="btn-modal">코멘트</button>
                     </div>
-                    <div id="inputst"tyep="text" style="display:block; border:none;"></div>
+                    <input id="inputst"tyep="number" style="display:block; border:none;" value="">
                 </div>
             </div>
             <div class="info">
