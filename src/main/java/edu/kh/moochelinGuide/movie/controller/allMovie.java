@@ -25,16 +25,46 @@ public class allMovie extends HttpServlet{
 		try {
 			
 //			파일 [/WEB-INF/views/member/myPage-changePw.jsp]을(를) 찾을 수 없습니다.
-			String path = "/WEB-INF/views/movie/allMovie.jsp";
-			req.getRequestDispatcher(path).forward(req, resp);
 			
-			
+			// 파라미터 얻어오기 
+			String category = req.getParameter("category");
 			MovieService service = new MovieService();
 			
-			List<Movie> list = service.allShow();
+			System.out.println(category);
+			System.out.println(category);
+			
+			List<Movie> allShow = null;
+			
+			System.out.println(allShow);
+			
+			if ( category.equals("new")) {
+				
+				allShow = service.allShowNew();
+				System.out.println(allShow);
+				
+			}
+			if ( category.equals("ganada")) {
+				
+				allShow = service.allShowGanada();
+				
+			}
+			if ( category.equals("popular")) {
+				
+				allShow = service.allShowPopular();
+				
+			}
+			
+			
+			
+			req.setAttribute("allShow", allShow);
+			
+			
 			
 //			new Gson().toJson(list,resp.getWriter());
 
+			String path = "/WEB-INF/views/movie/allMovie.jsp";
+			req.getRequestDispatcher(path).forward(req, resp);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

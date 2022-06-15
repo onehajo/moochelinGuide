@@ -1,5 +1,5 @@
 const deleteBtn = document.getElementById("followBtn");
-const followingCount2 = document.getElementById("followingCount");
+const followingCount2 = document.getElementById("followingCount2");
 
 // 클릭여부 확인하는 생성
 let checkClick = false;
@@ -21,9 +21,10 @@ deleteBtn.addEventListener("mouseup",function(){
                 if(result>0){
                     console.log("팔로우 성공");
                     deleteBtn.innerText = "팔로우 취소";
-
-                    // followerCount++;
-                    // followingCount2.innerText = followerCount;
+                    
+                    console.log(followerCount);
+                    followerCount++;
+                    followingCount2.innerText = followerCount;
 
                 }else{
                     console.log("팔로우 실패");
@@ -50,8 +51,8 @@ deleteBtn.addEventListener("mouseup",function(){
                 if(result>0){
                     console.log("언팔로우 성공");
                     deleteBtn.innerText = "팔로우";
-                    // followerCount--;
-                    // followingCount2.innerText =followerCount;
+                    followerCount--;
+                    followingCount2.innerText =followerCount;
 
                 }else{
                     console.log("언팔로우 실패");

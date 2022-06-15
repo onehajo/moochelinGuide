@@ -28,6 +28,9 @@
 	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
 	rel="stylesheet">
 
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
+
 	<style>
         .swal2-title{
             font-size: 20px;
@@ -55,7 +58,7 @@
 				onsubmit="return changePwValidate()">
 
 				<div class="myPage-row">
-					<label>현재 비밀번호</label> <input type="password" name="currentPw"
+					<label>현재 비밀번호</label> <input type="password" name="currentPw" id="currentPw"
 						placeholder="현재 비밀번호를 입력해주세요" maxlength="15">
 				</div>
 				<span class="myPage PwMessage" id="pwMessage">* 영어, 숫자,
@@ -63,14 +66,14 @@
 
 
 				<div class="myPage-row">
-					<label>새 비밀번호</label> <input type="password" name="newPw"
+					<label>새 비밀번호</label> <input type="password" name="newPw" id="newPw"
 						placeholder="새 비밀번호를 입력해주세요." maxlength="15">
 				</div>
 				<span class="myPage PwMessage" id="newPwMessage">* 영어, 숫자,
 					특수문자(!,@,#,-,_) 6~15글자로 작성해주세요.</span>
 
 				<div class="myPage-row">
-					<label>새 비밀번호 확인</label> <input type="password" name="newPwConfirm"
+					<label>새 비밀번호 확인</label> <input type="password" name="newPwConfirm" id="newPwConfirm"
 						placeholder="새 비밀번호를 확인 해주세요." maxlength="15">
 				</div>
 				<span class="myPage PwMessage" id="newPwMessageConfirm">* 영어,
@@ -92,12 +95,6 @@
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-	<script>
-        // 최상위주소
-        const contextPath = "${contextPath}";
-        // 로그인한 회원번호
-        const loginMemberNo = "${loginMember.memberNo}";
-    </script>
 
 	<script src="${contextPath}/resources/js/myPage-changePw.js"></script>
 

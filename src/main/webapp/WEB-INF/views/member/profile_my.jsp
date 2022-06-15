@@ -49,6 +49,8 @@
     <main> 
         <div class="container">
             <section class="page-start">
+
+                <!-- 배경이미지 -->
                 <div class="my-background " style=" background-size: cover; background-image : url(${contextPath}${loginMember.profileBackImage})">
 
                 </div>
@@ -62,14 +64,14 @@
 						    </c:if>
 						
                             <c:if test="${!empty map.member.profileImage}">
-                                <img src="${contextPath}${map.member.profileImage}" style="width: 110px; height: 110px;">
+                                <img src="${contextPath}${loginMember.profileImage}" style="width: 110px; height: 110px;">
                             </c:if>
 				
                             <!-- <div class="fa-solid fa-user"></div> -->
                         </div>
                         <div>
                             <div class="profile-name">${map.member.memberName}</div>
-                            <div class="follow"><span><a href="#">팔로워</a> : <span id="">${map.followerCount}</span> </span><span>   |   </span><span><a href="#">팔로잉</a>  : <span id="followingCount2">${map.followingCount}</span></span></div>
+                            <div class="follow"><span><a href="#">팔로워</a> : <span id="followingCount2">${map.followerCount}</span> </span><span>   |   </span><span><a href="#">팔로잉</a>  : <span id="">${map.followingCount}</span></span></div>
                         </div>
 
                         <c:if test="${ map.member.memberNo != loginMember.memberNo}">
@@ -107,7 +109,7 @@
                         
                         <div class="movie-list-all">
 
-                            <c:choose>
+                                <c:choose>
 
                                 <c:when test="${ empty evalMovie}">
 
@@ -135,7 +137,7 @@
                                                     </div>
                                                 </a>
                                             </li>
-                                        </c:forEach>    
+                                    </c:forEach>    
                                     </ul>
                                 </c:otherwise>  
                                   

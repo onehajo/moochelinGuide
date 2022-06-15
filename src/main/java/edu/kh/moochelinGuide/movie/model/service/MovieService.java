@@ -27,11 +27,19 @@ public class MovieService {
 	
 	
 	
-	public List<Movie> allShow() throws Exception {
+	/** 전체 영화 조회 최신순 Service 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Movie> allShowNew() throws Exception {
+		
 		Connection conn = getConnection();
-		List<Movie> list = dao.allShow(conn);
+		
+		List<Movie> allShow = dao.allShowNew(conn);
+		
 		close(conn);
-		return list;
+		
+		return allShow;
 	}
 
 
@@ -75,6 +83,40 @@ public class MovieService {
 		
 		
 		return result;
+	}
+
+
+
+
+	/** 전체 영화 조회 가나다 순  Service 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Movie> allShowGanada() throws Exception {
+		Connection conn = getConnection();
+		
+		List<Movie> allShow = dao.allShowGanada(conn);
+		
+		close(conn);
+		
+		return allShow;
+	}
+
+
+
+
+	/** 전체 영화 조회 인기 순  Service 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Movie> allShowPopular() throws Exception {
+		Connection conn = getConnection();
+		
+		List<Movie> allShow = dao.allShowPopular(conn);
+		
+		close(conn);
+		
+		return allShow;
 	}
 	
 	
