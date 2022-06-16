@@ -7,33 +7,54 @@
 const messageC = document.getElementById("messageCsend");
 const sendMessageBtn = document.getElementById("sendMessageBtn");
 
-if(sendMessageBtn!=null){
+// if(sendMessageBtn!=null){
 	
-	sendMessageBtn.addEventListener("click",function(e){
+// 	sendMessageBtn.addEventListener("click",function(){
 
-		// textarea 비어있는데 왜 else로 넘어가서 close됨?????
-		if(messageC.innerText==""){
-			e.preventDefault();
+// 		// textarea 비어있는데 왜 else로 넘어가서 close됨?????
+// 		if(messageC.innerText==""){
+// 			alert("메시지 작성 후 보내기 버튼을 눌러주세요.");
+// 			// Swal.fire({
+//             //     title: '메시지 작성 후 보내기 버튼을 눌러주세요 !',
+//             //     width: 600,
+//             //     padding: '3em',
+//             //     color: 'black',
+//             //     confirmButtonColor: '#392eff',
+//             //     confirmButtonText: '확인'
+//             //   });
 
-			Swal.fire({
-                title: '메시지 작성 후 보내기 버튼을 눌러주세요 !',
-                width: 600,
-                padding: '3em',
-                color: 'black',
-                confirmButtonColor: '#392eff',
-                confirmButtonText: '확인'
-              });
+// 	        messageC.focus();
+// 			e.preventDefault();
 
-	        messageC.focus();
-
-	    }else{
+// 	    }else{
 		
+// 			document.sendForm.submit();
+// 			self.close();
+		
+// 		}
+	
+// 	})
+// }
+
+function sendForm(){
+	if(messageC.value.trim().length==0){
+		
+		Swal.fire({
+			title: '메시지 작성 후 보내기 버튼을 눌러주세요 !',
+			width: 600,
+			padding: '3em',
+			color: 'black',
+			confirmButtonColor: '#392eff',
+			confirmButtonText: '확인'
+		});
+
+		messageC.focus();
+		return false;
+	}else{
 		self.close();
-		
-		}
-	
-	})
-}
+		return true;
+	}
+};
 
 
 
