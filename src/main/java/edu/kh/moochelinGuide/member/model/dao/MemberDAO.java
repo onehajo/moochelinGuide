@@ -1503,6 +1503,34 @@ public class MemberDAO {
 		}
 		return indexinfo;
 	}
+	
+	/** 총 평가 개수 계산 DAO
+	 * @param conn
+	 * @return result
+	 * @throws Exception
+	 */
+	public int evalTotal(Connection conn) throws Exception{
+		
+		int result = -1;
+		
+		try {
+			String sql = prop.getProperty("evalTotal");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 
 

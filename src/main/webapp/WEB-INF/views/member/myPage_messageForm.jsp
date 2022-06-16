@@ -96,6 +96,7 @@
     </script>
 	
 	<script src="${contextPath}/resources/js/myPage_message2.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 </html>

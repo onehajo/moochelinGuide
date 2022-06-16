@@ -164,5 +164,6 @@
 	<script src="${contextPath}/resources/js/main.js"></script>   
 
 	<script src="${contextPath}/resources/js/myPage-mod.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 </body>
 </html>

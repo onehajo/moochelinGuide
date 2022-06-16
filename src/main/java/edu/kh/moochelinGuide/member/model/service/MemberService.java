@@ -662,7 +662,20 @@ public class MemberService {
 	}
 
 	
-	
+	/** 총 평가 개수 계산 Service
+	 * @return result
+	 * @throws Exception
+	 */
+	public int evalTotal() throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.evalTotal(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	
