@@ -8,7 +8,7 @@ function sendForm(){
         
         Swal.fire({
             title: '메시지 작성 후 보내기 버튼을 눌러주세요 !',
-            width: 370,
+            width: 350,
             padding: '3em',
             color: 'black',
             confirmButtonColor: '#392eff',
@@ -39,7 +39,9 @@ for(let i=0; i<count2; i++){
 		Swal.fire({
 			title: '받은 쪽지를 삭제하시겠습니까?',
 			text: "확인 버튼을 클릭하면 쪽지가 삭제됩니다.",
-			width: 370,
+			width: 340,
+			heght:340,
+			padding:10,
 			icon: 'warning',
 			iconColor: '#392eff',
 			showCancelButton: true,
