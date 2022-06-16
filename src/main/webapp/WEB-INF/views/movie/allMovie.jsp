@@ -17,19 +17,9 @@
 	    <link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-	
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
-		
-		<!-- google 로그인 관련 -->
-		<meta name="google-signin-scope" content="profile email">
-    	<meta name="google-signin-client_id" content="263322996104-ijiaiibe7ha6d2g8c7vm0ktdhqlkiq7t.apps.googleusercontent.com">
-    	<!-- 이거 이제 인증에 사용안한다함(?) 아래껄로 대체 가능하다고함. -->
-    	<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-    	
-    	<!-- 클라이언트 라이브러리 -->
-    	<script src="https://accounts.google.com/gsi/client" async defer></script>
-    
+	    
 	</head>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
 	<body>
 	        <jsp:include page="/WEB-INF/views/common/header.jsp" />
 	
