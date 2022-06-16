@@ -15,6 +15,11 @@ a:visited, a:link {
     
     
 }
+
+a{
+	cursor:pointer;
+}
+
 /* svg */
 .b{
     filter: drop-shadow(1px 1px 3px  rgba(0, 0, 0,0.3));
@@ -145,6 +150,14 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     background-color: #555765;
 }
 
+/* 비밀번호 보기 아이콘 설정 */
+.form-css > i{
+    position: absolute;
+    left: 84%;
+    top: 364px;
+    color: #00ffbe;
+}
+
 /* 스크롤시 헤더 색상 변경 */
 
 .down {
@@ -211,4 +224,20 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
 
 #search-btn{
     z-index: 10px;
+}
+
+
+
+
+
+
+/* 스윗얼럿 */
+.swal2-title { 
+font-size:18px !important;
+font-weight: 500 !important; 
+}
+
+.swal2-container.swal2-center>.swal2-popup {
+padding: 2em;
+display: grid;
 }
