@@ -63,25 +63,44 @@ public class MayPageModServlet extends HttpServlet{
 			
 //	이슈1 :	이미지를 프로필이미지가아니라 배경만 변경했을때, 오류발생 
 
-			
-			int imgDelete = Integer.parseInt(mpReq.getParameter("imgDelete"));
-			int bgDelete = Integer.parseInt(mpReq.getParameter("bgDelete"));
-			
-			if ( mpReq.getFilesystemName("imgFile") != null ) {
-				profileImage = folderPath + mpReq.getFilesystemName("imgFile");
-			} else {
+			// 이미지 변경 / 삭제여부
+			int imgDelete = Integer.parseInt(mpReq.getParameter("imgDelete")); // 0이면 변경 1이면 삭제
+			int bgDelete = Integer.parseInt(mpReq.getParameter("bgDelete")); // 0이면 변경 1이면 삭제
+					
+			// 이미지 변경시
+			if(imgDelete==0) {
 				
-				profileImage = loginMember.getProfileImage();
+				if ( mpReq.getFilesystemName("imgFile") != null ) {
+					profileImage = folderPath + mpReq.getFilesystemName("imgFile");
+				} else {	
+					profileImage = loginMember.getProfileImage();
+				}
+								
+			}else { // 이미지 삭제시
+				
+				if ( mpReq.getFilesystemName("imgFile") == null ) {
+					profileImage = null;
+				}
+			}
+			
+			// 배경 변경시
+			if(bgDelete==0) {
+				
+				if ( mpReq.getFilesystemName("backgroundFile") != null ) {
+					bgImage = folderPath + mpReq.getFilesystemName("backgroundFile");
+				} else {
+					
+					bgImage = loginMember.getProfileBackImage();
+				}
+				
+			}else { // 배경 삭제시
+				
+				if ( mpReq.getFilesystemName("backgroundFile") == null ) {
+					bgImage = null;
+				}
 				
 			}
 			
-			if ( mpReq.getFilesystemName("backgroundFile") != null ) {
-				bgImage = folderPath + mpReq.getFilesystemName("backgroundFile");
-			} else {
-				
-				bgImage = loginMember.getProfileBackImage();
-			}
-
 			
 //          ----- 유저정보  -----		
 			String memberName = mpReq.getParameter("memberName");
