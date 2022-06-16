@@ -1,9 +1,6 @@
 package edu.kh.moochelinGuide.board.contoller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,26 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.kh.moochelinGuide.board.model.service.BoardService;
-import edu.kh.moochelinGuide.board.model.vo.Board;
 
-@WebServlet("/member/myPage/notice")
-public class NoticeServlet extends HttpServlet{
+@WebServlet("/admin/notice/noticeDelete")
+public class adminDNServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/notice.jsp");
-			int boardCd = 97;
 			BoardService service = new BoardService();
-			List<Board> list = new ArrayList<Board>();
-			Map<String, Object> map = service.listNotice(boardCd);
+			int boardNo = Integer.parseInt(req.getParameter("no"));
 			
-			req.setAttribute("noticeList", map.get("noticeList"));
-			dispatcher.forward(req, resp);
+			int result = 0;
+			result = service.noticeDelete(boardNo);
 			
+			resp.sendRedirect(req.getHeader("referer"));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 }

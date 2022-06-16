@@ -15,7 +15,7 @@
 				<li class="showing"><a href="${contextPath}/adminIndex">영화관리</a></li>
 				<li class="all"><a href="${contextPath}/admin/comment/search">리뷰관리</a></li>
 				<li class="all"><a href="${contextPath}/admin/inquiryList?array=1">문의관리</a></li>
-				<li class="all"><a href="">공지관리</a></li>
+				<li class="all"><a href="${contextPath}/admin/notice">공지관리</a></li>
 
 				<li class="login" style="margin-right: 0; margin-left: auto;"><a href="${contextPath}/member/logout">관리자 로그아웃</a></li>
             		

@@ -1,0 +1,106 @@
+.notice {
+	width: 1200px;
+	margin: auto;
+}
+
+.notice2 {
+	width: 1150px;
+	margin: auto;
+	position: relative;
+}
+
+.notice #noticeName {
+	font-size: 17px;
+	height: 22px;
+	font-weight: bold;
+}
+
+.notice #date {
+	font-size: 12px;
+	height: 19px;
+	margin: 0 0 10px 0;
+	color: rgba(140, 140, 140, 132);
+	font-weight: bold;
+}
+
+.notice .carrotdown {
+	font-weight: bold;
+	color: grey;
+	font-size: 12px;
+	position: absolute;
+	right: 0;
+}
+
+.notice #imageArea {
+	width: 1110px;
+	height: 325px;
+}
+
+#noticeImage {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.notice #noticeContent {
+	width: 1110px;
+	white-space: pre-wrap;
+}
+
+.notice #registration {
+	width: 350px;
+	height: 40px;
+	margin: 5px;
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #392eff;
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.notice #registration:hover {
+	background-color: #00ffbe;
+	transition-duration: 1s;
+}
+
+.notice2>#date2 {
+	font-size: 12px;
+	height: 19px;
+	margin: 0;
+	color: rgba(140, 140, 140, 132);
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.titleArea{
+	cursor: pointer;
+}
+
+.deleteArea{
+	position: absolute;
+	right: 24px;
+}
+
+.modifyBtn{
+	border: none;
+	background-color: cornflowerblue;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 1px 6px;
+}
+
+.modifyArea{
+	position: absolute;
+	right: 76px;
+}
+
+.modifyBtn{
+	border: none;
+	background-color: cornflowerblue;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 1px 6px;
+}
