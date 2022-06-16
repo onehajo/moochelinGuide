@@ -33,7 +33,6 @@ public class InquiryCServlet extends HttpServlet {
 		int boardCd = 0;
 		board = service.boardContent(boardNo,boardCd);
 		req.setAttribute("board", board);
-		System.out.println(board.getImageList());
 		
 		ReplyService service2 = new ReplyService();
 		Reply reply = new Reply();

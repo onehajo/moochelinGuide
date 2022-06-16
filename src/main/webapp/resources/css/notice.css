@@ -18,12 +18,12 @@
 .notice #date {
 	font-size: 12px;
 	height: 19px;
-	margin: 0;
+	margin: 0 0 10px 0;
 	color: rgba(140, 140, 140, 132);
 	font-weight: bold;
 }
 
-.notice #carrotdown {
+.notice .carrotdown {
 	font-weight: bold;
 	color: grey;
 	font-size: 12px;
@@ -73,6 +73,6 @@
 	margin-bottom: 20px;
 }
 
-#carrotdown {
+.titleArea{
 	cursor: pointer;
 }

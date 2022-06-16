@@ -26,6 +26,7 @@
     <!-- 마이페이지 CSS -->
     <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
 
     <!-- 기본헤더 투명헤더에 기본헤더의 값이 있기때문에 활성화X-->
     <!-- <link  id="cssTest1" rel="stylesheet" href="../ksj/css/main-style.css"> -->

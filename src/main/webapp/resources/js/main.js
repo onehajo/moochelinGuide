@@ -551,11 +551,8 @@ function selectAll(selectAll){
 
 		Swal.fire({
 			title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
-				width: 600,
-				padding: '3em',
-				color: 'black',
-				confirmButtonColor: '#392eff',
-				confirmButtonText: '확인'
+			confirmButtonColor: '#392eff',
+			confirmButtonText: '확인'
 		})
 
 		//alert("영어/숫자/한글 1~10글자 사이로 작성해주세요.");

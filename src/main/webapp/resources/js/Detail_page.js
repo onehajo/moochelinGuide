@@ -60,14 +60,28 @@ cmsave.addEventListener("click",function(){ // 저장 버튼 클릭 이벤트
 
     // 로그인 여부 확인
     if(loginMemberNo == ""){
-        alert("로그인 후 이용해주세요.");
+        Swal.fire({
+            title: '로그인 후 이용해주세요.',
+            width: 600,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: '#392eff',
+            confirmButtonText: '확인'
+          });
         return;
     }
 
     // 내용 작성 여부 확인
-    if(commentWrite.value.trim().lengh == 0 ){ // 미작성인 경우
-        alert("코멘트를 작성한 후 저장해주세요!")
+    if(commentWrite.value.trim().length == 0 ){ // 미작성인 경우
 
+        Swal.fire({
+            title: '코멘트를 작성한 후 저장해주세요!',
+            width: 600,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: '#392eff',
+            confirmButtonText: '확인'
+          });
         commentWrite.value="";
         commentWrite.focus();
         return;
@@ -82,11 +96,28 @@ cmsave.addEventListener("click",function(){ // 저장 버튼 클릭 이벤트
         success : function(result){
             
             if(result>0){
-                alert("코멘트가 등록되었습니다.");
+
+                Swal.fire({
+                    title: '코멘트가 등록되었습니다.',
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: '#392eff',
+                    confirmButtonText: '확인'
+                  });
 
                 commentWrite.value="";
             }else{
-                alert("코멘트 등록에 실패했습니다.");
+
+                Swal.fire({
+                    title: '코멘트 등록에 실패했습니다.',
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: '#392eff',
+                    confirmButtonText: '확인'
+                  });
+    
             }
 
 
@@ -273,7 +304,16 @@ star50.addEventListener("mouseover",function(){
 function addRating(){
     // 로그인 여부 확인
     if(loginMemberNo == ""){
-        alert("로그인 후 이용해주세요.");
+
+        Swal.fire({
+            title: '로그인 후 이용해주세요.',
+            width: 600,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: '#392eff',
+            confirmButtonText: '확인'
+        });
+        
         return;
     }
 
@@ -286,11 +326,26 @@ function addRating(){
         success : function(result){
             
             if(result>0){
-                alert("별점이 등록되었습니다.");
+
+                Swal.fire({
+                    title: '별점이 등록되었습니다.',
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: '#392eff',
+                    confirmButtonText: '확인'
+                  });
 
                 commentWrite.value="";
             }else{
-                alert("별점 등록에 실패했습니다.");
+                Swal.fire({
+                    title: '별점 등록에 실패했습니다.',
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: '#392eff',
+                    confirmButtonText: '확인'
+              });
             }
 
 
@@ -318,7 +373,14 @@ like.addEventListener("click",function(){
 function addlike(){
     // 로그인 여부 확인
     if(loginMemberNo == ""){
-        alert("로그인 후 이용해주세요.");
+        Swal.fire({
+            title: '로그인 후 이용해주세요.',
+            width: 600,
+            padding: '3em',
+            color: 'black',
+            confirmButtonColor: '#392eff',
+            confirmButtonText: '확인'
+          });
         return;
     }
 
@@ -330,11 +392,25 @@ function addlike(){
         success : function(result){
             
             if(result>0){
-                alert("찜 목록에 등록되었습니다.");
+                Swal.fire({
+                    title: '찜 목록에 등록되었습니다.',
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: '#392eff',
+                    confirmButtonText: '확인'
+                  });
 
                 commentWrite.value="";
             }else{
-                alert("찜 목록 등록을 실패했습니다.");
+                Swal.fire({
+                    title: '찜 목록 등록을 실패했습니다.',
+                    width: 600,
+                    padding: '3em',
+                    color: 'black',
+                    confirmButtonColor: '#392eff',
+                    confirmButtonText: '확인'
+                  });
             }
 
 

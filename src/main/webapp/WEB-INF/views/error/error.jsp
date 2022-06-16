@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/error-style.css">
     <!-- 헤더푸터 CSS 연결-->
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
 
     <script src="https://kit.fontawesome.com/1163d62f29.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>

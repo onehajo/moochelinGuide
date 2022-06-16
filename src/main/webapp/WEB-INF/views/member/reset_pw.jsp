@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="resources/css/main-style.css">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
+
     <script src="https://kit.fontawesome.com/1163d62f29.js" crossorigin="anonymous"></script><!-- 검색 결과 없는 경우 표시할 아이콘-->
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">

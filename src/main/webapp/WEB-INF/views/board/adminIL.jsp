@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>adminInquiryList</title>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
     <link rel="stylesheet" href="${contextPath}/resources/css/adminIndex-style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/adminIL.css">
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
