@@ -138,13 +138,11 @@ public class MayPageModServlet extends HttpServlet{
 				
 				session.setAttribute("message", "회원 정보 수정실패..");
 				
-
-				
-				
 			}
 			
 			// 리다이렉트
 			resp.sendRedirect("mod");
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

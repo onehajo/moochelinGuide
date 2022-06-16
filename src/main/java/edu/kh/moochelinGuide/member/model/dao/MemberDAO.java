@@ -1534,34 +1534,38 @@ public class MemberDAO {
 
 	
 	
-//	/** 팔로잉 유/무
-//	 * @param conn
-//	 * @param targetNo
-//	 * @return result
-//	 */
-//	public String followingYN(Connection conn, int targetNo) {
-//		
-//		String result = null;
-//		
-//
-//		try {
-//			String sql = prop.getProperty("evalTotal");
-//			
-//			stmt = conn.createStatement();
-//			
-//			rs = stmt.executeQuery(sql);
-//			
-//			if(rs.next()) {
-//				result = rs.getInt(1);
-//			}
-//			
-//		}finally {
-//			close(rs);
-//			close(pstmt);
-//		}
-//		
-//		return result;
-//	}
+	/** 팔로잉 유/무
+	 * @param conn
+	 * @param targetNo
+	 * @param memberNo 
+	 * @return result
+	 */
+	public int followingYN(Connection conn, int targetNo, int memberNo) throws Exception {
+		
+		int result = 0;
+		
+
+		try {
+			String sql = prop.getProperty("followingYN");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, targetNo);
+			
+			
+			rs = pstmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				result = 1;
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 
 

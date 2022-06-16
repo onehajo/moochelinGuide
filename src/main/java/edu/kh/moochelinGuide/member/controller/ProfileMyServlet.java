@@ -38,6 +38,7 @@ public class ProfileMyServlet extends HttpServlet{
 				
 				memberNo = targetNo;
 				
+				
 			}
 			
 			
@@ -48,7 +49,6 @@ public class ProfileMyServlet extends HttpServlet{
 			
 			// req에 map 세팅 
 			req.setAttribute("map", map);
-			
 			
 			
 			
