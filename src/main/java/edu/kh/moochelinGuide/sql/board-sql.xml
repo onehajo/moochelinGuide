@@ -5,7 +5,7 @@
 	
 	<!-- 문의 등록 -->
 	<entry key="inquiryRegist">
-		INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL,?,?,DEFAULT,SYSDATE,DEFAULT,DEFAULT,?,99)
+		INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL,?,?,DEFAULT,SYSDATE,DEFAULT,DEFAULT,?,?)
 	</entry>
 	
 	<!-- 문의 리스트 조회 -->

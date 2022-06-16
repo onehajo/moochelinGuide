@@ -48,21 +48,22 @@ public class InquiryRServlet extends HttpServlet {
 		String content = mpReq.getParameter("explain");
 		
 		String title = null;
+		int boardCode = 99;
 		if(content.length() <= 15) title = content;
 		else {
 			title = content.substring(0, 15) + "...";
 		}
 		
 		Enumeration<String> files = mpReq.getFileNames();
-		List<BoardImage> imageList = new ArrayList<BoardImage>();
+		BoardImage image = new BoardImage();
 		while(files.hasMoreElements()) {
 			String name = files.nextElement();
 			String rename = mpReq.getFilesystemName(name);
 			String original = mpReq.getOriginalFileName(name);
 			if(rename!=null) {
-				BoardImage image = new BoardImage();
-		
-				imageList.add(image);
+				image.setImageOriginal(original);
+				image.setImageReName(folderPath+rename);
+				image.setImageLevel(Integer.parseInt(name));
 			}
 		}
 		
@@ -71,9 +72,10 @@ public class InquiryRServlet extends HttpServlet {
 		board.setBoardNo(member.getMemberNo());
 		board.setContent(content);
 		board.setBoardTit(title);
+		board.setBoardCode(boardCode);
 		
 		BoardService service = new BoardService();
-		int result = service.boardRegist(board,imageList);
+		int result = service.boardRegist(board,image);
 		
 		resp.getWriter().print(result);
 		
