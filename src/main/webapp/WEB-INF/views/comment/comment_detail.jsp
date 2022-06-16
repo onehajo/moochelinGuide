@@ -60,7 +60,7 @@
 						
 						<div class="contaner">
 							<div class="comment-info">
-								<div class="comment-proflie"><a href="#"><img src="css/image/user.png" id="member-profile"></a></div>
+								<div class="comment-proflie"></div>
 								<div class="comment-nickname">${comment.memberNickname}
 								<div class="comment-row">${comment.commentDate}</div>
 								</div>
@@ -99,7 +99,7 @@
 					</c:forEach>
 					
 					
-					<li><a href="${url}{patination.nextPage}">&gt;</a></li>
+					<li><a href="${url}${patination.nextPage}">&gt;</a></li>
 					<li><a href="${url}${pagination.maxPage}">&gt;&gt;</a></li>
 
 
