@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(filterName = "loginFilter",
-			urlPatterns = {"/member/*"} )
+			urlPatterns = {"/member/*","/adminIndex/*"} )
 public class LoginFilter extends HttpFilter implements Filter {
        
 	

@@ -15,7 +15,7 @@ import edu.kh.moochelinGuide.movie.model.service.MovieService;
 import edu.kh.moochelinGuide.movie.model.vo.Movie;
 
 
-@WebServlet("/movie/nowShowing")
+@WebServlet("")
 public class NowShowingServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,11 +26,13 @@ public class NowShowingServlet extends HttpServlet {
 			List<Movie> list = service.nowShowing();
 			req.setAttribute("movieList", list);
 			
-			new Gson().toJson(list,resp.getWriter());
+			//new Gson().toJson(list,resp.getWriter());
 			//resp.sendRedirect("");
 			
-			//String path = "/index.jsp";
-			//req.getRequestDispatcher(path).forward(req, resp);
+			String path = "/index.jsp";
+			req.getRequestDispatcher(path).forward(req, resp);
+			
+			//resp.sendRedirect(req.getContextPath());
 
 		}catch(Exception e) {
 			e.printStackTrace();
