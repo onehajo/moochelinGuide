@@ -27,7 +27,7 @@
             <section class="notice2">
                 
                 <div class="titleArea"><span id="noticeName">${notice.boardTit}</span>
-                    <span class="modifyArea"><a href="notice/noticeRegist?type=modify" class="modifyBtn" style="color: white;">수정</a></span>
+                    <span class="modifyArea"><a href="notice/noticeRegist?type=modify&no=${notice.boardNo}" class="modifyBtn" style="color: white;">수정</a></span>
                     <span class="deleteArea"><a href="notice/noticeDelete?no=${notice.boardNo}" class="deleteBtn" style="color: white;">삭제</a> </span>
                     <span class="carrotdown">&#8744;</span>
                 <p id="date">${notice.createDate}</p></div>

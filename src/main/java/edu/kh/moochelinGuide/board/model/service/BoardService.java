@@ -156,5 +156,52 @@ public class BoardService {
 		
 		return 0;
 	}
+	
+	/** 공지사항 수정용 공지 리스트 Service
+	 * 
+	 * @param boardNo
+	 * @return list
+	 * @throws Exception
+	 */
+	public Board noticeContent(int boardNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		Board list = new Board();
+		list = dao.noticeContent(conn,boardNo);
+		
+		close(conn);
+		return list;
+	}
+
+	/** 공지사항 수정 Service
+	 * 
+	 * @param board
+	 * @param image
+	 * @return result
+	 */
+	public int noticeUpdate(Board board, BoardImage image) throws Exception {
+		int result = 0;
+		
+		Connection conn = getConnection();
+		
+		result = dao.noticeUpdate(conn, board);
+		
+		if(image.getImageSt()==1) {
+			result = dao.deleteImage(conn,board);
+			System.out.println("이미지1");
+		}
+		
+		if(image.getImageSt()==2) {
+				image.setBoardNo(board.getBoardNo());
+				result = dao.updateBoardImage(conn,image);
+				System.out.println("이미지2");
+		}
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 
 }

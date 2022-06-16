@@ -110,5 +110,31 @@
 	<!-- 공지 삭제 -->
 	<entry key="noticeDelete">
 		UPDATE BOARD SET BOARD_ST = 'Y' WHERE BOARD_NO =?
-	</entry>	
+	</entry>
+	
+	<!-- 공지 수정용 공지 내용 -->
+	<entry key="noticeContent">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CT ,TO_CHAR(SYSDATE,'""YYYY"년 "MM"월 "DD"일"') AS "CREATE_DT", IMG_NO, IMG_RENAME 
+		FROM BOARD
+		LEFT JOIN BOARD_IMG USING(BOARD_NO)
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 공지사항 수정 -->
+	<entry key="noticeUpdate">
+		UPDATE BOARD SET BOARD_TITLE = ?,BOARD_CT = ?,CREATE_DT = SYSDATE
+		WHERE BOARD_NO = ?
+	</entry>
+	
+	<!-- 공지 이미지 삭제 -->
+	<entry key="deleteImage">
+		DELETE FROM BOARD_IMG
+		WHERE BOARD_NO=?
+	</entry>
+	
+	<!-- 공지 이미지 수정 -->
+	<entry key="updateBoardImage">
+		UPDATE BOARD_IMG SET IMG_RENAME=?,IMG_ORIGINAL=?
+		WHERE BOARD_NO =?
+	</entry>
 </properties>

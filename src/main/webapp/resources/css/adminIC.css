@@ -110,6 +110,7 @@
 
 .imgArea{
     display: flex;
+	border-bottom: 1px solid rgb(190, 190, 190);
 }
 
 .img{
@@ -117,7 +118,6 @@
     height: 230px;
     font-size: 40px;
     padding: 5px;
-	border: 1px solid rgb(116, 116, 123);
     margin: 5px 5px 5px 5px;
     border-radius: 5px;
     background-color: #fff;

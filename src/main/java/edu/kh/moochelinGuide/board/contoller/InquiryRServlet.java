@@ -42,7 +42,6 @@ public class InquiryRServlet extends HttpServlet {
 		String filePath = root + folderPath;
 		String encoding = "UTF-8";
 		MultipartRequest mpReq = new MultipartRequest(req, filePath, maxSize, encoding, new MyRenamePolicy());
-		System.out.println(filePath);
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		String content = mpReq.getParameter("explain");
@@ -69,7 +68,7 @@ public class InquiryRServlet extends HttpServlet {
 		
 		
 		Board board = new Board();
-		board.setBoardNo(member.getMemberNo());
+		board.setMemberNo(member.getMemberNo());
 		board.setContent(content);
 		board.setBoardTit(title);
 		board.setBoardCode(boardCode);

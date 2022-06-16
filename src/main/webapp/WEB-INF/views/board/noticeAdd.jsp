@@ -23,25 +23,36 @@
     
     <main>
         <div class="notice">
+            <c:if test="${empty modify.boardTit}">
+                <input type="hidden" id="modify" value="1">
+            <h2>공지사항 추가</h2>
+            </c:if>
+            <c:set var="i" value="1"/>
+            <c:if test="${!empty modify.boardTit}">
+                <input type="hidden" id="modify" value="0">
             <h2>공지사항 수정</h2>
+            </c:if>
             <div class="notice2">
                 <form action="noticeRegist" enctype="multipart/form-data"
                 method="POST" id="registBtn" accept="image/*"
                 onsubmit="return registValidate()">
-                <input type="text" class="noticebox" name="title" placeholder="제목을 입력해주세요"><br>
-                <input id="imageFile" type="file" name="0" accept="image/*"><label for="imageFile"><p id="imageFile2">이미지 첨부</p></label>
+                <input type="text" class="noticebox" name="title" placeholder="제목을 입력해주세요" value="${modify.boardTit}"><br>
+                <input id="imageFile" type="file" name="0" accept="image/*" value="${contextPath}${modify.link}"><label for="imageFile"><p id="imageFile2">이미지 첨부</p></label>
                 <div class="imgArea">
-					<div class="img"><img class="preview">
+					<div class="img">
+                        <img class="preview" src="${contextPath}${modify.link}">
 						<span class="delete-Img">&times;</span>
                     </div>
                     </div>
-                <input type="text" id="noticeContent" name="content" placeholder="내용을 입력해주세요">
+                <input type="text" id="noticeContent" name="content" placeholder="내용을 입력해주세요" value="${modify.content}">
                     <button id="registration">등록하기</button>
+                    <input type="hidden" name="type" value="${param.type}">
+                    <input type="hidden" name="no" value="${param.no}">
+                    <input type="hidden" id="imageSt" name="imageSt" value="0">
                 </form>
             </div>
         </div>
     </main>
-
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="

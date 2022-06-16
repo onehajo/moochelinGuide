@@ -29,4 +29,5 @@ public class Board {
 	private String msg2;
 	private List<BoardImage> imageList;
 	private String link;
+	private int imgNo;
 }

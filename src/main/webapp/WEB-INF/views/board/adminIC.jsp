@@ -28,11 +28,9 @@
             <em class="user">${board.memberNm}</em>
             <p class="content" style="border-bottom: none;">${board.content}</p>
             <div class="imgArea">
-                <div class="imgArea">
                     <c:if test="${!empty board.imageList}">
                     <div class="img"><img src="${contextPath}${board.imageList[0].imageReName}"></div>
                     </c:if>
-                </div>
             </div>
                 <c:forEach var="reply" items="${replyList}">
                     <c:if test="${reply.memberType=='M'}">

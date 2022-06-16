@@ -16,26 +16,30 @@ function registValidate(){
 
 const inputImage = document.getElementById("imageFile");
 const preview = document.getElementsByClassName("preview");
-const deleteImage = document.getElementsByClassName("delete-Img");
+const deleteImage = document.getElementsByClassName("delete-Img")[0];
 const divImg = document.getElementsByClassName("img");
 const imgArea = document.getElementsByClassName("imgArea")[0];
 const imgUpload = document.getElementById("imageFile2");
-var num = 0;
-imgArea.style.display = "none";
+const imageSt = document.getElementById("imageSt");
+
 
     inputImage.addEventListener("change", function(){
-        if(this.files[0] !=undefined){
+        if(preview[0]!=undefined){
             const reader = new FileReader();
             reader.readAsDataURL(this.files[0]);
             reader.onload = function(event){
-                if(num==0){
                     preview[0].setAttribute("src",event.target.result);
                     imgArea.style.display = "block";
                     imgUpload.style.display="none";
-                    num++;    
-                } else{
-                    alert("사진은 1장만 삽입할 수 있습니다");
-                }
+                    imageSt.value = "2";
         }
     }
     });
+
+deleteImage.addEventListener("click",function(){
+   preview[0].removeAttribute("src");
+   inputImage.value="";
+   imgArea.style.display = "none";
+    imgUpload.style.display="block";
+    imageSt.value = "1";   
+});
