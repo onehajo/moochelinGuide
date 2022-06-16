@@ -42,7 +42,6 @@
             <div><h2>쪽지함</h2></div>
             <div class="contain-box">
                 <div class="message-container">
-                ${messageList}
 
 
 
