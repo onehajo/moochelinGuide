@@ -82,9 +82,9 @@
 	right: 24px;
 }
 
-.modifyBtn{
+.deleteBtn{
 	border: none;
-	background-color: cornflowerblue;
+	background-color: crimson;
 	border-radius: 5px;
 	font-weight: bold;
 	font-size: 15px;

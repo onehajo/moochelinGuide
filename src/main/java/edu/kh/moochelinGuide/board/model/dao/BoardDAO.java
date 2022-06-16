@@ -323,7 +323,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, image.getImageReName());
 			pstmt.setString(2, image.getImageOriginal());
-			pstmt.setInt(3, image.getImageLevel());
+			pstmt.setInt(3,0);
 			pstmt.setInt(4, image.getBoardNo());
 			
 			result = pstmt.executeUpdate();
