@@ -21,7 +21,7 @@ import edu.kh.moochelinGuide.common.wrapper.EncryptWrapper;
 
 @WebFilter(filterName = "/EncryptFilter", urlPatterns = {"/login", "/signUp", "/search/login", "/search/signUp", 
 														"/movie/login","/movie/signUp", "/movie/detail/login", "/movie/detail/signUp", 
-														"/member/myPage/changePw","/member/myPage/secession"})
+														"/member/myPage/changePw","/member/myPage/secession/check"})
 public class EncryptFilter extends HttpFilter implements Filter {
 	
 
