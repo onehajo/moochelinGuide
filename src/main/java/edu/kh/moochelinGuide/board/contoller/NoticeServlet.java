@@ -28,8 +28,6 @@ public class NoticeServlet extends HttpServlet{
 			
 			req.setAttribute("noticeList", map.get("noticeList"));
 			req.setAttribute("imageList", map.get("imageList"));
-			System.out.println(map.get("noticeList"));
-			System.out.println(map.get("imageList"));
 			dispatcher.forward(req, resp);
 			
 		}catch(Exception e) {

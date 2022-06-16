@@ -28,31 +28,16 @@
             <h2>공지사항</h2>
         <c:forEach var="notice" items="${noticeList}">
             <section class="notice2">
-                <span id="noticeName">${notice.boardTit}</span><span id="carrotdown">&#8744;</span>
-                <p id="date">${notice.createDate}</p>
-                <c:if test="${!empty imageList}">
-                    <section id="imageArea"><img src="${contextPath}${imageList.imageReName}" id="noticeImage"></section>
-                </c:if>
-<pre id="noticeContent">${notice.content}</pre>
-                <form action="#">
-                    <button id="registration">보러가기</button>
-                </form>
+                <div class="titleArea"><span id="noticeName">${notice.boardTit}</span><span class="carrotdown">&#8744;</span>
+                <p id="date">${notice.createDate}</p></div>
+                <span class="noticeContent">
+                    <c:if test="${!empty imageList}">
+                        <section id="imageArea"><img src="${contextPath}${imageList.imageReName}" id="noticeImage"></section>
+                    </c:if>
+    <pre id="noticeContent">${notice.content}</pre>
+                </span>
             </section>
         </c:forEach>
-            <section class="notice2">
-                <span id="noticeName">공지제목2</span><span id="carrotdown">&#8743;</span>
-                <p id="date2">날짜</p>
-            </section>
-            <section class="notice2">
-                <span id="noticeName">공지제목3</span><span id="carrotdown">&#8743;</span>
-                <p id="date2">날짜</p>
-            </section>
-            <section class="notice2">
-                <span id="noticeName">공지제목4</span><span id="carrotdown">&#8743;</span>
-                <p id="date2">날짜</p>
-            </section>
-
-
         </div>
         
     </main>
