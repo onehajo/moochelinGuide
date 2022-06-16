@@ -133,11 +133,7 @@ public class BoardService {
 		
 		list = dao.listNotice(conn,boardCd);
 		int boardNo = 0;
-		if(!list.isEmpty()) {
-			List<BoardImage> imagelist = dao.selectImageList(conn,boardNo, boardCd);
-			
-			map.put("imageList", imagelist);
-		}
+	
 		map.put("noticeList", list);
 		
 		close(conn);

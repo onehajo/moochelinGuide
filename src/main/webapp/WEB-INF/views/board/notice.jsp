@@ -28,11 +28,12 @@
             <h2>공지사항</h2>
         <c:forEach var="notice" items="${noticeList}">
             <section class="notice2">
+                
                 <div class="titleArea"><span id="noticeName">${notice.boardTit}</span><span class="carrotdown">&#8744;</span>
                 <p id="date">${notice.createDate}</p></div>
                 <span class="noticeContent">
-                    <c:if test="${!empty imageList}">
-                        <section id="imageArea"><img src="${contextPath}${imageList.imageReName}" id="noticeImage"></section>
+                    <c:if test="${!empty notice.link}">
+                        <section id="imageArea"><img src="${contextPath}${notice.link}" id="noticeImage"></section>
                     </c:if>
     <pre id="noticeContent">${notice.content}</pre>
                 </span>

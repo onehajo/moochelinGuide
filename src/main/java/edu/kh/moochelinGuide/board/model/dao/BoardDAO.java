@@ -254,13 +254,8 @@ public class BoardDAO {
 			pstmt.setInt(1, boardNo);
 			
 			rs= pstmt.executeQuery();
-			} else {
-				sql = prop.getProperty("noticeImageList");
-				
-				stmt = conn.createStatement();
-				
-				rs = stmt.executeQuery(sql);
 			}
+			
 			while(rs.next()) {
 				BoardImage image = new BoardImage();
 				image.setImageNo(rs.getInt(1));
@@ -303,7 +298,8 @@ public class BoardDAO {
 				board.setBoardTit(rs.getString("BOARD_TITLE"));
 				board.setContent(rs.getString("BOARD_CT"));
 				board.setCreateDate(rs.getString("CREATE_DT"));
-				
+				board.setLink(rs.getString("IMG_RENAME"));
+				System.out.println(board.getLink());
 				list.add(board);
 			}
 		}finally {
