@@ -4,8 +4,6 @@ const area = document.getElementsByClassName("notice")[0];
 const titleArea = document.getElementsByClassName("titleArea");
 const noticeCArea = document.getElementsByClassName("noticeContent");
 
-console.log(noticeArea.length);
-
 for(let i =1; i<noticeArea.length; i++){
     noticeCArea[i].style.display="none";
     carrot[i].innerHTML = "&#8743;";

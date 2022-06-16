@@ -29,5 +29,6 @@ public class Movie {
 	
 	private int commentCount;
 	
+	private int likeCount;
 	
 }

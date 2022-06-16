@@ -37,12 +37,12 @@
 			<div id="messageContent" class="detailPopupHidden activePblock">
 			    <p class="popupTitle">받은 쪽지<span class="smallText"></span></p>
 			    <p class="">보낸 사람 : ${messageDetail.memberName}<span class="date">${messageDetail.enrollDate}</span></p>
-			    <form class="messageForm-css" action="delete" method="post" target="parentWindow" name="deletepop">
+			    <form class="messageForm-css formmint2" action="delete" method="post" target="parentWindow" name="deletepop">
 			        <textarea name="" id="messageC" class="textarea-css" disabled>${messageDetail.messageContent}</textarea>
 			        <div class="messageBtnBox">
-			            <a href="detail?type=send&no=${messageDetail.messageNo}"><button type="button" class="messagePopupBtn transColor">답장</button></a>
+			            <a href="detail?type=send&no=${messageDetail.messageNo}&count2=${param.count2}"><button type="button" class="messagePopupBtn transColor">답장</button></a>
 			            <input type="hidden" name="messageNo" value="${messageDetail.messageNo}">
-			            <button type="submit" id="deleteMessageBtn" class="messagePopupBtn mint" onclick="self.close();">삭제</button>
+			            <button type="submit" id="deleteMessageBtn" class="messagePopupBtn mint mint2">삭제</button>
 			        </div>
 			    </form>
 			</div>
@@ -54,8 +54,8 @@
 			<!-- 쪽지 팝업 - 쪽지보내기 -->
 			<div id="messageSend" class="detailPopupHidden activePblock">
 			    <p class="popupTitle">쪽지 보내기<span class="smallText"></span></p>
-			    <p class="">받는 사람 : ${messageDetail.memberName}</p>
-			    <form class="messageForm-css" action="insert" method="post" target="parentWindow">
+			    <p class="">받는 사람 : ${messageDetail.memberName}</p>	
+			    <form class="messageForm-css" action="insert" method="post" target="parentWindow" onsubmit="return sendForm()">
 			        <textarea name="content" id="messageCsend" class="textarea-css"></textarea>
 			        
 			        <c:if test="${empty messageDetail.targetNo}">
@@ -92,8 +92,9 @@
 	<script>
         const contextPath = "${contextPath}";
         const loginMemberNo = "${loginMember.memberNo}";
+		const count2 = "${param.count2}";
     </script>
-	<script src="${contextPath}/resources/js/myPage_message.js"></script>
+	
 	<script src="${contextPath}/resources/js/myPage_message2.js"></script>
 
 </body>

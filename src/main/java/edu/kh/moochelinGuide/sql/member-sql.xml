@@ -401,6 +401,8 @@
 		ORDER BY MEMBER_NO
 	</entry>
 	
+	
+	<!-- 내가 찜한 영화 목록/갯수 -->
 	<entry key="movieLike">
 	SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY, (SELECT COUNT(*)
                                                                 FROM MEMBER
@@ -411,14 +413,24 @@
 	LEFT JOIN MOVIE_LIKE USING(MEMBER_NO)
 	JOIN MOVIE USING (MOVIE_NO)
 	WHERE MEMBER_NO = ?
-	
+	<![CDATA[AND ROWNUM <= 4]]>
 	</entry>
 	
 	
+	<!-- 페이지 멤버의 팔로잉  -->
+	<entry key="likeMovieCount">
+	 SELECT COUNT(*)
+     FROM MOVIE_LIKE
+     WHERE MEMBER_NO = ?
+	</entry>
+	
+	
+
 	<!-- 관리자 인덱스 인포 -->
 	<entry key="selectAdminIndexInfo">
 	SELECT * FROM V3 ORDER BY 1
 	</entry>
+
 
 
 </properties>

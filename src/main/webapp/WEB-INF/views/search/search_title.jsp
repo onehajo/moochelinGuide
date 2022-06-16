@@ -49,7 +49,7 @@
 
 				<c:if test="${!empty movieList}">
 					<c:forEach var="movie" items="${movieList}">
-						<a href="${contextPath}/movie/detail?no=${movie.movieNo}" class="sch-title">
+						<a href="${contextPath}/movie/detail/select?no=${movie.movieNo}" class="sch-title">
 							<div class="movie">
 								<img src="${movie.posterImage}" class="sch-img-title">
 							</div>

@@ -5,7 +5,7 @@ const headerHeight = header.getBoundingClientRect().height;
 
 
 window.addEventListener("scroll", () => {
-      if (window.scrollY > 350) {
+      if (window.scrollY > 280) {
          header.classList.remove("scroll");
          
       } else {
