@@ -107,4 +107,8 @@
 		WHERE ROWNUM = 1
 	</entry>
 	
+	<!-- 공지 삭제 -->
+	<entry key="noticeDelete">
+		UPDATE BOARD SET BOARD_ST = 'Y' WHERE BOARD_NO =?
+	</entry>	
 </properties>
