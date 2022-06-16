@@ -569,3 +569,27 @@ function selectAll(selectAll){
 
  }
 
+
+ // footer 평가 총 개수 구하기 (별점 개수)
+ (function(){
+
+	const evalTotal = document.getElementById("evalTotal");
+
+	$.ajax({
+		url : "/moochelinGuide/member/evaltotal",
+		success : function(result){
+			if(result>=0){
+				console.log("조회 성공");
+				console.log(result);
+				evalTotal.innerText = "★ "+result+" 개";
+			}else{
+				console.log("조회 실패");
+			}
+		},
+		error : function(req, status, error){
+			console.log("점수 전송 중 오류 발생");
+			console.log(req.responseText);
+		}
+	});
+
+ })();

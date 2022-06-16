@@ -430,6 +430,13 @@
 	<entry key="selectAdminIndexInfo">
 	SELECT * FROM V3 ORDER BY 1
 	</entry>
+	
+	<!-- 평가영화 토탈 구하기 -->
+	<entry key="evalTotal">
+	SELECT COUNT(*)
+	FROM EVALUATION
+	WHERE EVALUATION_FL = 'N'
+	</entry>
 
 
 

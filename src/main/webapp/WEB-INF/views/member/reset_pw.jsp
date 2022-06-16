@@ -127,6 +127,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script src="${contextPath}/resources/js/resetPw.js"></script>
+    <script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 </html>

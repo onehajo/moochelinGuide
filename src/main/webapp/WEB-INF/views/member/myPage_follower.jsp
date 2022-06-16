@@ -100,6 +100,7 @@
     </script>
 
     <script src="${contextPath}/resources/js/myPage-follower.js"></script>
+    <script src="${contextPath}/resources/js/main.js"></script>
     
 </body>
 </html>

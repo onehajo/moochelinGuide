@@ -105,6 +105,7 @@
 		const count1 = "${fn:length(messageList)}";
     </script>
 	<script src="${contextPath}/resources/js/myPage_message.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 	
 
 </body>
