@@ -8,6 +8,10 @@ body{
     margin: 0;
 }
 
+a{
+	cursor:pointer;
+}
+
 a:visited, a:link {
     color : black;
 }
@@ -167,6 +171,7 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
 
 .popup > img{
     width: 180px;
+    padding-top:30px;
 }
 .popupTitle{
     margin: 0;
@@ -277,6 +282,32 @@ hr {
 .sns > img {
     width: 40px;
 }
+
+
+/* 회원가입의 비밀번호 보기 아이콘 설정 */
+.form-css > i{
+    position: absolute;
+    left: 84%;
+    top: 364px;
+    color: #00ffbe;
+}
+
+#login-form > li{
+	position: absolute;
+    left: 84%;
+    top: 364px;
+    color: #00ffbe;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* 약관동의 */
 #agree{

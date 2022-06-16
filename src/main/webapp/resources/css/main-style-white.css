@@ -13,6 +13,10 @@ a:visited, a:link {
     color : black;
 }
 
+a{
+	cursor:pointer;
+}
+
 .main-css{
     border-bottom: 1px solid #ddd;
     width: 100%;
@@ -161,6 +165,7 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
 
 .popup > img{
     width: 180px;
+    padding-top:30px;
 }
 .popupTitle{
     margin: 0;
@@ -369,8 +374,24 @@ hr {
 
 
 
+/* 비밀번호 보기 아이콘 설정 */
+.form-css > i{
+    position: absolute;
+    left: 84%;
+    top: 364px;
+    color: #00ffbe;
+}
 
+/* 스윗얼럿 */
+.swal2-title { 
+font-size:18px !important;
+font-weight: 500 !important; 
+}
 
+.swal2-container.swal2-center>.swal2-popup {
+padding: 2em;
+display: grid;
+}
 
 
 

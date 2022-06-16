@@ -44,8 +44,8 @@
 				<c:choose>
 					<%-- 로그인이 되어있지 않은 경우--%>
 					<c:when test="${empty sessionScope.loginMember}">
-						<li class="login"><a href="#" onclick="openPopLogin()">로그인</a></li>
-						<li class="signup"><a href="#" onclick="openPopSignUp()">회원가입</a></li>
+						<li class="login"><a onclick="openPopLogin()">로그인</a></li>
+						<li class="signup"><a onclick="openPopSignUp()">회원가입</a></li>
 					</c:when>
 					                    
 					<%-- 로그인이 되어있는 경우 --%>
@@ -123,6 +123,7 @@
 			<input type="text" placeholder="이메일" id="signUpEmail" name="memberEmail">
 			<div id="emailMessage"></div>
 			<input type="password" placeholder="비밀번호" id="signUpPw" name="memberPw">
+			<i class="fa fa-eye fa-lg"></i>
 			<div id="pwMessage"></div>
 			<button type="button" id="signup-btn" class="btn">회원가입</button>
 		</div>

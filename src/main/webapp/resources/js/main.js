@@ -383,8 +383,6 @@ if(signUpName!=null){
 	            
 	            	Swal.fire({
 			             title: str+"다시 입력해주세요.",
-			             width: 600,
-			             padding: '3em',
 			             color: 'black',
 			             confirmButtonColor: '#392eff',
 			             confirmButtonText: '확인'
@@ -416,8 +414,6 @@ function signUpValidate(){
 	
 		Swal.fire({
              title: "약관에 동의해주세요",
-             width: 600,
-             padding: '3em',
              color: 'black',
              confirmButtonColor: '#392eff',
              confirmButtonText: '확인'
@@ -439,6 +435,31 @@ function selectAll(selectAll){
 }
 
 
+$(document).ready(function(){
+    $('.form-css i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 로그인
 // const loginBbtn = document.getElementById("loginBbtn");
@@ -449,10 +470,6 @@ function selectAll(selectAll){
 //         data: {loginEmail:"loginEmail",loginPw"}
 //     })
 // })
-
-
-
-
 
 
 
