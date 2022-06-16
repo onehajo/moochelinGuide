@@ -47,7 +47,6 @@
                 </select>
             </form>
             </fieldset>
-            ${allShow}
 
             <section class="movie-list-all">
 
@@ -100,11 +99,6 @@
     </main>
     
     
-    
-    
-	loginMember : ${sessionScope.loginMember}
-    <hr> 세션확인하는 임시 코드        	
-    message : ${sessionScope.message} 
 
        
     

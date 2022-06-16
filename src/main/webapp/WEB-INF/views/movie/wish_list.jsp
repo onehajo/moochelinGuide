@@ -20,23 +20,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+    
     <div id="wrapper">
-
-        <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
-        <header id="header-2">
-            <div class="header-wrap">
-                <div class="back"><img src=""></div>
-            </div>
-        </header>
-        <header id="header">
-            <div class="header-wrap">
-               
-                <div class="wish-title">보고싶어요</div>
-                <nav class="nav">
-        </header>
-
-      
+        <div class="wish-title">보고싶어요</div>
+                
        
         <section class="rating">
             <section class="movie-list">

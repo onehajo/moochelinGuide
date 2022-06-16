@@ -34,8 +34,77 @@
 <!-- 클라이언트 라이브러리 -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
+
+<script src="${contextPath}/resources/js/popup.js"></script>
+
+<!-- 요기에 스타일  -->
+<style>
+	.popup-container {
+		position: fixed;
+		display: table;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index : 999;
+		animation: fadein 1s 1;
+	}
+	.popup-container-inner {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle
+		}
+	.layer .close-pop {
+		display: inline-block;
+		}
+
+	.close-pop {
+		width: 350px; 
+		height: 324px; 
+		border-radius: 50%;
+		background-color: transparent;
+		border: none;
+
+		cursor: pointer;
+	}
+
+	.introPage{
+		animation: fadeout 0.7s;
+		-moz-animation: fadein 1s; /* Firefox */
+		-webkit-animation: fadein 1s; /* Safari and Chrome */
+		-o-animation: fadein 1s; /* Opera */
+	}
+
+	/* intro 페이드인 */
+	@keyframes fadeout {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+}
+	
+	
+</style>
+
+
 </head>
 <body>
+
+
+		<!-- 요소 요기넣고  -->
+		<div class="popup-container" onclick="closePop();">
+			<div class="popup-container-inner">
+				
+				<!-- <button class="close-pop" onclick="closePop();" style=" width: 350px;  height: 324px; border-radius: 50%;"></button> -->
+				<img class="introPage"  src="${contextPayh}resources/images/intro.jpeg" usemap="#go-index"  style="width: 100%;" >
+	
+			</div>
+		</div>
+
+
+
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 	<main>
@@ -113,5 +182,52 @@
 	<script>
 		const contextPath = "${contextPath}";
 	</script>
+
+
+	<script>
+
+		// 홈페이지 접속했을때, 쿠키가 있으면 none / 없으면 block (== 인트로 페이지 노출)
+		console.log(document.cookie);
+		currentCookie = document.cookie;
+		var cookieCheck = currentCookie.indexOf('intro');
+
+		console.log(currentCookie);
+		if (cookieCheck > -1 ){
+			document.querySelector('.introPage').style.display = 'none';
+			document.querySelector('.popup-container').style.display = 'none';
+		} else {
+			document.querySelector('.introPage').style.display = 'block';
+		}
+
+
+
+		// 현재 날짜 지정
+		var date = new Date();
+
+		// 내일 날짜 출력 확인
+		console.log(date.getHours() + 1); 
+		// 내일 날짜 지정.
+		date.setDate(date.getHours() + 1);
+
+		var setCookie = '';
+
+		setCookie += 'MooCheline = intro;'; // intro == value
+		setCookie += 'expires = ' + date.toUTCString(); // UTC 시간기준
+
+		document.cookie = setCookie;
+		
+
+		// 검은배경 클릭할때 (로그인, 회원가입 닫기)
+		function closePop(){
+			document.querySelector('.popup-container').style.display = 'none';
+
+		}
+
+
+	</script>
+
+
+
+
 </body>
 </html>

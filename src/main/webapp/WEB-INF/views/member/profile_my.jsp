@@ -95,8 +95,6 @@
                         <div class="moovie-analysis"><a href="movie/evaluatedmovie?no=${ map.member.memberNo}"> 평가한 영화 ${map.analyMovieCount}</a></div>
                     </div>
                 </div>
-                <!-- 맴버값 확인 -->
-                ${map.member}
             </section>
       
             
@@ -105,7 +103,13 @@
                 <div class="info-1200px">    
                         <div class="title-area">
                             <div class="title content-analysis"> 내가 평가한 영화 </div>
-                            <div class="more-view"><a href="#"> +더보기 </a></div>
+                            
+                            <c:if test="${ empty evalMovie}">
+                                
+                            </c:if>
+                            <c:if test="${ !empty evalMovie}">
+                                <div class="more-view"><a href="movie/evaluatedmovie?no=${ map.member.memberNo}"> +더보기 </a></div>
+                            </c:if>
                         </div>
 
                         
@@ -113,9 +117,9 @@
 
                             <c:choose>
 
-                                <c:when test="${ empty likeMovie}">
+                                <c:when test="${ empty evalMovie}">
 
-                                    <div style="  margin-bottom: 50px; "><span>찜한 영화가 없습니다.</span></div>
+                                    <div style="  margin-bottom: 50px; "><span>평가한 영화가 없습니다.</span></div>
 
                                 </c:when>
 
@@ -149,7 +153,13 @@
 
                         <div class="title-area">
                             <div class="title content-analysis"> 내가 찜한 영화 </div>
-                            <div class="more-view"><a href="#"> +더보기 </a></div>
+                            <c:if test="${ empty likeMovie}">
+
+                            </c:if>
+                            <c:if test="${ !empty likeMovie}">
+                                <div class="more-view"><a href="movie/wish?no=${ map.member.memberNo }"> +더보기 </a></div>
+                            </c:if>
+                            
                         </div>
 
                         

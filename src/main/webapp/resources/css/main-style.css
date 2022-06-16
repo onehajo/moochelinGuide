@@ -602,3 +602,15 @@ font-weight: 500 !important;
 padding: 2em;
 display: grid;
 }
+
+
+
+/* intro 페이드인 */
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
