@@ -52,6 +52,7 @@ public class BoardDAO {
 			pstmt.setString(1, board.getBoardTit());
 			pstmt.setString(2, board.getContent());
 			pstmt.setInt(3, board.getBoardNo());
+			pstmt.setInt(4, board.getBoardCode());
 			
 			result = pstmt.executeUpdate();
 			

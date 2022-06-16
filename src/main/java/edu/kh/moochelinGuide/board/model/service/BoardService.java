@@ -22,11 +22,11 @@ public class BoardService {
 	/** 문의 등록 Service
 	 * 
 	 * @param board
-	 * @param imageList 
+	 * @param image 
 	 * @return result
 	 * @throws Exception
 	 */
-	public int boardRegist(Board board, List<BoardImage> imageList) throws Exception {
+	public int boardRegist(Board board, BoardImage image) throws Exception {
 		int result = 0;
 		int boardNo = 0;
 		Connection conn = getConnection();
@@ -38,14 +38,9 @@ public class BoardService {
 		result = dao.boardRegist(conn, board);
 		
 		if(result > 0) {
-			for(BoardImage image : imageList) {
 				boardNo = dao.getBoardNo(conn);
 				image.setBoardNo(boardNo);
 				result = dao.insertBoardImage(conn,image);
-				if(result==0) {
-					break;
-				}
-			}
 		}
 		
 		if(result>0) commit(conn);

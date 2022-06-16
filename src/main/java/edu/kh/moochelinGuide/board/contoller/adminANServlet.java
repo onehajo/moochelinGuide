@@ -47,18 +47,17 @@ public class adminANServlet extends HttpServlet{
 			
 			String content = mpReq.getParameter("content");
 			String title = mpReq.getParameter("title");
+			int boardCode = 97;
 			Enumeration<String> files = mpReq.getFileNames();
-			List<BoardImage> imageList = new ArrayList<BoardImage>();
+			BoardImage image = new BoardImage();
 			while(files.hasMoreElements()) {
 				String name = files.nextElement();
 				String rename = mpReq.getFilesystemName(name);
 				String original = mpReq.getOriginalFileName(name);
-				System.out.println(rename);
-				System.out.println(original);
 				if(rename!=null) {
-					BoardImage image = new BoardImage();
-			
-					imageList.add(image);
+					image.setImageOriginal(original);
+					image.setImageReName(folderPath+rename);
+					image.setImageLevel(Integer.parseInt(name));
 				}
 			}
 			
@@ -67,13 +66,14 @@ public class adminANServlet extends HttpServlet{
 			board.setBoardNo(member.getMemberNo());
 			board.setContent(content);
 			board.setBoardTit(title);
+			board.setBoardCode(boardCode);
 			
 			BoardService service = new BoardService();
-			int result = service.boardRegist(board,imageList);
+			int result = service.boardRegist(board,image);
 			
 			resp.getWriter().print(result);
 			
-			resp.sendRedirect(req.getHeader("referer"));
+			resp.sendRedirect("../notice");
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
