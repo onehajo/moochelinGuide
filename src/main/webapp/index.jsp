@@ -199,9 +199,9 @@
 		var date = new Date();
 
 		// 내일 날짜 출력 확인
-		console.log(date.getHours() + 1); 
+		console.log(date.getDate() + 1); 
 		// 내일 날짜 지정.
-		date.setDate(date.getHours() + 1);
+		date.setDate(date.getDate() + 1);
 
 		var setCookie = '';
 

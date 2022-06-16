@@ -46,7 +46,6 @@
                     <h2 class="sec-h2">취향분석</h2>
                 </header>
             </div>
-            ${map.member}
             <div class="sec-in-block">
                 <div class="info-block">
                     <div class="info-profile profile-img-area">
@@ -167,7 +166,7 @@
                     //  li:nth-of-type(1~10) -> 애니메이션 넣을려고
                     const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
 
-                    s.style.height = a.starRating * a.count  * 3 + 'px';
+                    s.style.height = a.starRating * a.count  * 10 + 'px';
 
                     // 애니매이션 값 넣기
                     p.style.animation = 'stick 2s 1';
