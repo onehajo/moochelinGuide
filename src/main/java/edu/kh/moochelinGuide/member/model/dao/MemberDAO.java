@@ -1532,6 +1532,37 @@ public class MemberDAO {
 		return result;
 	}
 
+	
+	
+//	/** 팔로잉 유/무
+//	 * @param conn
+//	 * @param targetNo
+//	 * @return result
+//	 */
+//	public String followingYN(Connection conn, int targetNo) {
+//		
+//		String result = null;
+//		
+//
+//		try {
+//			String sql = prop.getProperty("evalTotal");
+//			
+//			stmt = conn.createStatement();
+//			
+//			rs = stmt.executeQuery(sql);
+//			
+//			if(rs.next()) {
+//				result = rs.getInt(1);
+//			}
+//			
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		
+//		return result;
+//	}
+
 
 
 }
