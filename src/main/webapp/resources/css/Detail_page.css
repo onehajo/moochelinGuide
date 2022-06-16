@@ -206,7 +206,7 @@ label:hover ~ label{
     padding: 0px 0px 20pxpx 0px;
     width: 270px;
     height: 202px;
-    margin: auto;
+ 
     margin-right: 20px;
     background-color: white;
     display: inline-block;
@@ -255,10 +255,10 @@ label:hover ~ label{
     width: 60px;
 }
 .coment-cotent{
+   
     width: 260px;
     height: 140px;
     margin-right: 10px;
-    display: inline-block;
 
 }
 .coment-btn{
@@ -414,4 +414,12 @@ label:hover ~ label{
     color: rgb(0, 255, 190);
     overflow: hidden;
     pointer-events: none;
+  }
+
+  #over{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
   }

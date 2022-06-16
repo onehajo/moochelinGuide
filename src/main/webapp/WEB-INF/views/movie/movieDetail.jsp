@@ -3,6 +3,7 @@
 
 <c:set var="detail" value="${map.detail}"/>
 <c:set var="commentList" value="${map.commentList}"/>
+<c:set var="wishList" value="${map.wishList}"/>
 
 
 
@@ -121,7 +122,7 @@
                     <div class="starpoint">별점 그래프</div>
                     <div class="pointbar"></div>
                     <div class="coment-title">코멘트</div>
-                    <section class="coment-list">
+                    <section class="coment-list" style="display:flex; height:350px;">
                     <c:choose>
 
                         <c:when test="${empty commentList}">
@@ -132,13 +133,13 @@
                             <c:forEach var="comment" items="${commentList}" begin="0" end="2" step="1">
                                 <div class="coment">
                             <div class="conment-info">
-                                <div class="coment-proflie"><a href="#"><img src="${comment.profileImage}" id="member-profile"></a></div>
+                                <div class="coment-proflie"><img src="${contextPath}/resources/images/user.png" id="member-profile"></div>
                                 <div class="coment-nickname">${comment.memberNickname}
                                     <div class="coment-row">${comment.commentDate}</div>
                                 </div>
                                 <div class="hart">하트</div>
                                 </div>
-                                <div class="coment-cotent"><a href="comment/list&no=${detail.movieNo}"> ${comment.commentContent}<a></div>                       
+                                <div class="coment-cotent"><a id="over" href="comment/list?no=${detail.movieNo}">${comment.commentContent}<a></div>                           
                                 </div>
                             </c:forEach>
 			        	</c:otherwise>
