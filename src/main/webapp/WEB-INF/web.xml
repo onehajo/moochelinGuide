@@ -10,6 +10,8 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
+  
+  
   	<!-- 오류페이지 처리 -->
   	
   	<!-- Bad request, 클라이언트의 잘못된 요청으로 처리할 수 없음 -->

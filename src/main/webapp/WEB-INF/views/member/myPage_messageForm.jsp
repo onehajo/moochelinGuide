@@ -54,7 +54,7 @@
 			<!-- 쪽지 팝업 - 쪽지보내기 -->
 			<div id="messageSend" class="detailPopupHidden activePblock">
 			    <p class="popupTitle">쪽지 보내기<span class="smallText"></span></p>
-			    <p class="">받는 사람 : ${messageDetail.memberName}</p>	
+			    <p class="">받는 사람 : ${messageDetail.memberName}${param.name}</p>	
 			    <form class="messageForm-css" action="insert" method="post" target="parentWindow" onsubmit="return sendForm()">
 			        <textarea name="content" id="messageCsend" class="textarea-css"></textarea>
 			        
