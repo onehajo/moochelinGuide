@@ -23,20 +23,41 @@ const divImg = document.getElementsByClassName("img");
 const imgArea = document.getElementsByClassName("imgArea")[0];
 imgArea.style.display = "none";
 
-for(let i=0; i<inputImage.length; i++){
-    inputImage[i].addEventListener("change", function(){
-        if(this.files[0] !=undefined){
-            const reader = new FileReader();
-            reader.readAsDataURL(this.files[0]);
-            reader.onload = function(event){
-                if(num==0){
-                    preview[i].setAttribute("src",event.target.result);
-                    imgArea.style.display = "block";
-                    num++;    
-                } else{
-                    alert("사진은 1장만 삽입할 수 있습니다");
-                }
-        }
+// for(let i=0; i<inputImage.length; i++){
+//     inputImage[i].addEventListener("change", function(){
+//         if(this.files[0] !=undefined){
+//             const reader = new FileReader();
+//             reader.readAsDataURL(this.files[0]);
+//             reader.onload = function(event){
+//                 if(num==0){
+//                     preview[i].setAttribute("src",event.target.result);
+//                     imgArea.style.display = "block";
+//                     num++;    
+//                 } else{
+//                     alert("사진은 1장만 삽입할 수 있습니다");
+//                 }
+//         }
+//     }
+//     });
+// }
+
+inputImage.addEventListener("change", function(){
+    if(preview[0]!=undefined){
+        const reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onload = function(event){
+                preview[0].setAttribute("src",event.target.result);
+                imgArea.style.display = "block";
+                imgUpload.style.display="none";
+                imageSt.value = "2";
     }
-    });
 }
+});
+
+deleteImage.addEventListener("click",function(){
+preview[0].removeAttribute("src");
+inputImage.value="";
+imgArea.style.display = "none";
+imgUpload.style.display="block";
+imageSt.value = "1";   
+});
