@@ -4,7 +4,7 @@
 
 <footer>
 	<section class="footer-top">
-		지금까지 <span id="evalTotal">★ 658,179,744 개</span>의 평가가 쌓였어요.
+		지금까지 <span id="evalTotal"></span>의 평가가 쌓였어요.
 	</section>
 	<section class="footer-bottom">
 		<div>
