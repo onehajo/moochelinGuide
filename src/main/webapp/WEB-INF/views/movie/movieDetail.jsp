@@ -167,20 +167,7 @@
             </div>
         </form>
 
-        <footer>
-            <section class="footer-top">지금까지 <span>★ 658,179,744 개</span>의 평가가 쌓였어요.</section>
-            <section class="footer-bottom">
-                <div>
-                    <p>서비스 이용약관 | 개인정보 처리방침 | 회사 안내</p>
-                    <p>고객센터 | cs@moochelin.co.kr, 02-123-4567</p>
-                    <p>광고 문의 | ad@moochelin.com</p>
-                    <p>제휴 및 대외 협력 | https://moochelin.team/contact</p>
-                    <p>주식회사 무슐랭가이드 | 대표 원하조 | 서울특별시 서초구 강남대로 343 신덕빌딩 3층</p>
-                    <p>사업자 등록 번호 211-88-66013</p>
-                    <p>MOOCHELIN GUIDE © 2022 All rights reserved.</p>
-                </div>
-            </section>
-        </footer>
+        <jsp:include page="/WEB-INF/views/common/footer.jsp" />
  </div>   
         <script>
             const contextPath = "${contextPath}"
