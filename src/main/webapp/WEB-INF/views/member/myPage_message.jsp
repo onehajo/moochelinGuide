@@ -27,11 +27,6 @@
 	
 	<!-- 스윗얼럿 -->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
-    <style>
-        .swal2-title{
-            font-size: 20px;
-        }
-    </style>
 
 </head>
 <body>
