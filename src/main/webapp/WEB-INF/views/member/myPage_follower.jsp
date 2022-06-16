@@ -59,7 +59,7 @@
                                         <span>평가한 영화 수 : ${f.evaluationCount}</span>
                                     </div>
                                     <div class="userMessage">
-                                        <a href="${contextPath}/member/myPage/message/detail?type=send&no=-1&targetNo=${f.memberNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;">
+                                        <a href="${contextPath}/member/myPage/message/detail?type=send&no=-1&targetNo=${f.memberNo}&count2=${fn:length(fList)}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;">
                                             <button type="button" class="userMessageBtn" >쪽지</button>
                                         </a>
                                     </div>
