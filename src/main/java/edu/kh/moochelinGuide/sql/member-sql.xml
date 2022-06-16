@@ -437,6 +437,15 @@
 	FROM EVALUATION
 	WHERE EVALUATION_FL = 'N'
 	</entry>
+	
+	
+	<!-- 팔로잉 유/무 -->
+	<entry key="followingYN">
+	SELECT *
+	FROM FOLLOW
+	WHERE MEMBER_NO = ?
+	AND TARGET_NO = ?
+	</entry>
 
 
 

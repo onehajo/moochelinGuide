@@ -407,8 +407,17 @@ public class MemberService {
 		// 6-2) 페이지 멤버의 팔로잉
 		int followingCount = dao.followingCount(conn, targetNo );
 		 
+		int followingYN = 0;
 		// 6-3) 멤버의 팔로우 y/n
-//		String followingYN = dao.followingYN(conn, targetNo );
+		if(memberNo != targetNo) {
+			 followingYN = dao.followingYN(conn, targetNo, memberNo );
+			 
+		}
+		
+		System.out.println(followingYN);
+		System.out.println(targetNo);
+		System.out.println(memberNo); // memberNo이거 상태가 파라미터의 값이다.
+		
 		
 		// 7) 찜한  영화 리스트 조회
 		List<Movie> movieList = dao.likeMovie(conn, memberNo);
@@ -434,6 +443,7 @@ public class MemberService {
 		map.put("analyMovieCount", analyMovieCount);
 		map.put("movieList", movieList);
 		map.put("likeCount", likeCount);
+		map.put("followingYN", followingYN);
 		
 		close(conn);
 		

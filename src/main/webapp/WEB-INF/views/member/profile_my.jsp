@@ -73,12 +73,14 @@
                         </div>
                         <div>
                             <div class="profile-name">${map.member.memberName}</div>
-                            <div class="follow"><span><a href="#">팔로워</a> : <span id="followingCount2">${map.followerCount}</span> </span><span>   |   </span><span><a href="#">팔로잉</a>  : <span id="">${map.followingCount}</span></span></div>
+                            <div class="follow"><span><a href="/member/mypage">팔로워</a> : <span id="followingCount2">${map.followerCount}</span> </span><span>   |   </span><span><a href="/member/mypage">팔로잉</a>  : <span id="">${map.followingCount}</span></span></div>
                         </div>
-
                         <c:if test="${ map.member.memberNo != loginMember.memberNo}">
+
+
+                            <button class="mypage-button"  id="followBtn" >팔로우 취소</button>
                             
-                            <button class="mypage-button"  id="followBtn" >팔로우</button>
+
                             
                         </c:if>
                         

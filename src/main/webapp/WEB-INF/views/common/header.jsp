@@ -55,6 +55,7 @@
 						<c:if test="${empty loginMember.profileImage}">
 							<li class="profile"><a href="${contextPath}/member/profile/my?memberNo=${loginMember.memberNo}"><div id="profileImage" style=" background-size: 40px; background-image : url('${contextPath}/resources/images/user.png')"></div></a></li>						
 						</c:if>
+
 						
 						<c:if test="${!empty loginMember.profileImage}">
 							<li class="profile"><a href="${contextPath}/member/profile/my?memberNo=${loginMember.memberNo}"><div id="profileImage" style=" background-size: 40px; background-image : url(${contextPath}${loginMember.profileImage})"></div></a></li>						
