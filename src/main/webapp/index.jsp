@@ -160,14 +160,6 @@
 	</main>
 
 
-
-
-	loginMember : ${sessionScope.loginMember}
-	<hr>
-	세션확인하는 임시 코드 message : ${sessionScope.message}
-
-
-
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 	<!-- test -->
