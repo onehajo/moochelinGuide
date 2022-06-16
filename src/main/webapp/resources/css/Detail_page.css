@@ -55,7 +55,7 @@ input::-webkit-search-results-decoration{
     position: relative;
 }
 .info-head .info-img img{
-    z-index: 2;
+    z-index: 1;
     top: -50px;
     position: absolute;
     left: 120px;
@@ -155,7 +155,9 @@ label:hover ~ label{
     
 }
 
-
+.wish-add:hover{
+    cursor: pointer;
+}
 
 /* 출연/제작 */
 .production{

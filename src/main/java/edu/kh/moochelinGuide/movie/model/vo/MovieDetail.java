@@ -10,6 +10,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class MovieDetail {
+	
+	private int movieNo;
 	private String movieTitle ;
 	private int releaseYear;
 	private String country;

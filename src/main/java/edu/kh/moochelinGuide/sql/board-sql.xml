@@ -19,6 +19,8 @@
        JOIN MEMBER USING(MEMBER_NO)
        WHERE MEMBER_NO = ?
        AND BOARD_ST = 'N'
+       AND (BOARD_CD =99
+		OR BOARD_CD = 98)
 	</entry>
 	
 	<!-- 문의 사항 조회 -->
@@ -53,6 +55,13 @@
 		ORDER BY IMG_LEVEL
 	</entry>
 	
+	<!-- 공지 사진 조회 -->
+	<entry key="noticeImageList">
+		SELECT * FROM BOARD_IMG
+		WHERE BOARD_NO = 97
+		ORDER BY IMG_LEVEL
+	</entry>
+	
 	<!-- 모든 문의 게시글 수 조회 -->
 	<entry key="getListAllCount">
 		SELECT COUNT(*) FROM BOARD
@@ -71,5 +80,29 @@
        FROM BOARD
        JOIN MEMBER USING(MEMBER_NO)
        WHERE BOARD_ST = 'N'
+       AND (BOARD_CD =99
+		OR BOARD_CD = 98)
 	</entry>
+	
+	<!-- 공지 리스트 조회 -->
+	<entry key="listNotice">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CT,TO_CHAR(CREATE_DT,'""YYYY"년 "MM"월 "DD"일"') AS "CREATE_DT" FROM BOARD
+		WHERE BOARD_CD = 97
+		AND BOARD_ST = 'N'
+	</entry>
+	
+	<!-- 게시글 이미지 삽입 -->
+	<entry key="insertBoardImage">
+		INSERT INTO BOARD_IMG
+		VALUES(SEQ_IMG_NO.NEXTVAL, ?,?,?,?)
+	</entry>
+	
+	<!-- 게시글 번호 조회(이미지) -->
+	<entry key="getBoardNo">
+		SELECT ROWNUM, BOARD_NO FROM(
+		SELECT BOARD_NO FROM BOARD
+		ORDER BY BOARD_NO DESC)
+		WHERE ROWNUM = 1
+	</entry>
+	
 </properties>

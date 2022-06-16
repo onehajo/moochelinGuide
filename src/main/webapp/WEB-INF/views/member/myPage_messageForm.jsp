@@ -19,6 +19,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
+<!-- 스윗얼럿 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
+    <style>
+        .swal2-title{
+            font-size: 20px;
+        }
+    </style>
+    
 </head>
 <body>
 
@@ -37,9 +45,9 @@
 			    <form class="messageForm-css" action="delete" method="post" target="parentWindow">
 			        <textarea name="" id="messageC" class="textarea-css" disabled>${messageDetail.messageContent}</textarea>
 			        <div class="messageBtnBox">
-			            <a href="detail?type=send&no=${messageDetail.messageNo}"><button type="button" class="messagePopupBtn">답장</button></a>
+			            <a href="detail?type=send&no=${messageDetail.messageNo}"><button type="button" class="messagePopupBtn transColor">답장</button></a>
 			            <input type="hidden" name="messageNo" value="${messageDetail.messageNo}">
-			            <button type="submit" id="deleteMessageBtn" class="messagePopupBtn" onclick="self.close();">삭제</button>
+			            <button type="submit" id="deleteMessageBtn" class="messagePopupBtn mint" onclick="self.close();">삭제</button>
 			        </div>
 			    </form>
 			</div>
@@ -52,19 +60,21 @@
 			<div id="messageSend" class="detailPopupHidden activePblock">
 			    <p class="popupTitle">쪽지 보내기<span class="smallText"></span></p>
 			    <p class="">받는 사람 : ${messageDetail.memberName}</p>
-			    <form class="messageForm-css" action="insert" method="post" onsubmit="return sendValidate()" target="parentWindow">
-			        <textarea name="content" id="messageC" class="textarea-css"></textarea>
+			    <form class="messageForm-css" action="insert" method="post" target="parentWindow">
+			        <textarea name="content" id="messageCsend" class="textarea-css"></textarea>
 			        
 			        <c:if test="${empty messageDetail.targetNo}">
 			        	<input type="hidden" name="targetNo" value="${param.targetNo}">
+						<input type="hidden" name="no" value="${param.no}">
 			        </c:if>
 			        <c:if test="${!empty messageDetail.targetNo}">
 			        	<input type="hidden" name="targetNo" value="${messageDetail.targetNo}">
+						<input type="hidden" name="no" value="1">
 			        </c:if>
 			        
 			        <div class="messageBtnBox">
 			        	<!--onclick="self.close();"-->
-			            <button id="sendMessageBtn" class="messagePopupBtn" onclick="self.close();">보내기</button>
+			            <button id="sendMessageBtn" class="messagePopupBtn transColor" >보내기</button>
 			        </div>
 			    </form>
 			</div>
@@ -89,6 +99,7 @@
         const loginMemberNo = "${loginMember.memberNo}";
     </script>
 	<script src="${contextPath}/resources/js/myPage_message.js"></script>
+	<script src="${contextPath}/resources/js/myPage_message2.js"></script>
 
 </body>
 </html>

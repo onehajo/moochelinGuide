@@ -27,13 +27,11 @@
             <em class="user">${board.memberNm}</em>
             <p class="content" style="border-bottom: none;">${board.content}</p>
             <div class="imgArea">
-                <c:if test="${!empty board.imageList}">
-                <c:set var="i" value="0"/>
-                <c:forEach var="i" begin="0" end="${fn:length(board.imageList)-1}">
-                <div class="img"><img src="${contextPath}${board.imageList[i].imageReName}"></div>
-                </c:forEach>
-                <div class="img">&#43;</div>
-                </c:if>
+                <div class="imgArea">
+                    <c:if test="${!empty board.imageList}">
+                    <div class="img"><img src="${contextPath}${board.imageList[0].imageReName}"></div>
+                    </c:if>
+                </div>
             </div>
                 <c:forEach var="reply" items="${replyList}">
                     <c:if test="${reply.memberType=='M'}">

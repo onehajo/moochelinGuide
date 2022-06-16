@@ -14,6 +14,14 @@
     <!-- 헤더푸터 CSS 연결-->
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
+    <!-- 스윗얼럿 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
+    <style>
+        .swal2-title{
+            font-size: 20px;
+        }
+    </style>
+
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +31,7 @@
 <body>
 
     <jsp:include page="/WEB-INF/views/common/header.jsp" /> 
-    
+
     <main>
 
         <jsp:include page="/WEB-INF/views/common/myPage_top.jsp"/>
@@ -56,7 +64,9 @@
                                         <span>평가한 영화 수 : ${f.evaluationCount}</span>
                                     </div>
                                     <div class="userMessage">
-                                        <button type="button" class="userMessageBtn">쪽지</button>
+                                        <a href="${contextPath}/member/myPage/message/detail?type=send&no=-2&targetNo=${f.targetNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;">
+                                            <button type="button" class="userMessageBtn">쪽지</button>
+                                        </a>
                                     </div>
                                     <div class="userDelete">
                                         <input type="hidden" class="memberNo" value="${f.memberNo}">

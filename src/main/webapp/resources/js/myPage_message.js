@@ -40,7 +40,7 @@ const messageNo = document.getElementsByName("messageNo");
 
 //
 
-(function(){
+/*(function(){
     $.ajax({
         url : "selectList",
         dataType: "json",
@@ -50,7 +50,7 @@ const messageNo = document.getElementsByName("messageNo");
         error: function(messageList){}
     });
 
-})()
+})()*/
 
 
 
@@ -59,19 +59,19 @@ const messageNo = document.getElementsByName("messageNo");
 
 
 // 답장하기 누르면
-function popupSend(){
+/*function popupSend(){
     messageContent.classList.add('activeImportant');
     messageSend.classList.add('activePblock');
-}
+}*/
 
-document.getElementById("sendMessagePop").addEventListener("click",function(){
+/*document.getElementById("sendMessagePop").addEventListener("click",function(){
 	messageContent.classList.add('activeImportant');
     messageSend.classList.add('activePblock');
-})
+})*/
 
 
 
-const sendMessageBtn = document.getElementById("sendMessageBtn");
+/*const sendMessageBtn = document.getElementById("sendMessageBtn");
 // 메세지 팝업에 // 보내기 버튼 클릭
 sendMessageBtn.addEventListener("click",function(){
     window.close();
@@ -81,7 +81,7 @@ const deleteMessageBtn = document.getElementById("deleteMessageBtn");
 deleteMessageBtn.addEventListener("click",function(){
 	confirm("쪽지를 삭제 하시겠습니까?")
     window.close();
-})
+})*/
 
     
 

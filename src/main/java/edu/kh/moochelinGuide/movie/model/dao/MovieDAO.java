@@ -121,6 +121,8 @@ public class MovieDAO {
 		MovieDetail detail = null;
 		
 		try {
+			
+			
 			String sql = prop.getProperty("selectMovieDetail");
 			
 			pstmt = conn.prepareStatement(sql);
@@ -131,6 +133,7 @@ public class MovieDAO {
 			if(rs.next()) {
 				detail = new MovieDetail();
 				
+				detail.setMovieNo(rs.getInt("MOVIE_NO"));
 				detail.setMovieTitle(rs.getString("MOVIE_TITLE"));
 				detail.setCountry(rs.getString("COUNTRY"));
 				detail.setDetailImage(rs.getString("DETAIL_IMG"));
@@ -211,7 +214,7 @@ public List<DetailComment> detailCommentList(Connection conn, int movieNo) throw
 				comment.setCommentContent(rs.getString("COMMENT_CT"));
 				comment.setMemberNickname(rs.getString("MEMBER_NM"));
 				comment.setCommentDate(rs.getString("COMMENT_DT"));
-				
+				comment.setProfileImage(rs.getString("PROFILE_IMG"));
 				commentList.add(comment);
 				
 			}
@@ -387,6 +390,12 @@ public int rating(Connection conn, Rating rating) throws Exception{
 		return allShow;
 	}
 
+	/** 찜한 영화 조회
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Movie> selectWishMovie(Connection conn, int memberNo) throws Exception{
 		
 		List<Movie> selectWishMovie= new ArrayList<Movie>();
@@ -397,7 +406,10 @@ public int rating(Connection conn, Rating rating) throws Exception{
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			rs = stmt.executeQuery(sql);
+			pstmt.setInt(1, memberNo);
+			
+			
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 			Movie movie = new Movie();
@@ -409,7 +421,6 @@ public int rating(Connection conn, Rating rating) throws Exception{
 			movie.setCountry(rs.getString("COUNTRY"));
 			movie.setTicketing(rs.getString("TICKETING"));
 			movie.setAudience(rs.getString("AUDIENCE"));
-			movie.setStarRating(rs.getFloat("STAR_RATING"));
 			
 			selectWishMovie.add(movie);
 			
@@ -419,6 +430,67 @@ public int rating(Connection conn, Rating rating) throws Exception{
 			close(pstmt);
 		}
 		return selectWishMovie;
+	}
+
+	public int movieLike(Connection conn, int memberNo, int movieNo) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql =prop.getProperty("movieLike");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<Movie> evaluatedMovie(Connection conn, int memberNo) throws Exception{
+		
+		
+		List<Movie> evaluatedMovie = new ArrayList<Movie>();
+		
+		
+		
+		try {
+			String sql = prop.getProperty("EvaluatedMovie");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+			Movie movie = new Movie();
+			
+			movie.setMovieNo(rs.getInt("MOVIE_NO"));
+			movie.setMovieTitle(rs.getString("MOVIE_TITLE"));
+			movie.setPosterImage(rs.getString("POSTER_IMG"));
+			movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+			movie.setCountry(rs.getString("COUNTRY"));
+			movie.setTicketing(rs.getString("TICKETING"));
+			movie.setStarRating(rs.getFloat("STAR_RATING"));
+			
+			evaluatedMovie.add(movie);
+			}
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return evaluatedMovie;
 	}
 
 	

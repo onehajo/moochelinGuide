@@ -170,9 +170,11 @@ public class MovieService {
 		
 		map.put("selectWishMovie", selectWishMovie);
 		
+		System.out.println(map);
+		
 		close(conn);
 
-		return null;
+		return map;
 	}
 
 
@@ -205,6 +207,46 @@ public class MovieService {
 		close(conn);
 		
 		return allShow;
+	}
+
+
+
+
+	public int movieLike(int memberNo, int movieNo) throws Exception{
+		
+		Connection conn = getConnection();
+
+		int result = dao.movieLike(conn,memberNo,movieNo);
+
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+
+
+	public Map<String, Object> evaluatedMovie(int memberNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		
+		// 평가한 영화 정보 조회
+		List<Movie> evaluatedMovie = dao.evaluatedMovie(conn, memberNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("evaluatedMovie", evaluatedMovie);
+		
+		System.out.println(map);
+		
+		close(conn);
+
+		return map;
+		
 	}
 	
 	
