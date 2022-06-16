@@ -17,6 +17,7 @@ for(let i=0; i<count1; i++){
 		Swal.fire({
 			title: '받은 쪽지를 삭제하시겠습니까?',
 			text: "확인 버튼을 클릭하면 쪽지가 삭제됩니다.",
+			width: 370,
 			icon: 'warning',
 			iconColor: '#392eff',
 			showCancelButton: true,

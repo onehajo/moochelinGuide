@@ -1,4 +1,4 @@
-var $body_tag = document.querySelector("body")
+const $body_tag = document.querySelector("body")
 var $dark = document.querySelector(".dark");
 var $dark1 = document.querySelector(".dark1");
 var $popupLogin = document.querySelector("#login-box");
@@ -68,7 +68,7 @@ function openAgree(){
 }
 
 // 검은배경 클릭할때 (로그인, 회원가입 닫기)
-function closePop(){
+function closePoplog(){
 	if( $dark.classList.contains('active1')){
 		$dark.setAttribute("class", "dark active"); // z-index 4->3
 		$popupAgree.setAttribute("class", "popup"); // 약관 닫기
@@ -101,9 +101,7 @@ function loginValidate() {
 		
 		  Swal.fire({
              title: '이메일을 입력해주세요.',
-             width: 600,
-             padding: '3em',
-             color: 'black',
+             padding: '2em',
              confirmButtonColor: '#392eff',
              confirmButtonText: '확인'
           })
@@ -129,9 +127,7 @@ function loginValidate() {
 	
 		Swal.fire({
              title: '비밀번호를 입력해주세요.',
-             width: 600,
-             padding: '3em',
-             color: 'black',
+             padding: '2em',
              confirmButtonColor: '#392eff',
              confirmButtonText: '확인'
           })
@@ -576,7 +572,7 @@ function selectAll(selectAll){
 	const evalTotal = document.getElementById("evalTotal");
 
 	$.ajax({
-		url : "/moochelinGuide/member/evaltotal",
+		url : "/moochelilnGuide/evaltotal",
 		success : function(result){
 			if(result>=0){
 				console.log("조회 성공");

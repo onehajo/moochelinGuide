@@ -71,7 +71,7 @@
 </header>
 
 <!-- 로그인, 회원가입 팝업 시 검은 배경 화면 -->   
-<div class="dark" onclick="closePop();"></div>
+<div class="dark" onclick="closePoplog();"></div>
 <div class="dark1" onclick="closeAgree();"></div>
 
 <!-- 팝업될 로그인 div -->

@@ -1,7 +1,6 @@
 package edu.kh.moochelinGuide.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 
-@WebServlet("/member/evaltotal")
+@WebServlet("/evaltotal")
 public class EvaluationCountServlet extends HttpServlet{
 	
 	@Override
@@ -21,7 +20,7 @@ public class EvaluationCountServlet extends HttpServlet{
 			int result = new MemberService().evalTotal();
 			
 			System.out.println(result);
-			
+
 			resp.getWriter().print(result);
 			
 		}catch(Exception e) {
