@@ -572,7 +572,7 @@ function selectAll(selectAll){
 	const evalTotal = document.getElementById("evalTotal");
 
 	$.ajax({
-		url : "/moochelilnGuide/evaltotal",
+		url : "/moochelinGuide/evaltotal",
 		success : function(result){
 			if(result>=0){
 				console.log("조회 성공");
