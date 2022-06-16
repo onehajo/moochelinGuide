@@ -50,6 +50,9 @@ secessionBtn.addEventListener("click",function(e){
 
         Swal.fire({
             title: '정말 탈퇴하시겠습니까?',
+            padding: '0 2em 2em 2em',
+			titlefontSize: '1.875em',
+			fontWeight: '600',
             text: "탈퇴 버튼을 누르면 회원 탈퇴가 진행됩니다.",
             icon: 'warning',
             iconColor: '#392eff',
