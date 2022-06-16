@@ -407,6 +407,9 @@ public class MemberService {
 		// 6-2) 페이지 멤버의 팔로잉
 		int followingCount = dao.followingCount(conn, targetNo );
 		 
+		// 6-3) 멤버의 팔로우 y/n
+//		String followingYN = dao.followingYN(conn, targetNo );
+		
 		// 7) 찜한  영화 리스트 조회
 		List<Movie> movieList = dao.likeMovie(conn, memberNo);
 		int likeCount = 0;
