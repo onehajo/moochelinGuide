@@ -410,6 +410,10 @@ public class MemberService {
 		// 6-2) 페이지 멤버의 팔로잉
 		int followingCount = dao.followingCount(conn, targetNo );
 		
+		// 7) 평가한 영화 리스트 조회
+		List<Movie> movieList = dao.likeMovie(conn, memberNo);
+
+		System.out.println(movieList);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 1) 평가한 영화 정보 조회 (4개) 담겨져 있어야함.
@@ -470,7 +474,6 @@ public class MemberService {
 		// 6) memberNo 가 내가아닌 타인일때,
 		//    회원이름 / 회원번호 / 프로필이미지 / 배경이미지 
 		Member member = dao.selectMemberUser(conn, memberNo); //
-
 		
 		Map<String, Object>
 		map = new HashMap<String, Object>();

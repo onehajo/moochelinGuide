@@ -1430,6 +1430,40 @@ public class MemberDAO {
 		return result;
 	}
 
+	public List<Movie> likeMovie(Connection conn, int memberNo) throws Exception{
+		List<Movie> movieList = new ArrayList<Movie>();
+		
+		try {
+			
+			String sql = prop.getProperty("movieLike");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Movie m = new Movie();
+				
+				m.setMovieNo(rs.getInt(1));
+				m.setMovieTitle(rs.getString(2));
+				m.setPosterImage(rs.getString(3));
+				m.setReleaseYear(rs.getInt(4));
+				m.setCountry(rs.getString(5));
+				m.setCommentCount(rs.getInt(6));
+				
+				movieList.add(m);
+				
+			}
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return movieList;
+	}
+
 
 
 }

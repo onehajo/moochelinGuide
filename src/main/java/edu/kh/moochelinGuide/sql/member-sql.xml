@@ -401,7 +401,18 @@
 		ORDER BY MEMBER_NO
 	</entry>
 	
+	<entry key="movieLike">
+	SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY, (SELECT COUNT(*)
+                                                                FROM MEMBER
+                                                                LEFT JOIN MOVIE_LIKE USING(MEMBER_NO)
+                                                                JOIN MOVIE USING (MOVIE_NO)
+                                                                WHERE MEMBER_NO = ?) COUNT
+	FROM MEMBER
+	LEFT JOIN MOVIE_LIKE USING(MEMBER_NO)
+	JOIN MOVIE USING (MOVIE_NO)
+	WHERE MEMBER_NO = ?
 	
+	</entry>
 
 
 </properties>
