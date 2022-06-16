@@ -9,7 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>moochelinGuide</title>
 
-<link rel="stylesheet" href="resources/css/main-style.css">
+<!-- <link rel="stylesheet" href="resources/css/main-style.css"> -->
+<link rel="stylesheet" href="resources/css/adminIndex-style.css">
 
 <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
@@ -25,25 +26,31 @@
 
 		<section class="content-main">
 
-			<div class="current-data">
-				<span>현재 데이터</span> <span> 2022/05/23 12:11:15</span>
-			</div>
-			<div class="movie-btn">영화 데이터 크롤링</div>
-
 			<div class="dashBoard">
-				<div class="dashMovie">
-					<div class="dash-con">현재 영화 : 100,000,000 개</div>
-					<div class="dash-con">최근 추가된 영화 수 : 1000 개</div>
+			
+				<div class="va">
+					<div class="vainner">
+						<div>무슐랭 총 영화 :</div>
+						<div>작성된 코멘트 :</div>
+						
+						<div>현재 사용자 :</div>
+						<div>어제 가입자 :</div>
+						
+						<div>어제 문의 :</div>
+						<div>미처리 문의 :</div>
+					</div>
 				</div>
-				<div class="dashUser">
-					<div class="dash-con">현재 회원 수 : 100,000,000 명</div>
-					<div class="dash-con">어제 가입자 수 : + 500,000명</div>
-				</div>
-				<div class="dashCS">
-					<div class="dash-con">어제의 문의 글 : +100,000 건</div>
-					<div class="dash-con">미처리 문의건 : 20,000 건</div>
-				</div>
+				
+				<div class="co">
+					<div class="coinner">
+						<c:forEach var="info" items="${indexinfo}">
+							<div>${info.co} </div>
+						</c:forEach>
+					</div>
 			</div>
+			
+			</div>
+
 
 		</section>
 
@@ -51,10 +58,6 @@
 
 
 
-
-	loginMember : ${sessionScope.loginMember}
-	<hr>
-	세션확인하는 임시 코드 message : ${sessionScope.message}
 
 
 

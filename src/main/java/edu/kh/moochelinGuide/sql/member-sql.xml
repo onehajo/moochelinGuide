@@ -413,6 +413,12 @@
 	WHERE MEMBER_NO = ?
 	
 	</entry>
+	
+	
+	<!-- 관리자 인덱스 인포 -->
+	<entry key="selectAdminIndexInfo">
+	SELECT * FROM V3 ORDER BY 1
+	</entry>
 
 
 </properties>

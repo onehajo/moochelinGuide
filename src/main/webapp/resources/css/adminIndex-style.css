@@ -111,31 +111,54 @@ main > .content-main{
     margin: 0 auto;
 }
 
-.current-data{
-    width: 300px;
-    margin: 150px auto 50px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: 700;
-}
-.movie-btn{
-    width: 400px;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 30px;
-    font-weight: 500;
-    background-color: dodgerblue;
-    color: #fff;
-    padding: 20px 40px;
-    border-radius: 10px;
-}
 
 .dashBoard{
     max-width: 1200px;
-    margin: 100px auto 100px;
+    margin: 40px auto 60px;
     display: flex;
     justify-content: center;
 }
+
+.va .vainner{
+	font-size:18px;
+	padding:20px 0px 20px 20px;
+	margin:20px 0px 20px 20px;
+
+}
+
+.co .coinner{
+	font-size:18px;
+	padding:20px 20px 20px 0;
+	margin:20px 20px 20px 0;
+}
+.vainner div{
+	font-size:26px;
+	margin:10px 0;
+	background-color:dodgerblue;
+	padding:20px 30px 20px 50px;
+	color:#fff;
+	border-radius:10px 0 0 10px
+}
+.coinner div{
+	font-size:26px;
+	font-weight:500;
+	margin:10px 0;
+	background-color:dodgerblue;
+	padding:20px 50px 20px 30px;
+	color:#fff;
+	border-radius:0 10px 10px 0 ;
+}
+.coinner div:hover{
+	background-color:#00ffbe; 
+}
+.vainner div:hover{
+	background-color:#00ffbe; 
+}
+
+
+
+
+
 .dashMovie .dash-con {
     background-color: #f8f2f2;
 }
@@ -202,4 +225,17 @@ main > .content-main{
 .footer-bottom p{
     font-size: 12px;
     line-height: 10px;
+}
+
+
+
+/* 스윗얼럿 */
+.swal2-title { 
+font-size:18px !important;
+font-weight: 500 !important; 
+}
+
+.swal2-container.swal2-center>.swal2-popup {
+padding: 2em;
+display: grid;
 }
