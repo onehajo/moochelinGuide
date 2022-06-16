@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 
 
-@WebServlet(urlPatterns = {"/pwfind", "/search/pwfind"})
+@WebServlet(urlPatterns = {"/pwfind", "/search/pwfind","/movie/pwfind","/movie/detail/pwfind"})
 public class PwfindServlet extends HttpServlet {
 
 	@Override
@@ -31,13 +31,13 @@ public class PwfindServlet extends HttpServlet {
 		String pwFindEmail = req.getParameter("pwFindEmail");
 		
 		String subject = "[무슐랭 가이드] 새로운 비밀번호를 설정해주세요"; // 제목
-		String fromEmail = "huthut456@gmail.com"; // 보내는 사람으로 표시될 이메일 (보안설정한 메일 아니어도 상관없음)
+		String fromEmail = "moocheliln@gmail.com"; // 보내는 사람으로 표시될 이메일 (보안설정한 메일 아니어도 상관없음)//vljyrleupkedupny
 		String fromUsername = "MoochelinGuide"; // 보내는 사람 이름
 		String toEmail = pwFindEmail;
 		
 		
-		final String smtpEmail = "huthut456@gmail.com"; // 이메일 (보안설정했던 G메일)
-		final String password = "djwfxmbymsbnpgpl"; // 발급 받은 비밀번호 (보안 설정으로 발급받은 비밀번호)
+		final String smtpEmail = "moocheliln@gmail.com"; // 이메일 (보안설정했던 G메일)
+		final String password = "vljyrleupkedupny"; // 발급 받은 비밀번호 (보안 설정으로 발급받은 비밀번호)//djwfxmbymsbnpgpl//hut
 
 
 		// 메일 옵션 설정
