@@ -20,24 +20,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+   
+   
     <div id="wrapper">
-    
-        <jsp:include page="/WEB-INF/views/common/header.jsp" />
-        
-        <header id="header-2">
-            <div class="header-wrap">
-                <div class="back"><img src=""></div>
-            </div>
-        </header>
-        <header id="header">
-            <div class="header-wrap">
-               
-                <div class="coment-title">평가한 작품들</div>
-                <nav class="nav">
-                    <!-- <div class="nav1">최신순</div><div class="nav2">별점순</div> -->
-                </nav>
-                </div>
-        </header>
+        <div class="coment-title">평가한 작품들</div>
+        <!-- <div class="nav1">최신순</div><div class="nav2">별점순</div> -->
 
       
        

@@ -409,9 +409,12 @@ public class MemberService {
 		
 		// 7) 찜한  영화 리스트 조회
 		List<Movie> movieList = dao.likeMovie(conn, memberNo);
-		int likeCount = movieList.get(0).getCommentCount();
+		int likeCount = 0;
+		
+		if (movieList.size()!=0) {
+			 likeCount = movieList.get(0).getCommentCount();
+		}
 
-		System.out.println(movieList);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
