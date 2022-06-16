@@ -388,10 +388,7 @@ public class MemberService {
 		// 1-1) 내가 평가한 영화의 모든 갯수 ( 프로필 오른쪽에 사용할 것임 )
 		int analyMovieCount = dao.analyMovieCount(conn, memberNo);
 
-		// 2) 찜한 영화 정보(정보가 없슈)
-
-
-		// 3) 취향분석 (없슈)
+		
 		// 2) 평가한 점수의 각각의 갯수 ( 0.5점은 3개, 1점은 2개 .. )
 		List<Analysis> analyAll = dao.analyAllScore(conn, memberNo);
 		
@@ -410,13 +407,16 @@ public class MemberService {
 		// 6-2) 페이지 멤버의 팔로잉
 		int followingCount = dao.followingCount(conn, targetNo );
 		
-		// 7) 평가한 영화 리스트 조회
+		// 7) 찜한  영화 리스트 조회
 		List<Movie> movieList = dao.likeMovie(conn, memberNo);
+		int likeCount = movieList.get(0).getCommentCount();
 
 		System.out.println(movieList);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		// 1) 평가한 영화 정보 조회 (4개) 담겨져 있어야함.
+		
 		map.put("evalMovie", evalMovie);
 		// 2) 찜한 영화 정보(담을 예정)
 		// 3) 취향분석 (담을 예정)
@@ -426,6 +426,8 @@ public class MemberService {
 		map.put("followerCount", followerCount);
 		map.put("followingCount", followingCount);
 		map.put("analyMovieCount", analyMovieCount);
+		map.put("movieList", movieList);
+		map.put("likeCount", likeCount);
 		
 		close(conn);
 		
@@ -491,7 +493,7 @@ public class MemberService {
 		System.out.println(analyAll);
 		System.out.println(analyMovieCountry);
 		System.out.println(myAllRunningTime);
-
+ 
 		close(conn);
 		
 		return map;

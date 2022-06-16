@@ -6,6 +6,7 @@
 
 
 <c:set var="evalMovie" value="${map.evalMovie}" />
+<c:set var="likeMovie" value="${map.movieList}" />
 
 
 
@@ -86,9 +87,9 @@
                                 <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod">마이페이지</a> </div>
                             </div>
                         </c:if>
-                        
-                        <div class="pick-heart">❤</div>
-                        <div class="bucket-list"><a href="movie/wish?no=${ map.member.memberNo }">찜한 영화${evalMovie.likeCount}</a></div>
+                        <div class="pick-heart">❤</div>                    
+                                                                                                <!-- 카운트 VO따로 안만들고 있는거에다씀. -->
+                        <div class="bucket-list"><a href="movie/wish?no=${ map.member.memberNo }">찜한 영화 ${map.likeCount} </a></div>
                         <div class="count-star">⭐</div>
                         <!-- EL문 넣으시오 -->
                         <div class="moovie-analysis"><a href="movie/evaluatedmovie?no=${ map.member.memberNo}"> 평가한 영화 ${map.analyMovieCount}</a></div>
@@ -110,135 +111,93 @@
                         
                         <div class="movie-list-all">
 
-                                <c:choose>
+                            <c:choose>
 
-                                <c:when test="${ empty evalMovie}">
+                                <c:when test="${ empty likeMovie}">
 
-                                    <div style="  margin-bottom: 50px; "><span>평가한 영화가 없습니다.</span></div>
+                                    <div style="  margin-bottom: 50px; "><span>찜한 영화가 없습니다.</span></div>
+
+                                </c:when>
+
+                                <c:otherwise>
+                                    <ul>
+                                        <!-- 향상된 for문 -->
+                                        <c:forEach var="evalList" items="${evalMovie}">
+                                                <li>
+                                                    <a href="${contextPath}/movie/detail/select?no=${evalList.movieNo}">
+                                                        <div class="movie">
+                                                            <div class="movie-top">
+                                                                <div class="movie-poster">
+                                                                    <img src="${evalList.posterImage}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="movie-bottom">
+                                                                <div class="movie-title">${evalList.movieTitle}</div>
+                                                                <div class="movie-year-contry">${evalList.releaseYear} ・ ${evalList.country}</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                        </c:forEach>    
+                                    </ul>
+                                   
+                                </c:otherwise>  
+                                  
+                            </c:choose>    
+
+                        </div>
+
+                        <div class="title-area">
+                            <div class="title content-analysis"> 내가 찜한 영화 </div>
+                            <div class="more-view"><a href="#"> +더보기 </a></div>
+                        </div>
+
+                        
+                        <div class="movie-list-all">
+
+                            <c:choose>
+
+                                <c:when test="${ empty likeMovie}">
+
+                                    <div style="  margin-bottom: 50px; "><span>찜한 영화가 없습니다.</span></div>
 
                                 </c:when>
 
                                 <c:otherwise>
                                     
+                               
                                     <ul>
-                                    <!-- 향상된 for문 -->
-                                    <c:forEach var="evalList" items="${evalMovie}">
-                                            <li>
-                                                <a href="#">
-                                                    <div class="movie">
-                                                        <div class="movie-top">
-                                                            <div class="movie-poster">
-                                                                <img src="${evalList.posterImage}">
+                                        <!-- 향상된 for문 -->
+                                        <c:forEach var="likeList" items="${likeMovie}">
+                                                <li>
+                                                    <a href="${contextPath}/movie/detail/select?no=${likeList.movieNo}">
+                                                        <div class="movie">
+                                                            <div class="movie-top">
+                                                                <div class="movie-poster">
+                                                                    <img src="${likeList.posterImage}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="movie-bottom">
+                                                                <div class="movie-title">${likeList.movieTitle}</div>
+                                                                <div class="movie-year-contry">${likeList.releaseYear} ・ ${likeList.country}</div>
                                                             </div>
                                                         </div>
-                                                        <div class="movie-bottom">
-                                                            <div class="movie-title">${evalList.movieTitle}</div>
-                                                            <div class="movie-year-contry">${evalList.releaseYear} ・ ${evalList.country}</div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                    </c:forEach>    
+                                                    </a>
+                                                </li>
+                                        </c:forEach>    
                                     </ul>
                                 </c:otherwise>  
                                   
                             </c:choose>    
 
+                        </div>
+
+                      
 
 
-                            <div class="title-area">
-                                <div class="title content-analysis"> 내가 찜한 영화 </div>
-                                <div class="more-view"><a href="#"> +더보기 </a></div>
-                            </div>
-                            <div class="movie-list-all">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="movie">
-                                                <div class="movie-top">
-                                                    <div class="movie-poster">
-                                                        <img src="../images/broker.jpeg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="movie-bottom">
-                                                    <div class="movie-title">브로커</div>
-                                                    <div class="movie-year-contry">2022 ・ 한국</div>
-                                                    <div class="average">
-                                                        <span>평균</span>
-                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                        <span>3.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                
-                                    <li>
-                                        <a href="#">
-                                            <div class="movie">
-                                                <div class="movie-top">
-                                                    <div class="movie-poster">
-                                                        <img src="../images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="movie-bottom">
-                                                    <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                    <div class="movie-year-contry">2022 ・ 미국</div>
-                                                    <div class="average">
-                                                        <span>평균</span>
-                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                        <span>3.3</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                
-                                    <li>
-                                        <a href="#">
-                                            <div class="movie">
-                                                <div class="movie-top">
-                                                    <div class="movie-poster">
-                                                        <img src="../images/broker.jpeg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="movie-bottom">
-                                                    <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                    <div class="movie-year-contry">2022 ・ 미국</div>
-                                                    <div class="average">
-                                                        <span>평균</span>
-                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                        <span>3.3</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                
-                                    <li>
-                                        <a href="#">
-                                            <div class="movie">
-                                                <div class="movie-top">
-                                                    <div class="movie-poster">
-                                                        <img src="../images/VFz7DVf6CB4HlTlfxNx3vw.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="movie-bottom">
-                                                    <div class="movie-title">닥터 스트레인지: 대혼돈의 멀티버스</div>
-                                                    <div class="movie-year-contry">2022 ・ 미국</div>
-                                                    <div class="average">
-                                                        <span>평균</span>
-                                                        <svg width="12" height="10" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg" fill="#555765" class="css-1g90l0x"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8.02L3.14233 9.91131C2.91094 10.0644 2.61352 9.84836 2.68767 9.58097L3.60334 6.27872L0.921531 4.14536C0.704379 3.97262 0.817982 3.62299 1.0952 3.61087L4.51878 3.46128L5.719 0.251483C5.81619 -0.00842059 6.18381 -0.00842094 6.281 0.251483L7.48122 3.46128L10.9048 3.61087C11.182 3.62299 11.2956 3.97262 11.0785 4.14536L8.39666 6.27872L9.31233 9.58097C9.38648 9.84836 9.08906 10.0644 8.85767 9.91131L6 8.02Z"></path></svg>
-                                                        <span>3.3</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                
-                                </ul>
-                            </div>
-                
+
+
+
                             <div>
                                 <c:choose>
                                     <c:when test="${ empty map.allMovieAvg}">
