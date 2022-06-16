@@ -12,8 +12,18 @@ if(sendMessageBtn!=null){
 	sendMessageBtn.addEventListener("click",function(e){
 
 		// textarea 비어있는데 왜 else로 넘어가서 close됨?????
-		if(messageC.innerText.trim().length=0){
+		if(messageC.innerText==""){
 			e.preventDefault();
+
+			Swal.fire({
+                title: '메시지 작성 후 보내기 버튼을 눌러주세요 !',
+                width: 600,
+                padding: '3em',
+                color: 'black',
+                confirmButtonColor: '#392eff',
+                confirmButtonText: '확인'
+              });
+
 	        messageC.focus();
 
 	    }else{

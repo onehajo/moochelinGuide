@@ -37,7 +37,7 @@
 			<div id="messageContent" class="detailPopupHidden activePblock">
 			    <p class="popupTitle">받은 쪽지<span class="smallText"></span></p>
 			    <p class="">보낸 사람 : ${messageDetail.memberName}<span class="date">${messageDetail.enrollDate}</span></p>
-			    <form class="messageForm-css" action="delete" method="post" target="parentWindow">
+			    <form class="messageForm-css" action="delete" method="post" target="parentWindow" name="deletepop">
 			        <textarea name="" id="messageC" class="textarea-css" disabled>${messageDetail.messageContent}</textarea>
 			        <div class="messageBtnBox">
 			            <a href="detail?type=send&no=${messageDetail.messageNo}"><button type="button" class="messagePopupBtn transColor">답장</button></a>

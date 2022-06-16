@@ -14,6 +14,26 @@ const commentResult = document.getElementById("commentResult");
 
 searchBtn.addEventListener("click", function(){
 
+	const query = document.getElementById("query");
+	const queryExp = /^[a-zA-Z0-9가-힣]{1,10}$/;
+
+    if(query.value.trim().length==0||!queryExp.test(query.value)){
+
+        Swal.fire({
+			title: '영어/숫자/한글 1~10글자 사이로 작성해주세요.',
+				width: 600,
+				padding: '3em',
+				color: 'black',
+				confirmButtonColor: '#392eff',
+				confirmButtonText: '확인'
+		})
+
+		query.value = "";
+		query.focus();
+        return;
+        
+    }
+
     if(query.value.trim().length!=0){
 
         $.ajax({
