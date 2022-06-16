@@ -139,7 +139,7 @@
 
 				<button id="complete">수정하기</button>
 
-				${sessionScope.loginMember}
+	
 
 
 			</form>
