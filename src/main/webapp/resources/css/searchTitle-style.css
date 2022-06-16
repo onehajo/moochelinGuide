@@ -55,6 +55,10 @@ main > .content-explain > div, .sch-menu{
     width:200px
 }
 
+.sch-title > div:nth-child(2){
+    text-overflow: ellipsis;
+}
+
 .sch-title > div:nth-child(3){
     font-size: 12px;
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.kh.moochelinGuide.member.model.service.MemberService;
 
-@WebServlet("/member/evaltotal")
+@WebServlet("/evaltotal")
 public class EvaluationCountServlet extends HttpServlet{
 	
 	@Override
