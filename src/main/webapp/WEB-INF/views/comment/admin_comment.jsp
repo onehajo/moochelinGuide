@@ -56,6 +56,7 @@
         const contextPath = "${contextPath}";
     </script>
 	<script src="${contextPath}/resources/js/admin_comment.js"></script>
+    <script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 </html>

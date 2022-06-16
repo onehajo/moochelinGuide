@@ -8,28 +8,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${contextPath}/resources/css/myPage-style.css">
     <!-- 헤더푸터 CSS 연결-->
-    <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/notice.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/adminIndex-style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/adminNotice.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Gowun+Batang&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <title>Notice</title>
+    <title>adminNotice</title>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <jsp:include page="/WEB-INF/views/admin/adminHeader.jsp" />
     <main>
-        <jsp:include page="/WEB-INF/views/common/myPage_top.jsp" />
-        
         <div class="notice">
             <h2>공지사항</h2>
         <c:forEach var="notice" items="${noticeList}">
             <section class="notice2">
                 
-                <div class="titleArea"><span id="noticeName">${notice.boardTit}</span><span class="carrotdown">&#8744;</span>
+                <div class="titleArea"><span id="noticeName">${notice.boardTit}</span>
+                    <span class="modifyArea"><a href="notice/noticeRegist?type=modify" class="modifyBtn" style="color: white;">수정</a></span>
+                    <span class="deleteArea"><a href="notice/noticeDelete?no=${notice.boardNo}" class="deleteBtn" style="color: white;">삭제</a> </span>
+                    <span class="carrotdown">&#8744;</span>
                 <p id="date">${notice.createDate}</p></div>
                 <span class="noticeContent">
                     <c:if test="${!empty notice.link}">
@@ -37,14 +37,16 @@
                     </c:if>
     <pre id="noticeContent">${notice.content}</pre>
                 </span>
+                <input type="hidden" name="boardNo" value="${notice.boardNo}">
             </section>
         </c:forEach>
+    
+    <a href="notice/noticeRegist?type=regist"><button id="registration">공지 추가하기</button></a>
         </div>
         
     </main>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="${contextPath}/resources/js/notice.js"></script>
-    <script src="${contextPath}/resources/js/main.js"></script>
+    <script src="${contextPath}/resources/js/adminNotice.js"></script>
 </body>
 </html>

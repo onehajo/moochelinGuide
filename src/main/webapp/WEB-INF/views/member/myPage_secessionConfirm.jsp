@@ -75,6 +75,7 @@
         const loginMemberNo = "${loginMember.memberNo}";
     </script>
 	<script src="${contextPath}/resources/js/myPage-secession.js"></script>
+	<script src="${contextPath}/resources/js/main.js"></script>
 
 </body>
 </html>

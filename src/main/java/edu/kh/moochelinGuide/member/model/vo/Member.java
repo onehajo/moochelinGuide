@@ -28,4 +28,9 @@ public class Member {
 	private String memberType;
 	
 	
+	// 관리자 인덱스 인포
+	private String va;
+	private int co;
+	
+	
 }

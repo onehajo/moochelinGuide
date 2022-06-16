@@ -1472,6 +1472,66 @@ public class MemberDAO {
 		return movieList;
 	}
 
+	
+	
+	
+	
+	
+	/** 관리자 인덱스 인포
+	 * @param conn
+	 * @return indexinfo
+	 * @throws Exception
+	 */
+	public List<Member> selectAdminIndexInfo(Connection conn) throws Exception {
+		
+		List<Member> indexinfo = new ArrayList<Member>();
+		try {
+			String sql = prop.getProperty("selectAdminIndexInfo");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Member member = new Member();
+				member.setVa(rs.getString("VA"));
+				member.setCo(rs.getInt("CO"));
+				indexinfo.add(member);
+			}
+			
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return indexinfo;
+	}
+	
+	/** 총 평가 개수 계산 DAO
+	 * @param conn
+	 * @return result
+	 * @throws Exception
+	 */
+	public int evalTotal(Connection conn) throws Exception{
+		
+		int result = -1;
+		
+		try {
+			String sql = prop.getProperty("evalTotal");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 
 }

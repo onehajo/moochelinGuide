@@ -254,13 +254,8 @@ public class BoardDAO {
 			pstmt.setInt(1, boardNo);
 			
 			rs= pstmt.executeQuery();
-			} else {
-				sql = prop.getProperty("noticeImageList");
-				
-				stmt = conn.createStatement();
-				
-				rs = stmt.executeQuery(sql);
 			}
+			
 			while(rs.next()) {
 				BoardImage image = new BoardImage();
 				image.setImageNo(rs.getInt(1));
@@ -303,7 +298,7 @@ public class BoardDAO {
 				board.setBoardTit(rs.getString("BOARD_TITLE"));
 				board.setContent(rs.getString("BOARD_CT"));
 				board.setCreateDate(rs.getString("CREATE_DT"));
-				
+				board.setLink(rs.getString("IMG_RENAME"));
 				list.add(board);
 			}
 		}finally {
@@ -353,6 +348,29 @@ public class BoardDAO {
 				close(stmt);
 			}
 		return boardNo;
+	}
+
+	/** 공지 삭제 DAO
+	 * 
+	 * @param conn
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int noticeDelete(Connection conn, int boardNo) throws Exception {
+		int result = 0;
+		try {
+			String sql = prop.getProperty("noticeDelete");
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 	

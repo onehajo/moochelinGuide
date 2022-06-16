@@ -132,17 +132,34 @@ public class BoardService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		list = dao.listNotice(conn,boardCd);
-		int boardNo = 0;
-		if(!list.isEmpty()) {
-			List<BoardImage> imagelist = dao.selectImageList(conn,boardNo, boardCd);
-			
-			map.put("imageList", imagelist);
-		}
+	
 		map.put("noticeList", list);
 		
 		close(conn);
 		
 		return map;
+	}
+
+	/** 공지 삭제 Service
+	 * 
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int noticeDelete(int boardNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		result = dao.noticeDelete(conn,boardNo);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return 0;
 	}
 
 }

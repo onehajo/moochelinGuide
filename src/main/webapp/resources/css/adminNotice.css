@@ -47,7 +47,7 @@
 }
 
 .notice #registration {
-	width: 1110px;
+	width: 350px;
 	height: 40px;
 	margin: 5px;
 	border: none;
@@ -75,4 +75,32 @@
 
 .titleArea{
 	cursor: pointer;
+}
+
+.deleteArea{
+	position: absolute;
+	right: 24px;
+}
+
+.modifyBtn{
+	border: none;
+	background-color: cornflowerblue;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 1px 6px;
+}
+
+.modifyArea{
+	position: absolute;
+	right: 76px;
+}
+
+.modifyBtn{
+	border: none;
+	background-color: cornflowerblue;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 1px 6px;
 }

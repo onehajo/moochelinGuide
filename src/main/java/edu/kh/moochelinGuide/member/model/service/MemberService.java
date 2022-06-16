@@ -639,6 +639,48 @@ public class MemberService {
 	
 	
 	
+	/** 관리자 인덱스 정보
+	 * @return map
+	 * @throws Exception
+	 */
+	public List<Member> selectAdminIndexInfo() throws Exception {
+
+		Connection conn = getConnection();
+		
+		// 영화정보 (전체 영화 수)
+		List<Member> indexinfo = dao.selectAdminIndexInfo(conn);
+		// 코멘트 정보 (전체 코멘트 갯수)
+		
+		// 현재 회원 수
+		
+		// 어제 가입한 회원 수
+		
+		// 어제 문의글 수 
+		
+		// 미처리 문의 글 수
+		
+		
+		
+		return indexinfo;
+	}
+
+	
+	/** 총 평가 개수 계산 Service
+	 * @return result
+	 * @throws Exception
+	 */
+	public int evalTotal() throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.evalTotal(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	
 	
 	
 
