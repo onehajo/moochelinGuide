@@ -282,7 +282,7 @@
                     const s = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") > div");
                     const p = document.querySelector(".graph-around> li:nth-of-type("+(i*2)+") ");
 
-                    s.style.height =  a.count  * 10 + 3 +'px';
+                    s.style.height =  a.count  * 10 + 10 +'px';
                     p.style.animation = 'stick 2s 1';
                 }
             }
