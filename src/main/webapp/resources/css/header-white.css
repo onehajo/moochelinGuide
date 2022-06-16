@@ -3,7 +3,6 @@
     list-style: none;
     text-decoration: none;
     font-family: 'Noto Sans KR', sans-serif;
-    color : black;
     
 }
 
@@ -84,7 +83,7 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, #00ffbe 13%, #fff 0);
 }
 
 #query{
@@ -96,7 +95,13 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     outline: 0;
     width: 100%;
     margin: -2px;
-    background: rgba(0, 0, 0, 0.1);
+    
+    margin: -2px -2px -2px 10px;
+}
+
+.btnSchI{
+	border:none;
+	background-color:transparent;
 }
 
 #query::placeholder{ 
@@ -111,6 +116,8 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     outline: none;
 
     color: #fff;
+    
+    margin-left: -13px;
     
     
 }

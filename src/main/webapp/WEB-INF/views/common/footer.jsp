@@ -26,9 +26,6 @@
          
          Swal.fire({
              title: '${message}',
-                 width: 600,
-                 padding: '3em',
-                 color: 'black',
                  confirmButtonColor: '#392eff',
                  confirmButtonText: '확인'
           })

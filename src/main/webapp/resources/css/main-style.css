@@ -3,7 +3,6 @@
     list-style: none;
     text-decoration: none;
     font-family: 'Noto Sans KR', sans-serif;
-    color : black;
 }
 body{
     margin: 0;
@@ -77,7 +76,7 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
 }
 
 #query{
-    padding: 8px 15px;
+    padding: 9px 15px;
     font-size: 14px;
     font-weight: 400;
 
@@ -104,6 +103,11 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     
     margin-left: -13px;
     
+}
+
+.btnSchI{
+	border:none;
+	background-color:transparent;
 }
 
 .signup{
@@ -208,10 +212,7 @@ svg가 있는 div의 크기 변경하면 이미지값 변경 가능 */
     margin-top: 10px;
     cursor: pointer;
 }
-.btnSchI{
-	border:none;
-	background-color:transparent;
-}
+
 
 .login-other {
     color: #8c8c8c;
@@ -583,4 +584,21 @@ margin-bottom: 50px;
 .footer-bottom p{
     font-size: 12px;
     line-height: 10px;
+}
+
+
+
+
+
+
+
+/* 스윗얼럿 */
+.swal2-title { 
+font-size:18px !important;
+font-weight: 500 !important; 
+}
+
+.swal2-container.swal2-center>.swal2-popup {
+padding: 2em;
+display: grid;
 }
