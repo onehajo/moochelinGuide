@@ -37,7 +37,7 @@ public class BoardService {
 		
 		result = dao.boardRegist(conn, board);
 		
-		if(result > 0) {
+		if(result > 0&&(image.getImageReName()!=null)) {
 				boardNo = dao.getBoardNo(conn);
 				image.setBoardNo(boardNo);
 				result = dao.insertBoardImage(conn,image);
