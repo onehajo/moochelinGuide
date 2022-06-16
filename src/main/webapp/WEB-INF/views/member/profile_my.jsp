@@ -87,10 +87,10 @@
                         </c:if>
                         
                         <div class="pick-heart">❤</div>
-                        <div class="bucket-list"><a href="movie/wish?no=${ map.member.memberNo }">찜한 영화</a></div>
+                        <div class="bucket-list"><a href="movie/wish?no=${ map.member.memberNo }">찜한 영화${evalMovie.likeCount}</a></div>
                         <div class="count-star">⭐</div>
                         <!-- EL문 넣으시오 -->
-                        <div class="moovie-analysis"><a href="movie/evaluatedmovie?no=${ map.member.memberNo}"> ${map.analyMovieCount}</a></div>
+                        <div class="moovie-analysis"><a href="movie/evaluatedmovie?no=${ map.member.memberNo}"> 평가한 영화 ${map.analyMovieCount}</a></div>
                     </div>
                 </div>
                 <!-- 맴버값 확인 -->
@@ -113,7 +113,7 @@
 
                                 <c:when test="${ empty evalMovie}">
 
-                                    <div><span>평가한 영화가 없습니다.</span></div>
+                                    <div style="  margin-bottom: 50px; "><span>평가한 영화가 없습니다.</span></div>
 
                                 </c:when>
 

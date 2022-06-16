@@ -402,6 +402,25 @@
 	</entry>
 	
 	
+	
+	<!-- 페이지 멤버의 팔로잉  -->
+	<entry key="likeMovie">
+	    SELECT MOVIE_NO, MOVIE_TITLE, POSTER_IMG, RELEASE_YEAR, COUNTRY
+	    FROM MOVIE_LIKE
+	    JOIN MOVIE USING(MOVIE_NO)
+	    WHERE MEMBER_NO= ?
+	    <![CDATA[WHERE ROWNUM <= 4]]>
+	</entry>
+	
+	
+	<!-- 페이지 멤버의 팔로잉  -->
+	<entry key="likeMovieCount">
+	 SELECT COUNT(*)
+     FROM MOVIE_LIKE
+     WHERE MEMBER_NO = ?
+	</entry>
+	
+	
 
 
 </properties>
