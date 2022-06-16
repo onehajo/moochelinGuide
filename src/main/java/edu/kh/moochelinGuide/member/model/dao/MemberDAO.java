@@ -1430,6 +1430,12 @@ public class MemberDAO {
 		return result;
 	}
 
+	/** 내가 찜한영화 목록/갯수 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Movie> likeMovie(Connection conn, int memberNo) throws Exception{
 		List<Movie> movieList = new ArrayList<Movie>();
 		
@@ -1451,6 +1457,8 @@ public class MemberDAO {
 				m.setPosterImage(rs.getString(3));
 				m.setReleaseYear(rs.getInt(4));
 				m.setCountry(rs.getString(5));
+				
+//				VO따로 안만들고 있는거에다씀.
 				m.setCommentCount(rs.getInt(6));
 				
 				movieList.add(m);
