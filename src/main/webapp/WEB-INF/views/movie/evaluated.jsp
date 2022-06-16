@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/evaluated.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

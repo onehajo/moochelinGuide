@@ -15,11 +15,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- sweetalert-->
-    <style>
-    .swal2-title {
-        font-size: 20px;
-    }
-    </style>
+
     <script src="https://kit.fontawesome.com/e4f51ae88c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

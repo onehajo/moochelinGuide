@@ -17,6 +17,7 @@
 <title>Document</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/comment_detail.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- sweetalert-->
 
 <script src="https://kit.fontawesome.com/e4f51ae88c.js"
 	crossorigin="anonymous"></script>
