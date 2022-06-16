@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,12 +65,12 @@
 
                             			<div class="text-area">
                                 			<span class="name">${message.memberName}<span class="date">${message.enrollDate}</span></span>
-                                			<span class="message"><a href="detail?type=confirm&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;">${message.messageContent}</a></span>
+                                			<span class="message"><a href="detail?type=confirm&no=${message.messageNo}&count2=${fn:length(messageList)}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;">${message.messageContent}</a></span>
                             			</div>
                         			</div>
                         			<div class="message-right-btns">
-                            			<a href="detail?type=send&no=${message.messageNo}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;" id="sendMessagePop"><button type="button" class="transColor">답장하기</button></a>
-                            			<form style="display:inline-block;" action="delete" method="post"><input type="hidden" name="messageNo" value="${message.messageNo}"><button class="mint">쪽지삭제</button></form>
+                            			<a href="detail?type=send&no=${message.messageNo}&count2=${fn:length(messageList)}" onclick="window.open(this.href, '_blank', 'width=380, height=410, scrollbars=no, top=200, left=400'); return false;" id="sendMessagePop"><button type="button" class="transColor">답장하기</button></a>
+                            			<form style="display:inline-block;" action="delete" method="post" class="delform"><input type="hidden" name="messageNo" value="${message.messageNo}"><button class="mint delmint">쪽지삭제</button></form>
                         			</div>
                     			</div>
                     			
@@ -101,8 +102,10 @@
 	<script>
         const contextPath = "${contextPath}";
         const loginMemberNo = "${loginMember.memberNo}";
+		const count1 = "${fn:length(messageList)}";
     </script>
 	<script src="${contextPath}/resources/js/myPage_message.js"></script>
+	
 
 </body>
 </html>
