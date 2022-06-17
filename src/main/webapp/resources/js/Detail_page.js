@@ -9,7 +9,7 @@ $('.starRev span').click(function(){
 
 
 
-const loremIpsum = document.getElementById("lorem-ipsum")
+/*const loremIpsum = document.getElementById("lorem-ipsum")
 
 fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
     .then(response => response.text())
@@ -43,7 +43,7 @@ window.addEventListener("keyup", e => {
         modalOff()
     }
 })
-
+*/
 
 
 
