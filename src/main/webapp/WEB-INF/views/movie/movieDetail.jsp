@@ -137,7 +137,7 @@
                                 <div class="coment-nickname">${comment.memberNickname}
                                     <div class="coment-row">${comment.commentDate}</div>
                                 </div>
-                                <div class="hart">하트</div>
+                                <div class="hart"></div>
                                 </div>
                                 <div class="coment-cotent"><a id="over" href="comment/list?no=${detail.movieNo}">${comment.commentContent}<a></div>                           
                                 </div>
