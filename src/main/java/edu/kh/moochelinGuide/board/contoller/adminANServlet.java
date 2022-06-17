@@ -85,6 +85,7 @@ public class adminANServlet extends HttpServlet{
 					image.setImageReName(folderPath+rename);
 					image.setImageLevel(Integer.parseInt(name));
 					image.setBoardNo(boardNo);
+					System.out.println();
 				}
 			}
 			image.setImageSt(imageSt);
@@ -95,8 +96,6 @@ public class adminANServlet extends HttpServlet{
 			board.setBoardTit(title);
 			board.setBoardCode(boardCode);
 			board.setMemberNo(member.getMemberNo());
-			System.out.println(board);
-			System.out.println(image);
 			if(type.equals("regist")) {
 			int result = service.boardRegist(board,image);
 			resp.getWriter().print(result);
