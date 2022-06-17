@@ -46,8 +46,8 @@
 
 
     <jsp:include page="/WEB-INF/views/common/header.jsp" /> 
-
     
+    <!-- 80번째 줄에 팔로우버튼 기능오류로 버튼속 텍스만 제거...! -->
     <main> 
         <div class="container">
             <section class="page-start">
@@ -75,14 +75,12 @@
                             <div class="profile-name">${map.member.memberName}</div>
                             <div class="follow"><span><a href="/member/mypage">팔로워</a> : <span id="followingCount2">${map.followerCount}</span> </span><span>   |   </span><span><a href="/member/mypage">팔로잉</a>  : <span id="">${map.followingCount}</span></span></div>
                         </div>
+                      
+                        <%-- 
                         <c:if test="${ map.member.memberNo != loginMember.memberNo}">
-
-
-                            <button class="mypage-button"  id="followBtn" >팔로우 취소</button>
+                            <button class="mypage-button"  id="followBtn" ></button>
                             
-
-                            
-                        </c:if>
+                        </c:if> --%>
                         
                         <c:if test="${ map.member.memberNo == loginMember.memberNo}">
                             <div id="searchFail">
