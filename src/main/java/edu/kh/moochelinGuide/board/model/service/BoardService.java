@@ -189,13 +189,11 @@ public class BoardService {
 		
 		if(image.getImageSt()==1) {
 			result = dao.deleteImage(conn,board);
-			System.out.println("이미지1");
 		}
 		
 		if(image.getImageSt()==2) {
 				image.setBoardNo(board.getBoardNo());
 				result = dao.updateBoardImage(conn,image);
-				System.out.println("이미지2");
 		}
 		
 		if(result>0) commit(conn);

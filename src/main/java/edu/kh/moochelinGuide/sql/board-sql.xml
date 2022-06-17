@@ -137,4 +137,9 @@
 		UPDATE BOARD_IMG SET IMG_RENAME=?,IMG_ORIGINAL=?
 		WHERE BOARD_NO =?
 	</entry>
+	
+	<!--  -->
+	<entry key="insertBoardImage">
+		INSERT INTO BOARD_IMG VALUES(SEQ_IMG_NO.NEXTVAL, ?,?,?,?)
+	</entry>
 </properties>

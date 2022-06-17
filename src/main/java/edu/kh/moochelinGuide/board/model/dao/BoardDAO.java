@@ -469,6 +469,20 @@ public class BoardDAO {
 			pstmt.setInt(3, image.getBoardNo());
 		
 			result = pstmt.executeUpdate();
+			
+			if(result==0) {
+				sql = prop.getProperty("insertBoardImage");
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, image.getImageReName());
+				pstmt.setString(2, image.getImageOriginal());
+				pstmt.setInt(3,0);
+				pstmt.setInt(4,image.getBoardNo());
+				
+				result = pstmt.executeUpdate();
+				
+				
+			}
 		}finally {
 			close(pstmt);
 		}

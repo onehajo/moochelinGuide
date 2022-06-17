@@ -48,10 +48,6 @@
             <textarea id="comment" name="comment" cols="30" rows="10" placeholder="댓글 입력"></textarea>
         </div>
         <br>
-        <section id="file-upload">
-            <label for="uploadfile" id="upload-btn"><span>파일 추가</span> 또는 파일을 여기로 드래그</label>
-            <input type="file" id="uploadfile">
-        </section>
         
             <section class="regist"><button id="registration">제출</button></section>
             <input type="hidden" name="list" value="${param.list}">
