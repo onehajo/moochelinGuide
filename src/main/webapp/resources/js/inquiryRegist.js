@@ -16,9 +16,9 @@ function registValidate(){
     return true;
 };
 
-const inputImage = document.getElementsByClassName("uploadfile");
+const inputImage = document.getElementsByClassName("uploadfile")[0];
 const preview = document.getElementsByClassName("preview");
-const deleteImage = document.getElementsByClassName("delete-Img");
+const deleteImage = document.getElementsByClassName("delete-Img")[0];
 const divImg = document.getElementsByClassName("img");
 const imgArea = document.getElementsByClassName("imgArea")[0];
 imgArea.style.display = "none";
@@ -55,9 +55,9 @@ inputImage.addEventListener("change", function(){
 });
 
 deleteImage.addEventListener("click",function(){
-preview[0].removeAttribute("src");
-inputImage.value="";
-imgArea.style.display = "none";
-imgUpload.style.display="block";
-imageSt.value = "1";   
+    preview[0].removeAttribute("src");
+    inputImage.value="";
+    imgArea.style.display = "none";
+    imgUpload.style.display="block";
+    imageSt.value = "1";   
 });
