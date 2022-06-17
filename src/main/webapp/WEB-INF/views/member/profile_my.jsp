@@ -52,8 +52,13 @@
         <div class="container">
             <section class="page-start">
 
+                <c:if test="${empty map.member.profileBackImage}">
+                    <div class="my-background " style=" background-size: cover; background-image : url(${contextPath}${loginMember.profileBackImage})">
+                    </c:if>
+                    <c:if test="${!empty map.member.profileBackImage}">
+                        <div class="my-background " style=" background-size: cover; background-image : url(${contextPath}${map.member.profileBackImage})">
+                </c:if>
                 <!-- 배경이미지 -->
-                <div class="my-background " style=" background-size: cover; background-image : url(${contextPath}${loginMember.profileBackImage})">
 
                 </div>
                 <div class="info-1200px">
@@ -66,7 +71,7 @@
 						    </c:if>
 						
                             <c:if test="${!empty map.member.profileImage}">
-                                <img src="${contextPath}${loginMember.profileImage}" style="object-fit: cover; width: 100%; height: 100%;">
+                                <img src="${contextPath}${map.member.profileImage}" style="object-fit: cover; width: 100%; height: 100%;">
                             </c:if>
 				
                             <!-- <div class="fa-solid fa-user"></div> -->
@@ -75,13 +80,12 @@
                             <div class="profile-name">${map.member.memberName}</div>
                             <div class="follow"><span><a href="/member/mypage">팔로워</a> : <span id="followingCount2">${map.followerCount}</span> </span><span>   |   </span><span><a href="/member/mypage">팔로잉</a>  : <span id="">${map.followingCount}</span></span></div>
                         </div>
-                      
-                        <%-- 
+                      <%-- 
                         <c:if test="${ map.member.memberNo != loginMember.memberNo}">
                             <button class="mypage-button"  id="followBtn" ></button>
                             
-                        </c:if> --%>
-                        
+                        </c:if> 
+                    --%>
                         <c:if test="${ map.member.memberNo == loginMember.memberNo}">
                             <div id="searchFail">
                                 <div class="mypage-button"> <a href="${contextPath}/member/myPage/mod">마이페이지</a> </div>
