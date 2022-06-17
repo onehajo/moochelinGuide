@@ -47,10 +47,6 @@
             <textarea id="comment" name="comment" cols="30" rows="10" placeholder="댓글 입력"></textarea>
         </div>
         <br>
-        <section id="file-upload">
-            <label for="uploadfile" id="upload-btn"><span>파일 추가</span> 또는 파일을 여기로 드래그</label>
-            <input type="file" id="uploadfile">
-        </section>
         
             <section class="regist"><button id="registration">제출</button></section>
             <input type="hidden" name="list" value="${param.list}">
@@ -63,5 +59,4 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
 		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 		crossorigin="anonymous"></script>
-    <script src="${contextPath}/resources/js/main.js"></script>
 </html>
