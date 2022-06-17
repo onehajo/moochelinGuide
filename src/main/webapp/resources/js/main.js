@@ -435,7 +435,7 @@ function selectAll(selectAll){
 }
 
 
-$(document).ready(function(){
+/*$(document).ready(function(){
     $('.form-css i').on('click',function(){
         $('input').toggleClass('active');
         if($('input').hasClass('active')){
@@ -446,7 +446,7 @@ $(document).ready(function(){
             .prev('input').attr('type','password');
         }
     });
-});
+});*/
 
 
 
@@ -589,7 +589,7 @@ $(document).ready(function(){
 	const evalTotal = document.getElementById("evalTotal");
 
 	$.ajax({
-		url : "/moochelinGuide/evaltotal",
+		url : contextPath+ "/evaltotal",
 		success : function(result){
 			if(result>=0){
 				console.log("조회 성공");
