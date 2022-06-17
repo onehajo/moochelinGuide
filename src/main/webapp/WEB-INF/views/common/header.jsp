@@ -122,10 +122,12 @@
 			<div id="nameMessage"></div>
 			<input type="text" placeholder="이메일" id="signUpEmail" name="memberEmail">
 			<div id="emailMessage"></div>
+			<!-- <i class="fa fa-eye fa-lg"></i> -->
 			<input type="password" placeholder="비밀번호" id="signUpPw" name="memberPw">
-			<i class="fa fa-eye fa-lg"></i>
+			
 			<div id="pwMessage"></div>
 			<button type="button" id="signup-btn" class="btn">회원가입</button>
+			
 		</div>
 		<div class="login-other">
 		<div>이미 가입하셨나요?<a onclick="openPopLogin()"> 로그인</a></div>
